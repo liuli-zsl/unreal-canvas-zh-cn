@@ -1,0 +1,126 @@
+[
+  {
+    "selector": ".agent-onboarding-card p,.agent-onboarding-content > p,.agent-onboarding-content details > p,.agent-onboarding-guidance > p,.agent-onboarding-guidance button",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#104:dbaa865c5c9b1e6c": "沿用本机 CLI 的登录、连接及组织设置。",
+      "Open setup guide ↗": "打开设置指南 ↗",
+      "#50:02405a495af52c1b": "请运行 Codex CLI 并登录。",
+      "#56:394e7ecb9d45b33f": "请运行 Claude Code 并登录。",
+      "#44:6f11cbe8f85808a5": "请先在本机安装 Claude Code。",
+      "#38:fb65a56a36a13121": "本机尚未安装 Codex CLI。",
+      "#87:6fb756462f5fccdf": "按指南安装 Claude Code，再登录现有账户。",
+      "#81:62706d6bbff140b3": "按指南安装 Codex CLI，再登录现有账户。",
+      "run: codex login": "运行 codex login",
+      "start claude and type /login": "启动 claude 后输入 /login",
+      "#279:1c63e1a2897142bb": "加载 Claude Code 的用户设置、钩子、规则、插件、技能、命令和 CLAUDE.md，也加载用户级和插件提供的 MCP 服务。文件与终端工具限于 Claude 工作目录。",
+      "#185:f28bd7ed8c6d06c8": "沿用 Claude Code 的账号与连接，在 Canvas 内使用专用设置和工具。工作目录的记忆仍可能生效。",
+      "#110:7c6eb6384c07c37c": "载入 Codex 的本机配置，包括 MCP、插件、钩子、规则、记忆、AGENTS.md 和技能。",
+      "#202:287e3fcf7e61a0de": "只沿用 Codex 登录与模型设置，其他本地扩展和记忆不会载入。仅存在系统密钥环中的凭据不可沿用。"
+    }
+  },
+  {
+    "selector": "button.agent-onboarding-select > span > span,[role=listbox]:is([aria-label='Chat context'],[aria-label='对话上下文']) [role=option]:is([data-value=personal],[data-value=clean]) > span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Personal configuration": "个人配置",
+      "Clean context": "空白上下文"
+    }
+  },
+  {
+    "selector": ".merlin-navigator-tree-actions button,.outliner-header-cell,.outliner-header-cell > span,.outliner-body,.media-library .merlin-panel-search input,.merlin-panel-settings-menu,.merlin-panel-settings-menu .ue-menu-label",
+    "fields": [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Search all items": "搜索所有项目",
+      "All items": "所有项目",
+      "Tree options": "树视图选项",
+      "Expand all": "全部展开",
+      "Collapse all": "全部折叠",
+      "Sort by name": "按名称排序",
+      "Sort by type": "按类型排序",
+      "Sort by model": "按模型排序",
+      "Name": "名称",
+      "Type": "类型",
+      "Model": "模型"
+    }
+  },
+  {
+    "selector": ".merlin-panel-chip > button,.merlin-panel-search-clear",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Remove filter": "移除筛选条件"
+    }
+  },
+  {
+    "selector": ".merlin-script-side-locked > span,.merlin-script-side-duplicate,.merlin-script-form-add,.merlin-script-form-grip,.merlin-script-form-dot,.merlin-script-form-star,.merlin-script-form-remove,.merlin-graph-inspector .merlin-script-form-none",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "#117:49284a0412574c0f": "内置节点图需先复制到工具箱，再修改副本。",
+      "Edit a Copy": "编辑副本",
+      "Required": "必填",
+      "#33:7e254ee25a72b6c7": "当前为必填，点击切换为可选。",
+      "Optional": "可选",
+      "#33:e194ce253c950e11": "当前为可选，点击切换为必填。",
+      "#38:5df040d56be75238": "所选模型运行时必须提供此输入。",
+      "Primary output": "主要输出",
+      "Mark as primary output": "设为主要输出",
+      "#31:8611e1a1ddcb1a15": "拖动排序，或使用 Alt+↑/↓。",
+      "#57:fb39e91b1f8494f2": "已定义接口。拖入节点图即可放置实例。",
+      "Remove": "移除"
+    }
+  },
+  {
+    "selector": "[role=dialog]:is([aria-label='Unsaved changes'],[aria-label='未保存的更改']),[role=dialog]:is([aria-label='Unsaved changes'],[aria-label='未保存的更改']) :is(div,button)",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Unsaved changes": "未保存的更改",
+      "#61:e33504c211954ec3": "节点图尚未保存。可另存副本或放弃此次修改。",
+      "Discard": "放弃更改",
+      "Save a Copy": "另存为副本"
+    }
+  },
+  {
+    "selector": "[role=dialog]:is([aria-label='Custom Filter'],[aria-label='自定义筛选']) input,.media-library-filter-trigger,.merlin-scripts-section .merlin-panel-chip",
+    "fields": [
+      "title",
+      "placeholder",
+      "aria-label"
+    ],
+    "entries": {
+      "contains…": "包含…",
+      "Starred": "已加星标",
+      "#20:7ffd20a3f486ab70": "仅查看收藏的脚本",
+      "Remove filter": "移除筛选条件"
+    }
+  },
+  {
+    "selector": ".merlin-rail-body-content:has(.merlin-scripts) > .ue-menu[data-portal-popup] > div > .ue-menu-item > .ue-menu-label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "New folder": "新建文件夹",
+      "Export all scripts…": "导出所有脚本…",
+      "Refresh library": "刷新资源库"
+    }
+  }
+]

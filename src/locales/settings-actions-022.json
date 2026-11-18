@@ -1,0 +1,368 @@
+[
+  {
+    "selector": ".provider-onboarding, .provider-onboarding :is(h2,h3,p,button,input,label,small), .provider-onboarding .provider-onboarding-progress span, .provider-onboarding-notice, .provider-onboarding-custom strong",
+    "fields": [
+      "text",
+      "aria-label",
+      "placeholder",
+      "title"
+    ],
+    "entries": {
+      "Generation provider setup": "生成服务商设置",
+      "/ Add provider": "/ 添加服务商",
+      "/ Custom provider": "/ 自定义服务商",
+      "Choose your provider": "选择服务商",
+      "#57:c87ec1f41dd3a1ec": "选择已集成的服务商以添加模型。",
+      "Included providers": "内置服务商",
+      "Use your own API key": "使用自己的 API 密钥",
+      "Add custom provider": "添加自定义服务商",
+      "#44:c1b66cf7c056b627": "查看其他服务的接入方法",
+      "Loading providers…": "正在加载服务商…",
+      "#36:f9ccacdaabff9462": "服务商目录载入失败。",
+      "Try again": "重试",
+      "Provider unavailable": "服务商不可用",
+      "Loading the provider catalog…": "正在加载服务商目录…",
+      "#84:3330e0a81ba92e0d": "找不到此集成，请检查目录或添加自定义服务商。",
+      "Choose a provider": "选择服务商",
+      "#49:1eb317cf6b864fcb": "填写此服务商为账号提供的凭据。",
+      "Get an API key ↗": "获取 API 密钥 ↗",
+      "API ID": "API 标识",
+      "API secret": "API 密钥",
+      "API key": "API 密钥",
+      "Your Scenario API ID": "输入 Scenario API 标识",
+      "Your Scenario API secret": "输入 Scenario API 密钥",
+      "Paste your API key": "粘贴 API 密钥",
+      "Show credentials": "显示凭据",
+      "Hide credentials": "隐藏凭据",
+      "Save and check connection": "保存并检查连接",
+      "Save and continue": "保存并继续",
+      "#70:bf1644f2f2e9f3e5": "验证所选账号的连接，不执行生成。",
+      "#108:15098d7edbd7921a": "此服务不提供账号探测，首次生成时会验证已保存的密钥。",
+      "#52:e570fa5fd097368b": "下列目录中有自定义服务商示例。",
+      "Open schema examples folder": "打开定义示例文件夹",
+      "Get help with the integration": "获取接入帮助",
+      "Provider name": "服务商名称",
+      "API documentation (optional)": "API 文档（可选）",
+      "Documentation URL or reference": "文档网址或参考资料",
+      "Setup Agents": "配置智能体",
+      "Ask an agent for help": "向智能体求助",
+      "#82:8a1a21977fe2f446": "即将打开智能体设置，返回时会保留已填资料。",
+      "#87:917d170e0360aee1": "根据已填内容起草求助消息。密钥请写入专用凭据字段。",
+      "#19:3c7b2d4af263fc0e": "已完成连接检查。",
+      "#20:cf6a97a7263df756": "服务商已设置。",
+      "#106:da964cf8b6a25849": "已保存凭据。此服务不提供账号探测，需通过后续请求验证密钥。",
+      "#132:c651438af8171f59": "个模型定义可用。实际权限和生成能力仍待验证，工程限制继续生效。",
+      "Return to canvas": "返回画布",
+      "Set up another provider": "设置其他服务商",
+      "Connection": "连接",
+      "Provider connection": "服务商连接",
+      "#35:8d462fe86a118227": "可使用已有凭据",
+      "#51:344a47ebc4b31cfe": "。可沿用已有值，或在下方替换。",
+      "#42:bb77960db073936d": "留空沿用当前凭据",
+      "Checking…": "正在检查…",
+      "#91:3f8f6061316adebc": "身份验证信息载入失败，请返回刷新目录。",
+      "#49:344544fa9b913270": "填写服务商名称后再向智能体求助。",
+      "#39:8ca052eaf327aa6c": "请先打开画布再联系智能体。",
+      "#58:238b1e0bc0c169e9": "请等待画布打开后重试。"
+    }
+  },
+  {
+    "selector": ".credentials-section [role=\"dialog\"], .credentials-section [role=\"dialog\"] > h3",
+    "fields": [
+      "aria-label",
+      "text"
+    ],
+    "entries": {
+      "Set Anthropic API key": "设置 Anthropic API 密钥",
+      "#30:b71add4e9566e15d": "配置 Luma Dream Machine 的 API 密钥",
+      "Set fal.ai API key": "设置 fal.ai API 密钥",
+      "Set Figma personal access token": "设置 Figma 个人访问令牌",
+      "Set Luma Agents API key": "设置 Luma Agents API 密钥",
+      "Set Scenario API id:secret": "设置 Scenario API 凭据（id:secret）",
+      "Set World Labs API Key": "设置 World Labs API 密钥"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [role=\"dialog\"]:has(> div > h3), .settings-window-body main [role=\"dialog\"]:has(> div > h3) :is(h3,button,label)",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Add media schema": "添加媒体定义",
+      "Add service schema": "添加服务定义",
+      "Add": "添加",
+      "media": "媒体",
+      "service": "服务",
+      "schema": "定义",
+      "Paste JSON": "粘贴 JSON",
+      "Import file": "导入文件",
+      "Ask agent": "询问智能体",
+      "Schema JSON": "定义 JSON",
+      "Validate": "验证",
+      "Documentation URL or pasted text": "文档网址或粘贴的内容"
+    }
+  },
+  {
+    "selector": ".settings-window-body main .settings-group-body input",
+    "fields": [
+      "placeholder"
+    ],
+    "entries": {
+      "Field label…": "字段名称…",
+      "Options, comma-separated…": "选项之间用英文逗号分隔…"
+    }
+  },
+  {
+    "selector": ".settings-window-body main .settings-group-body div:has(> div > input[autofocus]) button, .settings-window-body main .settings-group-body div:has(> div > input[placeholder]) > div > button",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "cancel": "取消",
+      "Add field": "添加字段"
+    }
+  },
+  {
+    "selector": ".settings-window-body main .settings-group-body div:has(> input[placeholder]) > span :is(button[role=\"combobox\"] span,[role=\"option\"] span)",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "text": "文本",
+      "number": "数字",
+      "boolean": "布尔值",
+      "enum": "单选枚举",
+      "multi_enum": "多选枚举",
+      "date": "日期",
+      "url": "网址"
+    }
+  },
+  {
+    "selector": ".settings-window-body [role=\"listbox\"] [role=\"option\"] span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#44:cffc8bac016c906f": "Base（默认），速度优先、内存需求低",
+      "#42:cb34e27a55a5f00b": "Small，兼顾准确度与内存",
+      "#51:c14a2f8d7af6687b": "Large v3 Turbo，多语言精度较高，需更多内存",
+      "#49:95b5402458258670": "Distil Large v3.5，针对英语，需更多内存",
+      "Listen while Ctrl is held": "按住 Ctrl 时录音",
+      "Listen until stopped": "持续录音直至手动停止"
+    }
+  },
+  {
+    "selector": ".nodrag.nowheel[role=\"dialog\"], .nodrag.nowheel[role=\"dialog\"] .ue-menu-heading, .nodrag.nowheel[role=\"dialog\"] .ue-menu-item[role=\"switch\"], .nodrag.nowheel[role=\"dialog\"] .ue-menu-item[role=\"switch\"] .ue-menu-label",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Model filters": "模型筛选",
+      "Filter by": "筛选条件",
+      "#52:fcb443d9393e3f41": "仅查看本机配置支持的模型",
+      "Runnable only": "仅显示可运行模型"
+    }
+  },
+  {
+    "selector": ".settings-nav, .settings-window-body nav, .settings-window-body [role=\"navigation\"]",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Settings categories": "设置分类"
+    }
+  },
+  {
+    "selector": ".settings-window-body [role=\"tabpanel\"] div",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#57:818f267f1db4b0b6": "随应用安装，现已可用。",
+      "#28:ebebb36e87db7962": "开发目录中的扩展会持续启用。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main div:has(> div > ul[aria-label]) :is(div,button):not(.merlin-chat-md *), .settings-window-body main div:has(> div > ul[aria-label]) .merlin-chat-md strong",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#32:3a286f082ba12dc1": "每个扩展使用独立文件夹，其中含有",
+      "#64:ae848e83eaa05dea": "。向智能体说明用途，即可创建扩展。可实现下列功能。",
+      "Panels": "面板",
+      "#386:a7a7e7ba1ee18d69": "创建停靠、浮动或占满窗口的自定义面板。面板可操作画布、选区和媒体库，运行卡片、监听变更、保存数据及访问指定服务。",
+      "Commands in menus": "菜单命令",
+      "#274:3085be34b5d390f1": "可把命令放到工具栏、创建菜单和上下文菜单，处理选择、放置卡片、打开面板或执行工具与 Python。",
+      "Cards": "卡片",
+      "#205:8cfff60d6e7ac030": "扩展可随附脚本和节点图，并从菜单插入卡片。从现有卡片调用时，新卡片会放在旁边并接收原卡片作为输入。",
+      "Media tools": "媒体工具",
+      "#486:cb6036d8d6f2746e": "扩展可提供图像编辑器、预览或仅显示叠加层。确认效果后保留原图，可重复应用或移除。渲染可在面板或 Python 中完成。",
+      "Viewers": "查看器",
+      "#151:f2c3dcd91edbd35a": "为指定格式注册自定义预览，例如将 CSV 显示为表格。其他位置显示图标与文件名。",
+      "Overlays": "叠加层",
+      "#153:59257306e5d38a0a": "给查看器增加可切换的参考线，保留下层图像的缩放和平移。",
+      "External editors": "外部编辑器",
+      "#267:6eb97d26c261a705": "将本机图像或网格编辑工具加入卡片的「发送到」菜单。先在外部路径选择程序，保存结果后即可返回画布。",
+      "Python actions": "Python 操作",
+      "#68:57061c53873d3b01": "命令可在本机 Python 会话执行，并使用其中的",
+      "#173:49688f49458a8989": "模块操作卡片或调用工具。可在执行面板查看此扩展的输出和错误。",
+      "Tools for agents": "智能体工具",
+      "#167:83848b8cc942087c": "向 Canvas 内外的 MCP 客户端提供自定义工具，由 Python 或扩展面板处理。在 Python 中通过以下接口访问：",
+      "#68:345bd976059b8475": "。工具执行生成仍需本次智能体调用具备相应权限。",
+      "Layouts": "布局",
+      "#268:1238b60a110a0578": "可描述停靠区、开启的面板及宽度。当前支持读取和检查布局，尚无菜单可切换布局。",
+      "Workspaces": "工作区",
+      "#224:e5e46d6bdb8d05c7": "将预设框架、规则和外观做成可插入的子画布。移除扩展后，已放置的副本会保留。",
+      "#164:51d4fe4bb4aaba9d": "在扩展设置页声明文本、数字、开关或列表。面板接收实时变更（",
+      "#31:3c52a105416d8610": "），Python 可使用以下接口读取：",
+      "Scripts and graphs": "脚本和节点图",
+      "#142:b24dbf9df5c4e8d2": "扩展启用后，其脚本、子脚本和节点图可从工具箱使用。标记为工具架项的内容也会显示在工具架。",
+      "Skills and help": "技能与帮助",
+      "#102:4dd31c96059630c0": "为画布或对话提供可选技能，并附带可供助手查询的帮助文档。",
+      "#95:fe8849c388bb0807": "新草稿附带选中卡片列表面板及面向智能体的说明（",
+      "#86:2f8535a82d4b0f2b": "）。给草稿命名，复制提示词，并告诉智能体要实现哪些功能。",
+      "#48:6dc8378f6422234c": "查看智能体扩展编写指南"
+    }
+  },
+  {
+    "selector": ".settings-window-body main div:has(> div > ul[aria-label]) button[aria-expanded]",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Hide the guide": "收起指南"
+    }
+  },
+  {
+    "selector": ".settings-window-body main div:has(> div > ul[aria-label]) .merlin-chat-md :is(p,li,h1,h2,h3,strong,em,a)",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#32:8fc00e9eef2925a9": "让智能体编写扩展",
+      "#264:9f93d710c2fb1a2f": "用文字描述需要的面板、命令、工具或技能。智能体可编写并保存扩展，保存后即可在应用中查看效果。",
+      "What an extension can do": "扩展可以做什么",
+      "#719:4394a540c0bee984": "自定义面板可读取选区、浏览媒体库、导入与整理素材，调整卡片并监听运行结果。编辑操作支持撤销并遵循画布只读状态；产生费用的操作需确认。也可保存面板数据和调用指定服务。",
+      "#272:2917a31c43accaf6": "在工具栏或画布菜单注册命令，可针对当前选择打开面板、插入卡片或调用工具。",
+      "#613:59af838483147c20": "将自定义编辑控件和预览集成到查看器。原图保留，结果可存为前后对照、更新卡组或作为图内新版本。可使用页面或 Python 渲染图像、视频帧及叠加图层。",
+      "#162:6b00ee881c4e657f": "为新文件类型提供预览，例如以表格显示 CSV。",
+      "#230:bea95bc15853d457": "给可缩放的图像叠加参考线。UE 的原生实时画面会覆盖网页叠加层。",
+      "#297:b93639c1313e5aaa": "从菜单插入扩展的脚本或节点图。对卡片操作会在旁边新建并连接输入，在空白处操作则使用点击的位置。",
+      "#76:5841fc316b0ce361": "命令在本机的 Python 环境运行，可访问相同的",
+      "#36:d2e2a1578f3f5b6d": "模块。交互式 Python 会话位于以下面板：",
+      "#105:1969c17030d7e971": "底部面板会记录输出和错误。此类命令不发起付费生成。",
+      "#246:4e95473e745242e1": "工具可供内置或外部智能体调用。Python 或后台面板可响应请求，生成操作受调用方权限约束。",
+      "#164:f9d9df689aeec2c1": "可给扩展添加设置页。面板会接收变更，Python 也能读取设置值。",
+      "#100:81807dd5078863e7": "启用扩展后即可在库中找到其 Python 脚本、子脚本和节点图。",
+      "#61:f416690d893e7142": "可打包智能体工作指引与帮助文档。",
+      "#54:394905a8c22a9857": "会列入扩展设置页，可在开始使用前查看。",
+      "#243:3e81ca08403c4355": "自定义卡片类型和本地服务可通过插件 API 实现，已审核的插件可从目录安装。编写插件用的 TypeScript 类型随服务端提供，位于",
+      "#34:8f4027f7b67b0255": "目录（",
+      "): its": "）。其中的",
+      "#123:6b11a2d55f712227": "提供插件开发说明。需要较新宿主功能的插件可能无法加载，详情见",
+      "Settings ▸ Extensions": "设置 ▸ 扩展",
+      "#20:8d282db152a29ee1": "中可以查到使用条件。",
+      "Start": "开始",
+      "and press": "，然后点击",
+      "#65:c830b3bcd6389a90": "。查看可添加的项目，填好扩展名称后选择",
+      "#121:c094f89bad0b6547": "。草稿会生成侧栏面板来显示所选卡片，并提供智能体说明文件（",
+      ", and": "，以及",
+      "#17:780ad36c28b685c0": "供 Claude Code 读取）。",
+      "Press": "在提示中点击",
+      "Copy agent prompt": "复制智能体提示词",
+      "#120:9a6245bf06ded68f": "。展开草稿也能复制提示词，其中附有草稿的路径。",
+      "#397:3f376a3ad039b11d": "在应用内打开智能体，或从草稿目录运行已连接 Canvas MCP 的智能体。粘贴提示词并写明要做的功能。应用内智能体还可以创建草稿、修改文件并检查面板报错。",
+      "#109:e405ed7ca78c4acc": "面板随文件保存自动刷新。根据实际显示效果提出下一项修改。",
+      "What to tell the agent": "如何向智能体描述需求",
+      "#54:e6c5331e85a6dfa8": "描述需求时，建议写清下面几项。",
+      "#52:0651e668a97a7f90": "这个面板要解决什么问题，通常怎么操作。",
+      "#136:352bfe631f459fa4": "期望的停靠位置或窗口形式。选择右侧栏的面板起初可能显示在左侧。",
+      "#163:e0b0280ebe848e60": "指定菜单入口和触发条件，例如空白处右键，或选定某类卡片后打开。",
+      "#80:e4ba86d92dad2ea4": "需要访问的数据范围，例如选中的卡片、相关文件或媒体库。",
+      "#72:0d1f7c4d7c5d5502": "用户触发操作后应发生什么，例如添加图片、记住选项或打开网页。",
+      "#41:e0b71010f24ed970": "如需联网，请给出服务的名称与地址。",
+      "#108:645807c41c736c0b": "若要打包自己的脚本或节点图，先在应用中做好，再让智能体加入扩展（",
+      "Export script": "导出脚本",
+      "and": "和",
+      "Export as JSON…": "导出为 JSON…",
+      "#47:d262b2882489f805": "文件可通过这两个工具箱命令导出）。",
+      "#36:8e0cba0826d503ec": "有指定的布局、颜色或风格时也可以说明。",
+      "For example:": "示例",
+      "Build an extension in": "请在以下文件夹制作一个扩展：",
+      "#6:a1e32bdcf172cb97": "。请先查看该文件夹内的",
+      "#178:716b832ebd68a4e3": "。请把选中的图片和各自的卡片名排成一张预览图，在右侧栏提供将它放回画布的按钮。",
+      "#131:838a8c007c1aeecf": "。我希望能在面板内搜索媒体库，将结果拖进清单，关闭后再打开仍能看到清单。",
+      "#23:cf223cbdc477e7b2": "常见故障",
+      "#25:b42da05021d067cf": "找不到扩展面板",
+      "#105:cc7c1aecd24ba298": "。到“设置 → 扩展”展开该条目，把显示的原因交给智能体排查。",
+      "#43:09bae57887cc1656": "面板未显示内容或点击无效",
+      "#214:5375eefc304916bf": "。让智能体查看面板异常和调用失败记录。若它无法读取应用状态，可让它把错误直接显示在面板里。",
+      "#17:e4585e4fb4907ddd": "遇到调用被拒绝的提示，例如",
+      "or": "或",
+      "#59:8275a2ca598666f2": "，先核对智能体是否在",
+      "#22:5c22a979384abdc4": "中登记了所需服务及地址，并把报错发给它。",
+      "Share it": "分享扩展",
+      "#46:5e9a76ef66dd2e83": "在扩展设置内展开这份草稿。",
+      "#29:0d198c012744bc96": "分享 → 导出安装包",
+      "#29:6daa5ddece7d2a7e": "可把包保存到下载文件夹，扩展名为",
+      "#21:7443cdb66c7b8c85": "。接收方在下列入口安装：",
+      "#39:056d0203f1f4208b": "安装 → 从压缩包或分享码安装",
+      "#27:ab34d5da905e190d": "分享 → 生成分享码",
+      "#62:5be63d33d3e7dc4b": "需要先配置项目的共享目录。生成的码形如",
+      "#124:3b7d4cc981d2ae28": "。项目成员凭码安装。更新后再次分享即可沿用原码，接收方选择：",
+      "#27:06dccf744118bdcc": "分享 → 加入目录…",
+      "#176:7d4b32590aac4c8f": "能将扩展发布到已有目录，也能将指定文件夹设为新目录。团队成员添加同一来源后可在这里安装：",
+      "#36:d0ac8d5b03567487": "。同一个版本在每个目录中只能发布一次。",
+      "Publish…": "发布…",
+      "#87:13f67e9115493205": "把扩展发布到指定 Git 仓库并创建版本标签。安装入口为",
+      "#33:a122cdee9fb6b6e3": "安装 → 从 Git 仓库安装",
+      "and get updates with": "，然后通过此按钮检查更新：",
+      "#87:8371f5dd3e074739": "。会保留仓库已有的说明和许可证。下次发版前请提高",
+      "#227:968475c81824f9ca": "内的版本号。工具架智能体会在发布前征求同意，外部 MCP 智能体会提示你在应用中确认。",
+      "#47:8754622f7e96666e": "也可以将目录放到共享盘，再让接收方选择",
+      "#25:e7a4d3bbf5eb2a4b": "安装 → 从文件夹安装",
+      "Dotfiles such as": "以点开头的文件或目录，例如",
+      "#26:479491c64510ca96": "，以上分发方式均会将其排除在包外。",
+      "#166:e247b846b46e3058": "可以先审查扩展申请的权限再授权。安装说明见 extensions，开发文档见 extension-authoring。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main div:has(> button[title][aria-label]) > div > div",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#148:2a2ea1f862978cd8": "从 Git 发行版安装。填写标签可固定版本，留空获取最新版。鉴权沿用本机 Git。",
+      "#98:4fc452006c669495": "选择含 extension.json 的目录。更新会再次从该位置复制，支持共享盘。",
+      "#43:8fe9506b620b9031": "使用压缩包或分享码安装",
+      "#125:43dddef3f8fa381c": "请选择通过“分享”生成的 ZIP。当前项目还没有可供分享码使用的共享目录。",
+      "#168:c4ebe7363b69bc81": "可选择“分享”导出的 ZIP，也可输入项目分享码。更新时仍从同一来源读取。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main :is(input,button,ul)",
+    "fields": [
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Close Create your own extension": "关闭“创建自己的扩展”",
+      "What an extension can add": "扩展可添加的内容",
+      "Extension name": "扩展名称",
+      "Extension id": "扩展标识",
+      "#35:4e12c7583b4cd419": "收起 Git 安装窗口",
+      "Repository URL": "仓库网址",
+      "Release tag": "版本标签",
+      "Tag (optional)": "标签（可选）",
+      "Close Install from a folder": "关闭“从文件夹安装”",
+      "Folder that holds extension.json": "包含 extension.json 的文件夹",
+      "#49:7ce61789139b6755": "收起压缩包与分享码安装窗口",
+      "Package file or share code": "安装包或分享码",
+      "#33:e46b8bfdbba9599e": "选择 ZIP 安装包或填写分享码"
+    }
+  }
+]

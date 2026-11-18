@@ -110,14 +110,17 @@ def main():
     for relative in ("manifest.json", "dist/index.js"):
         if (ROOT / relative).read_bytes() != (ROOT / RUNTIME / relative).read_bytes():
             raise SystemExit("Embedded runtime is stale. Run npm run build.")
+    subprocess.run([sys.executable, str(ROOT / "Tools/NativeShell/compile.py")], check=True)
     if args.engine:
+        subprocess.run([sys.executable, str(ROOT / "scripts/verify-native-settings.py"),
+                        "--engine", str(args.engine.resolve())], check=True)
         build_native(args.engine)
     if not (ROOT / MODULES).is_file() or not (ROOT / DLL).is_file():
         raise SystemExit("Missing native build. Run npm run package -- --engine <UE installation>.")
     receipt = read_json(ROOT / MODULES)
     if not receipt.get("BuildId") or receipt.get("Modules", {}).get(NAME) != Path(DLL).name:
         raise SystemExit("Invalid UnrealEditor.modules for the Win64 plugin.")
-    members = [DESCRIPTOR, DLL, MODULES, *NATIVE_SOURCE, RUNTIME / "manifest.json",
+    members = [DESCRIPTOR, DLL, MODULES, *NATIVE_SOURCE, *SHELL_RESOURCES, RUNTIME / "manifest.json",
                RUNTIME / "dist/index.js", "README.md", "AGENTS.md", "CHANGELOG.md",
                "VERIFICATION.md",
                "Tools/Skills/ue-plugin-docs/SKILL.md", "Tools/Skills/ue-plugin-docs/agents/openai.yaml",

@@ -1,0 +1,60 @@
+{
+  "FUnrealCanvasBridgeModule": {
+    "AppMenuEdit": [
+      "b831bb95",
+      "编辑"
+    ],
+    "AppMenuSettingsSection": [
+      "2d3eaa85",
+      "设置"
+    ],
+    "AppMenuUnrealCanvasSettings": [
+      "85858a75",
+      "Unreal Canvas 设置…"
+    ],
+    "AppMenuUnrealCanvasSettingsTooltip": [
+      "494623f9",
+      "版本、服务器、模型与开发设置"
+    ],
+    "AppMenuPlugins": [
+      "81e7d263",
+      "插件…"
+    ],
+    "AppMenuPluginsTooltip": [
+      "217d4e4e",
+      "打开插件浏览器。"
+    ],
+    "AppMenuWindow": [
+      "d162635f",
+      "窗口"
+    ],
+    "AppMenuLogSection": [
+      "e18641b3",
+      "日志"
+    ],
+    "AppMenuOutputLog": [
+      "4a330ef9",
+      "输出日志"
+    ],
+    "AppMenuOutputLogTooltip": [
+      "e21c7ddb",
+      "查看编辑器与 Canvas 服务日志"
+    ],
+    "AppMenuHelp": [
+      "ed5c2c90",
+      "帮助"
+    ],
+    "AppMenuLogsSection": [
+      "9c853bce",
+      "日志"
+    ],
+    "AppMenuOpenLogsFolder": [
+      "02511046",
+      "打开日志文件夹"
+    ],
+    "AppMenuOpenLogsFolderTooltip": [
+      "3e68dd31",
+      "在资源管理器中定位诊断日志"
+    ]
+  }
+}

@@ -199,3 +199,18 @@ test('timeline captions preserve clip counts and user titles when the card updat
   dom.window.close();
 });
 
+
+
+test('loading progress keeps the canvas name and updates the translated count', async () => {
+  const {dom, d, stop} = setup('<div class="merlin-generation-host"><div><div><div><button title="Save — background results">Restoring results 4/32</button></div></div></div></div>');
+  const button = d.querySelector('button');
+  assert.equal(button.title, 'Save — 正在后台恢复结果');
+  assert.equal(button.textContent, '正在后台恢复结果 4/32');
+  button.firstChild.nodeValue = 'Restoring results 6/32';
+  await tick();
+  assert.equal(button.textContent, '正在后台恢复结果 6/32');
+  stop();
+  assert.equal(button.textContent, 'Restoring results 6/32');
+  assert.equal(button.title, 'Save — background results');
+  dom.window.close();
+});

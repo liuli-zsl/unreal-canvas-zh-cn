@@ -4,6 +4,10 @@ import { translateMenuDynamic } from './menu-dynamic';
 import { translatePanelsDynamic } from './panels';
 import { translateSettingsDynamic } from './settings';
 import { translateViewerDynamic } from './viewers';
+import { translateCanvasAction } from './canvas-actions-022';
+import { translatePanelActions } from './panel-actions-022';
+import { translateSettingsActions } from './settings-actions-022';
+import { translateShelfAction } from './shelf-actions';
 
 export interface Group {
   selector: string;
@@ -12,8 +16,8 @@ export interface Group {
 }
 type Entry = { original: string; displayed: string };
 type Rule = { selector: string; translation: string };
-const attributes = ['title', 'aria-label', 'placeholder', 'data-tooltip', 'alt'];
-const scopeAttributes = ['class', 'role', 'contenteditable', 'translate', 'data-testid', 'data-package-row'];
+const attributes = ['title', 'aria-label', 'aria-description', 'placeholder', 'data-tooltip', 'alt'];
+const scopeAttributes = ['class', 'role', 'contenteditable', 'translate', 'data-testid', 'data-package-row', 'data-value'];
 const protectedContent = 'script,style,pre,code,.cm-content,.view-lines,[translate="no"],[data-merlin-text-surface],.agent-chat-message,.canvas-card-header,.agent-attention-preview,.agent-model-name,.agent-assignee-name,.agent-current-task-title,.merlin-scripts-name,.merlin-scripts-row-name,.merlin-graphs-tile-label,.credential-row-label,.merlin-ops-name';
 const editableContent = '[contenteditable]:not([contenteditable="false"]),input,textarea,[role="textbox"]';
 const searchMessageStart = 'No settings in this category match “';
@@ -57,6 +61,10 @@ export function localize(doc: Document, dictionary: Group[]) {
     const splitMessage = element.classList.contains('ue-menu-note') || element.classList.contains('merlin-graphs-empty');
     if (english && (candidates || splitMessage || english === '(' || /[A-Za-z]/.test(english))) {
       translated = translatePanelsDynamic(element, field, english, node);
+      if (translated === undefined) translated = translateCanvasAction(element, field, english);
+      if (translated === undefined) translated = translatePanelActions(element, field, english);
+      if (translated === undefined) translated = translateSettingsActions(element, field, english);
+      if (translated === undefined) translated = translateShelfAction(element, field, english);
       if (translated === undefined) translated = translateGeneration(element, field, english, node);
       if (translated === undefined) translated = translateSettingsDynamic(element, field, english, node);
       if (translated === undefined) translated = translateMenuDynamic(element, field, english);

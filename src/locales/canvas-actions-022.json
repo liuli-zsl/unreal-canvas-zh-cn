@@ -1,0 +1,294 @@
+[
+  {
+    "selector": ".ue-menu:has(button:is([aria-label=\"Close search\"],[aria-label=\"关闭搜索\"])) .merlin-panel-search input,.ue-menu:has(button:is([aria-label=\"Close search\"],[aria-label=\"关闭搜索\"])) > div:first-child > button,.ue-menu:has(button:is([aria-label=\"Close search\"],[aria-label=\"关闭搜索\"])) > div:last-child,.ue-menu:has(button:is([aria-label=\"Close search\"],[aria-label=\"关闭搜索\"])) > div:nth-child(2) > div:only-child:not(:has(*))",
+    "fields": [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Search canvases": "搜索画布",
+      "Search cards, frames, notes…": "搜索卡片、框架和便笺…",
+      "#34:4edec0bb4145837d": "只查找本画布",
+      "#64:f4310aad255cd325": "搜索范围为本画布，点击可扩大到所有画布。",
+      "#11:696264878d4f2cff": "本画布",
+      "Close (Esc)": "关闭 (Esc)",
+      "No matches": "没有匹配结果",
+      "#45:fb37d26577abda7b": "Enter 下一处，Shift+Enter 上一处，Esc 退出。"
+    }
+  },
+  {
+    "selector": ".pill-menu:has(.merlin-panel-search) .merlin-panel-search input,.ue-menu:has(input:is([aria-label=\"Search nodes\"],[aria-label=\"搜索节点\"])) .merlin-panel-search input,.pill-menu:has(.merlin-panel-search) .ue-menu-note,.ue-menu:has(input:is([aria-label=\"Search nodes\"],[aria-label=\"搜索节点\"])) .ue-menu-note,.pill-menu:has(.merlin-panel-search) button[aria-haspopup=\"menu\"] > .ue-menu-label,.ue-menu:has(input:is([aria-label=\"Search nodes\"],[aria-label=\"搜索节点\"])) button[aria-haspopup=\"menu\"] > .ue-menu-label",
+    "fields": [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Search nodes": "搜索节点",
+      "Search nodes...": "输入英文节点名，如 image…",
+      "No match": "没有匹配的节点。可输入英文名，或清空后按分类浏览。",
+      "Input": "输入",
+      "Generate": "生成",
+      "Process": "处理",
+      "Geometry": "几何",
+      "Logic": "逻辑",
+      "Routing": "路由",
+      "Composition": "组合",
+      "Viewers": "查看器",
+      "Constant": "常量",
+      "Custom": "自定义"
+    }
+  },
+  {
+    "selector": ".canvas-tool-palette [data-toolbar-menu-open] .ue-menu-item > .ue-menu-label,.canvas-tool-palette [data-toolbar-menu-open] input",
+    "fields": [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Connector": "连接线",
+      "Deck": "卡组",
+      "Comment": "评论",
+      "Insert File…": "插入文件…",
+      "Search Insert": "搜索可插入的项目"
+    }
+  },
+  {
+    "selector": ".pill-submenu > button.pill-menu-item > .ue-menu-label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Bring to Front": "置于顶层",
+      "Bring Forward": "上移一层",
+      "Send Backward": "下移一层",
+      "Send to Back": "置于底层"
+    }
+  },
+  {
+    "selector": ".annotation-toolbar,.annotation-toolbar :is(button,input,.ue-menu-label,label,.ue-menu-heading,span)",
+    "fields": [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Annotation tools": "批注工具",
+      "Freehand draw": "自由绘制",
+      "Freehand draw options": "自由绘制选项",
+      "Lasso area": "套索区域",
+      "Lasso area options": "套索选项",
+      "Straight line": "直线",
+      "Straight line options": "直线选项",
+      "Arrow": "箭头",
+      "Arrow options": "箭头选项",
+      "Rectangle": "矩形",
+      "Rectangle options": "矩形选项",
+      "Circle": "圆形",
+      "Circle options": "圆形选项",
+      "Triangle": "三角形",
+      "Triangle options": "三角形选项",
+      "Text annotation": "文字批注",
+      "Outline color": "描边颜色",
+      "Outline thickness": "描边粗细",
+      "Stroke erase": "笔画擦除",
+      "Stroke erase options": "笔画擦除选项",
+      "Pixel erase": "像素擦除",
+      "Pixel erase options": "像素擦除选项",
+      "Clear annotations on a card": "清除卡片上的批注",
+      "Outline": "描边",
+      "Fill": "填充",
+      "Opacity": "不透明度",
+      "Hex": "十六进制",
+      "Outline hex value": "描边颜色的十六进制值",
+      "Fill hex value": "填充颜色的十六进制值",
+      "Custom outline color": "自定义描边颜色",
+      "Custom fill color": "自定义填充颜色",
+      "Fill color": "填充颜色",
+      "Solid outline": "实线描边",
+      "Dashed outline": "虚线描边"
+    }
+  },
+  {
+    "selector": ".pill-menu:has(.merlin-panel-search) button:not([aria-haspopup]):not(:has(.ue-menu-icon > span[style*=\"rgb(251, 146, 60)\"])) > .ue-menu-label,.ue-menu:has(input:is([aria-label=\"Search nodes\"],[aria-label=\"搜索节点\"])) button:not([aria-haspopup]):not(:has(.ue-menu-icon > span[style*=\"rgb(251, 146, 60)\"])) > .ue-menu-label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Audio Input": "音频输入",
+      "Doodle": "涂鸦",
+      "Figma Fetch": "从 Figma 获取",
+      "Image Input": "图像输入",
+      "Mesh Input": "网格输入",
+      "Reposition Render": "调整渲染位置",
+      "Sequence Render": "序列渲染",
+      "Text Input": "文本输入",
+      "UE Viewport": "UE 视口",
+      "USD Input": "USD 输入",
+      "Video Input": "视频输入",
+      "Viewport Render": "视口渲染",
+      "Webcam Capture": "摄像头采集",
+      "Audio Generator": "音频生成器",
+      "Cube Mesh": "立方体网格",
+      "Image Generator": "图像生成器",
+      "Image Upscaler": "图像超分辨率",
+      "Mesh Generator": "网格生成器",
+      "Sphere Mesh": "球体网格",
+      "Splat Generator": "高斯泼溅生成器",
+      "Texture Generator": "纹理生成器",
+      "Video Generator": "视频生成器",
+      "Video Upscaler": "视频超分辨率",
+      "Auto-Rig": "自动绑定骨骼",
+      "Canny Edges (Image)": "Canny 边缘（图像）",
+      "Canny Edges (Video)": "Canny 边缘（视频）",
+      "Depth Estimation": "深度估计",
+      "Edge Detection (Image)": "边缘检测（图像）",
+      "Edge Detection (Video)": "边缘检测（视频）",
+      "Extract Frame": "提取帧",
+      "Image Grid": "图像网格",
+      "Image Validator": "图像校验",
+      "Merge (Image)": "合并图像",
+      "Merge (Video)": "合并视频",
+      "Point Cloud": "点云",
+      "Segmentation": "分割",
+      "Spatial Mask Guide": "空间遮罩引导",
+      "Spatial Prompt Synthesis": "空间提示词合成",
+      "Speech to Text": "语音转文本",
+      "Text Segment": "文本分段",
+      "Transform (Image)": "图像变换",
+      "Transform (Video)": "视频变换",
+      "Bake Textures": "烘焙纹理",
+      "UV Unwrap": "UV 展开",
+      "Remesh": "重构网格",
+      "Simplify": "简化网格",
+      "Recompute Normals": "重算法线",
+      "Fill Holes": "填补孔洞",
+      "Weld Edges": "焊接边",
+      "Solidify": "实体化",
+      "Console Log": "控制台日志",
+      "Convert": "转换",
+      "Create Static Mesh Asset": "创建静态网格体资产",
+      "Format String": "格式化字符串",
+      "ICP Align": "ICP 对齐",
+      "MCP Tool": "MCP 工具",
+      "Point Correspondence Pose Fit": "通过对应点拟合姿态",
+      "Projected World Transform At": "指定位置的投影世界变换",
+      "Set Camera": "设置摄像机",
+      "Simple Align": "简单对齐",
+      "Spawn Cutout At": "在指定位置生成剪影",
+      "Spawn Mesh At": "在指定位置生成网格",
+      "Tasks": "任务",
+      "Text Extract": "提取文本",
+      "Choice": "选项",
+      "Select": "选择",
+      "Switch": "切换",
+      "Append Bundles": "追加数据束",
+      "Bundle": "数据束",
+      "Canvas Input": "画布输入",
+      "Canvas Output": "画布输出",
+      "Image Viewer": "图像查看器",
+      "Mesh Viewer": "网格查看器",
+      "Panorama Viewer": "全景查看器",
+      "Video Viewer": "视频查看器",
+      "Boolean": "布尔值",
+      "Constant": "常量",
+      "Float": "浮点数",
+      "Integer": "整数",
+      "String": "字符串",
+      "Vector 2": "二维向量",
+      "Vector 3": "三维向量"
+    }
+  },
+  {
+    "selector": ".graph-node-header-actions,.graph-node-header-actions .node-header-btn",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Node actions": "节点操作",
+      "Run this node": "运行此节点"
+    }
+  },
+  {
+    "selector": "[data-frame-layout-controls] button,[data-frame-drag-handle],[data-frame-ui] :is(button,input,[role=\"img\"]),[data-merlin-frame-grip],[data-frame-ui] [title]",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Structured Layout": "结构化布局",
+      "Structured Layout options": "结构化布局选项",
+      "#58:142b5f26a9cfdc3c": "启用结构化布局后可调整这些选项。",
+      "#38:16751dc57760be27": "点击改用自由布局。",
+      "Enable Structured Layout": "启用结构化布局",
+      "Frame color": "框架颜色",
+      "Frame name": "框架名称",
+      "Remove frame, keep cards": "移除框架并保留卡片",
+      "#45:2e437212e98716b7": "拖动边缘调节大小，双击适配内容。",
+      "#78:e6416cfd5129fbf5": "拖动移动框架。双击栏头适配面板，双击名称改名。",
+      "#47:12a08cc339f00d47": "拖动移动框架，双击栏头适配面板。",
+      "Filtered": "已筛选"
+    }
+  },
+  {
+    "selector": "[data-frame-ui][role=\"dialog\"],[data-frame-ui][role=\"dialog\"] :is(span,div,input,button)",
+    "fields": [
+      "aria-label",
+      "title",
+      "text"
+    ],
+    "entries": {
+      "Structured Layout options": "结构化布局选项",
+      "Card scale": "卡片缩放",
+      "Card scale (%)": "卡片缩放比例 (%)",
+      "Spacing": "间距",
+      "#48:fb9c64021123b941": "拉宽框架可在一行放下更多列。",
+      "#181:91cd8bb630c35158": "按横向分区组织卡片。拖入卡片可调整归属，双击区名可改名。添加分区时会开启结构化布局。",
+      "Add section": "添加分区"
+    }
+  },
+  {
+    "selector": ".pill-menu:not(:has(.merlin-panel-search)) :is(.pill-menu-item,.feature-hint-menu-label,.ue-menu-label)",
+    "fields": [
+      "text",
+      "title"
+    ],
+    "entries": {
+      "Organise": "整理",
+      "Add Frame Section": "添加框架分区",
+      "Collapse To": "折叠为",
+      "Lock Frame": "锁定框架",
+      "Unlock Frame": "解锁框架",
+      "Delete Frame": "删除框架",
+      "#107:c1a67da67d4860c1": "解锁后才可删除框架、切换布局或编辑分区。",
+      "#61:bb6a9a2847ff47dc": "请先启用此框架的结构化布局。"
+    }
+  },
+  {
+    "selector": ".frame-color-picker,.frame-color-picker :is(button,input,[role=\"slider\"],.frame-color-label,label,span)",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Frame color": "框架颜色",
+      "Hue and saturation": "色相与饱和度",
+      "Saturation": "饱和度",
+      "Value": "明度",
+      "Hex": "十六进制",
+      "Hex color": "十六进制颜色",
+      "Suggested": "推荐颜色",
+      "Reset": "重置",
+      "Cancel": "取消",
+      "OK": "确定"
+    }
+  }
+]

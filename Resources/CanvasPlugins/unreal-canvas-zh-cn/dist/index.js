@@ -279,8 +279,8 @@ function translatePanelsDynamic(element, field, english, node) {
     if (size) return `缩略图大小：${size[1]} 像素`;
   }
   if (classes.contains("merlin-script-output-icons") && english.startsWith("Outputs: ")) {
-    const types = english.slice("Outputs: ".length).split(", ");
-    return "输出：" + types.map((type) => Object.prototype.hasOwnProperty.call(outputTypes, type) ? outputTypes[type] : type).join("、");
+    const types2 = english.slice("Outputs: ".length).split(", ");
+    return "输出：" + types2.map((type) => Object.prototype.hasOwnProperty.call(outputTypes, type) ? outputTypes[type] : type).join("、");
   }
   if (classes.contains("merlin-panel-control-btn")) {
     for (const [name, label] of Object.entries(panelNames)) {
@@ -452,15 +452,398 @@ function translateViewerDynamic(element, field, english) {
     if (format) return `目前无法预览 ${format[1]} 文件。`;
   }
   if (english.startsWith("Downloading:") && element.matches('.nodrag.nowheel[data-scroll-passthrough] :is([class*="messageContainerPrimary"],[class*="messageContainerMin"])')) {
-    const progress = /^Downloading: (\d+(?:\.\d+)?%)$/.exec(english);
-    if (progress) return "正在下载：" + progress[1];
+    const progress2 = /^Downloading: (\d+(?:\.\d+)?%)$/.exec(english);
+    if (progress2) return "正在下载：" + progress2[1];
   }
   return void 0;
 }
 
+// src/canvas-actions-022.ts
+var closeGraphButton = '[data-merlin-canvas-surface] > [data-merlin-punch-cover] > span > button:has(> svg[data-icon="close"])';
+function currentGraphName(button) {
+  const surface = button.closest("[data-merlin-canvas-surface]");
+  const crumbs = surface?.querySelector(':scope > div > [data-merlin-punch-cover]:has(> svg[data-icon="chevron-right"])');
+  return crumbs?.lastElementChild?.lastElementChild?.textContent;
+}
+function translateCanvasAction(element, field, english) {
+  if (field === "text" && element.closest("button[data-result-index]")) {
+    if (element.closest("button[data-result-index] > span:first-child > span:nth-child(2),button[data-result-index] > span:nth-child(n+2)")) {
+      return english;
+    }
+  }
+  if (field === "title" && english.startsWith("Navigate to ") && element.matches('[data-merlin-canvas-surface] [data-merlin-punch-cover]:has(> svg[data-icon="chevron-right"]) > span[title]')) {
+    const name = element.lastElementChild?.textContent;
+    if (name && english === "Navigate to " + name) return "前往“" + name + "”";
+  }
+  if (field === "aria-label" && english.startsWith("Close ") && element.matches(closeGraphButton)) {
+    const name = currentGraphName(element);
+    if (name && english === "Close " + name) return "关闭“" + name + "”";
+  }
+  if (field === "text" && english.startsWith("Close ") && english.endsWith(" and go back up") && element.matches('[role="tooltip"][id]')) {
+    for (const button of element.ownerDocument.querySelectorAll(closeGraphButton)) {
+      if (!button.parentElement?.getAttribute("aria-describedby")?.split(/\s+/).includes(element.id)) continue;
+      const name = currentGraphName(button);
+      if (name && english === "Close " + name + " and go back up") return "关闭“" + name + "”并返回上一级";
+    }
+  }
+  if (field === "aria-label" && element.matches(".frame-color-swatches button")) {
+    const color = /^Suggested (#[0-9a-f]{6})$/i.exec(english);
+    if (color) return "推荐颜色 " + color[1];
+  }
+  if (field === "aria-label" && element.matches(".annotation-toolbar button")) {
+    const swatch = /^(Outline|Fill) (#[0-9a-f]{6})$/i.exec(english);
+    if (swatch) return (swatch[1] === "Outline" ? "描边 " : "填充 ") + swatch[2];
+  }
+  if (field === "aria-label" && element.matches(".react-flow__handle")) {
+    const pin = /^(input|output) pin ([\s\S]+)$/.exec(english);
+    if (pin) return (pin[1] === "input" ? "输入引脚 " : "输出引脚 ") + pin[2];
+  }
+  if (field === "title" && element.matches(".graph-node-header-title span[title]")) {
+    const suffix = " — Double-click to rename";
+    if (english.endsWith(suffix)) return english.slice(0, -suffix.length) + " — 双击重命名";
+  }
+  if (field === "text" && element.matches('.ue-menu:has(button:is([aria-label="Close search"],[aria-label="关闭搜索"])) .merlin-panel-search-count')) {
+    const results = /^(\d+) results?$/.exec(english);
+    if (results) return results[1] + " 个结果";
+  }
+}
+
+// src/panel-actions-022.ts
+var types = new Map(Object.entries({
+  Text: "文本",
+  Float: "浮点数",
+  Integer: "整数",
+  Boolean: "布尔值",
+  Choice: "选项",
+  "Vector 2": "二维向量",
+  "Vector 3": "三维向量",
+  Image: "图像",
+  Video: "视频",
+  Mesh: "网格",
+  Audio: "音频",
+  Splat: "高斯泼溅",
+  File: "文件",
+  Other: "其他",
+  Graph: "节点图",
+  text: "文本",
+  float: "浮点数",
+  int: "整数",
+  boolean: "布尔值",
+  image: "图像",
+  video: "视频",
+  mesh: "网格",
+  splat: "高斯泼溅",
+  audio: "音频",
+  file: "文件",
+  sceneJson: "场景 JSON",
+  objectRef: "对象引用",
+  any: "任意类型",
+  usd: "USD",
+  USD: "USD"
+}));
+var subtypes = new Map(Object.entries({
+  source: ["Source", "源"],
+  annotation: ["Annotation", "标注"],
+  beauty: ["Beauty", "最终合成"],
+  depth: ["Depth", "深度"],
+  normal: ["Normal", "法线"],
+  mask: ["Mask", "遮罩"],
+  edge: ["Edge", "边缘"],
+  pose: ["Pose", "姿势"],
+  cutout: ["Cutout", "抠像"],
+  plate: ["Clean plate", "干净背景"],
+  panorama: ["Panorama", "全景图"],
+  splat: ["Splat", "高斯泼溅"],
+  view_front: ["Front view", "前视图"],
+  view_back: ["Back view", "后视图"],
+  view_left: ["Left view", "左视图"],
+  view_right: ["Right view", "右视图"],
+  music: ["Music", "音乐"],
+  ambience: ["Ambience", "环境声"],
+  speech: ["Speech", "语音"]
+}));
+var locations = new Map(Object.entries({ "Team library": "团队资源库", "My scripts": "我的脚本", "Built-in": "内置" }));
+var builtInGroups = { Default: "默认", Advanced: "高级", "Default inputs": "默认输入", "Advanced inputs": "高级输入" };
+var requirements = new Map(Object.entries({
+  "Optional": "可选",
+  "Required": "必填",
+  "Required — click to make optional": "必填，点击改为可选",
+  "Optional — click to make required": "可选，点击改为必填",
+  "Required by the model this input feeds": "使用此输入的模型要求必填"
+}));
+var filterDialog = '[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"])';
+var filterFields = new Map(Object.entries({
+  name: ["Name", "名称"],
+  notes: ["Notes", "备注"],
+  status: ["Status", "状态"],
+  team: ["Team", "团队"],
+  person: ["Person", "人员"],
+  tags: ["Tags", "标签"],
+  votes: ["Votes", "投票"],
+  rating: ["Rating", "评分"],
+  kind: ["Kind", "种类"],
+  outputType: ["Type", "类型"],
+  id: ["ID", "ID"],
+  "sys:prompt": ["Prompt", "提示词"],
+  "sys:negativePrompt": ["Negative", "负面提示词"],
+  "sys:duration": ["Run time", "运行耗时"],
+  "sys:mediaDuration": ["Duration", "媒体时长"],
+  "sys:sequence": ["Sequence", "序列"],
+  "sys:resolution": ["Resolution", "分辨率"],
+  "sys:model": ["Model", "模型"],
+  "sys:seed": ["Seed", "随机种子"],
+  "sys:cardType": ["Card type", "卡片类型"],
+  "sys:source": ["Source", "来源"],
+  "sys:description": ["Description", "描述"],
+  "sys:kindLabel": ["Kind name", "种类名称"],
+  "sys:runStatus": ["Run", "运行状态"],
+  "sys:sourceFile": ["File", "文件"],
+  "sys:childCount": ["Contents", "内容"],
+  "sys:c2pa": ["Provenance", "来源凭证"]
+}));
+function fieldOption(element, english) {
+  const option = element.parentElement?.closest('[role="option"][data-value]');
+  const list = option?.closest('[role="listbox"][id]');
+  const control = list ? Array.from(element.ownerDocument.querySelectorAll(filterDialog + " button[aria-controls]")).find((button) => button.getAttribute("aria-controls") === list.id) : element.closest("button.custom-select");
+  if (!control?.closest(filterDialog) || control.closest('[role="group"]') || control.getAttribute("data-value") !== "") return void 0;
+  if (!option) {
+    if (element.getAttribute("aria-hidden") === "false" && english === "+ Add field…") return "＋ 添加字段…";
+    return void 0;
+  }
+  const id = option.getAttribute("data-value") ?? "";
+  if (!id && english === "+ Add field…") return "＋ 添加字段…";
+  const pair = filterFields.get(id);
+  return pair && english === pair[0] ? pair[1] : null;
+}
+function dataType(label) {
+  if (label.endsWith("[]")) {
+    const single = types.get(label.slice(0, -2));
+    if (single) return single + "数组";
+  }
+  return types.get(label);
+}
+function scriptOption(element, english) {
+  let control = element.closest("button.custom-select");
+  const option = element.closest('[role="option"][data-value]');
+  if (!control && option) {
+    const list = option.closest('[role="listbox"][id]');
+    if (list) control = Array.from(element.ownerDocument.querySelectorAll(".merlin-script-form-row button[aria-controls]")).find((button) => button.getAttribute("aria-controls") === list.id) ?? null;
+  }
+  if (!control?.closest(".merlin-script-form-row")) return void 0;
+  if (control.closest(".merlin-graph-inspector-subtype")) {
+    const id = option?.getAttribute("data-value") ?? control.getAttribute("data-value");
+    if (id?.startsWith("x:") && (option || element.getAttribute("aria-hidden") === "false")) return null;
+    const pair = id && subtypes.get(id);
+    return pair && english === pair[0] ? pair[1] : void 0;
+  }
+  if (control.parentElement?.parentElement?.classList.contains("merlin-script-form-row")) return dataType(english);
+  return void 0;
+}
+function translatePanelActions(element, field, english) {
+  const selectLabel = element.localName === "span" && element.parentElement?.parentElement?.classList.contains("custom-select");
+  const optionLabel = element.parentElement?.getAttribute("role") === "option";
+  if (field === "text" && (selectLabel || optionLabel)) {
+    const filter = fieldOption(element, english);
+    if (filter !== void 0) return filter;
+    return scriptOption(element, english);
+  }
+  if (field === "aria-label" && element.closest(filterDialog)) {
+    const criterion = /^Criterion (\d+): (.+)$/s.exec(english);
+    if (criterion) return `条件 ${criterion[1]}：${criterion[2]}`;
+    const remove = /^Remove criterion (\d+)$/.exec(english);
+    if (remove) return `移除第 ${remove[1]} 个条件`;
+    if (english.endsWith(" polarity")) return english.slice(0, -9) + "的匹配方式";
+    if (english.endsWith(" is not")) return english.slice(0, -7) + "不等于";
+    if (english.endsWith(" is")) return english.slice(0, -3) + "等于";
+  }
+  const classes = element.classList;
+  if (field === "text" && classes.contains("outliner-name") || (field === "aria-label" || field === "title") && classes.contains("outliner-row")) return null;
+  if (locations.has(english) && (field === "aria-label" || field === "text") && (classes.contains("ue-menu-label") || classes.contains("ue-menu-item"))) {
+    const facet = element.closest(".nodrag.nowheel > .ue-menu:not(:first-child)");
+    const active = facet?.previousElementSibling?.querySelector('button[aria-expanded="true"]');
+    if (active?.matches('[aria-label="Filter by location"],[aria-label="按位置筛选"]')) return locations.get(english);
+  }
+  if (classes.contains("merlin-panel-chip-count") && field === "text") {
+    const count = /^(\d+) (cards?|items?|tools?|hands?)$/.exec(english);
+    if (count) {
+      const units = count[2].startsWith("card") ? "张卡片" : count[2].startsWith("tool") ? "个工具" : count[2].startsWith("hand") ? "组手牌" : "个项目";
+      return `${count[1]} ${units}`;
+    }
+  }
+  if (field === "aria-label" && element.parentElement?.classList.contains("merlin-panel-chip") && english.startsWith("Remove filter ")) {
+    const filter = english.slice("Remove filter ".length);
+    return "移除筛选条件：" + (filter === "Archived" && element.parentElement === element.parentElement.parentElement?.firstElementChild ? "已归档" : filter);
+  }
+  if (classes.contains("merlin-script-form-inline-status") && field === "text" && english.startsWith("Appears under: ")) {
+    const category = english.slice("Appears under: ".length);
+    return "显示在工具架分类：" + (types.get(category) ?? category);
+  }
+  if (classes.contains("merlin-script-form-group")) {
+    const locked = element.closest(".merlin-script-form")?.querySelector(".merlin-script-side-locked > span")?.textContent;
+    if (locked && (locked.startsWith("This is a built-in graph,") || locked.startsWith("此节点图为内置模板"))) {
+      return builtInGroups[english];
+    }
+  }
+  if (field !== "aria-label" && field !== "title") return void 0;
+  if (classes.contains("merlin-script-form-name") && english.endsWith(" name")) return english.slice(0, -5) + "的名称";
+  if (classes.contains("custom-select") && element.parentElement?.parentElement?.classList.contains("merlin-script-form-row") && english.endsWith(" type")) return english.slice(0, -5) + "的类型";
+  if (classes.contains("merlin-script-form-dot")) {
+    const tile = /^Click to find “(.+)”; drag to place\b.*$/s.exec(english);
+    if (tile) return `点击定位“${tile[1]}”，拖动可放置另一个关联图块`;
+    const inGraph = /^Click to find “(.+)” in the graph$/s.exec(english);
+    if (inGraph) return `点击在节点图中定位“${inGraph[1]}”`;
+  }
+  if (classes.contains("merlin-script-form-star") && field === "aria-label") {
+    if (english.endsWith(" is the primary output")) return english.slice(0, -" is the primary output".length) + "是主要输出";
+    const mark = /^Mark (.+) as primary output$/s.exec(english);
+    if (mark) return `将 ${mark[1]} 设为主要输出`;
+    for (const [state, zh] of requirements) if (english.endsWith(": " + state)) return english.slice(0, -(state.length + 2)) + "：" + zh;
+  }
+  return void 0;
+}
+
+// src/settings-actions-022.ts
+function translateSettingsActions(element, field, english) {
+  if (field !== "text") return;
+  if (element.matches(".provider-onboarding > h2") && english.startsWith("Connect ")) {
+    return "连接 " + english.slice("Connect ".length);
+  }
+  const accepted = " accepted the connection check.";
+  if (element.matches(".provider-onboarding > p") && english.endsWith(accepted)) {
+    return english.slice(0, -accepted.length) + " 已通过连接检查。";
+  }
+  if (element.matches('.settings-window-body main [role="dialog"]:has(> div > h3) > div > div[style*="color: var(--color-danger-muted)"]')) {
+    for (const [prefix, label] of [
+      ["Invalid JSON in file: ", "文件中的 JSON 格式无效："],
+      ["Invalid JSON: ", "JSON 格式无效："]
+    ]) {
+      if (english.startsWith(prefix)) return label + english.slice(prefix.length);
+    }
+  }
+}
+
+// src/shelf-actions.ts
+var counts = { "Batch slot": "批量插槽", Batch: "批量输入" };
+var voiceInstructions = {
+  "Keep Ctrl held while speaking.": "说话时请按住 Ctrl 键。",
+  "Press again to stop.": "再按一次即可停止。"
+};
+var progressPhases = new Map(Object.entries({
+  start: ["Opening your workspace", "正在打开工作区"],
+  read: ["Reading canvas", "正在读取画布"],
+  "expand-tree": ["Loading graphs", "正在加载节点图"],
+  migrate: ["Upgrading canvas", "正在升级画布"],
+  normalize: ["Preparing canvas", "正在准备画布"],
+  versions: ["Reading history", "正在读取历史记录"],
+  register: ["Opening canvas", "正在打开画布"],
+  results: ["Restoring results", "正在恢复结果"],
+  "background results": ["Restoring results", "正在后台恢复结果"]
+}));
+function progress(element, field, value) {
+  const title = field === "title" ? value : element.getAttribute("title") ?? "";
+  const separator = title.lastIndexOf(" — ");
+  const phase = separator < 0 ? "" : title.slice(separator + 3);
+  const definition = progressPhases.get(phase) ?? (field === "text" ? [...progressPhases.values()].find((pair) => pair[1] === phase) : void 0);
+  if (definition && field === "title") return title.slice(0, separator) + " — " + definition[1];
+  if (field !== "text") return;
+  const options = definition ? [definition] : [...progressPhases.values()];
+  for (const [source, translated] of options) {
+    if (!value.startsWith(source)) continue;
+    const suffix = value.slice(source.length);
+    if (/^(…| \d+…| \d+\/\d+\+?)?$/.test(suffix)) return translated + suffix;
+  }
+}
+function batchPosition(label) {
+  const reference = /^Reference (\d+)$/.exec(label);
+  return reference ? "参考素材 " + reference[1] : label;
+}
+function tooltip(element, value) {
+  const parent = element.parentElement;
+  if (!parent?.parentElement?.matches('[role="tooltip"]')) return;
+  const footer2 = parent.lastElementChild?.textContent?.trim();
+  if (element === parent.firstElementChild && value.startsWith("Settings · ") && ["Click to hide the settings", "Click to change them", "点击收起设置", "点击修改设置"].includes(footer2 ?? "")) {
+    return "设置 · " + value.slice("Settings · ".length);
+  }
+  if (element === parent.firstElementChild && value.startsWith("Working with ") && (copyId(footer2 ?? "") === "13503ee6df5fc76a" || footer2?.startsWith("切换智能体或独立工作"))) {
+    return "正在与“" + value.slice("Working with ".length) + "”协作";
+  }
+  const voice = /^Press (.+?) to dictate\b.*?\. (Keep Ctrl held while speaking\.|Press again to stop\.)$/.exec(value);
+  if (voice) return "按 " + voice[1] + " 可在此处听写，或在画布中打开语音聊天。" + voiceInstructions[voice[2]];
+  const runs = /^Batch · (\d+) runs?$/.exec(value);
+  if (runs && element === parent.firstElementChild) return "批量 · " + runs[1] + " 次运行";
+}
+function translateShelfAction(element, field, value) {
+  const cls = element.classList;
+  if (cls.contains("label") && element.matches("#splash .loading-status .label")) return progress(element, field, value);
+  if (element.localName === "button" && element.hasAttribute("title") && element.matches(".merlin-generation-host > div > div > div > button")) {
+    if (field === "title" && copyId(value) === "ce624c5d25d02c89") return "查看加载耗时明细（也可在控制台运行 __merlinLoad.log()）";
+    const result = progress(element, field, value);
+    if (result) return result;
+  }
+  if (field === "text" && element.parentElement?.parentElement?.getAttribute("role") === "tooltip") {
+    return tooltip(element, value);
+  }
+  if (cls.contains("canvas-card-facet-star") && (field === "title" || field === "aria-label")) {
+    const stars = /^Rate ([1-5])$/.exec(value);
+    if (stars) return "评为 " + stars[1] + " 星";
+    if (value === "Clear your rating") return "清除我的评分";
+  }
+  if (cls.contains("pill-menu-item") && field === "text" && element.closest(".pill-menu[data-add-reference-popover]")) {
+    const selected = /^Use selected \((\d+)\)$/.exec(value);
+    if (selected) return "使用所选内容（" + selected[1] + " 项）";
+  }
+  if (field === "aria-description" && cls.contains("generation-shelf-selection-item")) {
+    const descriptions = {
+      "5ada1addbf0016dd": "拖动或按 Alt 加左右方向键排序。",
+      "b04d6f31170506c0": "按空格键加入批次。",
+      "ef3e4c580953dd56": "拖动或按 Alt 加左右方向键排序，按空格键加入批次。"
+    };
+    return descriptions[copyId(value)];
+  }
+  if (field === "aria-label") {
+    if (cls.contains("generation-shelf-batch-slot") || cls.contains("generation-shelf-batch-well")) {
+      const count = /^(Batch slot|Batch): (\d+) inputs?$/.exec(value);
+      if (count) return counts[count[1]] + "：" + count[2] + " 项输入";
+    }
+    if (cls.contains("generation-shelf-selection-item") && element.getAttribute("data-batch") === "true" && value.startsWith("Batch position · ")) return "批量输入位置 · " + batchPosition(value.slice("Batch position · ".length));
+    if (element.matches(".generation-shelf-batch-member button,.generation-shelf-batch-well button")) {
+      const move = /^Move (.+) out of batch$/.exec(value);
+      if (move) return "将“" + move[1] + "”移出批量输入";
+      const remove = /^Remove (.+) from inputs$/.exec(value);
+      if (remove) return "从输入中移除“" + remove[1] + "”";
+    }
+    if ((cls.contains("generation-shelf-generate-options") || cls.contains("generation-shelf-menu")) && value.startsWith("Output: Add to Deck · ") && value !== "Output: Add to Deck · From Batch") {
+      return "输出到卡组“" + value.slice("Output: Add to Deck · ".length) + "”";
+    }
+    if (cls.contains("generation-shelf-reference-pick") && value.endsWith(" reference")) {
+      const reference = /^Reference (\d+) reference$/.exec(value);
+      if (reference) return "参考素材 " + reference[1];
+    }
+  }
+  if (field === "text") {
+    if (cls.contains("generation-shelf-selection-badge") && element.closest('[data-batch="true"]')) {
+      const reference = /^Reference (\d+)$/.exec(value);
+      if (reference) return "参考素材 " + reference[1];
+    }
+    if (cls.contains("generation-shelf-well-title") && value.startsWith("Batch · ")) return "批量 · " + value.slice("Batch · ".length);
+    if (element.matches(".generation-shelf-batch-popover > p,.generation-shelf-batch-well p")) {
+      const each = /^Each batch card runs here, as (.+?)\.(?: (Drag (?:this tile|it onto)\b.*\.))?$/.exec(value);
+      if (each) return "每张批量卡片都会作为“" + batchPosition(each[1]) + "”运行。" + (each[2] ? "拖动可更改输入位置。" : "");
+    }
+    if (cls.contains("generation-shelf-generate") || cls.contains("generation-shelf-generate-label")) {
+      const batch = /^Send batch · (\d+) inputs?$/.exec(value);
+      if (batch) return "发送批量输入 · " + batch[1] + " 项";
+      const run = /^Run (\d+) (Images?|Items?)$/.exec(value);
+      if (run) return "运行并生成 " + run[1] + (run[2].startsWith("Image") ? " 张图像" : " 项结果");
+      const generate = /^Generate · (\d+) (images?|items?)$/.exec(value);
+      if (generate) return "生成 " + generate[1] + (generate[2].startsWith("image") ? " 张图像" : " 项结果");
+    }
+  }
+}
+
 // src/translate.ts
-var attributes = ["title", "aria-label", "placeholder", "data-tooltip", "alt"];
-var scopeAttributes = ["class", "role", "contenteditable", "translate", "data-testid", "data-package-row"];
+var attributes = ["title", "aria-label", "aria-description", "placeholder", "data-tooltip", "alt"];
+var scopeAttributes = ["class", "role", "contenteditable", "translate", "data-testid", "data-package-row", "data-value"];
 var protectedContent = 'script,style,pre,code,.cm-content,.view-lines,[translate="no"],[data-merlin-text-surface],.agent-chat-message,.canvas-card-header,.agent-attention-preview,.agent-model-name,.agent-assignee-name,.agent-current-task-title,.merlin-scripts-name,.merlin-scripts-row-name,.merlin-graphs-tile-label,.credential-row-label,.merlin-ops-name';
 var editableContent = '[contenteditable]:not([contenteditable="false"]),input,textarea,[role="textbox"]';
 var searchMessageStart = "No settings in this category match “";
@@ -502,6 +885,10 @@ function localize(doc, dictionary2) {
     const splitMessage = element.classList.contains("ue-menu-note") || element.classList.contains("merlin-graphs-empty");
     if (english && (candidates || splitMessage || english === "(" || /[A-Za-z]/.test(english))) {
       translated = translatePanelsDynamic(element, field, english, node);
+      if (translated === void 0) translated = translateCanvasAction(element, field, english);
+      if (translated === void 0) translated = translatePanelActions(element, field, english);
+      if (translated === void 0) translated = translateSettingsActions(element, field, english);
+      if (translated === void 0) translated = translateShelfAction(element, field, english);
       if (translated === void 0) translated = translateGeneration(element, field, english, node);
       if (translated === void 0) translated = translateSettingsDynamic(element, field, english, node);
       if (translated === void 0) translated = translateMenuDynamic(element, field, english);
@@ -4460,12 +4847,963 @@ var viewers_extra_default = [
   }
 ];
 
+// src/locales/canvas-actions-022.json
+var canvas_actions_022_default = [
+  {
+    selector: '.ue-menu:has(button:is([aria-label="Close search"],[aria-label="关闭搜索"])) .merlin-panel-search input,.ue-menu:has(button:is([aria-label="Close search"],[aria-label="关闭搜索"])) > div:first-child > button,.ue-menu:has(button:is([aria-label="Close search"],[aria-label="关闭搜索"])) > div:last-child,.ue-menu:has(button:is([aria-label="Close search"],[aria-label="关闭搜索"])) > div:nth-child(2) > div:only-child:not(:has(*))',
+    fields: [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    entries: {
+      "Search canvases": "搜索画布",
+      "Search cards, frames, notes…": "搜索卡片、框架和便笺…",
+      "#34:4edec0bb4145837d": "只查找本画布",
+      "#64:f4310aad255cd325": "搜索范围为本画布，点击可扩大到所有画布。",
+      "#11:696264878d4f2cff": "本画布",
+      "Close (Esc)": "关闭 (Esc)",
+      "No matches": "没有匹配结果",
+      "#45:fb37d26577abda7b": "Enter 下一处，Shift+Enter 上一处，Esc 退出。"
+    }
+  },
+  {
+    selector: '.pill-menu:has(.merlin-panel-search) .merlin-panel-search input,.ue-menu:has(input:is([aria-label="Search nodes"],[aria-label="搜索节点"])) .merlin-panel-search input,.pill-menu:has(.merlin-panel-search) .ue-menu-note,.ue-menu:has(input:is([aria-label="Search nodes"],[aria-label="搜索节点"])) .ue-menu-note,.pill-menu:has(.merlin-panel-search) button[aria-haspopup="menu"] > .ue-menu-label,.ue-menu:has(input:is([aria-label="Search nodes"],[aria-label="搜索节点"])) button[aria-haspopup="menu"] > .ue-menu-label',
+    fields: [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    entries: {
+      "Search nodes": "搜索节点",
+      "Search nodes...": "输入英文节点名，如 image…",
+      "No match": "没有匹配的节点。可输入英文名，或清空后按分类浏览。",
+      Input: "输入",
+      Generate: "生成",
+      Process: "处理",
+      Geometry: "几何",
+      Logic: "逻辑",
+      Routing: "路由",
+      Composition: "组合",
+      Viewers: "查看器",
+      Constant: "常量",
+      Custom: "自定义"
+    }
+  },
+  {
+    selector: ".canvas-tool-palette [data-toolbar-menu-open] .ue-menu-item > .ue-menu-label,.canvas-tool-palette [data-toolbar-menu-open] input",
+    fields: [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    entries: {
+      Connector: "连接线",
+      Deck: "卡组",
+      Comment: "评论",
+      "Insert File…": "插入文件…",
+      "Search Insert": "搜索可插入的项目"
+    }
+  },
+  {
+    selector: ".pill-submenu > button.pill-menu-item > .ue-menu-label",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Bring to Front": "置于顶层",
+      "Bring Forward": "上移一层",
+      "Send Backward": "下移一层",
+      "Send to Back": "置于底层"
+    }
+  },
+  {
+    selector: ".annotation-toolbar,.annotation-toolbar :is(button,input,.ue-menu-label,label,.ue-menu-heading,span)",
+    fields: [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    entries: {
+      "Annotation tools": "批注工具",
+      "Freehand draw": "自由绘制",
+      "Freehand draw options": "自由绘制选项",
+      "Lasso area": "套索区域",
+      "Lasso area options": "套索选项",
+      "Straight line": "直线",
+      "Straight line options": "直线选项",
+      Arrow: "箭头",
+      "Arrow options": "箭头选项",
+      Rectangle: "矩形",
+      "Rectangle options": "矩形选项",
+      Circle: "圆形",
+      "Circle options": "圆形选项",
+      Triangle: "三角形",
+      "Triangle options": "三角形选项",
+      "Text annotation": "文字批注",
+      "Outline color": "描边颜色",
+      "Outline thickness": "描边粗细",
+      "Stroke erase": "笔画擦除",
+      "Stroke erase options": "笔画擦除选项",
+      "Pixel erase": "像素擦除",
+      "Pixel erase options": "像素擦除选项",
+      "Clear annotations on a card": "清除卡片上的批注",
+      Outline: "描边",
+      Fill: "填充",
+      Opacity: "不透明度",
+      Hex: "十六进制",
+      "Outline hex value": "描边颜色的十六进制值",
+      "Fill hex value": "填充颜色的十六进制值",
+      "Custom outline color": "自定义描边颜色",
+      "Custom fill color": "自定义填充颜色",
+      "Fill color": "填充颜色",
+      "Solid outline": "实线描边",
+      "Dashed outline": "虚线描边"
+    }
+  },
+  {
+    selector: '.pill-menu:has(.merlin-panel-search) button:not([aria-haspopup]):not(:has(.ue-menu-icon > span[style*="rgb(251, 146, 60)"])) > .ue-menu-label,.ue-menu:has(input:is([aria-label="Search nodes"],[aria-label="搜索节点"])) button:not([aria-haspopup]):not(:has(.ue-menu-icon > span[style*="rgb(251, 146, 60)"])) > .ue-menu-label',
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Audio Input": "音频输入",
+      Doodle: "涂鸦",
+      "Figma Fetch": "从 Figma 获取",
+      "Image Input": "图像输入",
+      "Mesh Input": "网格输入",
+      "Reposition Render": "调整渲染位置",
+      "Sequence Render": "序列渲染",
+      "Text Input": "文本输入",
+      "UE Viewport": "UE 视口",
+      "USD Input": "USD 输入",
+      "Video Input": "视频输入",
+      "Viewport Render": "视口渲染",
+      "Webcam Capture": "摄像头采集",
+      "Audio Generator": "音频生成器",
+      "Cube Mesh": "立方体网格",
+      "Image Generator": "图像生成器",
+      "Image Upscaler": "图像超分辨率",
+      "Mesh Generator": "网格生成器",
+      "Sphere Mesh": "球体网格",
+      "Splat Generator": "高斯泼溅生成器",
+      "Texture Generator": "纹理生成器",
+      "Video Generator": "视频生成器",
+      "Video Upscaler": "视频超分辨率",
+      "Auto-Rig": "自动绑定骨骼",
+      "Canny Edges (Image)": "Canny 边缘（图像）",
+      "Canny Edges (Video)": "Canny 边缘（视频）",
+      "Depth Estimation": "深度估计",
+      "Edge Detection (Image)": "边缘检测（图像）",
+      "Edge Detection (Video)": "边缘检测（视频）",
+      "Extract Frame": "提取帧",
+      "Image Grid": "图像网格",
+      "Image Validator": "图像校验",
+      "Merge (Image)": "合并图像",
+      "Merge (Video)": "合并视频",
+      "Point Cloud": "点云",
+      Segmentation: "分割",
+      "Spatial Mask Guide": "空间遮罩引导",
+      "Spatial Prompt Synthesis": "空间提示词合成",
+      "Speech to Text": "语音转文本",
+      "Text Segment": "文本分段",
+      "Transform (Image)": "图像变换",
+      "Transform (Video)": "视频变换",
+      "Bake Textures": "烘焙纹理",
+      "UV Unwrap": "UV 展开",
+      Remesh: "重构网格",
+      Simplify: "简化网格",
+      "Recompute Normals": "重算法线",
+      "Fill Holes": "填补孔洞",
+      "Weld Edges": "焊接边",
+      Solidify: "实体化",
+      "Console Log": "控制台日志",
+      Convert: "转换",
+      "Create Static Mesh Asset": "创建静态网格体资产",
+      "Format String": "格式化字符串",
+      "ICP Align": "ICP 对齐",
+      "MCP Tool": "MCP 工具",
+      "Point Correspondence Pose Fit": "通过对应点拟合姿态",
+      "Projected World Transform At": "指定位置的投影世界变换",
+      "Set Camera": "设置摄像机",
+      "Simple Align": "简单对齐",
+      "Spawn Cutout At": "在指定位置生成剪影",
+      "Spawn Mesh At": "在指定位置生成网格",
+      Tasks: "任务",
+      "Text Extract": "提取文本",
+      Choice: "选项",
+      Select: "选择",
+      Switch: "切换",
+      "Append Bundles": "追加数据束",
+      Bundle: "数据束",
+      "Canvas Input": "画布输入",
+      "Canvas Output": "画布输出",
+      "Image Viewer": "图像查看器",
+      "Mesh Viewer": "网格查看器",
+      "Panorama Viewer": "全景查看器",
+      "Video Viewer": "视频查看器",
+      Boolean: "布尔值",
+      Constant: "常量",
+      Float: "浮点数",
+      Integer: "整数",
+      String: "字符串",
+      "Vector 2": "二维向量",
+      "Vector 3": "三维向量"
+    }
+  },
+  {
+    selector: ".graph-node-header-actions,.graph-node-header-actions .node-header-btn",
+    fields: [
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Node actions": "节点操作",
+      "Run this node": "运行此节点"
+    }
+  },
+  {
+    selector: '[data-frame-layout-controls] button,[data-frame-drag-handle],[data-frame-ui] :is(button,input,[role="img"]),[data-merlin-frame-grip],[data-frame-ui] [title]',
+    fields: [
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Structured Layout": "结构化布局",
+      "Structured Layout options": "结构化布局选项",
+      "#58:142b5f26a9cfdc3c": "启用结构化布局后可调整这些选项。",
+      "#38:16751dc57760be27": "点击改用自由布局。",
+      "Enable Structured Layout": "启用结构化布局",
+      "Frame color": "框架颜色",
+      "Frame name": "框架名称",
+      "Remove frame, keep cards": "移除框架并保留卡片",
+      "#45:2e437212e98716b7": "拖动边缘调节大小，双击适配内容。",
+      "#78:e6416cfd5129fbf5": "拖动移动框架。双击栏头适配面板，双击名称改名。",
+      "#47:12a08cc339f00d47": "拖动移动框架，双击栏头适配面板。",
+      Filtered: "已筛选"
+    }
+  },
+  {
+    selector: '[data-frame-ui][role="dialog"],[data-frame-ui][role="dialog"] :is(span,div,input,button)',
+    fields: [
+      "aria-label",
+      "title",
+      "text"
+    ],
+    entries: {
+      "Structured Layout options": "结构化布局选项",
+      "Card scale": "卡片缩放",
+      "Card scale (%)": "卡片缩放比例 (%)",
+      Spacing: "间距",
+      "#48:fb9c64021123b941": "拉宽框架可在一行放下更多列。",
+      "#181:91cd8bb630c35158": "按横向分区组织卡片。拖入卡片可调整归属，双击区名可改名。添加分区时会开启结构化布局。",
+      "Add section": "添加分区"
+    }
+  },
+  {
+    selector: ".pill-menu:not(:has(.merlin-panel-search)) :is(.pill-menu-item,.feature-hint-menu-label,.ue-menu-label)",
+    fields: [
+      "text",
+      "title"
+    ],
+    entries: {
+      Organise: "整理",
+      "Add Frame Section": "添加框架分区",
+      "Collapse To": "折叠为",
+      "Lock Frame": "锁定框架",
+      "Unlock Frame": "解锁框架",
+      "Delete Frame": "删除框架",
+      "#107:c1a67da67d4860c1": "解锁后才可删除框架、切换布局或编辑分区。",
+      "#61:bb6a9a2847ff47dc": "请先启用此框架的结构化布局。"
+    }
+  },
+  {
+    selector: '.frame-color-picker,.frame-color-picker :is(button,input,[role="slider"],.frame-color-label,label,span)',
+    fields: [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Frame color": "框架颜色",
+      "Hue and saturation": "色相与饱和度",
+      Saturation: "饱和度",
+      Value: "明度",
+      Hex: "十六进制",
+      "Hex color": "十六进制颜色",
+      Suggested: "推荐颜色",
+      Reset: "重置",
+      Cancel: "取消",
+      OK: "确定"
+    }
+  }
+];
+
+// src/locales/shelf-actions.json
+var shelf_actions_default = [
+  {
+    selector: ".generation-shelf-well,.generation-shelf-well [aria-label],.generation-shelf-well [title],.generation-shelf-batch-popover,.generation-shelf-batch-popover [title],.generation-shelf-batch-popover [aria-label],.generation-shelf-prompt-tool,.generation-shelf-prompt-resize,.generation-shelf-generate-options,.generation-shelf-menu,.attached-agent-sleep,.generation-shelf-fold-handle",
+    fields: [
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      Inputs: "输入",
+      "Batch inputs": "批量输入",
+      "Fold batch": "折叠批量输入",
+      "Close batch": "关闭批量输入",
+      "#39:520bd37358d31e86": "收起批量输入并保留已有卡片",
+      "#69:c8bd530c090e0c9a": "将批量输入叠放，点击可展开",
+      "#46:1daabbb1bb22a99b": "清空输入素材，保留提示词与参数",
+      "#46:f5f7ed64f07ab940": "从画布或本机文件添加到批量列表",
+      "#78:34203ecb1bb2033f": "点击选择卡片，也可直接拖入卡片或文件。",
+      "#83:edeb802f5afadb0c": "可继续点选卡片或拖入更多卡片与文件。",
+      "Remove from the batch": "从批量输入中移除",
+      "#37:7cc784336c9cdf0f": "拖到“输入”栏即可用于每次运行。",
+      "Move back to inputs": "移回输入",
+      "Remove input entirely": "彻底移除此输入",
+      "Collapse prompt": "收起提示词",
+      "Resize prompt": "调整提示词框大小",
+      "#37:0d245becce74e7e4": "可用拖动或方向键改变尺寸。",
+      "#32:ac7b3f3d77ad8bf6": "把结果送回相应输入所在的卡组",
+      "Output: Agent Chooses": "输出目标由智能体选择",
+      "Work on my own (Zzz)": "独立工作（Zzz）"
+    }
+  },
+  {
+    selector: ".generation-shelf-well-title,.generation-shelf-batch-popover > header > strong,.generation-shelf-batch-popover > p,.generation-shelf-batch-popover .generation-shelf-batch-member button,.generation-shelf-reference-sub,.generation-shelf-generate-label",
+    fields: [
+      "text"
+    ],
+    entries: {
+      Batch: "批量",
+      "Batch inputs": "批量输入",
+      "#51:2e040e42ffe6e51a": "每项输入单独运行一次。将某项移出批量区即可供所有轮次共用。",
+      "#52:dd1b4898f52a1128": "拖入备选素材，每一轮使用其中一项。",
+      "#34:5ba3e3c90b7c7084": "点击折叠批量列表。",
+      "#29:a69297086cb8ce29": "点击展开批量列表。",
+      "Queue tool use": "将工具加入队列",
+      "Send to agent": "发送给智能体"
+    }
+  },
+  {
+    selector: ".pill-menu[data-add-reference-popover] input,.pill-menu[data-add-reference-popover] > div,.pill-menu[data-add-reference-popover] > div:last-child > button.pill-menu-item",
+    fields: [
+      "text",
+      "aria-label",
+      "placeholder"
+    ],
+    entries: {
+      "Search canvas": "搜索画布",
+      "Search canvas...": "搜索画布…",
+      "No matching canvas elements": "没有匹配的画布元素",
+      "From file...": "从文件选择…",
+      "Use selected": "使用所选内容",
+      "Paste copied node": "粘贴已复制的节点"
+    }
+  },
+  {
+    selector: ".feature-hint-card,.feature-hint-card > p,.feature-hint-heading > strong,.feature-hint-heading > button,.feature-hint-dismiss",
+    fields: [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Voice shortcut": "语音快捷键",
+      "Close hint": "关闭提示",
+      "Don’t show again": "不再显示",
+      Press: "按下",
+      "#86:7ace28ce42cbdf31": "在此输入或去画布中打开语音聊天。按住 Ctrl 说话。",
+      "#76:2266eb52bd1504ef": "可在这里听写，也可在画布上打开语音聊天。再次按键即可停止。"
+    }
+  },
+  {
+    selector: '[role="tooltip"] > div > div,.generation-shelf-menu .ue-menu-label,.generation-shelf-menu .ue-menu-detail,.shelf-collaborator-menu .ue-menu-detail',
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Working on your own": "正在独立工作",
+      "#42:c0f0bfade2682dd4": "用当前模型直接生成结果。",
+      "#41:d40ae7ce607268f2": "使用所选模型直接生成",
+      "#28:2d2f684474c39b78": "选择配合工作的智能体",
+      "Work on my own": "独立工作",
+      "Work with an agent": "与智能体协作",
+      "Choose an agent to help": "选择一个智能体帮忙",
+      "#57:13503ee6df5fc76a": "可更换协作智能体。点击 Zzz 进入独立工作模式。",
+      "Click to hide the settings": "点击收起设置",
+      "Click to change them": "点击修改设置",
+      "#29:f1c20ef6e631f454": "查看脚本的高级输入选项。",
+      "Click to hide them": "点击收起高级输入",
+      "Click to show them": "点击显示高级输入",
+      "Choose where results land": "选择结果的输出位置",
+      "#53:12c7d4de0a551edc": "按当前的输入和参数运行选中的工具。",
+      "#31:90f3cf1a5cd581bc": "已从本次输入中移除。",
+      "Linked text in the prompt": "提示词中关联的文本",
+      "Agent context": "智能体上下文",
+      "#51:1912af4dff07682a": "查看器打开时将采用该项已有的批注。",
+      "#54:5ada1addbf0016dd": "拖动改变顺序，键盘可用 Alt 加左右方向键。",
+      "#37:b04d6f31170506c0": "按空格加入批量列表。",
+      "#103:4add066cc3cfa350": "各轮共用这些输入。选中的卡片会列在这里，可拖动排序。固定后取消选择仍会保留。",
+      "#137:b62199315cc2826c": "这里的输入供各轮共用。可固定、拖动排序，也可移到批量区逐轮替换。"
+    }
+  },
+  {
+    selector: ".generation-shelf-status,.generation-shelf-status span,.generation-shelf-generate,.generation-shelf-generate-label",
+    fields: [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "#56:6140979b3984a826": "先选一个可用卡组，或创建卡片。",
+      "#56:1c917c1eb0bc1d0f": "先选一个可用卡组，也可以新建。",
+      "#59:3109947305f50698": "以前选择的智能体模型目前不可用，请重新选取。",
+      "Loading models…": "正在加载模型…",
+      "#31:4178cc13dc950b88": "先打开一个画布，再使用智能体。",
+      "Loading chat history…": "正在加载聊天记录…",
+      "#59:e0e8be96428b153b": "原卡组已不存在，请新建卡片。",
+      "#75:9f972f9be03aefa0": "脚本的输出类型与当前卡片不匹配，请新建卡片。",
+      "#64:c402324af5e7d9b0": "编辑目标已被移除，请先创建卡片。",
+      "#73:38f1b95614cac589": "工具的输出类型与当前卡片不匹配，请新建卡片。"
+    }
+  },
+  {
+    selector: '.merlin-toolbar-zoom,.canvas-tool-palette,.generation-shelf-fields [role="textbox"],.agents-panel-empty',
+    fields: [
+      "title",
+      "aria-label",
+      "text"
+    ],
+    entries: {
+      "Double-click for 100%": "双击恢复到 100%",
+      "Canvas toolbar": "画布工具栏",
+      "System Prompt": "系统提示词",
+      "#69:d9b91fbb06637ae3": "聊天记录写入失败，请检查服务器连接。"
+    }
+  }
+];
+
+// src/locales/panel-actions-022.json
+var panel_actions_022_default = [
+  {
+    selector: ".agent-onboarding-card p,.agent-onboarding-content > p,.agent-onboarding-content details > p,.agent-onboarding-guidance > p,.agent-onboarding-guidance button",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#104:dbaa865c5c9b1e6c": "沿用本机 CLI 的登录、连接及组织设置。",
+      "Open setup guide ↗": "打开设置指南 ↗",
+      "#50:02405a495af52c1b": "请运行 Codex CLI 并登录。",
+      "#56:394e7ecb9d45b33f": "请运行 Claude Code 并登录。",
+      "#44:6f11cbe8f85808a5": "请先在本机安装 Claude Code。",
+      "#38:fb65a56a36a13121": "本机尚未安装 Codex CLI。",
+      "#87:6fb756462f5fccdf": "按指南安装 Claude Code，再登录现有账户。",
+      "#81:62706d6bbff140b3": "按指南安装 Codex CLI，再登录现有账户。",
+      "run: codex login": "运行 codex login",
+      "start claude and type /login": "启动 claude 后输入 /login",
+      "#279:1c63e1a2897142bb": "加载 Claude Code 的用户设置、钩子、规则、插件、技能、命令和 CLAUDE.md，也加载用户级和插件提供的 MCP 服务。文件与终端工具限于 Claude 工作目录。",
+      "#185:f28bd7ed8c6d06c8": "沿用 Claude Code 的账号与连接，在 Canvas 内使用专用设置和工具。工作目录的记忆仍可能生效。",
+      "#110:7c6eb6384c07c37c": "载入 Codex 的本机配置，包括 MCP、插件、钩子、规则、记忆、AGENTS.md 和技能。",
+      "#202:287e3fcf7e61a0de": "只沿用 Codex 登录与模型设置，其他本地扩展和记忆不会载入。仅存在系统密钥环中的凭据不可沿用。"
+    }
+  },
+  {
+    selector: "button.agent-onboarding-select > span > span,[role=listbox]:is([aria-label='Chat context'],[aria-label='对话上下文']) [role=option]:is([data-value=personal],[data-value=clean]) > span",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Personal configuration": "个人配置",
+      "Clean context": "空白上下文"
+    }
+  },
+  {
+    selector: ".merlin-navigator-tree-actions button,.outliner-header-cell,.outliner-header-cell > span,.outliner-body,.media-library .merlin-panel-search input,.merlin-panel-settings-menu,.merlin-panel-settings-menu .ue-menu-label",
+    fields: [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    entries: {
+      "Search all items": "搜索所有项目",
+      "All items": "所有项目",
+      "Tree options": "树视图选项",
+      "Expand all": "全部展开",
+      "Collapse all": "全部折叠",
+      "Sort by name": "按名称排序",
+      "Sort by type": "按类型排序",
+      "Sort by model": "按模型排序",
+      Name: "名称",
+      Type: "类型",
+      Model: "模型"
+    }
+  },
+  {
+    selector: ".merlin-panel-chip > button,.merlin-panel-search-clear",
+    fields: [
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Remove filter": "移除筛选条件"
+    }
+  },
+  {
+    selector: ".merlin-script-side-locked > span,.merlin-script-side-duplicate,.merlin-script-form-add,.merlin-script-form-grip,.merlin-script-form-dot,.merlin-script-form-star,.merlin-script-form-remove,.merlin-graph-inspector .merlin-script-form-none",
+    fields: [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "#117:49284a0412574c0f": "内置节点图需先复制到工具箱，再修改副本。",
+      "Edit a Copy": "编辑副本",
+      Required: "必填",
+      "#33:7e254ee25a72b6c7": "当前为必填，点击切换为可选。",
+      Optional: "可选",
+      "#33:e194ce253c950e11": "当前为可选，点击切换为必填。",
+      "#38:5df040d56be75238": "所选模型运行时必须提供此输入。",
+      "Primary output": "主要输出",
+      "Mark as primary output": "设为主要输出",
+      "#31:8611e1a1ddcb1a15": "拖动排序，或使用 Alt+↑/↓。",
+      "#57:fb39e91b1f8494f2": "已定义接口。拖入节点图即可放置实例。",
+      Remove: "移除"
+    }
+  },
+  {
+    selector: "[role=dialog]:is([aria-label='Unsaved changes'],[aria-label='未保存的更改']),[role=dialog]:is([aria-label='Unsaved changes'],[aria-label='未保存的更改']) :is(div,button)",
+    fields: [
+      "text",
+      "aria-label"
+    ],
+    entries: {
+      "Unsaved changes": "未保存的更改",
+      "#61:e33504c211954ec3": "节点图尚未保存。可另存副本或放弃此次修改。",
+      Discard: "放弃更改",
+      "Save a Copy": "另存为副本"
+    }
+  },
+  {
+    selector: "[role=dialog]:is([aria-label='Custom Filter'],[aria-label='自定义筛选']) input,.media-library-filter-trigger,.merlin-scripts-section .merlin-panel-chip",
+    fields: [
+      "title",
+      "placeholder",
+      "aria-label"
+    ],
+    entries: {
+      "contains…": "包含…",
+      Starred: "已加星标",
+      "#20:7ffd20a3f486ab70": "仅查看收藏的脚本",
+      "Remove filter": "移除筛选条件"
+    }
+  },
+  {
+    selector: ".merlin-rail-body-content:has(.merlin-scripts) > .ue-menu[data-portal-popup] > div > .ue-menu-item > .ue-menu-label",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "New folder": "新建文件夹",
+      "Export all scripts…": "导出所有脚本…",
+      "Refresh library": "刷新资源库"
+    }
+  }
+];
+
+// src/locales/settings-actions-022.json
+var settings_actions_022_default = [
+  {
+    selector: ".provider-onboarding, .provider-onboarding :is(h2,h3,p,button,input,label,small), .provider-onboarding .provider-onboarding-progress span, .provider-onboarding-notice, .provider-onboarding-custom strong",
+    fields: [
+      "text",
+      "aria-label",
+      "placeholder",
+      "title"
+    ],
+    entries: {
+      "Generation provider setup": "生成服务商设置",
+      "/ Add provider": "/ 添加服务商",
+      "/ Custom provider": "/ 自定义服务商",
+      "Choose your provider": "选择服务商",
+      "#57:c87ec1f41dd3a1ec": "选择已集成的服务商以添加模型。",
+      "Included providers": "内置服务商",
+      "Use your own API key": "使用自己的 API 密钥",
+      "Add custom provider": "添加自定义服务商",
+      "#44:c1b66cf7c056b627": "查看其他服务的接入方法",
+      "Loading providers…": "正在加载服务商…",
+      "#36:f9ccacdaabff9462": "服务商目录载入失败。",
+      "Try again": "重试",
+      "Provider unavailable": "服务商不可用",
+      "Loading the provider catalog…": "正在加载服务商目录…",
+      "#84:3330e0a81ba92e0d": "找不到此集成，请检查目录或添加自定义服务商。",
+      "Choose a provider": "选择服务商",
+      "#49:1eb317cf6b864fcb": "填写此服务商为账号提供的凭据。",
+      "Get an API key ↗": "获取 API 密钥 ↗",
+      "API ID": "API 标识",
+      "API secret": "API 密钥",
+      "API key": "API 密钥",
+      "Your Scenario API ID": "输入 Scenario API 标识",
+      "Your Scenario API secret": "输入 Scenario API 密钥",
+      "Paste your API key": "粘贴 API 密钥",
+      "Show credentials": "显示凭据",
+      "Hide credentials": "隐藏凭据",
+      "Save and check connection": "保存并检查连接",
+      "Save and continue": "保存并继续",
+      "#70:bf1644f2f2e9f3e5": "验证所选账号的连接，不执行生成。",
+      "#108:15098d7edbd7921a": "此服务不提供账号探测，首次生成时会验证已保存的密钥。",
+      "#52:e570fa5fd097368b": "下列目录中有自定义服务商示例。",
+      "Open schema examples folder": "打开定义示例文件夹",
+      "Get help with the integration": "获取接入帮助",
+      "Provider name": "服务商名称",
+      "API documentation (optional)": "API 文档（可选）",
+      "Documentation URL or reference": "文档网址或参考资料",
+      "Setup Agents": "配置智能体",
+      "Ask an agent for help": "向智能体求助",
+      "#82:8a1a21977fe2f446": "即将打开智能体设置，返回时会保留已填资料。",
+      "#87:917d170e0360aee1": "根据已填内容起草求助消息。密钥请写入专用凭据字段。",
+      "#19:3c7b2d4af263fc0e": "已完成连接检查。",
+      "#20:cf6a97a7263df756": "服务商已设置。",
+      "#106:da964cf8b6a25849": "已保存凭据。此服务不提供账号探测，需通过后续请求验证密钥。",
+      "#132:c651438af8171f59": "个模型定义可用。实际权限和生成能力仍待验证，工程限制继续生效。",
+      "Return to canvas": "返回画布",
+      "Set up another provider": "设置其他服务商",
+      Connection: "连接",
+      "Provider connection": "服务商连接",
+      "#35:8d462fe86a118227": "可使用已有凭据",
+      "#51:344a47ebc4b31cfe": "。可沿用已有值，或在下方替换。",
+      "#42:bb77960db073936d": "留空沿用当前凭据",
+      "Checking…": "正在检查…",
+      "#91:3f8f6061316adebc": "身份验证信息载入失败，请返回刷新目录。",
+      "#49:344544fa9b913270": "填写服务商名称后再向智能体求助。",
+      "#39:8ca052eaf327aa6c": "请先打开画布再联系智能体。",
+      "#58:238b1e0bc0c169e9": "请等待画布打开后重试。"
+    }
+  },
+  {
+    selector: '.credentials-section [role="dialog"], .credentials-section [role="dialog"] > h3',
+    fields: [
+      "aria-label",
+      "text"
+    ],
+    entries: {
+      "Set Anthropic API key": "设置 Anthropic API 密钥",
+      "#30:b71add4e9566e15d": "配置 Luma Dream Machine 的 API 密钥",
+      "Set fal.ai API key": "设置 fal.ai API 密钥",
+      "Set Figma personal access token": "设置 Figma 个人访问令牌",
+      "Set Luma Agents API key": "设置 Luma Agents API 密钥",
+      "Set Scenario API id:secret": "设置 Scenario API 凭据（id:secret）",
+      "Set World Labs API Key": "设置 World Labs API 密钥"
+    }
+  },
+  {
+    selector: '.settings-window-body main [role="dialog"]:has(> div > h3), .settings-window-body main [role="dialog"]:has(> div > h3) :is(h3,button,label)',
+    fields: [
+      "text",
+      "aria-label"
+    ],
+    entries: {
+      "Add media schema": "添加媒体定义",
+      "Add service schema": "添加服务定义",
+      Add: "添加",
+      media: "媒体",
+      service: "服务",
+      schema: "定义",
+      "Paste JSON": "粘贴 JSON",
+      "Import file": "导入文件",
+      "Ask agent": "询问智能体",
+      "Schema JSON": "定义 JSON",
+      Validate: "验证",
+      "Documentation URL or pasted text": "文档网址或粘贴的内容"
+    }
+  },
+  {
+    selector: ".settings-window-body main .settings-group-body input",
+    fields: [
+      "placeholder"
+    ],
+    entries: {
+      "Field label…": "字段名称…",
+      "Options, comma-separated…": "选项之间用英文逗号分隔…"
+    }
+  },
+  {
+    selector: ".settings-window-body main .settings-group-body div:has(> div > input[autofocus]) button, .settings-window-body main .settings-group-body div:has(> div > input[placeholder]) > div > button",
+    fields: [
+      "text"
+    ],
+    entries: {
+      cancel: "取消",
+      "Add field": "添加字段"
+    }
+  },
+  {
+    selector: '.settings-window-body main .settings-group-body div:has(> input[placeholder]) > span :is(button[role="combobox"] span,[role="option"] span)',
+    fields: [
+      "text"
+    ],
+    entries: {
+      text: "文本",
+      number: "数字",
+      boolean: "布尔值",
+      enum: "单选枚举",
+      multi_enum: "多选枚举",
+      date: "日期",
+      url: "网址"
+    }
+  },
+  {
+    selector: '.settings-window-body [role="listbox"] [role="option"] span',
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#44:cffc8bac016c906f": "Base（默认），速度优先、内存需求低",
+      "#42:cb34e27a55a5f00b": "Small，兼顾准确度与内存",
+      "#51:c14a2f8d7af6687b": "Large v3 Turbo，多语言精度较高，需更多内存",
+      "#49:95b5402458258670": "Distil Large v3.5，针对英语，需更多内存",
+      "Listen while Ctrl is held": "按住 Ctrl 时录音",
+      "Listen until stopped": "持续录音直至手动停止"
+    }
+  },
+  {
+    selector: '.nodrag.nowheel[role="dialog"], .nodrag.nowheel[role="dialog"] .ue-menu-heading, .nodrag.nowheel[role="dialog"] .ue-menu-item[role="switch"], .nodrag.nowheel[role="dialog"] .ue-menu-item[role="switch"] .ue-menu-label',
+    fields: [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Model filters": "模型筛选",
+      "Filter by": "筛选条件",
+      "#52:fcb443d9393e3f41": "仅查看本机配置支持的模型",
+      "Runnable only": "仅显示可运行模型"
+    }
+  },
+  {
+    selector: '.settings-nav, .settings-window-body nav, .settings-window-body [role="navigation"]',
+    fields: [
+      "aria-label"
+    ],
+    entries: {
+      "Settings categories": "设置分类"
+    }
+  },
+  {
+    selector: '.settings-window-body [role="tabpanel"] div',
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#57:818f267f1db4b0b6": "随应用安装，现已可用。",
+      "#28:ebebb36e87db7962": "开发目录中的扩展会持续启用。"
+    }
+  },
+  {
+    selector: ".settings-window-body main div:has(> div > ul[aria-label]) :is(div,button):not(.merlin-chat-md *), .settings-window-body main div:has(> div > ul[aria-label]) .merlin-chat-md strong",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#32:3a286f082ba12dc1": "每个扩展使用独立文件夹，其中含有",
+      "#64:ae848e83eaa05dea": "。向智能体说明用途，即可创建扩展。可实现下列功能。",
+      Panels: "面板",
+      "#386:a7a7e7ba1ee18d69": "创建停靠、浮动或占满窗口的自定义面板。面板可操作画布、选区和媒体库，运行卡片、监听变更、保存数据及访问指定服务。",
+      "Commands in menus": "菜单命令",
+      "#274:3085be34b5d390f1": "可把命令放到工具栏、创建菜单和上下文菜单，处理选择、放置卡片、打开面板或执行工具与 Python。",
+      Cards: "卡片",
+      "#205:8cfff60d6e7ac030": "扩展可随附脚本和节点图，并从菜单插入卡片。从现有卡片调用时，新卡片会放在旁边并接收原卡片作为输入。",
+      "Media tools": "媒体工具",
+      "#486:cb6036d8d6f2746e": "扩展可提供图像编辑器、预览或仅显示叠加层。确认效果后保留原图，可重复应用或移除。渲染可在面板或 Python 中完成。",
+      Viewers: "查看器",
+      "#151:f2c3dcd91edbd35a": "为指定格式注册自定义预览，例如将 CSV 显示为表格。其他位置显示图标与文件名。",
+      Overlays: "叠加层",
+      "#153:59257306e5d38a0a": "给查看器增加可切换的参考线，保留下层图像的缩放和平移。",
+      "External editors": "外部编辑器",
+      "#267:6eb97d26c261a705": "将本机图像或网格编辑工具加入卡片的「发送到」菜单。先在外部路径选择程序，保存结果后即可返回画布。",
+      "Python actions": "Python 操作",
+      "#68:57061c53873d3b01": "命令可在本机 Python 会话执行，并使用其中的",
+      "#173:49688f49458a8989": "模块操作卡片或调用工具。可在执行面板查看此扩展的输出和错误。",
+      "Tools for agents": "智能体工具",
+      "#167:83848b8cc942087c": "向 Canvas 内外的 MCP 客户端提供自定义工具，由 Python 或扩展面板处理。在 Python 中通过以下接口访问：",
+      "#68:345bd976059b8475": "。工具执行生成仍需本次智能体调用具备相应权限。",
+      Layouts: "布局",
+      "#268:1238b60a110a0578": "可描述停靠区、开启的面板及宽度。当前支持读取和检查布局，尚无菜单可切换布局。",
+      Workspaces: "工作区",
+      "#224:e5e46d6bdb8d05c7": "将预设框架、规则和外观做成可插入的子画布。移除扩展后，已放置的副本会保留。",
+      "#164:51d4fe4bb4aaba9d": "在扩展设置页声明文本、数字、开关或列表。面板接收实时变更（",
+      "#31:3c52a105416d8610": "），Python 可使用以下接口读取：",
+      "Scripts and graphs": "脚本和节点图",
+      "#142:b24dbf9df5c4e8d2": "扩展启用后，其脚本、子脚本和节点图可从工具箱使用。标记为工具架项的内容也会显示在工具架。",
+      "Skills and help": "技能与帮助",
+      "#102:4dd31c96059630c0": "为画布或对话提供可选技能，并附带可供助手查询的帮助文档。",
+      "#95:fe8849c388bb0807": "新草稿附带选中卡片列表面板及面向智能体的说明（",
+      "#86:2f8535a82d4b0f2b": "）。给草稿命名，复制提示词，并告诉智能体要实现哪些功能。",
+      "#48:6dc8378f6422234c": "查看智能体扩展编写指南"
+    }
+  },
+  {
+    selector: ".settings-window-body main div:has(> div > ul[aria-label]) button[aria-expanded]",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Hide the guide": "收起指南"
+    }
+  },
+  {
+    selector: ".settings-window-body main div:has(> div > ul[aria-label]) .merlin-chat-md :is(p,li,h1,h2,h3,strong,em,a)",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#32:8fc00e9eef2925a9": "让智能体编写扩展",
+      "#264:9f93d710c2fb1a2f": "用文字描述需要的面板、命令、工具或技能。智能体可编写并保存扩展，保存后即可在应用中查看效果。",
+      "What an extension can do": "扩展可以做什么",
+      "#719:4394a540c0bee984": "自定义面板可读取选区、浏览媒体库、导入与整理素材，调整卡片并监听运行结果。编辑操作支持撤销并遵循画布只读状态；产生费用的操作需确认。也可保存面板数据和调用指定服务。",
+      "#272:2917a31c43accaf6": "在工具栏或画布菜单注册命令，可针对当前选择打开面板、插入卡片或调用工具。",
+      "#613:59af838483147c20": "将自定义编辑控件和预览集成到查看器。原图保留，结果可存为前后对照、更新卡组或作为图内新版本。可使用页面或 Python 渲染图像、视频帧及叠加图层。",
+      "#162:6b00ee881c4e657f": "为新文件类型提供预览，例如以表格显示 CSV。",
+      "#230:bea95bc15853d457": "给可缩放的图像叠加参考线。UE 的原生实时画面会覆盖网页叠加层。",
+      "#297:b93639c1313e5aaa": "从菜单插入扩展的脚本或节点图。对卡片操作会在旁边新建并连接输入，在空白处操作则使用点击的位置。",
+      "#76:5841fc316b0ce361": "命令在本机的 Python 环境运行，可访问相同的",
+      "#36:d2e2a1578f3f5b6d": "模块。交互式 Python 会话位于以下面板：",
+      "#105:1969c17030d7e971": "底部面板会记录输出和错误。此类命令不发起付费生成。",
+      "#246:4e95473e745242e1": "工具可供内置或外部智能体调用。Python 或后台面板可响应请求，生成操作受调用方权限约束。",
+      "#164:f9d9df689aeec2c1": "可给扩展添加设置页。面板会接收变更，Python 也能读取设置值。",
+      "#100:81807dd5078863e7": "启用扩展后即可在库中找到其 Python 脚本、子脚本和节点图。",
+      "#61:f416690d893e7142": "可打包智能体工作指引与帮助文档。",
+      "#54:394905a8c22a9857": "会列入扩展设置页，可在开始使用前查看。",
+      "#243:3e81ca08403c4355": "自定义卡片类型和本地服务可通过插件 API 实现，已审核的插件可从目录安装。编写插件用的 TypeScript 类型随服务端提供，位于",
+      "#34:8f4027f7b67b0255": "目录（",
+      "): its": "）。其中的",
+      "#123:6b11a2d55f712227": "提供插件开发说明。需要较新宿主功能的插件可能无法加载，详情见",
+      "Settings ▸ Extensions": "设置 ▸ 扩展",
+      "#20:8d282db152a29ee1": "中可以查到使用条件。",
+      Start: "开始",
+      "and press": "，然后点击",
+      "#65:c830b3bcd6389a90": "。查看可添加的项目，填好扩展名称后选择",
+      "#121:c094f89bad0b6547": "。草稿会生成侧栏面板来显示所选卡片，并提供智能体说明文件（",
+      ", and": "，以及",
+      "#17:780ad36c28b685c0": "供 Claude Code 读取）。",
+      Press: "在提示中点击",
+      "Copy agent prompt": "复制智能体提示词",
+      "#120:9a6245bf06ded68f": "。展开草稿也能复制提示词，其中附有草稿的路径。",
+      "#397:3f376a3ad039b11d": "在应用内打开智能体，或从草稿目录运行已连接 Canvas MCP 的智能体。粘贴提示词并写明要做的功能。应用内智能体还可以创建草稿、修改文件并检查面板报错。",
+      "#109:e405ed7ca78c4acc": "面板随文件保存自动刷新。根据实际显示效果提出下一项修改。",
+      "What to tell the agent": "如何向智能体描述需求",
+      "#54:e6c5331e85a6dfa8": "描述需求时，建议写清下面几项。",
+      "#52:0651e668a97a7f90": "这个面板要解决什么问题，通常怎么操作。",
+      "#136:352bfe631f459fa4": "期望的停靠位置或窗口形式。选择右侧栏的面板起初可能显示在左侧。",
+      "#163:e0b0280ebe848e60": "指定菜单入口和触发条件，例如空白处右键，或选定某类卡片后打开。",
+      "#80:e4ba86d92dad2ea4": "需要访问的数据范围，例如选中的卡片、相关文件或媒体库。",
+      "#72:0d1f7c4d7c5d5502": "用户触发操作后应发生什么，例如添加图片、记住选项或打开网页。",
+      "#41:e0b71010f24ed970": "如需联网，请给出服务的名称与地址。",
+      "#108:645807c41c736c0b": "若要打包自己的脚本或节点图，先在应用中做好，再让智能体加入扩展（",
+      "Export script": "导出脚本",
+      and: "和",
+      "Export as JSON…": "导出为 JSON…",
+      "#47:d262b2882489f805": "文件可通过这两个工具箱命令导出）。",
+      "#36:8e0cba0826d503ec": "有指定的布局、颜色或风格时也可以说明。",
+      "For example:": "示例",
+      "Build an extension in": "请在以下文件夹制作一个扩展：",
+      "#6:a1e32bdcf172cb97": "。请先查看该文件夹内的",
+      "#178:716b832ebd68a4e3": "。请把选中的图片和各自的卡片名排成一张预览图，在右侧栏提供将它放回画布的按钮。",
+      "#131:838a8c007c1aeecf": "。我希望能在面板内搜索媒体库，将结果拖进清单，关闭后再打开仍能看到清单。",
+      "#23:cf223cbdc477e7b2": "常见故障",
+      "#25:b42da05021d067cf": "找不到扩展面板",
+      "#105:cc7c1aecd24ba298": "。到“设置 → 扩展”展开该条目，把显示的原因交给智能体排查。",
+      "#43:09bae57887cc1656": "面板未显示内容或点击无效",
+      "#214:5375eefc304916bf": "。让智能体查看面板异常和调用失败记录。若它无法读取应用状态，可让它把错误直接显示在面板里。",
+      "#17:e4585e4fb4907ddd": "遇到调用被拒绝的提示，例如",
+      or: "或",
+      "#59:8275a2ca598666f2": "，先核对智能体是否在",
+      "#22:5c22a979384abdc4": "中登记了所需服务及地址，并把报错发给它。",
+      "Share it": "分享扩展",
+      "#46:5e9a76ef66dd2e83": "在扩展设置内展开这份草稿。",
+      "#29:0d198c012744bc96": "分享 → 导出安装包",
+      "#29:6daa5ddece7d2a7e": "可把包保存到下载文件夹，扩展名为",
+      "#21:7443cdb66c7b8c85": "。接收方在下列入口安装：",
+      "#39:056d0203f1f4208b": "安装 → 从压缩包或分享码安装",
+      "#27:ab34d5da905e190d": "分享 → 生成分享码",
+      "#62:5be63d33d3e7dc4b": "需要先配置项目的共享目录。生成的码形如",
+      "#124:3b7d4cc981d2ae28": "。项目成员凭码安装。更新后再次分享即可沿用原码，接收方选择：",
+      "#27:06dccf744118bdcc": "分享 → 加入目录…",
+      "#176:7d4b32590aac4c8f": "能将扩展发布到已有目录，也能将指定文件夹设为新目录。团队成员添加同一来源后可在这里安装：",
+      "#36:d0ac8d5b03567487": "。同一个版本在每个目录中只能发布一次。",
+      "Publish…": "发布…",
+      "#87:13f67e9115493205": "把扩展发布到指定 Git 仓库并创建版本标签。安装入口为",
+      "#33:a122cdee9fb6b6e3": "安装 → 从 Git 仓库安装",
+      "and get updates with": "，然后通过此按钮检查更新：",
+      "#87:8371f5dd3e074739": "。会保留仓库已有的说明和许可证。下次发版前请提高",
+      "#227:968475c81824f9ca": "内的版本号。工具架智能体会在发布前征求同意，外部 MCP 智能体会提示你在应用中确认。",
+      "#47:8754622f7e96666e": "也可以将目录放到共享盘，再让接收方选择",
+      "#25:e7a4d3bbf5eb2a4b": "安装 → 从文件夹安装",
+      "Dotfiles such as": "以点开头的文件或目录，例如",
+      "#26:479491c64510ca96": "，以上分发方式均会将其排除在包外。",
+      "#166:e247b846b46e3058": "可以先审查扩展申请的权限再授权。安装说明见 extensions，开发文档见 extension-authoring。"
+    }
+  },
+  {
+    selector: ".settings-window-body main div:has(> button[title][aria-label]) > div > div",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#148:2a2ea1f862978cd8": "从 Git 发行版安装。填写标签可固定版本，留空获取最新版。鉴权沿用本机 Git。",
+      "#98:4fc452006c669495": "选择含 extension.json 的目录。更新会再次从该位置复制，支持共享盘。",
+      "#43:8fe9506b620b9031": "使用压缩包或分享码安装",
+      "#125:43dddef3f8fa381c": "请选择通过“分享”生成的 ZIP。当前项目还没有可供分享码使用的共享目录。",
+      "#168:c4ebe7363b69bc81": "可选择“分享”导出的 ZIP，也可输入项目分享码。更新时仍从同一来源读取。"
+    }
+  },
+  {
+    selector: ".settings-window-body main :is(input,button,ul)",
+    fields: [
+      "aria-label",
+      "placeholder"
+    ],
+    entries: {
+      "Close Create your own extension": "关闭“创建自己的扩展”",
+      "What an extension can add": "扩展可添加的内容",
+      "Extension name": "扩展名称",
+      "Extension id": "扩展标识",
+      "#35:4e12c7583b4cd419": "收起 Git 安装窗口",
+      "Repository URL": "仓库网址",
+      "Release tag": "版本标签",
+      "Tag (optional)": "标签（可选）",
+      "Close Install from a folder": "关闭“从文件夹安装”",
+      "Folder that holds extension.json": "包含 extension.json 的文件夹",
+      "#49:7ce61789139b6755": "收起压缩包与分享码安装窗口",
+      "Package file or share code": "安装包或分享码",
+      "#33:e46b8bfdbba9599e": "选择 ZIP 安装包或填写分享码"
+    }
+  }
+];
+
 // src/dictionary.ts
-var dictionary = [...generation_extra_default, ...editors_extra_default, ...script_authoring_extra_default, ...viewers_extra_default, ...menus_extra_default, ...panels_extra_default, ...settings_extra_default, ...zh_CN_default];
+var dictionary = [...canvas_actions_022_default, ...panel_actions_022_default, ...settings_actions_022_default, ...shelf_actions_default, ...generation_extra_default, ...editors_extra_default, ...script_authoring_extra_default, ...viewers_extra_default, ...menus_extra_default, ...panels_extra_default, ...settings_extra_default, ...zh_CN_default];
+
+// manifest.json
+var manifest_default = {
+  id: "unreal-canvas-zh-cn",
+  name: "Unreal Canvas 简体中文",
+  version: "0.2.2",
+  apiVersion: 1,
+  namespaces: [
+    "canvaszh"
+  ]
+};
 
 // src/index.ts
 if (!loadSignal.aborted) {
   const stop = localize(document, dictionary);
   loadSignal.addEventListener("abort", stop, { once: true });
-  console.info("[unreal-canvas-zh-cn] 简体中文已加载");
+  console.info(`[unreal-canvas-zh-cn] 简体中文已加载（${manifest_default.version}）`);
 }

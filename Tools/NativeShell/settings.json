@@ -1,0 +1,460 @@
+{
+  "UnrealCanvasBridgeSettingsCustomization": {
+    "BuildServer": [
+      "405a04d1",
+      "构建服务器"
+    ],
+    "BuildServerRow": [
+      "405a04d1",
+      "构建服务器"
+    ],
+    "PinnedVersionRow": [
+      "d702648c",
+      "固定版本"
+    ],
+    "ProjectTargetOverrideRow": [
+      "c839d79b",
+      "当前用户的项目目标"
+    ],
+    "RefreshTip": [
+      "71784bf6",
+      "重新扫描所选来源的构建版本"
+    ],
+    "Refresh": [
+      "5a4f4dc1",
+      "刷新"
+    ],
+    "RefreshVersions": [
+      "250264ba",
+      "刷新版本列表"
+    ],
+    "RefreshVersionsRow": [
+      "250264ba",
+      "刷新版本列表"
+    ],
+    "PinPickerLabel": [
+      "ad1815b4",
+      "选择要固定的版本…"
+    ],
+    "RemoteInstallNotStarted": [
+      "176e04a3",
+      "请刷新可用版本并检查是否已有安装任务。"
+    ]
+  },
+  "UnrealCanvasProjectSettingsCustomization": {
+    "ProjectTargetRow": [
+      "6d53db84",
+      "Unreal Canvas 项目目标"
+    ]
+  },
+  "UnrealCanvasVersionDropdown": {
+    "ConfirmRemoteDownloadTitle": [
+      "1acf7397",
+      "下载 Unreal Canvas 构建"
+    ],
+    "ConfirmRemoteDownloadBody": [
+      "5db8a2b2",
+      "下载并切换到 {0}？请先保存画布。"
+    ]
+  },
+  "UnrealCanvasVersionManager": {
+    "GroupReleases": [
+      "57a208ef",
+      "发布版"
+    ],
+    "GroupMain": [
+      "6c25e431",
+      "主分支"
+    ],
+    "GroupPreviews": [
+      "c2de790a",
+      "预览版"
+    ],
+    "GroupPullRequests": [
+      "e2525960",
+      "拉取请求"
+    ],
+    "GroupBranch": [
+      "81ab29be",
+      "分支：{0}"
+    ],
+    "RemotePrDisplay": [
+      "9c5e9d2f",
+      "PR #{0}：{1}  （下载）"
+    ],
+    "RemoteDisplay": [
+      "3c2510cb",
+      "{0}{1}  （下载）"
+    ]
+  },
+  "UnrealCanvasRemoteCatalog": {
+    "StatusInvalidUrl": [
+      "4106bd0d",
+      "地址格式无效，请检查 HTTPS 仓库地址 {0}。"
+    ],
+    "StatusFetching": [
+      "5a6da713",
+      "正在检查服务器上的构建。"
+    ],
+    "StatusFetchingWithList": [
+      "6e93f918",
+      "正在刷新，已列出 {0} 个构建。"
+    ],
+    "NoServer": [
+      "06bcfdc1",
+      "尚未配置构建服务器。"
+    ],
+    "StatusOff": [
+      "a136d213",
+      "构建服务器已停用。请核对来源与 HTTPS 地址。"
+    ],
+    "StatusUnavailable": [
+      "602b8baf",
+      "服务器不可用：{0}"
+    ],
+    "StatusCached": [
+      "2f8b84bd",
+      "连接失败（{0}）。显示缓存的 {1} 项，记录时间为 {2}。"
+    ],
+    "ManifestHttpStatus": [
+      "e361cdeb",
+      "获取构建清单失败，HTTP {0}。"
+    ],
+    "ManifestUnreachable": [
+      "7f9f5e61",
+      "构建服务不可达。"
+    ],
+    "ManifestNotStarted": [
+      "d2bd5cd1",
+      "清单下载未启动。"
+    ],
+    "RequestNotStarted": [
+      "0560f57c",
+      "请求未发出。"
+    ],
+    "HttpStatus": [
+      "27c1ecfb",
+      "服务器返回 HTTP {0}。"
+    ],
+    "Unreachable": [
+      "058584dc",
+      "无法访问服务器。"
+    ],
+    "ManifestNoPlatform": [
+      "f4106248",
+      "缺少此平台的下载项。"
+    ],
+    "ManifestGone": [
+      "efb6ac25",
+      "构建已下架，请刷新。"
+    ],
+    "ManifestInvalid": [
+      "67adf8e3",
+      "构建清单无效，请重新获取版本列表。"
+    ],
+    "StatusLive": [
+      "5dc592d7",
+      "服务器上有 {0} 个构建。"
+    ]
+  },
+  "UnrealCanvasPanel": {
+    "VersionLabel": [
+      "9ee10135",
+      "版本："
+    ],
+    "OlderBuildTooltip": [
+      "2d913ed6",
+      "可升级到 {0}"
+    ],
+    "DownloadingNewer": [
+      "8afadfe1",
+      "正在下载 {0}…"
+    ],
+    "ApplyUpdate": [
+      "d6d802bb",
+      "更新到 {0}"
+    ],
+    "UpdateTooltipDownload": [
+      "033c70b0",
+      "先下载所选版本"
+    ],
+    "UpdateTooltipPinned": [
+      "f5d77d18",
+      "已固定 {0}，可升级到 {1}。切换至 {1} 时会重启服务。{2}"
+    ],
+    "UpdateTooltipLatest": [
+      "7ceb7693",
+      "重启以启用较新版本 {0}。{1}"
+    ],
+    "Refreshing": [
+      "9b4dee49",
+      "正在刷新…"
+    ],
+    "Refresh": [
+      "5a4f4dc1",
+      "刷新"
+    ],
+    "RefreshTooltip": [
+      "e61838d7",
+      "重新扫描构建目录"
+    ],
+    "SelectVersion": [
+      "738465a8",
+      "切换版本…"
+    ],
+    "NoVersionSelected": [
+      "48f0ff32",
+      "未选择版本"
+    ],
+    "RemoteInstallBusy": [
+      "176e04a3",
+      "已有安装任务，请稍后刷新。"
+    ],
+    "SwitchVersionWarning": [
+      "95837035",
+      "切换到 {0} 会重启服务。请先保存画布。"
+    ],
+    "NoValidBuildsPath": [
+      "f3c8420a",
+      "找不到有效的构建路径"
+    ],
+    "VersionsRefreshedAndChanged": [
+      "ea201153",
+      "已从 {0} 刷新并切换版本。"
+    ],
+    "VersionsRefreshedUnchanged": [
+      "b257f6b1",
+      "已从 {0} 刷新版本列表。"
+    ],
+    "UnrealCanvasUpdateFailed": [
+      "b951ea7f",
+      "更新失败（{0}），可在输出日志中查看原因。"
+    ]
+  },
+  "UnrealCanvasBridge": {
+    "RemoteInstallBusy": [
+      "8acb07fd",
+      "已有安装任务，请稍后刷新。"
+    ],
+    "CheckingBuildServer": [
+      "edba4de9",
+      "查询可用的服务器版本"
+    ],
+    "DownloadingBuild": [
+      "c73c3c89",
+      "正在下载构建"
+    ],
+    "PendingUpdateLaterTip": [
+      "2fe68024",
+      "继续使用当前构建，下次启动编辑器时应用更新"
+    ],
+    "PendingUpdateLater": [
+      "00436625",
+      "稍后"
+    ],
+    "PendingUpdateRestartNowTip": [
+      "d257c99a",
+      "立即重启并应用更新"
+    ],
+    "PendingUpdateRestartNow": [
+      "ba0eca4e",
+      "立即重启"
+    ],
+    "RemoteInstallCancelledBySource": [
+      "6a6e8440",
+      "来源设置已改变，当前下载已取消。"
+    ],
+    "ProjectConfigInvalidNotify": [
+      "b5aa78ef",
+      "项目配置有误。{0} {1}。请检查项目目标设置。"
+    ],
+    "ProjectTargetMissing": [
+      "1fe7d504",
+      "在 Config/{1} 中找不到目标 {0}。"
+    ],
+    "RemoteInstallNotStarted": [
+      "1d67062a",
+      "版本 {0} 下载未启动。{1}"
+    ],
+    "PendingUpdateToast": [
+      "bcb36d7d",
+      "{0} 已就绪，可重启服务启用。"
+    ],
+    "PinOnLocalPath": [
+      "e0c3a355",
+      "已固定本地版本 {0}（{1}）。当前改用远程来源，请检查是否继续使用 {0}。"
+    ]
+  },
+  "UObjectDisplayNames": {
+    "UnrealCanvasProjectSettings": [
+      "0f370e38",
+      "Unreal Canvas 桥接"
+    ],
+    "UnrealCanvasBridgeSettings": [
+      "0f370e38",
+      "Unreal Canvas 桥接"
+    ],
+    "UnrealCanvasProjectSettings:ProjectTarget": [
+      "6d53db84",
+      "Unreal Canvas 项目目标"
+    ],
+    "UnrealCanvasBridgeSettings:bShowVersionToolbar": [
+      "a378e8d8",
+      "在面板中显示版本工具栏"
+    ],
+    "UnrealCanvasBridgeSettings:bShowToolbarButton": [
+      "f99aeb82",
+      "显示 Unreal Canvas 工具栏按钮"
+    ],
+    "UnrealCanvasBridgeSettings:BuildSource": [
+      "e2110144",
+      "构建来源"
+    ],
+    "UnrealCanvasBridgeSettings:ArtifactoryServerUrl": [
+      "42feb2ca",
+      "Artifactory 服务器地址"
+    ],
+    "UnrealCanvasBridgeSettings:BuildsSearchPaths": [
+      "5215fc1c",
+      "构建搜索路径"
+    ],
+    "UnrealCanvasBridgeSettings:AIModelsSearchPaths": [
+      "d7246df4",
+      "AI 模型搜索路径"
+    ],
+    "UnrealCanvasBridgeSettings:VersionSelectionMode": [
+      "99537778",
+      "版本选择模式"
+    ],
+    "UnrealCanvasBridgeSettings:bShowPreviewBuilds": [
+      "fc0c09a3",
+      "显示预览和未发布的构建"
+    ],
+    "UnrealCanvasBridgeSettings:bUseDeveloperMode": [
+      "f98ef25c",
+      "使用开发者模式"
+    ],
+    "UnrealCanvasBridgeSettings:DeveloperModeURL": [
+      "7937163a",
+      "开发者模式 URL"
+    ],
+    "UnrealCanvasBridgeSettings:SelectedVersionFolder": [
+      "d702648c",
+      "固定版本"
+    ],
+    "UnrealCanvasBridgeSettings:UnrealCanvasServerURL": [
+      "db51daf0",
+      "当前 Unreal Canvas 服务器地址"
+    ],
+    "UnrealCanvasBridgeSettings:bUseAnyFreeMCPPort": [
+      "97a4e8ff",
+      "自动选择空闲 MCP 端口"
+    ],
+    "UnrealCanvasBridgeSettings:ProjectTargetOverride": [
+      "c839d79b",
+      "当前用户的项目目标"
+    ],
+    "UnrealCanvasBridgeSettings:bAllowBlueprintFunctionExecution": [
+      "6c4f7939",
+      "允许蓝图函数调用（有安全风险）"
+    ],
+    "UnrealCanvasBridgeSettings:MrgPreset": [
+      "aaf6080a",
+      "MRG 节点预设"
+    ],
+    "EUnrealCanvasVersionSelectionMode.Latest": [
+      "95060f8b",
+      "最新提交（含各构建类型）"
+    ],
+    "EUnrealCanvasVersionSelectionMode.Pinned": [
+      "81a4f732",
+      "固定到指定版本"
+    ],
+    "EUnrealCanvasBuildSource.Artifactory": [
+      "81f46cfc",
+      "Artifactory（下载构建）"
+    ],
+    "EUnrealCanvasBuildSource.LocalPaths": [
+      "62529d6b",
+      "本地路径（构建搜索路径）"
+    ]
+  },
+  "UObjectToolTips": {
+    "UnrealCanvasProjectSettings:ProjectTarget": [
+      "08a4e37e",
+      "项目使用的 Canvas 目标配置，名称必须与项目 Config 下的目标文件相符。"
+    ],
+    "UnrealCanvasBridgeSettings:VersionSelectionMode": [
+      "34f214a7",
+      "自动跟随最新构建或固定使用指定版本。"
+    ],
+    "UnrealCanvasBridgeSettings:MrgPreset": [
+      "5deab381",
+      "这些渲染节点使用的 MRG 预设。"
+    ],
+    "UnrealCanvasBridgeSettings:bShowPreviewBuilds": [
+      "3c33333b",
+      "在版本列表中加入预览构建。预览版可能不稳定。"
+    ],
+    "UnrealCanvasBridgeSettings": [
+      "5b38dc99",
+      "作用于当前用户的 Canvas 编辑器偏好。"
+    ],
+    "UnrealCanvasBridgeSettings:ProjectTargetOverride": [
+      "0912581a",
+      "为当前用户指定项目目标，优先于项目设置。"
+    ],
+    "UnrealCanvasBridgeSettings:SelectedVersionFolder": [
+      "21346d2a",
+      "固定版本时使用的构建文件夹。"
+    ],
+    "UnrealCanvasProjectSettings": [
+      "95030797",
+      "团队共享的配置写入 Config/DefaultEditor.ini。"
+    ],
+    "UnrealCanvasBridgeSettings:ArtifactoryServerUrl": [
+      "4a651459",
+      "远程构建仓库的 HTTPS 根地址。"
+    ],
+    "UnrealCanvasBridgeSettings:bAllowBlueprintFunctionExecution": [
+      "896668cb",
+      "允许 MCP 调用蓝图函数。仅在信任连接方时开启。"
+    ],
+    "UnrealCanvasBridgeSettings:BuildsSearchPaths": [
+      "787394f3",
+      "本地构建的搜索目录。"
+    ],
+    "UnrealCanvasBridgeSettings:AIModelsSearchPaths": [
+      "e15f3c11",
+      "查找本地 AI 模型及模型子目录的位置。"
+    ],
+    "UnrealCanvasBridgeSettings:bUseAnyFreeMCPPort": [
+      "afd584fb",
+      "由系统选择可用的 MCP 端口。"
+    ],
+    "UnrealCanvasBridgeSettings:bUseDeveloperMode": [
+      "8ba26640",
+      "从开发地址加载前端，跳过本地服务启动。"
+    ],
+    "UnrealCanvasBridgeSettings:DeveloperModeURL": [
+      "5ec4bf94",
+      "开发模式下使用的前端地址。"
+    ],
+    "UnrealCanvasBridgeSettings:UnrealCanvasServerURL": [
+      "03aeb510",
+      "编辑器内嵌画布当前使用的服务地址。"
+    ],
+    "UnrealCanvasBridgeSettings:bShowToolbarButton": [
+      "ac34a576",
+      "控制关卡编辑器中的画布入口。"
+    ],
+    "UnrealCanvasBridgeSettings:bShowVersionToolbar": [
+      "3d13098b",
+      "在画布中显示构建版本选择器。"
+    ],
+    "UnrealCanvasBridgeSettings:BuildSource": [
+      "a44da433",
+      "指定从本机目录还是从远程构建仓库获取版本。"
+    ]
+  }
+}

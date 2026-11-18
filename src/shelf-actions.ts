@@ -1,0 +1,125 @@
+import { copyId } from './copy-id';
+const counts: Record<string, string> = { 'Batch slot': '批量插槽', Batch: '批量输入' };
+const voiceInstructions: Record<string, string> = {
+  'Keep Ctrl held while speaking.': '说话时请按住 Ctrl 键。',
+  'Press again to stop.': '再按一次即可停止。',
+};
+
+const progressPhases = new Map(Object.entries({
+  start: ['Opening your workspace', '正在打开工作区'], read: ['Reading canvas', '正在读取画布'],
+  'expand-tree': ['Loading graphs', '正在加载节点图'], migrate: ['Upgrading canvas', '正在升级画布'],
+  normalize: ['Preparing canvas', '正在准备画布'], versions: ['Reading history', '正在读取历史记录'],
+  register: ['Opening canvas', '正在打开画布'], results: ['Restoring results', '正在恢复结果'],
+  'background results': ['Restoring results', '正在后台恢复结果'],
+}));
+
+function progress(element: Element, field: string, value: string) {
+  const title = field === 'title' ? value : element.getAttribute('title') ?? '';
+  const separator = title.lastIndexOf(' — ');
+  const phase = separator < 0 ? '' : title.slice(separator + 3);
+  const definition = progressPhases.get(phase) ?? (field === 'text'
+    ? [...progressPhases.values()].find(pair => pair[1] === phase) : undefined);
+  if (definition && field === 'title') return title.slice(0, separator) + ' — ' + definition[1];
+  if (field !== 'text') return;
+  const options = definition ? [definition] : [...progressPhases.values()];
+  for (const [source, translated] of options) {
+    if (!value.startsWith(source)) continue;
+    const suffix = value.slice(source.length);
+    if (/^(…| \d+…| \d+\/\d+\+?)?$/.test(suffix)) return translated + suffix;
+  }
+}
+
+function batchPosition(label: string) {
+  const reference = /^Reference (\d+)$/.exec(label);
+  return reference ? '参考素材 ' + reference[1] : label;
+}
+
+function tooltip(element: Element, value: string) {
+  // The footer identifies the settings tooltip. Other tooltip headings may be arbitrary asset names.
+  const parent = element.parentElement;
+  if (!parent?.parentElement?.matches('[role="tooltip"]')) return;
+  const footer = parent.lastElementChild?.textContent?.trim();
+  if (element === parent.firstElementChild && value.startsWith('Settings · ')
+    && ['Click to hide the settings', 'Click to change them', '点击收起设置', '点击修改设置'].includes(footer ?? '')) {
+    return '设置 · ' + value.slice('Settings · '.length);
+  }
+  if (element === parent.firstElementChild && value.startsWith('Working with ')
+    && (copyId(footer ?? '') === '13503ee6df5fc76a' || footer?.startsWith('切换智能体或独立工作'))) {
+    return '正在与“' + value.slice('Working with '.length) + '”协作';
+  }
+  const voice = /^Press (.+?) to dictate\b.*?\. (Keep Ctrl held while speaking\.|Press again to stop\.)$/.exec(value);
+  if (voice) return '按 ' + voice[1] + ' 可在此处听写，或在画布中打开语音聊天。' + voiceInstructions[voice[2]];
+  const runs = /^Batch · (\d+) runs?$/.exec(value);
+  if (runs && element === parent.firstElementChild) return '批量 · ' + runs[1] + ' 次运行';
+}
+
+export function translateShelfAction(element: Element, field: string, value: string): string | undefined {
+  const cls = element.classList;
+  if (cls.contains('label') && element.matches('#splash .loading-status .label')) return progress(element, field, value);
+  if (element.localName === 'button' && element.hasAttribute('title') && element.matches('.merlin-generation-host > div > div > div > button')) {
+    if (field === 'title' && copyId(value) === 'ce624c5d25d02c89') return '查看加载耗时明细（也可在控制台运行 __merlinLoad.log()）';
+    const result = progress(element, field, value);
+    if (result) return result;
+  }
+  if (field === 'text' && element.parentElement?.parentElement?.getAttribute('role') === 'tooltip') {
+    return tooltip(element, value);
+  }
+  if (cls.contains('canvas-card-facet-star') && (field === 'title' || field === 'aria-label')) {
+    const stars = /^Rate ([1-5])$/.exec(value);
+    if (stars) return '评为 ' + stars[1] + ' 星';
+    if (value === 'Clear your rating') return '清除我的评分';
+  }
+  if (cls.contains('pill-menu-item') && field === 'text' && element.closest('.pill-menu[data-add-reference-popover]')) {
+    const selected = /^Use selected \((\d+)\)$/.exec(value);
+    if (selected) return '使用所选内容（' + selected[1] + ' 项）';
+  }
+  if (field === 'aria-description' && cls.contains('generation-shelf-selection-item')) {
+    const descriptions: Record<string, string> = {
+      '5ada1addbf0016dd': '拖动或按 Alt 加左右方向键排序。',
+      'b04d6f31170506c0': '按空格键加入批次。',
+      'ef3e4c580953dd56': '拖动或按 Alt 加左右方向键排序，按空格键加入批次。',
+    };
+    return descriptions[copyId(value)];
+  }
+  if (field === 'aria-label') {
+    if (cls.contains('generation-shelf-batch-slot') || cls.contains('generation-shelf-batch-well')) {
+      const count = /^(Batch slot|Batch): (\d+) inputs?$/.exec(value);
+      if (count) return counts[count[1]] + '：' + count[2] + ' 项输入';
+    }
+    if (cls.contains('generation-shelf-selection-item') && element.getAttribute('data-batch') === 'true'
+      && value.startsWith('Batch position · ')) return '批量输入位置 · ' + batchPosition(value.slice('Batch position · '.length));
+    if (element.matches('.generation-shelf-batch-member button,.generation-shelf-batch-well button')) {
+      const move = /^Move (.+) out of batch$/.exec(value);
+      if (move) return '将“' + move[1] + '”移出批量输入';
+      const remove = /^Remove (.+) from inputs$/.exec(value);
+      if (remove) return '从输入中移除“' + remove[1] + '”';
+    }
+    if ((cls.contains('generation-shelf-generate-options') || cls.contains('generation-shelf-menu'))
+      && value.startsWith('Output: Add to Deck · ') && value !== 'Output: Add to Deck · From Batch') {
+      return '输出到卡组“' + value.slice('Output: Add to Deck · '.length) + '”';
+    }
+    if (cls.contains('generation-shelf-reference-pick') && value.endsWith(' reference')) {
+      const reference = /^Reference (\d+) reference$/.exec(value);
+      if (reference) return '参考素材 ' + reference[1];
+    }
+  }
+  if (field === 'text') {
+    if (cls.contains('generation-shelf-selection-badge') && element.closest('[data-batch="true"]')) {
+      const reference = /^Reference (\d+)$/.exec(value);
+      if (reference) return '参考素材 ' + reference[1];
+    }
+    if (cls.contains('generation-shelf-well-title') && value.startsWith('Batch · ')) return '批量 · ' + value.slice('Batch · '.length);
+    if (element.matches('.generation-shelf-batch-popover > p,.generation-shelf-batch-well p')) {
+      const each = /^Each batch card runs here, as (.+?)\.(?: (Drag (?:this tile|it onto)\b.*\.))?$/.exec(value);
+      if (each) return '每张批量卡片都会作为“' + batchPosition(each[1]) + '”运行。' + (each[2] ? '拖动可更改输入位置。' : '');
+    }
+    if (cls.contains('generation-shelf-generate') || cls.contains('generation-shelf-generate-label')) {
+      const batch = /^Send batch · (\d+) inputs?$/.exec(value);
+      if (batch) return '发送批量输入 · ' + batch[1] + ' 项';
+      const run = /^Run (\d+) (Images?|Items?)$/.exec(value);
+      if (run) return '运行并生成 ' + run[1] + (run[2].startsWith('Image') ? ' 张图像' : ' 项结果');
+      const generate = /^Generate · (\d+) (images?|items?)$/.exec(value);
+      if (generate) return '生成 ' + generate[1] + (generate[2].startsWith('image') ? ' 张图像' : ' 项结果');
+    }
+  }
+}
