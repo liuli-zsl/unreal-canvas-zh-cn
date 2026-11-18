@@ -1,0 +1,24 @@
+#include <winver.h>
+
+1 VERSIONINFO
+FILEVERSION 0,2,0,0
+PRODUCTVERSION 0,2,0,0
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_DLL
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "liuli-zsl"
+            VALUE "FileDescription", "Chinese localization for Unreal Canvas"
+            VALUE "FileVersion", "0.2.0"
+            VALUE "ProductName", "Unreal Canvas zh-CN"
+            VALUE "OriginalFilename", "UnrealEditor-UnrealCanvasZhCN.dll"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0409, 1200
+    END
+END

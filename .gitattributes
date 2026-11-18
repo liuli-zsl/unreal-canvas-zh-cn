@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.dll binary
+*.modules binary
+*.locmeta binary
+*.locres binary
+*.png binary
+*.tgz binary
+*.zip binary
