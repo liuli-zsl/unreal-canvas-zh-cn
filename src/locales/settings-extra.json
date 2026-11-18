@@ -1,0 +1,697 @@
+[
+  {
+    "selector": ".settings-window-body main span",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "#67:199139d3e1c3a05a": "新工作流与自定义节点的默认保存目标为本地库。",
+      "#55:04d59ce8d290cab0": "此库的内容仅本机可用。",
+      "#61:c0829118b4cf1631": "请先指定目录，工具面板才能显示其中的内容。",
+      "#79:e7a17bc8739013e1": "已连接同一共享库的成员都可浏览你发布的项目。",
+      "#92:f7d9798fd6ff4610": "目标库已有同 ID 画布。若要替换，请启用“覆盖”。",
+      "#78:53e88ccb5dac2277": "导入时会一并复制下列子图和快照。",
+      "#295:75a7add433a3286c": "受信任目录的更新若未增加权限请求，且无可执行代码或已通过目录审核，可按现有授权自动应用。其他情况需再次确认。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main input",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "#98:eaf598da6f459fe6": "这是当前用户的内置库，搜索始终包含它。工作流与自定义节点分目录保存。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main button",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "#43:399acae51577a7a7": "在资源管理器中查看本地库",
+      "#37:e0320233b736df32": "在资源管理器中查看该目录",
+      "#41:25651b7e7232bc35": "选作新建项目的保存位置",
+      "#83:8e23b2c356f46c54": "取消使用此共享目录。已有文件继续保存在原处，默认目录需另行指定。",
+      "Filter models": "筛选模型",
+      "#39:9306166c83f743be": "此项能力默认使用的模型",
+      "Move group up": "上移分组",
+      "Move group down": "下移分组",
+      "Delete group (fields become hidden)": "删除分组并隐藏其中的字段",
+      "Show this field": "显示此字段"
+    }
+  },
+  {
+    "selector": ".settings-window-body main input",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Search project reviews": "搜索项目审阅",
+      "Search Dictation settings": "搜索语音输入设置",
+      "Filter shortcuts": "筛选快捷键",
+      "Search External Paths settings": "搜索外部路径设置",
+      "Catalog folder or address": "目录文件夹或地址",
+      "Search models": "搜索模型",
+      "Search services": "搜索服务",
+      "Search Default Models settings": "搜索默认模型设置"
+    }
+  },
+  {
+    "selector": ".settings-window-body main input",
+    "fields": [
+      "placeholder"
+    ],
+    "entries": {
+      "Search reasons and captured context": "搜索原因和记录的上下文",
+      "Search Dictation…": "搜索语音输入…",
+      "#27:5e4270cb566d81c6": "输入共享链接或房间 ID",
+      "Search External Paths…": "搜索外部路径…",
+      "#12:c67d894be64cfa06": "（由应用自动查找）",
+      "#54:74654589214bf556": "（默认采用工作脚本旁的 .venv）",
+      "#59:875fbbbf9ff0a174": "（默认路径为工作目录下的 langsam-worker/langsam_worker.py）",
+      "Search the catalogs…": "搜索目录…",
+      "Search the sources…": "搜索来源…",
+      "#39:1a7c9089afe78ace": "输入目录路径或 HTTPS 网址",
+      "Search models…": "搜索模型…",
+      "Search services…": "搜索服务…",
+      "Search Default Models…": "搜索默认模型…"
+    }
+  },
+  {
+    "selector": ".settings-window-body main button",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Review decision filter": "按审阅决定筛选",
+      "Review actor filter": "按审阅人筛选"
+    }
+  },
+  {
+    "selector": ".settings-window-body main div",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "matching records": "条匹配记录",
+      "#54:959cb972985b1942": "新增字段排在第一组末尾，初始仅在",
+      "#188:34bd311c90890d3e": "布局中显示。节点图或提示布局可手动拖入。即使字段已弃用，已有元素仍可读取其旧值。",
+      "#95:6f30732e80e50d26": "使用已有标签名会合并标签，并把引用转到保留项。",
+      "#97:fa3dc2f65155a079": "使用已有用户名会合并用户，并把分配记录归到保留项。",
+      "#73:d00a552de3b1d401": "当前目录就是导入来源。",
+      "#256:c16832c96f09c380": "选择要导入的工作区。未选项留在原处。被选中画布引用的子图和快照会随它导入。",
+      "#37:d987b1375e34a390": "浏览来自各个目录的扩展和插件。",
+      "#44:839fb54f7eba7951": "请先到“来源”添加扩展目录。",
+      "#112:3079a9b79f9b059b": "在这里管理“可获取”页面的来源。可使用本地文件夹，或提供以下文件的 HTTPS 目录：",
+      "#35:870c7b7cfaa4b3b9": "（填写目录地址时请省略",
+      "#31:d26f6cc1b659d0f3": "）。目录也可引用其他目录。",
+      "#256:6b3bcfd39df1dd22": "受信任目录中的扩展安装后即可运行。其他来源须单独批准，子目录也要分别授权。已批准的扩展更新后，还应满足以下条件：",
+      "#87:d4dd84de9be9105b": "权限请求未增加，而且无可执行代码或已通过目录审核",
+      "#56:2706bedc321401d0": "请填写文件夹路径或 HTTPS 地址来添加第一个目录。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main p",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#64:e3a388e409718024": "可为智能体聊天、提问与审阅反馈启用语音输入。",
+      "#129:dc0729a0590284f1": "选择标签、团队、负责人、评分和自定义字段在各界面的显示方式。",
+      "#245:fdd67e166041645a": "导出或导入画布的字段布局、组件、标签和人员等配置。导入会替换布局并补充缺项，已有条目会保留。",
+      "#144:992ad50f59baca3e": "为当前画布扩展内置字段。各布局共用定义，显示位置可单独安排。",
+      "#73:b957749d6bb40257": "在这里管理画布标签，也可以从卡片的标签选择器直接新增。",
+      "#57:2149c1825fc06bb2": "管理此画布的团队。每张卡片只能分给一个团队。",
+      "#62:7af005cb611def9c": "设置可分配人员，同一卡片可以有多位负责人。",
+      "#193:caac1baf2b4e1621": "指定外部程序与 Python 工作进程的位置。数据根目录见“存储”，工作流库位置见“偏好设置”。",
+      "#178:e3213af27d7945cf": "通过 TCP 接收 OpenCV 摄像头画面。采集节点会按需启动服务，也可手动启动。需要 Python 3 与 opencv-python。",
+      "#226:f8d77be32df19b9c": "将旧用户目录中的画布、输出和截图复制到当前工程。源数据保留，已导入的数据块和索引版本会跳过。",
+      "#139:6898c5e2c2225909": "查看可用模型、服务商路由和连接状态。星标可指定默认模型，也可开启模型审批。",
+      "#171:341a57d6c1cbdc2f": "每个“模型＋服务商路由”对应一个 JSON 定义。可新建、复制派生、编辑或恢复默认定义。",
+      "#64:fc33265db1b1c540": "每行代表一份可维护的模型定义，支持新增、派生、编辑及重置。打开",
+      "#44:ca2cbf1217e7c712": "查看模型列表。",
+      "#151:f508e60d01377fc1": "将检查器字段拖到所需分组。要取消显示，请拖到“隐藏”。",
+      "#164:ca35644fac184224": "提示字段均为只读，按下方顺序排列，实际提示中省略组名。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Speech recognition model": "语音识别模型",
+      "Voice shortcut behavior": "语音快捷键行为",
+      "Filtered-out card opacity": "筛选隐藏的卡片不透明度",
+      "LangSAM CUDA GPU index": "LangSAM CUDA GPU 编号",
+      "Port": "端口",
+      "Server status": "服务状态",
+      "Server": "服务",
+      "#47:99eea010cb2ff9e0": "覆盖目标目录中的同 ID 画布",
+      "Require model approval": "需要模型审批"
+    }
+  },
+  {
+    "selector": ".settings-window-body button.custom-select span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#44:cffc8bac016c906f": "Base（默认），速度优先、内存需求低",
+      "#42:cb34e27a55a5f00b": "Small，兼顾准确度与内存",
+      "#51:c14a2f8d7af6687b": "Large v3 Turbo，多语言精度较高，需更多内存",
+      "#49:95b5402458258670": "Distil Large v3.5，针对英语，需更多内存",
+      "Listen while Ctrl is held": "按住 Ctrl 时录音",
+      "Listen until stopped": "持续录音直至手动停止",
+      "sam2.1_hiera_tiny (fastest, lower quality)": "sam2.1_hiera_tiny（速度最快，质量较低）",
+      "sam2.1_hiera_small (balanced)": "sam2.1_hiera_small（均衡）",
+      "#45:84d9b5b365dbb86a": "sam2.1_hiera_large（最高质量，耗时最长）"
+    }
+  },
+  {
+    "selector": ".settings-window-body main > div > div div",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#114:e96b83b74891f4a5": "查看 Canvas 快捷键，各行列明适用位置。",
+      "#53:4a19b1bc777cbe9c": "用快捷键切换工具，Esc 切回选择。",
+      "#20:f2525c7c17866fee": "锁定画布时",
+      "#62:33d26a09069e7a7e": "锁定画布时，已执行而锁定的节点图例外",
+      "Back to the Select tool": "返回选择工具",
+      "#50:39ee8de2edeffb21": "退出当前的框架、文字、评论或连线工具。",
+      "Middle-button drag to zoom continuously": "拖动鼠标中键连续缩放",
+      "#147:764da16b98a5ac59": "按住 Alt 和中键或对应笔键拖动。向右或向上放大，反向缩小，缩放中心是起拖点。",
+      "over the canvas": "鼠标位于画布上时",
+      "#110:f5da266f935c3729": "将选中的卡片、框架或便签完整放入视野。未选择时显示整幅画布。",
+      "#100:c0440d9628fcf7ad": "调整缩放以容纳整幅画布，选区不会改变取景范围。",
+      "#36:c307a9436a635fea": "进入所选子画布或节点图",
+      "#207:59b403a22c47b594": "进入子画布、工作流或其节点图，相当于点击卡片上的打开按钮。卡组另有展开按钮。",
+      "#81:3d98102743645c99": "回到父画布，可连续使用直至顶层。",
+      "#76:f74ee1fb83e18acf": "收回侧栏、查看器或卡组，或回到父画布",
+      "#194:27138038e2eef6de": "依次收回全画布查看器、退出查看工具与对比、关闭查看器、由内向外折叠卡组，再回父画布。",
+      "#66:a14fc2ef845a34fe": "编辑文字时全选文本，焦点在画布上时选择画布项目。",
+      "#253:2f11eee01caf9a9f": "优先复制正在编辑的选中文字，否则复制所选卡片及连线或文本框。已离开文本框的旧选区会忽略。",
+      "#100:e0fd34be9b3a21f9": "粘贴已复制的卡片或文本框。剪贴板中的图片会成为新卡片。",
+      "#92:c7bd6aedc7847d7a": "画布锁定时，仍可向已执行而锁定的节点图粘贴文本框",
+      "#108:20c3ab51f846f512": "按阅读顺序将至少两张卡片排列成等距的一行，也可使用“排列 → 自动对齐”。",
+      "Delete the selection": "删除选中内容",
+      "#152:bd15a3f90c85bfe4": "删除选中卡片及其连线。未选卡片时删除所选便签或连接线，锁定项保留。",
+      "#23:74a9e1c707bcbd92": "卡片查看器打开时",
+      "#40:08edcb67d171ac13": "自由缩放尺寸",
+      "#205:19f31c3f7e3cda4d": "默认等比调整卡片以及图像、视频节点。拖动手柄时按住此键可拉伸，松开即可恢复等比。",
+      "#32:33982b8df00b3a35": "放弃正在拖动的连接",
+      "#80:cf16e0624a7d28ba": "中止连线操作并回到画布。",
+      "while dragging a wire": "正在拖动连线时",
+      "Card views, versions and compare": "卡片视图、版本和对比",
+      "#60:0c7897fe69494870": "切换所选卡片或媒体库项目的查看器",
+      "#141:8a1118305f757eca": "两个可配对项目使用 A/B 滑动对比，跨类型使用分屏。选择三项及以上时采用网格。",
+      "Compare the selected cards": "对比选中的卡片",
+      "#88:f2242170d44d98db": "两张卡片可滑动对照，三张以上按选择顺序网格排列。",
+      "Step through versions": "切换版本",
+      "#53:61d2df6bc0f2551b": "选中有多个版本的单张卡片时",
+      "#33:02fd785e4e2f323f": "移动 A/B 对比的 B 侧",
+      "while comparing two results": "对比两个结果时",
+      "Jump to a bookmarked version": "跳转到带书签的版本",
+      "#54:5ae563393c1eaab5": "切换到当前数字绑定的版本。",
+      "#40:208def734cb64a69": "选择一张卡片或打开查看器时",
+      "#37:413492d018c57207": "给指针所指版本添加书签",
+      "#107:e7e3406d0a14ca9b": "指向版本栏中的一项，按数字键设置快捷书签，再按相同数字即可取消。",
+      "Clear the hovered version's bookmark": "清除指针下版本的书签",
+      "Step one video frame": "视频逐帧步进",
+      "#63:74cc3dfaf5e214c0": "逐帧浏览时用逗号退一帧，用句号进一帧。",
+      "in a video viewer": "在视频查看器中",
+      "Toggle draw mode": "切换绘制模式",
+      "while an image is maximized": "图像已最大化时",
+      "Show or hide the annotation": "显示或隐藏批注",
+      "#37:cd9dc06b45c92002": "批注图像处于最大化时",
+      "#34:005cc8ba411baa6b": "撤销或恢复最近一笔",
+      "in draw mode": "在绘制模式下",
+      "#28:396e3ce6579bd425": "确认裁剪、旋转或翻转",
+      "#56:7fb56d687888cce6": "Esc 放弃编辑并保留之前的结果。",
+      "in crop mode": "在裁剪模式下",
+      "Panels and search": "面板和搜索",
+      "#180:5a11707b3f8e0922": "打开智能体提问框，并带入所选画布内容。若尚未配置智能体，可先保留问题再前往设置。各系统均使用 Ctrl。",
+      "#37:03901a26c853cf40": "焦点位于输入框与工具架之外时",
+      "Talk to the agent": "与智能体对话",
+      "#547:8aac814f1d813a52": "在当前输入处听写。可用时优先写入浮动对话或消息面板，否则带选区打开提问框。审阅按钮可直接打开语音反馈。未配置智能体时可先保留问题。默认按住 Ctrl 录音、松开保存草稿，也可在语音设置改成持续录音。Enter 完成并发送，Esc 取消。",
+      "Search this graph": "搜索当前节点图",
+      "#78:d6b7aec0552b3a35": "在文本字段内也可打开节点图搜索，会接管浏览器的查找快捷键。",
+      "Open the canvas browser": "打开画布浏览器",
+      "#97:d553a8374cbeaac5": "列出可打开的画布。在正在输入的字段或代码编辑器内无效。",
+      "Move the floating toolshelf": "移动浮动工具架",
+      "#56:abf1574e5f72cf56": "每次移动 10 像素，配合 Shift 为 40 像素。",
+      "#53:5c80a5210ef27525": "浮动工具架的移动手柄获得焦点时",
+      "Resize the floating toolshelf horizontally": "水平调整浮动工具架的宽度",
+      "#73:20fe3a889de41ecd": "每次移动当前边缘 10 像素，按住 Shift 时为 40 像素。",
+      "#51:7cc13c2803c78aca": "浮动工具架的缩放手柄获得焦点时",
+      "Generate from the toolshelf": "从工具架生成",
+      "while editing toolshelf inputs": "正在编辑工具架输入项时",
+      "#69:1cdfe38a55fc4983": "画布锁定、输入尚未填好或正在生成时",
+      "Recall previous agent messages": "调出以往的智能体消息",
+      "#98:96b2ffcb0a8f7539": "上键查更早的消息，下键向后翻直至空白草稿。开始修改即可退出浏览。",
+      "#65:ac3eb58d05eff35a": "智能体输入框为空或正回看已发消息时",
+      "#42:b15860040e48f8ec": "正在选择文字或选择要提及的对象时",
+      "Stop the chat agent": "停止对话智能体",
+      "#69:3c67153cbc008447": "同时收起等待批准的请求，保留输入框里的草稿。",
+      "#86:e08370b65b3c89c7": "智能体运行时，焦点在浮窗、消息面板或工具架的输入框内",
+      "#53:c79fa56e9c1c5d3a": "Esc 优先退出提及菜单或当前听写。",
+      "Go to the next match": "转到下一处匹配",
+      "in the search panel": "在搜索面板中",
+      "Go to the previous match": "转到上一处匹配",
+      "Close the search panel": "关闭搜索面板",
+      "#109:a86ebd6c24428357": "在时间线内、且未编辑文字时可用。滚动条使用单独的导航键。",
+      "Play or pause timeline": "播放或暂停时间线",
+      "#43:70e785f7ddbc1a9c": "沿时间线单帧前进或后退",
+      "outside the timeline scrollbar": "焦点在时间线滚动条之外时",
+      "Go to timeline start": "转到时间线起点",
+      "Go to timeline end": "转到时间线终点",
+      "Split selected clip at playhead": "在播放头处拆分所选片段",
+      "with a timeline clip selected": "已选中时间线片段时",
+      "#51:5aa33fdbf18cfb93": "移除选中的轨道、区段或关键帧",
+      "#122:b3b46683e260002a": "先选中轨道标题、区段或关键帧。删除轨道会连同其区段一起删除，可撤销。",
+      "Undo timeline edit": "撤销时间线编辑",
+      "Redo timeline edit": "重做时间线编辑",
+      "#33:fa04d790b7fdcbeb": "选中片段并定位到片头",
+      "with a timeline clip focused": "焦点在时间线片段上时",
+      "#39:23b360514e8d2326": "中止时间线拖动或取消选择",
+      "#81:285af7f470397c0a": "滚动条获得焦点时只取消拖动，当前选择仍保留。",
+      "#40:520d77954488c9b7": "将画布媒体加入时间线",
+      "#88:7014f199319c126a": "按住 Alt 拖动视频或音频到轨道。在轨道边缘松开可新建一轨。",
+      "#49:09bb9646f2f28e25": "用鼠标滚轮横向浏览时间线",
+      "over the timeline tracks": "鼠标在时间线轨道上时",
+      "Adjust visible timeline range": "调整时间线的可见范围",
+      "#35:0e9eebe6224f7bfc": "拖动中央可平移，两端可调整缩放。",
+      "#41:18b92293e560b8d3": "时间线滚动条获得焦点时",
+      "#45:73339d9458bd5e6f": "较大幅度地改变时间线显示范围",
+      "Adjust timeline panel height": "调整时间线面板高度",
+      "#36:a44fcd22a3f3cf35": "向上增加面板高度，向下减小。",
+      "#40:da1fb3ea24260359": "面板顶部的缩放手柄获得焦点时",
+      "#44:0ef775958c38b8a3": "以较大步长调整时间线高度",
+      "#57:c94db2eab1335416": "将时间线滚动条定位到首端或末端",
+      "Fit timeline in view": "让整条时间线适应视图",
+      "#53:b72f00848cf5042b": "双击滚动条可一次显示全段。",
+      "Open timeline context menu": "打开时间线右键菜单",
+      "#131:e17ebb2f1480efd1": "右键打开所选轨道、区段或关键帧的菜单。用方向键浏览、Enter 执行、Esc 退出。",
+      "Editing text": "编辑文本",
+      "#84:f43a55869bd3658f": "双击便签或文本卡片后，可在编辑时使用此操作。",
+      "Stop editing": "结束编辑",
+      "#61:7aecdc449a9e7ed3": "保留当前选择，接下来可以直接拖动。",
+      "Menus and pickers": "菜单和选择器",
+      "Close the palette or dialog": "关闭面板或对话框",
+      "Take the only remaining match": "选中唯一的匹配项",
+      "#67:3b522671f5d16254": "筛选到单个结果后，按 Enter 确认。",
+      "Place foreground points": "放置前景点",
+      "#82:f56058cf58c3f107": "下一次点击将标出需要保留的前景区域。",
+      "in the point picker": "在点选择器中",
+      "Place background points": "放置背景点",
+      "#85:25f75d302f82b49b": "下一次点击将标出要剔除的背景区域。",
+      "Confirm the points": "确认选点",
+      "Remove the selected points": "移除选中的点",
+      "#38:62c2abda5c39795c": "取消点的选择，再退出",
+      "#100:e5ced6394fabc564": "若有选中的点，先取消选择。再次使用即可关闭选点器。"
+    }
+  },
+  {
+    "selector": ".settings-window-body .settings-group-header h3",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Tooltips": "悬浮提示",
+      "Cards": "卡片",
+      "Teams": "团队",
+      "Users": "用户",
+      "Components": "组件",
+      "Display": "显示",
+      "Webcam Capture Server": "摄像头采集服务",
+      "Model Approval": "模型审批",
+      "Header Left": "标题栏左侧",
+      "Header Right": "标题栏右侧",
+      "Footer Left": "底栏左侧",
+      "Footer Right": "底栏右侧"
+    }
+  },
+  {
+    "selector": ".settings-window-body .settings-group-body > div > div",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "tags": "个标签",
+      "#23:8077c1d6087eb0ec": "还没有条目，可在这里添加",
+      "#35:c4108a887c79c2fa": "，也可以到节点上新建",
+      "teams": "个团队",
+      "users": "位用户"
+    }
+  },
+  {
+    "selector": ".settings-window-body .settings-group-body button.ui-btn",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "tag": "标签",
+      "team": "团队",
+      "user": "用户",
+      "+ Add group": "+ 添加分组"
+    }
+  },
+  {
+    "selector": ".settings-window-body main span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#72:58010b8484368851": "启动中… 等待姿态拟合进程完成启动或重启"
+    }
+  },
+  {
+    "selector": ".settings-window-body .settings-row-value span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Not running": "未运行"
+    }
+  },
+  {
+    "selector": ".settings-window-body main button.ui-btn",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Start Server": "启动服务"
+    }
+  },
+  {
+    "selector": ".settings-window-body main section:not(.settings-group) div",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Legacy source": "旧版来源",
+      "cached result file(s),": "个缓存结果文件，",
+      "#6:10d3e1f61f15a389": "。",
+      "Destination": "目标位置",
+      "#23:9c8ebe6184ecd39c": "（个人数据）",
+      "Canvases to import (": "要导入的画布（",
+      "of": "/",
+      "pulled in automatically": "自动随同导入",
+      "#78:913dd799b3e8103c": "的画布，以及属于该范围的缓存输出与截图。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main strong",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Path:": "路径：",
+      "Project id in source:": "来源项目 ID：",
+      "Contents:": "内容：",
+      "Project id:": "项目 ID："
+    }
+  },
+  {
+    "selector": ".settings-window-body main em",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "none (no manifest)": "无（缺少清单）"
+    }
+  },
+  {
+    "selector": ".settings-window-body main section:not(.settings-group) label > span[title]:not(:first-of-type)",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "already there": "已存在"
+    }
+  },
+  {
+    "selector": ".settings-window-body main section:not(.settings-group) label > span[title=\"graph-library\"]",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Unplaced graphs": "未放置的节点图"
+    }
+  },
+  {
+    "selector": ".settings-window-body main label",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "#150:e51be4c7d5a17730": "打开后可替换目标中的同 ID 画布。默认保留目标已有内容，便于多次导入共享目录。",
+      "#117:1b366cc9be305fb9": "安装后须授权才能运行。画布会记录依赖的扩展，需要另行安装这些扩展。",
+      "Start collapsed in the Inspector": "在检查器中默认折叠"
+    }
+  },
+  {
+    "selector": ".settings-window-body main section:not(.settings-group) button.ui-btn",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Preview": "预览"
+    }
+  },
+  {
+    "selector": ".settings-window-body main div",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Extensions": "扩展",
+      "What may happen without asking": "允许直接执行的操作",
+      "Model catalog table": "模型目录表",
+      "Model schemas table": "模型定义表"
+    }
+  },
+  {
+    "selector": ".settings-window-body form label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Trust it": "信任此目录"
+    }
+  },
+  {
+    "selector": ".settings-window-body form button[type=\"submit\"]",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Add": "添加"
+    }
+  },
+  {
+    "selector": ".settings-window-body .merlin-panel-summary",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "models ·": "个模型 ·",
+      "ready to use": "个可用"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [role=\"region\"] span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Replaced by": "替代模型",
+      "✗ no credential": "✗ 缺少凭据"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [role=\"region\"] div",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "· aka": "· 别名"
+    }
+  },
+  {
+    "selector": ".settings-window-body main div",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "#103:c8d4f1d351b084a8": "此工作进程要由提供它的插件运行。单独复制定义无法启动。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [data-zone-id] label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "collapsed": "默认折叠"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [data-zone-id] span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "read-only": "只读",
+      "locked": "已锁定"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [data-zone-id] > div",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Hidden": "隐藏"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [role=\"region\"] span",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "resolver-selected route": "解析器选定的路由"
+    }
+  },
+  {
+    "selector": ".settings-window-body main .ue-menu",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Install an extension": "安装扩展"
+    }
+  },
+  {
+    "selector": ".settings-window-body main .settings-group > p",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#324:546b73434649fb33": "安排卡片底栏两侧的内容与顺序。底栏只占一行，组名不显示。左侧第一项固定为带类型色的卡片类型，其余字段可排在后面并使用淡色。",
+      "#259:b3eeae8d0f915e6f": "组件用于标记结果的制作角色，例如遮罩、深度或干净底片。内置组件只读。自建组件可供不同媒体分配，也可搜索和筛选。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [data-zone-id] button",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "#53:2c24e8c285035453": "本组有固定字段，需保留整组。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [data-field-id=\"sys:cardType\"]",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "#66:4914e8de6f35d9fa": "第一项固定为卡片类型，后续位置可添加字段。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main .settings-group-body > div > div",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "built-in": "内置",
+      "components": "组件",
+      "#24:9b7d0a51780797e7": "本画布使用的组件",
+      "my": "我的",
+      "#166:93c28fa6bc1e6a1a": "系统维护这些内置组件的名称、适用类型与启用状态，所有画布均可使用。",
+      "#70:98f608c6a7ac1c21": "，也可在节点中选择个人组件，应用会把定义复制到当前画布",
+      "#252:3bfda73f383c1590": "停用会从选择器隐藏组件，已有画布和工作流仍可按 ID 找到它。",
+      "#60:0119df44dd54676a": "尚无组件。添加新组件或从下方保留画布已有组件。",
+      "#282:91f02534849522be": "个人库可供本机各画布共用。选用后定义会存入画布，便于分享。日后删除个人库中的条目，已有画布仍可使用。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main .settings-group-body button.ui-btn",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "component": "组件",
+      "components": "组件",
+      "+ Add to my": "+ 添加到我的"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [data-def-id] button[role=\"switch\"]",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "image": "图像",
+      "video": "视频",
+      "mesh": "网格",
+      "splat": "高斯泼溅",
+      "audio": "音频"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [data-def-id] button[role=\"switch\"]",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "#56:7cdeed9f8f9650ad": "组件需要至少一个适用的内容类型。"
+    }
+  },
+  {
+    "selector": ".settings-window-body main [data-def-id]:has(button[role=\"switch\"]:disabled):not(:has(button[role=\"switch\"]:enabled)) > div > span:only-of-type",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Source": "源素材",
+      "Annotation": "标注",
+      "Beauty": "最终合成",
+      "Depth": "深度",
+      "Normal": "法线",
+      "Mask": "遮罩",
+      "Edge": "边缘",
+      "Pose": "姿态",
+      "Cutout": "抠像",
+      "Clean plate": "干净底片",
+      "Panorama": "全景",
+      "Front view": "正视图",
+      "Back view": "后视图",
+      "Left view": "左视图",
+      "Right view": "右视图",
+      "Music": "音乐",
+      "Ambience": "环境音",
+      "Speech": "语音"
+    }
+  },
+  {
+    "selector": ".settings-window-body main input.ui-field",
+    "fields": [
+      "placeholder"
+    ],
+    "entries": {
+      "#29:4e26b91ee71e4adf": "示例路径 C:\\Tools\\ffmpeg\\bin\\ffmpeg.exe",
+      "#80:3cf5d69a40dbdbc2": "自动查找 Blender，也可指定安装目录中的 blender.exe",
+      "#63:871ff25d06c6a221": "自动查找 Krita，也可指定安装目录中的 bin\\krita.exe"
+    }
+  }
+]

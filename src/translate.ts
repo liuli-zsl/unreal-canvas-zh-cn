@@ -1,4 +1,10 @@
 import { copyId, copyKey, keyLength } from './copy-id';
+import { translateGeneration } from './generation';
+import { translateMenuDynamic } from './menu-dynamic';
+import { translatePanelsDynamic } from './panels';
+import { translateSettingsDynamic } from './settings';
+import { translateViewerDynamic } from './viewers';
+
 export interface Group {
   selector: string;
   fields: string[];
@@ -6,9 +12,9 @@ export interface Group {
 }
 type Entry = { original: string; displayed: string };
 type Rule = { selector: string; translation: string };
-const attributes = ['title', 'aria-label', 'placeholder', 'data-tooltip'];
+const attributes = ['title', 'aria-label', 'placeholder', 'data-tooltip', 'alt'];
 const scopeAttributes = ['class', 'role', 'contenteditable', 'translate', 'data-testid', 'data-package-row'];
-const protectedContent = 'script,style,pre,code,[translate="no"],[data-merlin-text-surface],.agent-chat-message,.canvas-card-header,.agent-attention-preview,.agent-model-name,.agent-assignee-name,.agent-current-task-title,.merlin-scripts-name,.merlin-scripts-row-name,.merlin-graphs-tile-label,.credential-row-label,.merlin-ops-name';
+const protectedContent = 'script,style,pre,code,.cm-content,.view-lines,[translate="no"],[data-merlin-text-surface],.agent-chat-message,.canvas-card-header,.agent-attention-preview,.agent-model-name,.agent-assignee-name,.agent-current-task-title,.merlin-scripts-name,.merlin-scripts-row-name,.merlin-graphs-tile-label,.credential-row-label,.merlin-ops-name';
 const editableContent = '[contenteditable]:not([contenteditable="false"]),input,textarea,[role="textbox"]';
 const searchMessageStart = 'No settings in this category match “';
 const searchEndId = '38f7650709e6c304';
@@ -45,21 +51,35 @@ export function localize(doc: Document, dictionary: Group[]) {
     const prior = fields?.get(field);
     const original = prior && prior.displayed === value ? prior.original : value;
     const english = original?.trim();
-    const candidates = english && (rules.get(field + '\n' + english)
-      ?? (helpLengths.has(english.length) ? rules.get(field + '\n' + copyKey(english)) : undefined));
-    let translated = candidates && candidates.find(rule => element.matches(rule.selector))?.translation;
-    if (!translated && english) translated = translateDynamic(element, field, english);
+    let translated: string | null | undefined;
+    const candidates = english ? (rules.get(field + '\n' + english)
+      ?? (helpLengths.has(english.length) ? rules.get(field + '\n' + copyKey(english)) : undefined)) : undefined;
+    const splitMessage = element.classList.contains('ue-menu-note') || element.classList.contains('merlin-graphs-empty');
+    if (english && (candidates || splitMessage || english === '(' || /[A-Za-z]/.test(english))) {
+      translated = translatePanelsDynamic(element, field, english, node);
+      if (translated === undefined) translated = translateGeneration(element, field, english, node);
+      if (translated === undefined) translated = translateSettingsDynamic(element, field, english, node);
+      if (translated === undefined) translated = translateMenuDynamic(element, field, english);
+      if (translated === undefined) translated = translateViewerDynamic(element, field, english);
+      if (translated === undefined) {
+        translated = candidates?.find(rule => element.matches(rule.selector))?.translation ?? translateDynamic(element, field, english);
+      }
+    }
     if (field === 'text' && isSettingsSearchMessage(element)) {
       // React renders the user's query as a separate text node between these labels.
       translated = undefined;
       if (node === element.firstChild) translated = searchMessageStartZh;
       if (node === element.lastChild) translated = searchMessageEndZh;
     }
-    const packageName = element.closest('[data-package-row]')?.getAttribute('data-package-row');
-    const modelName = element.querySelector(':scope > [data-testid="provider-icon"]');
-    if (english === packageName || modelName || element.matches('[data-testid="provider-icon"]')) translated = undefined;
-    const tabAction = isTabCloseAttribute(element, field) && english?.startsWith('Close ');
-    if (translated && (element.closest(protectedContent) || (element.closest('.merlin-canvas-tab') && !tabAction) || (field === 'text' && element.closest(editableContent + ',option[value="custom"]')))) translated = undefined;
+    if (translated) {
+      const packageName = element.closest('[data-package-row]')?.getAttribute('data-package-row');
+      const modelName = element.querySelector(':scope > [data-testid="provider-icon"]');
+      const tabAction = (isTabCloseAttribute(element, field) && english?.startsWith('Close '))
+        || (field === 'title' && element.matches('.merlin-canvas-tab > span') && english?.endsWith(' — Double-click to rename'));
+      if (english === packageName || modelName || element.matches('[data-testid="provider-icon"]')
+        || element.closest(protectedContent) || (element.closest('.merlin-canvas-tab') && !tabAction)
+        || (field === 'text' && element.closest(editableContent + ',option[value="custom"]'))) translated = undefined;
+    }
     if (translated && original && english) {
       const start = original.indexOf(english);
       const displayed = original.slice(0, start) + translated + original.slice(start + english.length);
@@ -138,7 +158,10 @@ function translateDynamic(element: Element, field: string, english: string): str
   if (field !== 'text') return;
   if (element.closest('.merlin-generation-shelf')) {
     const missing = /^Model '(.+)' has no confirmed credentials\..*?\bconfigure (.+?) in Settings\b.*$/.exec(english);
-    if (missing) return '模型“' + missing[1] + '”尚无已确认的凭据。请登录或在设置中配置 ' + missing[2] + '，然后重试。';
+    if (missing) {
+      const credential = missing[2] === 'the native Claude API credentials' ? 'Claude 原生 API 凭据' : missing[2];
+      return '模型“' + missing[1] + '”尚无已确认的凭据。请登录或在设置中配置 ' + credential + '，然后重试。';
+    }
   }
   if (element.matches('.merlin-panel-count,.merlin-panel-count-pill,.merlin-panel-chip-count')) {
     const tools = /^(\d+) tools?$/.exec(english);

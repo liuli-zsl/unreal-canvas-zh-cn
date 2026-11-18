@@ -1,0 +1,82 @@
+[
+  {
+    "selector": ".merlin-script-editor-btn,.merlin-script-editor-btn > span,.merlin-script-editor-dirty,.merlin-script-editor-loading,.merlin-script-heading-edit",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Unsaved changes": "有未保存的更改",
+      "unsaved changes": "有未保存的更改",
+      "Locked": "已锁定",
+      "Save to the card (Ctrl+S)": "保存到卡片 (Ctrl+S)",
+      "Save to the library (Ctrl+S)": "保存到资源库 (Ctrl+S)",
+      "#59:2b0527454caeae89": "请先修复列出的 SKILL.md 错误。",
+      "#39:61a3ca9a8ec90557": "请先检查名称和引脚名。",
+      "Save script": "保存脚本",
+      "Saving…": "正在保存…",
+      "Save": "保存",
+      "Close the editor (Esc)": "关闭编辑器 (Esc)",
+      "Close script editor": "关闭脚本编辑器",
+      "Loading editor…": "正在加载编辑器…",
+      "Rename script": "重命名脚本"
+    }
+  },
+  {
+    "selector": ".merlin-script-form :is(.merlin-script-form-label,.merlin-script-form-add,.merlin-script-form-warn,.merlin-sr-only,.merlin-script-form-section,.merlin-script-form-prop,.merlin-script-form-checkbox,.merlin-script-form-none:not([title]),.merlin-script-side-duplicate),[role=\"tooltip\"],[role=\"tooltip\"] p",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Inputs": "输入",
+      "Outputs": "输出",
+      "+ Add input": "+ 添加输入",
+      "+ Add output": "+ 添加输出",
+      "General": "常规",
+      "Category": "分类",
+      "Author": "作者",
+      "Tags": "标签",
+      "Description": "描述",
+      "Toolshelf": "工具架",
+      "Show on toolshelf": "显示在工具架中",
+      "Not shown": "不显示",
+      "#56:86c98db2a50db695": "连到输出即可在工具架显示。",
+      "Duplicate": "创建副本",
+      "#152:c4a92409918f6c38": "脚本按引脚名读取输入变量。未赋值时为 None，媒体与网格输入是文件路径。",
+      "#113:efc49673d1418160": "把结果赋给同名变量即可输出。文件需先写入磁盘，再输出其路径。",
+      "#42:788cabbff4c9ca86": "此脚本来自资源库，请在库中修改。",
+      "#126:fc5f4e1958209723": "引脚名须为有效的 Python 标识符，首位不可用数字。输入名之间和输出名之间各自应唯一。"
+    }
+  },
+  {
+    "selector": ".merlin-script-form :is(input,textarea,.merlin-tags-field,button),.merlin-script-heading-name",
+    "fields": [
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Double-click to rename": "双击重命名",
+      "Python variable name": "Python 变量名",
+      "#49:27d9b91fb989afad": "在已公开的设置中修改此项。",
+      "input name": "输入名称",
+      "output name": "输出名称",
+      "input type": "输入类型",
+      "output type": "输出类型",
+      "Remove input": "移除输入",
+      "Remove output": "移除输出",
+      "Primary output": "主要输出",
+      "Script description": "脚本描述",
+      "#58:77c4027cd8fd11d4": "简述此脚本用于完成什么任务。",
+      "Script author": "脚本作者",
+      "Who made this": "作者姓名",
+      "Script tags": "脚本标签",
+      "Library script tags": "资源库脚本标签",
+      "Add a tag…": "添加标签…",
+      "New category": "新建分类"
+    }
+  }
+]

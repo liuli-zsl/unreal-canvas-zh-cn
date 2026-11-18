@@ -1,6 +1,6 @@
 import { loadSignal } from '@merlin/plugin-api';
 import { localize } from './translate';
-import dictionary from './locales/zh-CN.json';
+import { dictionary } from './dictionary';
 
 if (!loadSignal.aborted) {
   const stop = localize(document, dictionary);

@@ -1,0 +1,506 @@
+[
+  {
+    "selector": ".merlin-panel-title,.merlin-content-results,.merlin-bottom-dock-tabpanel,.merlin-content-modes button,.merlin-scripts-section,.merlin-scripts-results-head > span:first-child,.agent-message-switcher",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Agents": "智能体",
+      "Library": "资源库",
+      "Toolbox": "工具箱",
+      "Inspector": "检查器",
+      "Operations": "操作记录",
+      "Script details": "脚本详情",
+      "Live logging": "实时日志",
+      "Execution": "执行",
+      "Results": "结果",
+      "Viewer": "查看器"
+    }
+  },
+  {
+    "selector": ".merlin-content-browser,.merlin-content-modes,.merlin-bottom-dock-panel,.merlin-panel-chips,.merlin-panel-tabs,.merlin-ops-group,.merlin-rail-pin,.merlin-content-rail-grip,.merlin-panel-search-clear,.merlin-panel-control-btn",
+    "fields": [
+      "aria-label",
+      "title"
+    ],
+    "entries": {
+      "Canvas content": "画布内容",
+      "Canvas content panels": "画布内容面板",
+      "Bottom dock": "底部停靠栏",
+      "Active filters": "已启用的筛选条件",
+      "Operations scope": "操作记录范围",
+      "In progress": "进行中",
+      "Recently completed": "最近完成",
+      "#34:25b2259fe434a530": "选定需要固定的卡片或框架。",
+      "Pin this card": "固定此卡片",
+      "Pin": "固定",
+      "Unpin": "取消固定",
+      "Resize panel": "调整面板大小",
+      "Resize the bottom dock": "调整底部停靠栏大小",
+      "#87:2798205eeeec4e09": "拖动或按左右键调节，拖到窗口边缘收起。",
+      "#84:fb96686e2ec5d5bb": "拖动或按上下键调节，拖到窗口边缘收起。",
+      "Clear search": "清除搜索",
+      "Fill Canvas": "填满画布",
+      "Restore Side Panel": "还原侧栏",
+      "Move sidebar to the left": "将侧栏移到左侧",
+      "Move sidebar to the right": "将侧栏移到右侧",
+      "#59:c1264313c2965fe8": "左侧显示侧栏，右侧显示查看器",
+      "#60:a86ea62c8e4036d1": "右侧显示侧栏，左侧显示查看器"
+    }
+  },
+  {
+    "selector": ".media-library-empty strong,.media-library-empty p,.merlin-graphs-empty",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "No matching media": "没有匹配的媒体",
+      "#42:11ada2206a3a14d1": "请更换关键词或放宽筛选。",
+      "#30:7eae3b984f795f17": "没有符合条件的条目。",
+      "#68:f9297584555fb3e4": "点击「+」创建节点图、Python 脚本或文件夹。",
+      "#36:f2d88c93c88c066b": "点击「+」创建第一个脚本。"
+    }
+  },
+  {
+    "selector": ".media-library-filter-trigger,.merlin-content-view-controls button,.merlin-scripts-columns-btn,.merlin-scripts-create-btn,.merlin-panel-settings-menu",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Grid": "网格",
+      "Grid view": "网格视图",
+      "Table": "表格",
+      "Table view": "表格视图",
+      "Filter scripts": "筛选脚本",
+      "Columns": "显示列",
+      "#65:5c8bc86183bc09e3": "新建节点图、脚本、子脚本、技能、个性配置或文件夹"
+    }
+  },
+  {
+    "selector": ".merlin-scripts-cell,.merlin-panel-settings-menu .ue-menu-label,.merlin-scripts-results-sort",
+    "fields": [
+      "text",
+      "title"
+    ],
+    "entries": {
+      "Type": "类型",
+      "Outputs": "输出",
+      "Source": "来源",
+      "Status": "状态",
+      "Usage": "使用情况",
+      "Refresh library": "刷新资源库",
+      "Sort:": "排序：",
+      "Name": "名称",
+      "Most used": "使用最多",
+      "Recently used": "最近使用"
+    }
+  },
+  {
+    "selector": ".merlin-scripts-row-location,.merlin-graphs-tile-location,.merlin-scripts-row-lock,.merlin-graphs-tile-lock",
+    "fields": [
+      "aria-label",
+      "title"
+    ],
+    "entries": {
+      "Built-in": "内置",
+      "Built-in: ships with Unreal Canvas": "内置，随 Unreal Canvas 提供",
+      "#48:efef782d2ab99ab9": "内置脚本为只读，可复制到库后修改。",
+      "Claude Code skill": "Claude Code 技能",
+      "Invalid SKILL.md": "无效的 SKILL.md",
+      "Shadowed by another library": "已被其他库中的同名技能覆盖",
+      "#88:ddd0a3994b985d01": "存在同 ID 的优先技能，智能体将使用另一份。",
+      "Changed on disk": "磁盘上的文件已更改",
+      "#123:e2ef43c6d9d8738a": "本地和磁盘版本均已修改。右键可重载、保留本地版本或另存。",
+      "File removed": "文件已移除",
+      "#91:fea1f1c468bdbe16": "原文件已移除。修改仍在，继续编辑时会保存到本机。",
+      "Edited — not shared": "本地修改尚未共享",
+      "#97:8f33cfca0a2fed6e": "团队副本有待同步。右键选择「更新团队副本」写入团队目录。"
+    }
+  },
+  {
+    "selector": ".merlin-scripts-create-panel,.merlin-scripts-create-kinds,.merlin-scripts-create-back,.merlin-scripts-create-form,.merlin-scripts-create-item,.merlin-scripts-create-panel .ue-menu-detail,.merlin-scripts-create-label,.merlin-scripts-create-submit,.merlin-scripts-create-input,.merlin-scripts-create-hint,.merlin-scripts-create-panel option,.merlin-scripts-create-panel [role=alert]",
+    "fields": [
+      "text",
+      "aria-label",
+      "title",
+      "placeholder"
+    ],
+    "entries": {
+      "Create a script": "创建脚本",
+      "Kinds": "类型",
+      "Back to kinds": "返回类型选择",
+      "Graph": "节点图",
+      "New graph": "新建节点图",
+      "New python": "新建 Python 脚本",
+      "New skill": "新建技能",
+      "New subscript": "新建子脚本",
+      "Subscript": "子脚本",
+      "Skill": "技能",
+      "Folder": "文件夹",
+      "Import…": "导入…",
+      "#51:38ebbf44e9c73da7": "创建并打开一个空白节点图。",
+      "#65:45666118fa5cc8ce": "创建带图像输入和输出的 Python 脚本。",
+      "#88:ba64a64b4be2948a": "用 Python 调用 merlin.generate_image、merlin.op 等 Canvas 操作。",
+      "#109:f62c13ff64c55df0": "保存可复用的智能体指令，供画布和对话选用。",
+      "#55:9398397ed0781ea7": "创建文件夹以分类存放脚本。",
+      "#100:95162c9b3f50f66c": "可导入 .graph.json、.customnode、.md，也支持把多项放入同一个 ZIP。",
+      "Name": "名称",
+      "Folder name": "文件夹名称",
+      "New Skill": "新技能",
+      "Library": "资源库",
+      "Local (yours)": "本地（个人）",
+      "Shared (the team's)": "共享（团队）",
+      "#92:822203599f7a5109": "技能 ID 取自 Skills 下包含 SKILL.md 的目录名，支持小写字母、数字和连字符。",
+      "#81:2cc7ee66e3ed5e60": "ID 可用小写字母、数字与单个连字符，例如 character-sheet。",
+      "Create graph": "创建节点图",
+      "Create script": "创建脚本",
+      "Create Subscript": "创建子脚本",
+      "Create skill": "创建技能",
+      "Creating…": "正在创建…"
+    }
+  },
+  {
+    "selector": ".agent-onboarding h2,.agent-onboarding-content > p,.agent-onboarding details p,.agent-onboarding summary,.agent-onboarding button,.agent-onboarding button > span,.agent-onboarding-choice small,.agent-onboarding-choice .onboarding-choice-copy > strong,.agent-onboarding-notice,.agent-onboarding-card > small,.agent-onboarding-card > span,.agent-onboarding label,.agent-onboarding li,.agent-onboarding option,.agent-onboarding,.agent-welcome,.agent-welcome-examples",
+    "fields": [
+      "text",
+      "aria-label",
+      "title"
+    ],
+    "entries": {
+      "Connect your agent": "连接你的智能体",
+      "Choose your connection": "选择连接方式",
+      "#49:892258a8e6067855": "选择现有智能体或添加新连接。",
+      "Checking installed agents…": "正在检查已安装的智能体…",
+      "#28:dd7c26530750abc3": "连接本机命令行客户端",
+      "Other providers": "其他提供商",
+      "#36:b5ba46bd621f379d": "使用企业账号或 API 连接",
+      "#62:3de66a40efe230e4": "沿用提供商原有的账号设置。",
+      "Set up previously:": "此前已配置：",
+      "Connect": "连接",
+      "another provider": "其他提供商",
+      "#65:c89a8b3e22b3aba8": "先登录对话提供商，或添加连接凭据。",
+      "#45:b3c2cc6c195658ad": "沿用本机已有配置。",
+      "#51:a2b378eb9f4238a0": "连接服务器以发现智能体。",
+      "Installed · account not checked": "已安装 · 账号尚未检查",
+      "Not found": "未找到",
+      "#104:dbaa865c5c9b1e6c": "沿用本机 CLI 的登录、连接及组织设置。",
+      "Show sign-in steps": "查看登录步骤",
+      "Show installation steps": "查看安装步骤",
+      "I’ve finished · Check again": "已完成，重新检查",
+      "Advanced · local configuration": "高级选项 · 本地配置",
+      "Chat context": "对话上下文",
+      "Personal configuration": "个人配置",
+      "Clean context": "空白上下文",
+      "#64:2785a45f2c7608c1": "本机尚无可用的对话提供商配置。",
+      "Loading providers…": "正在加载提供商…",
+      "Connect an external agent instead": "改用外部智能体",
+      "#82:37c4ac535453e846": "在「帮助 → 连接智能体」中让外部 MCP 客户端连接 Canvas。",
+      "Check connection": "检查连接",
+      "#64:5d5fa45f34657cdb": "检查运行工具和模型目录，此步不发送对话。",
+      "Checking your connection": "正在检查连接",
+      "Waiting for a reply": "正在等待回复",
+      "One last check": "最后检查",
+      "Model for your first chat": "首次对话使用的模型",
+      "Provider configuration loaded": "已加载提供商配置",
+      "Local runtime connected": "已连接本地运行环境",
+      "#33:3d0a30aad6252f0a": "账号响应尚待验证",
+      "Send test message": "发送测试消息",
+      "#99:e738fa2cb1363f93": "测试使用你的提供商账户，可能产生正常请求费用。测试仅验证连接。",
+      "#38:e9ed0b37be8c0b45": "打开任一画布后可测试连接。",
+      "#17:18fb99c4ce3a319d": "连接成功。",
+      "#116:02ce1ffd17a1b0bc": "可开始对话。现有提供商设置已保留，模型、权限和推理强度可在对话中更改。",
+      "Return to provider setup": "返回提供商设置",
+      "Done": "完成",
+      "Set up another provider": "设置其他提供商",
+      "Welcome to your canvas agent": "欢迎使用画布智能体",
+      "Things I can help with": "我能帮你做什么"
+    }
+  },
+  {
+    "selector": ".merlin-ops-group-action,.merlin-ops-stop,.merlin-ops-status-label,.merlin-rail-pin,.merlin-inspector-notice,.merlin-inspector-notice button,.merlin-rail-preview-label,.merlin-rail-preview-label-text,.merlin-rail-preview-grip,.agent-detail-actions > button,.agent-detail-tabs > button,.agent-detail-muted,.agent-detail-state",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "#40:eba2cddf661296e6": "清除全部画布的已完成项",
+      "#39:b5a4f97e8526682d": "清除当前画布的已完成项",
+      "Started elsewhere": "在其他位置启动",
+      "Stopping…": "正在停止…",
+      "Stopping": "正在停止",
+      "Stop this operation": "停止此操作",
+      "Unpin this card": "取消固定此卡片",
+      "Pin this frame": "固定此框架",
+      "Unpin this frame": "取消固定此框架",
+      "#50:ab66c012b2f4e629": "固定此卡片，切换选择后仍可查看。",
+      "#51:ab98676c51c600ac": "固定此框架，切换选择后仍可查看。",
+      "#31:4315fd5a3282cb9a": "创建新版本的准备工作失败。",
+      "#29:7936cb84fc50b21a": "新版本未能放到画布上。",
+      "#91:f1a758c7fedf8763": "结果将另置于原卡片旁。此次运行没有输出时仍选中原卡片。",
+      "#110:5d7f726baeb99b27": "原结果及其参数会保留，修改后运行将另建相邻版本。",
+      "Unlock the canvas to run": "解锁画布后即可运行",
+      "#49:f3986f9fad03989e": "按当前参数运行并另建版本",
+      "Run as new take": "运行并创建新版本",
+      "#71:57341ade82f422be": "执行中。完成后可查看结果、版本和来源。",
+      "#81:5f233382a3ad1bec": "尚未执行，将使用下方输入和提示词。",
+      "Hide the output preview": "隐藏输出预览",
+      "Show the output preview": "显示输出预览",
+      "Drag to resize the preview": "拖动以调整预览大小",
+      "Output": "输出",
+      "Saved work": "已保存的工作",
+      "Resume task": "继续任务",
+      "View lead": "查看负责人",
+      "No recent update": "最近没有更新",
+      "#61:35ddb48d328b0771": "对话已关闭，历史消息仍可查看。"
+    }
+  },
+  {
+    "selector": ".merlin-console-filter input,.merlin-console-filter button,.merlin-console-filter .custom-select span,.merlin-console-output,.merlin-console-empty,.session-toolbar button,.merlin-session-console > div,.merlin-session-console > div > button",
+    "fields": [
+      "text",
+      "aria-label",
+      "title",
+      "placeholder"
+    ],
+    "entries": {
+      "Filter live logs": "筛选实时日志",
+      "Filter output": "筛选输出",
+      "Log level": "日志级别",
+      "All levels": "所有级别",
+      "Log": "日志",
+      "Info": "信息",
+      "Debug": "调试",
+      "Warnings": "警告",
+      "Errors": "错误",
+      "Clear output": "清空输出",
+      "Live Unreal Canvas output": "Unreal Canvas 实时输出",
+      "#32:ef24debb882118fc": "没有符合条件的输出记录。",
+      "Waiting for Unreal Canvas output…": "正在等待 Unreal Canvas 输出…",
+      "Loading Python console…": "正在加载 Python 控制台…",
+      "#44:357972a509a4f993": "在 Python 工作区交互调用 merlin API。",
+      "New session": "新建会话",
+      "#50:d84ec18dabcf9374": "创建独立的 Python 进程、变量空间与工作目录。",
+      "Python session": "Python 会话"
+    }
+  },
+  {
+    "selector": ".nodrag.nowheel:is([aria-label='Library filters'],[aria-label='资源库筛选'],[aria-label='Script filters'],[aria-label='脚本筛选'])",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Library filters": "资源库筛选",
+      "Script filters": "脚本筛选"
+    }
+  },
+  {
+    "selector": ".nodrag.nowheel:is([aria-label='Library filters'],[aria-label='资源库筛选'],[aria-label='Script filters'],[aria-label='脚本筛选']) > .ue-menu:first-child > :is(.ue-menu-heading,button),.nodrag.nowheel:is([aria-label='Library filters'],[aria-label='资源库筛选'],[aria-label='Script filters'],[aria-label='脚本筛选']) > .ue-menu:first-child > button > .ue-menu-label,.nodrag.nowheel .ue-menu-note",
+    "fields": [
+      "text",
+      "aria-label",
+      "title"
+    ],
+    "entries": {
+      "Filter by": "筛选条件",
+      "Person": "人员",
+      "Age": "时间",
+      "Votes": "投票",
+      "Custom Filter…": "自定义筛选…",
+      "Saved": "已保存",
+      "Starred": "已加星标",
+      "Tag": "标签",
+      "Filter by folder": "按文件夹筛选",
+      "Filter by location": "按位置筛选",
+      "Filter by output": "按输出筛选",
+      "Filter by tag": "按标签筛选",
+      "Filter by type": "按类型筛选",
+      "#32:ef54f2741a339fe9": "仅查看本画布引用的脚本",
+      "#20:7ffd20a3f486ab70": "仅查看收藏的脚本",
+      "#69:9a4780096c8fcb8b": "尚无已保存的筛选。请在「自定义筛选」中命名并保存。"
+    }
+  },
+  {
+    "selector": ".media-library-empty strong,.media-library-empty p,.outliner-empty,.media-library-message,.media-library-results,.media-library-more",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Nothing selected": "尚未选择内容",
+      "#58:bef3b18b624105e6": "选择画布卡片或框架即可预览媒体。",
+      "No media yet": "尚无媒体",
+      "#67:31ee5e1c0e859164": "在这里添加媒体，或转到「位置 → 我的画布」。",
+      "#52:6794a9060e64463d": "画布上导入与生成的媒体会在此列出。",
+      "No matching saved hands": "没有匹配的已保存手牌",
+      "No saved hands": "尚无已保存的手牌",
+      "#70:d5b35a33a8011243": "可按手牌名称或卡片名称重新搜索。",
+      "#182:6a58c1ab06c7b5c0": "在画布边缘右键手牌可将其存入库。已保存的手牌可再次拿取、粘贴或用作生成输入。",
+      "Saved hands": "已保存的手牌",
+      "Archived cards": "已归档的卡片",
+      "No matching archived cards": "没有匹配的已归档卡片",
+      "Nothing archived": "尚无已归档的卡片",
+      "#19:f5be8a911636e01b": "换一个关键词再试。",
+      "#171:dee51c9c4e3999a9": "含生成结果的卡片删除后会归档。恢复时会一并找回节点图、输入和输出。",
+      "#16:3ced7a02ae09c6b0": "当前画布没有卡片。",
+      "#16:1951eaac57c17323": "未找到结果。",
+      "Discovering media…": "正在查找媒体…",
+      "Show more (": "显示更多（剩余",
+      "remaining)": "项）"
+    }
+  },
+  {
+    "selector": ".media-library .merlin-panel-icon-button,.media-library-size,.media-library .merlin-key-picker,.media-library .merlin-content-view-controls button,.media-library input,.media-library-hand-save,.media-library-hand-card-remove,.merlin-navigator-tree-actions button,.merlin-panel-chip",
+    "fields": [
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Limited to the selected cards": "仅限选中的卡片",
+      "#37:e59a654e2f383cc9": "只显示资源库所选项",
+      "#29:6b54aac512a20d50": "归档卡片请使用平铺视图。",
+      "Back to the Library": "返回资源库",
+      "#96:2134e5868863a366": "查看并恢复仍含生成媒体的已删卡片。",
+      "Search archived cards": "搜索已归档的卡片",
+      "Search archived cards or canvases…": "搜索已归档的卡片或画布…",
+      "Search hands or their cards…": "搜索手牌或其中的卡片…",
+      "Search saved hands": "搜索已保存的手牌",
+      "#30:7f476c1bb934c616": "在平铺视图仅显示选中项",
+      "Thumbnail size — Tile view": "缩略图大小（平铺视图）",
+      "#44:d1761aba66029bbe": "在列表中按画布框架分组",
+      "Archived cards are one list": "已归档的卡片显示在同一个列表中",
+      "#81:3ba590ab3519d73d": "复制边缘所有手牌到库，保留画布原件。",
+      "#36:eec9920b120690ea": "从手牌副本移除此卡片。",
+      "Expand all": "全部展开",
+      "Collapse all": "全部折叠"
+    }
+  },
+  {
+    "selector": ".merlin-session-console:not(.has-session) .session-toolbar .custom-select[data-value=''] > span > span[aria-hidden='false'],[role='listbox']:is([aria-label='Python session'],[aria-label='Python 会话']) > [role='option'][data-value=''] > span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "no sessions": "暂无会话"
+    }
+  },
+  {
+    "selector": ".session-toolbar button,.session-input-grip,.session-input button,.session-transcript button,.session-workspace > div:first-child,.session-transcript > div:has(> code):first-child",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "#78:a871d0d81cc34b7c": "重启解释器并清空变量，保留工作区文件。",
+      "#123:b2741360a428f3f4": "中止代码并退出解释器。变量将清空，文件会保留；点击播放键可重新启动。",
+      "#87:b9d73a1e8731b091": "删除该会话及其工作区，保留已发送到画布的结果。",
+      "Workspace": "工作区",
+      "Try:": "可以试试：",
+      "— API overview": "— API 概览",
+      "Your own .py helpers in": "存放在",
+      "#15:36acfb8da9d6f3ea": "中的 Python 辅助文件可用模块名导入。",
+      "#95:019c6c4de4f14269": "载入这条历史代码，Ctrl+Enter 执行。输入区内按上键可浏览历史。",
+      "Drag to resize the input": "拖动以调整输入区大小",
+      "#42:5adcde0e2b09c9cd": "打开并执行 .py 文件",
+      "#47:29811ac4b2b505f0": "将本会话执行过的代码导出为 .py",
+      "run .py": "运行 .py",
+      "save .py": "保存 .py",
+      "Run": "运行"
+    }
+  },
+  {
+    "selector": "[role='listbox']:is([aria-label='Log level'],[aria-label='日志级别']),[role='listbox']:is([aria-label='Log level'],[aria-label='日志级别']) > [role='option'][data-value] > span,.merlin-live-logs .custom-select > span > span",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Log level": "日志级别",
+      "All levels": "所有级别",
+      "Log": "日志",
+      "Info": "信息",
+      "Debug": "调试",
+      "Warnings": "警告",
+      "Errors": "错误"
+    }
+  },
+  {
+    "selector": "[role='listbox']:is([aria-label='Python session'],[aria-label='Python 会话'])",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Python session": "Python 会话"
+    }
+  },
+  {
+    "selector": ".merlin-key-picker[data-testid='thumbnails-sort-by'] .merlin-key-picker-value",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Recently used": "最近使用",
+      "Most used": "使用最多"
+    }
+  },
+  {
+    "selector": ".merlin-scripts .merlin-panel-group-icon,.merlin-content-modes button",
+    "fields": [
+      "aria-label",
+      "title"
+    ],
+    "entries": {
+      "Sort by": "排序方式",
+      "Group by": "分组方式",
+      "Script details": "脚本详情"
+    }
+  },
+  {
+    "selector": "body:has(.merlin-scripts :is([data-testid='thumbnails-sort-by'],[data-testid='thumbnails-group-by']):focus) .ue-menu.nokey.nodrag .ue-menu-item .ue-menu-label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Most used": "使用最多",
+      "Recently used": "最近使用",
+      "Tag": "标签"
+    }
+  },
+  {
+    "selector": ".merlin-rail-body-content:has(.merlin-scripts) > .ue-menu[data-portal-popup] > div > .ue-menu-item > .ue-menu-label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Star": "加星标",
+      "Unstar": "取消星标",
+      "Export as JSON…": "导出为 JSON…",
+      "Export script": "导出脚本",
+      "Export…": "导出…",
+      "Reset Graph Card": "重置节点图卡片",
+      "Copy to Shared": "复制到共享库",
+      "Update Team copy": "更新团队副本",
+      "Reload from file": "从文件重新加载",
+      "Keep mine": "保留我的版本",
+      "Save mine as a copy": "将我的版本另存为副本"
+    }
+  },
+  {
+    "selector": ".media-library .merlin-panel-chips > .merlin-panel-chip:first-child",
+    "fields": [
+      "title",
+      "text"
+    ],
+    "entries": {
+      "On this canvas": "当前画布",
+      "On my canvases": "我的画布",
+      "In open tabs": "已打开的标签页",
+      "Archived": "已归档"
+    }
+  }
+]

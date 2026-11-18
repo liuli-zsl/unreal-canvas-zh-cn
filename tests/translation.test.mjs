@@ -2,10 +2,10 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {build} from 'esbuild';
 import {JSDOM} from 'jsdom';
-import fs from 'node:fs';
 await build({entryPoints:['src/translate.ts'],outfile:'.test-build/legacy-translate.mjs',format:'esm',bundle:true,platform:'node'});
 const {localize}=await import('../.test-build/legacy-translate.mjs');
-const dictionary=JSON.parse(fs.readFileSync('src/locales/zh-CN.json','utf8'));
+await build({entryPoints:['src/dictionary.ts'],outfile:'.test-build/legacy-dictionary.mjs',format:'esm',bundle:true,platform:'node'});
+const {dictionary}=await import('../.test-build/legacy-dictionary.mjs');
 const tick=()=>new Promise(r=>setTimeout(r,15));
 test('bundled badge stays translated when a transient status follows it during reload', async () => {
   const {dom, d, stop} = setup('<div data-package-row="My Plugin"><button aria-expanded="false"><span>My Plugin</span><span>included</span><span>Loading…</span></button></div>');
@@ -138,3 +138,64 @@ test('dynamic control hints keep canvas names and metadata values unchanged and 
  assert.equal(value.title,'Settings\n\n(right-click to copy)');
  dom.window.close();
 });
+
+test('script chooser translates its direct action and preserves colliding user names and queries', async () => {
+  const {dom, d, stop} = setup('<div class="ue-menu generation-shelf-workflow-menu" role="menu" aria-label="Video scripts"><input placeholder="Search scripts"><button role="menuitemradio"><span class="ue-menu-label">Generate Video</span></button><button role="menuitemradio"><span class="ue-menu-label">Generate Video</span></button><div class="generation-shelf-workflow-folder"><button role="menuitem"><span class="ue-menu-label">Save</span></button></div><div class="ue-menu-note" role="status"></div></div>');
+  const menu = d.querySelector('[role="menu"]');
+  assert.equal(menu.getAttribute('aria-label'), '视频脚本');
+  assert.deepEqual([...menu.querySelectorAll('.ue-menu-label')].map(e=>e.textContent), ['生成视频', 'Generate Video', 'Save']);
+  const status = menu.querySelector('[role="status"]');
+  status.append('No scripts match "', 'Save', '".');
+  await tick();
+  assert.equal(status.textContent, '找不到与“Save”匹配的脚本。');
+  stop();
+  assert.equal(menu.getAttribute('aria-label'), 'Video scripts');
+  assert.equal(status.textContent, 'No scripts match "Save".');
+  dom.window.close();
+});
+
+test('card footer localizes system field values and preserves identically named user text', () => {
+  const {dom, d, stop} = setup('<div class="canvas-card-footer"><span data-field="sys:cardType">Tool (Text)</span><span data-field="sys:childCount" title="Contents 0 cards">0 cards</span><span data-field="sys:runStatus">Running</span><span data-field="rating" title="Rating"></span><span data-field="custom">Tool (Text)</span></div><div class="merlin-canvas-tab"><span title="Save — Double-click to rename">Save</span></div>');
+  const [kind, count, status, rating, custom] = d.querySelectorAll('[data-field]');
+  assert.equal(kind.textContent, '工具（文本）');
+  assert.equal(count.textContent, '0 张卡片');
+  assert.equal(count.title, '内容：0 张卡片');
+  assert.equal(status.textContent, '运行中');
+  assert.equal(rating.title, '评分');
+  assert.equal(custom.textContent, 'Tool (Text)');
+  const tab = d.querySelector('.merlin-canvas-tab > span');
+  assert.equal(tab.textContent, 'Save');
+  assert.equal(tab.title, 'Save — 双击重命名');
+  stop();
+  assert.equal(tab.title, 'Save — Double-click to rename');
+  assert.equal(count.title, 'Contents 0 cards');
+  dom.window.close();
+});
+
+test('model parameters translate inside the generation shelf while script-defined fields keep their labels', () => {
+  const {dom, d, stop} = setup('<div class="merlin-generation-shelf"><div class="generation-shelf-fields"><div class="merlin-param-row"><span class="merlin-param-label" title="Sample Rate">Sample Rate</span><input aria-label="Sample Rate" value="48000"></div></div><div class="generation-shelf-script"><div class="merlin-param-row"><span class="merlin-param-label">Sample Rate</span></div></div></div>');
+  assert.equal(d.querySelector('.generation-shelf-fields span').textContent, '采样率');
+  assert.equal(d.querySelector('input').getAttribute('aria-label'), '采样率');
+  assert.equal(d.querySelector('input').value, '48000');
+  assert.equal(d.querySelector('.generation-shelf-script span').textContent, 'Sample Rate');
+  stop();
+  assert.equal(d.querySelector('.generation-shelf-fields span').title, 'Sample Rate');
+  dom.window.close();
+});
+
+test('timeline captions preserve clip counts and user titles when the card updates', async () => {
+  const {dom, d, stop} = setup('<div class="canvas-timeline-card" title="Double-click to open Timeline"><div class="canvas-timeline-thumbnail"><img alt="Save first video frame"></div><div class="canvas-timeline-caption"><span>Empty Timeline</span><span>Double-click to open</span></div></div><div class="canvas-card-footer"><span data-field="sys:cardType">Tool (Timeline)</span><span data-field="sys:cardType">Action (Python)</span></div>');
+  const caption = d.querySelector('.canvas-timeline-caption > span');
+  assert.equal(caption.textContent, '空时间线');
+  assert.equal(caption.nextElementSibling.textContent, '双击打开');
+  assert.equal(d.querySelector('img').alt, 'Save 的视频首帧');
+  assert.deepEqual([...d.querySelectorAll('[data-field]')].map(e=>e.textContent), ['工具（时间线）', '操作（Python）']);
+  caption.firstChild.nodeValue = '2 clips · 12.5s';
+  await tick();
+  assert.equal(caption.textContent, '2 个片段 · 12.5 秒');
+  stop();
+  assert.equal(caption.textContent, '2 clips · 12.5s');
+  assert.equal(d.querySelector('img').alt, 'Save first video frame');
+  dom.window.close();
+});
+

@@ -1,4 +1,4 @@
-# Unreal Canvas 简体中文 0.2.0
+# Unreal Canvas 简体中文 0.2.1
 
 适配 Windows 64 位的 UE 5.9 Preview 与 Unreal Canvas 0.21.0。插件在本机为 Canvas 工作区提供简体中文。
 

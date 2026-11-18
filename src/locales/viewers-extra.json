@@ -1,0 +1,147 @@
+[
+  {
+    "selector": "[data-scroll-passthrough] > div > button[title][aria-label]",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Zoom in": "放大",
+      "Zoom out": "缩小",
+      "Reset view": "重置视图"
+    }
+  },
+  {
+    "selector": "[data-scroll-passthrough] > div,.nodrag.nowheel[data-scroll-passthrough] > div > span,.nodrag.nowheel[data-scroll-passthrough] > div > button,.nodrag.nowheel[data-scroll-passthrough] input[type='range']",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Loading panorama…": "正在加载全景图…",
+      "Failed to load panorama image": "无法加载全景图",
+      "#21:65529032d8852cbf": "高斯泼溅场景加载失败。",
+      "Can’t display this mesh": "无法显示此网格",
+      "#24:1b8cbab8822e1ada": "文件未能打开。",
+      "#39:d6fffd34d75bbdaa": "可下载原文件，或将其导入 UE 使用。",
+      "Show skeleton": "显示骨架",
+      "Hide skeleton": "隐藏骨架",
+      "Mesh opacity behind the skeleton": "骨架后方网格的不透明度",
+      "Bones": "骨骼"
+    }
+  },
+  {
+    "selector": ".nodrag.nowheel:has(button:is([aria-label='USD camera'],[aria-label='USD 摄像机'])) > div > span,.nodrag.nowheel:has(button:is([aria-label='USD camera'],[aria-label='USD 摄像机'])) > div > button,.nodrag.nowheel:has(button:is([aria-label='USD camera'],[aria-label='USD 摄像机'])) [role='alert'] > button,.nodrag.nowheel:has(button:is([aria-label='USD camera'],[aria-label='USD 摄像机'])) [role='status'],.nodrag.nowheel:has(button:is([aria-label='USD camera'],[aria-label='USD 摄像机'])) .merlin-pane-collapse,.merlin-pane-collapse[aria-expanded]",
+    "fields": [
+      "text",
+      "aria-label",
+      "title"
+    ],
+    "entries": {
+      "Preview unavailable": "预览不可用",
+      "Opening USD scene…": "正在打开 USD 场景…",
+      "Retry preview": "重试预览",
+      "Loading scene children…": "正在加载场景子项…",
+      "Retry": "重试",
+      "Show scene": "显示场景",
+      "Hide scene": "隐藏场景"
+    }
+  },
+  {
+    "selector": "button.custom-select[role='combobox'],[role='listbox']:is([aria-label='USD camera'],[aria-label='USD 摄像机']),[role='listbox']:is([aria-label='USD camera'],[aria-label='USD 摄像机']) > [role='option'][data-value=''] > span,.custom-select:is([aria-label='USD camera'],[aria-label='USD 摄像机'])[data-value=''] > span > span[aria-hidden='false']",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "USD camera": "USD 摄像机",
+      "Inspection camera": "检查摄像机"
+    }
+  },
+  {
+    "selector": "button[aria-label='Preview information'],button[aria-label='预览信息'],[role='tooltip'] output,[role='tooltip'] div",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Preview information": "预览信息",
+      "Authored USD time code": "USD 场景中记录的时间码",
+      "#27:4a046eed040ed66d": "当前仅能预览部分内容。",
+      "#80:a9583153629607d7": "无法读取场景默认相机的姿态，已改用检查相机。"
+    }
+  },
+  {
+    "selector": ".nowheel:has(video) button[title][aria-label],.nowheel:has(audio) button[title][aria-label],.nodrag.nowheel:has(button:is([aria-label='USD camera'],[aria-label='USD 摄像机'])) button[title][aria-label],button[aria-label]:has(> svg:is([data-icon='step-back'],[data-icon='step-forward'],[data-icon='loop'],[data-icon='grab-frame']))",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Previous frame": "上一帧",
+      "Next frame": "下一帧",
+      "Pause": "暂停",
+      "Play": "播放",
+      "Stop": "停止",
+      "Mute": "静音",
+      "Unmute": "取消静音",
+      "Loop": "循环播放",
+      "Grab frame": "截取当前帧",
+      "Capture animation to video": "将动画录制为视频",
+      "Cancel video capture": "取消录制视频"
+    }
+  },
+  {
+    "selector": ".nowheel:has(video) span[title],.nodrag.nowheel:has(button:is([aria-label='USD camera'],[aria-label='USD 摄像机'])) span[title]",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "#29:a2a474e3e405194f": "逗号退一帧，句号进一帧。"
+    }
+  },
+  {
+    "selector": ".nodrag.nowheel[data-scroll-passthrough] .info-panel-row > .info-panel-cell.label-cell",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Camera position:": "摄像机位置：",
+      "Camera look-at:": "摄像机注视点：",
+      "Camera up:": "摄像机上方向：",
+      "Camera mode:": "摄像机模式：",
+      "Cursor position:": "光标位置：",
+      "FPS:": "帧率：",
+      "Rendering::": "渲染：",
+      "Sort time:": "排序耗时：",
+      "Render window:": "渲染窗口：",
+      "Focal adjustment:": "焦点调整：",
+      "Splat scale:": "高斯泼溅大小：",
+      "Point cloud mode:": "点云模式："
+    }
+  },
+  {
+    "selector": ".nodrag.nowheel[data-scroll-passthrough] :is([class*='messageContainerPrimary'],[class*='messageContainerMin'])",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Loading...": "正在加载…",
+      "Optimizing data structures...": "正在优化数据结构…",
+      "Processing splats...": "正在处理高斯泼溅数据…",
+      "Processing...": "正在处理…",
+      "Downloading...": "正在下载…"
+    }
+  },
+  {
+    "selector": ".nodrag.nowheel img[alt]",
+    "fields": [
+      "alt"
+    ],
+    "entries": {
+      "USD scene preview": "USD 场景预览"
+    }
+  }
+]

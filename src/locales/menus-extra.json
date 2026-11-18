@@ -1,0 +1,461 @@
+[
+  {
+    "selector": ".tips-dialog-header h2,.tips-dialog-intro,.tips-dialog-entry *,.feature-hint-popover *",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Tips & what’s new": "提示与新功能",
+      "#43:791dae94689b5e7f": "再次打开这里可查看使用提示。",
+      "Create a Timeline": "创建时间线",
+      "#210:122333d2ed32701d": "用工具栏「+」或画布右键菜单创建时间线。双击卡片编排音视频，编辑会自动保存。",
+      "Auto-align cards": "自动对齐卡片",
+      "#131:262df8bb421ff774": "选中至少两张卡片，用「排列 → 自动对齐」等距排成一行。需要时可撤销。",
+      "Explore a result’s history": "查看结果历史",
+      "#175:f4a4cd27acf0a363": "在「历史记录」查看各版本的生成参数及可用的来源信息。",
+      "Control canvas alignment": "调整画布对齐方式",
+      "#229:fc14964e3724b36d": "移动或缩放时可对齐附近卡片的边缘和中心。按住 Shift 可临时略过卡片对齐。网格与吸附选项在偏好设置中。",
+      "Preferences": "偏好设置",
+      "Wrapping rows in Structured Layout": "结构化布局中的自动换行",
+      "#172:d7fd119eb3a3c4a3": "结构化框架会按宽度自动换行。拉宽可增加列数，将卡片拖到框外可自由摆放。",
+      "Voice shortcut": "语音快捷键",
+      "Space": "空格",
+      "#124:ced053a55bd7bd9d": "聚焦提示词框可开始听写，画布也支持语音聊天。可在听写设置中选择按住或切换录音。",
+      "Dictation settings": "听写设置",
+      "Compare from the hierarchy": "从层级视图比较卡片",
+      "#211:9e30398dd79150fc": "在查看器层级中用 Shift+单击叠加比较对象，普通单击恢复单项查看。卡组固定封面会保留。",
+      "Linked text in prompts": "在提示词中引用文本",
+      "#230:5b122e33717fce2a": "将文字卡拖入提示词或用 @ 引用卡片，即可随源文本更新。可拖动调整引用顺序，移除引用会保留原卡片。",
+      "Erase whole strokes": "擦除整条笔画",
+      "#193:3414bc6a8d7bbd60": "笔画擦除可一次清除划过的完整标记，支持撤销。图像批注的像素擦除仅影响擦过的部分。",
+      "Make agents easy to recognize": "区分不同的智能体",
+      "#156:89b25e7f7b7fee2d": "右键智能体头像或对应菜单项，打开「外观」设置并保存角色和颜色。",
+      "Locate agent work": "定位智能体正在处理的工作",
+      "#221:3393da415e27dfa3": "智能体有可定位的结果、工作或审阅项时，点击名称旁的放大镜即可在画布中定位。",
+      "Work on your own": "独立工作",
+      "#208:071fd8206a104970": "点击 Zzz 可暂时自行使用工具架，后台工作会继续。需要协助时再选择智能体。",
+      "Move floating panels": "移动浮动面板",
+      "#151:9cffca9b769e6a78": "拖动标题栏空白处移动浮窗。聚焦后可用方向键微调，Shift 加大步长。",
+      "Resize floating panels": "调整浮动面板大小",
+      "#206:a0ef0dd44bd36ddd": "拖动聊天上下边缘调节高度，拖动工具架侧边调节宽度。聚焦边缘后可用方向键，Shift 加大步长。",
+      "Choose skills for a conversation": "为对话选择技能",
+      "#264:80969986a9f9aa1a": "在技能按钮中设置当前对话可用的技能。画布位置影响继承项；允许智能体添加技能后它可解释并添加相关项。已排除项继续生效，更改应用于后续消息。",
+      "Keep references while browsing": "浏览时保留引用",
+      "#258:0db54d361ff49c59": "用 @ 或「从画布选择」添加引用，固定后切换所选卡片仍然有效。聊天引用和草稿跟随对话，工具架独立管理输入。",
+      "Work with an agent team": "与智能体团队协作",
+      "#244:6c549ce4aa5765ff": "可以让智能体邀请队友。在侧栏选择成员查看进度，或联系负责人。「继续对话」可从生成的卡片返回对应聊天。",
+      "Agents follow your canvas": "智能体跟随当前画布",
+      "#256:6d00f1d40d51d405": "侧栏列出当前根画布及内部画布和节点图的智能体。用「重新打开智能体」找回其他对话或待办。",
+      "Explore agent results": "查看智能体的工作结果",
+      "#219:3e6d07b4823cd8bc": "点击聊天缩略图可定位结果，批量图像可逐张检查。智能体挥手表示正在等你回复。"
+    }
+  },
+  {
+    "selector": ".merlin-app-menus,.merlin-app-bar [role=\"dialog\"],.merlin-app-bar [role=\"menu\"],.merlin-file-menu-section,.merlin-toolbar-floating-group,.toolbar-section,.merlin-toolbar-control-box,.merlin-toolbar-control-box [role],.merlin-toolbar-control-box button,.merlin-toolbar-control-box input,[role=\"dialog\"].nodrag.nowheel,[data-testid=\"ask-pill-frame\"] [role=\"menu\"],.canvas-card-toolbar",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "App menus": "应用菜单",
+      "Open or browse": "打开或浏览",
+      "New / Open": "新建 / 打开",
+      "Current Canvas": "当前画布",
+      "Save": "保存",
+      "Tips & what’s new": "提示与新功能",
+      "Connect an agent": "连接智能体",
+      "About Unreal Canvas": "关于 Unreal Canvas",
+      "Open canvas": "打开画布",
+      "Collaborate": "协作",
+      "Graph toolbar": "节点图工具栏",
+      "Navigation": "导航",
+      "Editing": "编辑",
+      "Filter and zoom": "筛选与缩放",
+      "Zoom": "缩放",
+      "Double-click for 100%": "双击恢复至 100%",
+      "Filter cards": "筛选卡片",
+      "Canvas actions": "画布操作",
+      "Card actions": "卡片操作"
+    }
+  },
+  {
+    "selector": ".merlin-file-menu-heading,.merlin-app-menu-label,.merlin-file-menu-item,.generation-shelf-menu-option,.generation-shelf-menu-copy > span,.generation-shelf-menu.ue-menu",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Help": "帮助",
+      "Tips & what’s new": "提示与新功能",
+      "Keyboard shortcuts": "键盘快捷键",
+      "Connect an agent": "连接智能体",
+      "About Unreal Canvas": "关于 Unreal Canvas",
+      "New / Open": "新建 / 打开",
+      "New Canvas": "新建画布",
+      "Browse Canvases…": "浏览画布…",
+      "Open Canvas File…": "打开画布文件…",
+      "Current Canvas": "当前画布",
+      "Rename Canvas…": "重命名画布…",
+      "Collaborate…": "协作…",
+      "Close Canvas": "关闭画布",
+      "Share canvas…": "共享画布…"
+    }
+  },
+  {
+    "selector": ".connect-agent-header h2,.connect-agent-header button,.connect-agent-intro,.connect-agent-note,.connect-agent-label,.connect-agent-row button",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Connect an agent": "连接智能体",
+      "Close (Esc)": "关闭 (Esc)",
+      "#210:ee93f8aeff773589": "将此地址配置给支持 MCP 的客户端。使用 Canvas 工具期间保持画布打开，应用重启后请检查连接地址。",
+      "MCP server": "MCP 服务器",
+      "Copy MCP server": "复制 MCP 服务器地址",
+      "Copy Claude Code": "复制 Claude Code 命令",
+      "Copy Codex": "复制 Codex 命令",
+      "Copy": "复制",
+      "Copied": "已复制",
+      "#198:c55891d84cd4a484": "在智能体的工作目录执行所示命令。Claude Code 按目录配置，Codex 全局生效。现有会话需重启（使用",
+      "or": "或",
+      "#24:3c8913aac0d5eef2": "可恢复对话）。"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"]:is([aria-label=\"About Unreal Canvas\"],[aria-label=\"关于 Unreal Canvas\"]) :is(span,nav [role=\"button\"],div,p,h3,h4)",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "About Unreal Canvas": "关于 Unreal Canvas",
+      "Third-Party Software": "第三方软件",
+      "Transitive Notices": "间接依赖声明",
+      "#64:3ded3b59abfd4956": "用节点图组织 AI 素材生成步骤。",
+      "Frontend version": "前端版本",
+      "Server version": "服务器版本",
+      "Server build ID": "服务器构建标识",
+      "AI Models root": "AI 模型根目录"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"]:is([aria-label=\"Open canvas\"],[aria-label=\"打开画布\"]) :is(input,section > div:first-child,div > span:first-child,span[aria-label],button[title],.ue-menu-label,.ue-menu-item)",
+    "fields": [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Open canvas": "打开画布",
+      "Filter canvases": "筛选画布",
+      "Canvases": "画布列表",
+      "#119:9e8058365d943a07": "对其他人隐藏画布列表项。共享目录的文件权限仍然适用。",
+      "not shown to others": "对其他人隐藏",
+      "hidden": "已隐藏",
+      "Rename, duplicate or delete": "重命名、创建副本或删除",
+      "Rename": "重命名",
+      "Duplicate": "创建副本",
+      "Delete": "删除",
+      "Hide from others": "对其他人隐藏",
+      "Show to others": "向其他人显示",
+      "#38:e223a82ad2734a37": "在大家的画布列表中显示",
+      "#112:18c003d5dd22c3d8": "仅从他人的画布列表隐藏，共享目录仍可访问。"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"]:is([aria-label=\"Collaborate\"],[aria-label=\"协作\"]) :is(h3,label,button,input,p)",
+    "fields": [
+      "text",
+      "placeholder",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Collaborate": "协作",
+      "Your display name": "你的显示名称",
+      "Start sharing this canvas": "开始共享此画布",
+      "Join someone else's session": "加入他人的会话",
+      "#27:5e4270cb566d81c6": "输入共享链接或房间 ID",
+      "Join": "加入",
+      "Close": "关闭",
+      "Copied": "已复制",
+      "Copy": "复制",
+      "#44:45811545a525d69a": "共享已关闭，仅自己可使用。",
+      "#34:933a69314e32f78c": "可把此共享码发给团队成员。"
+    }
+  },
+  {
+    "selector": ".merlin-toolbar-control-box .ue-menu-label,.merlin-toolbar-control-box .ue-menu-item,[role=\"dialog\"]:is([aria-label=\"Filter cards\"],[aria-label=\"筛选卡片\"]) > .ue-menu:first-child :is(.ue-menu-label,.ue-menu-heading,.ue-menu-item,.ue-menu-note)",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Zoom to 100%": "缩放至 100%",
+      "Zoom to fit": "缩放至合适大小",
+      "Show minimap": "显示小地图",
+      "Hide minimap": "隐藏小地图",
+      "Fullscreen": "全屏",
+      "Exit fullscreen": "退出全屏",
+      "Filter by": "筛选条件",
+      "Person": "人员",
+      "Age": "时间",
+      "Votes": "投票",
+      "Custom Filter…": "自定义筛选…",
+      "Saved": "已保存",
+      "#60:449f6e30e468f5e2": "切换手动关系线的可见性。",
+      "Show relationship connectors": "显示关系连线",
+      "Activate a filter to enable": "启用筛选条件后可用",
+      "#42:64d6d5fcff42ff4c": "只能选择符合筛选条件的卡片。",
+      "Lock to selection": "锁定到筛选结果",
+      "Clear all": "全部清除"
+    }
+  },
+  {
+    "selector": "[data-testid=\"canvas-settings-popover\"] > div:first-child > span:first-child,[data-testid=\"canvas-settings-popover\"] :is(div,label,textarea,.merlin-script-form-none,button),[role=\"tooltip\"]",
+    "fields": [
+      "text",
+      "placeholder",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Canvas": "画布",
+      "Background": "背景",
+      "Choose image…": "选择图像…",
+      "Context": "上下文",
+      "What this canvas is about": "画布用途",
+      "#83:b061a5469d9a7f2d": "说明这个画布的工作目标，供脚本和智能体读取。",
+      "Skills": "技能",
+      "No skills attached to": "尚未添加技能的位置：",
+      "+ Attach skill": "+ 添加技能",
+      "#69:50af44b598806a58": "在工具箱里添加、编辑、重命名或删除技能。",
+      "Manage in Toolbox": "在工具箱中管理",
+      "#140:7694dd46062fc0d0": "技能存于画布并由子画布继承。对话内的排除只作用于该对话。",
+      "#191:eb81a90d9c04df04": "记录工作目标。子画布可继承和补充，脚本及智能体可用 get_canvas_context 查询。此说明不参与节点生成。"
+    }
+  },
+  {
+    "selector": "[data-testid=\"ask-pill-frame\"] :is(.ask-pill-recipient-trigger,footer button),[data-testid=\"ask-pill-composer\"] div,.ask-pill-recipient-name,.canvas-card-ask-agent",
+    "fields": [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Ask the agent…": "询问智能体…",
+      "Choose agent for this question": "选择回答此问题的智能体",
+      "Ask the agent": "询问智能体",
+      "Choose skills for this request": "为本次请求选择技能",
+      "Send": "发送"
+    }
+  },
+  {
+    "selector": ".pill-menu-item,.pill-menu-item .ue-menu-label,.pill-menu-item .feature-hint-menu-label",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Deck": "卡组",
+      "Graph (Copy to)": "复制到新节点图",
+      "Graph (Move to)": "移入新节点图",
+      "Subcanvas": "子画布",
+      "Paste": "粘贴",
+      "Nothing copied yet": "剪贴板中暂无可粘贴内容",
+      "#62:016d612c6e8c5126": "请选择两张以上卡片，或选择一张包含多个版本的卡片。",
+      "#69:c26ab6ec3a70c951": "保留原卡片并复制到新节点图。",
+      "#60:28f620c00e5033be": "移入节点图，跨边界的连线会创建对应端口。",
+      "#35:19ced5f89affed38": "所选卡片将移至子画布。",
+      "#72:a843d98f89810d8e": "创建可编辑的节点图副本，从空输出开始生成。",
+      "#73:b3264356957269a9": "把卡片从卡组移到这里。",
+      "Move Card": "移动卡片",
+      "#92:f4a004c400725e5e": "将当前封面卡片从卡组移到此处。",
+      "Copy Card": "复制卡片",
+      "#75:05ad7d62aef15e2a": "在这里创建封面卡片及其结果的副本。",
+      "Copy Deck": "复制卡组",
+      "#42:2757825c8ae95d76": "在这里复制整个卡组及卡片。",
+      "Reveal in Explorer": "在资源管理器中显示",
+      "Save a Copy…": "另存副本…",
+      "Send To": "发送到",
+      "Finish Editing": "完成编辑",
+      "#44:710699e0bc25b9e7": "请等待卡片运行完毕。",
+      "Go to Source": "前往来源",
+      "Custom Node": "自定义节点",
+      "Update from Library": "从资源库更新",
+      "Publish to Library…": "发布到资源库…",
+      "#52:e2d6ce59a2f948a2": "保存到自定义节点库，供其他节点图使用。",
+      "Export as File…": "导出为文件…",
+      "#56:5a47ff3a225fe590": "导出节点定义为 .customnode JSON。",
+      "Graph": "节点图",
+      "Add to Library": "添加到资源库",
+      "#51:15209f0c50788792": "复制此节点图到工具箱。",
+      "#39:ff34a80c5efe8b04": "导出节点图文件（.graph.json）。",
+      "Export as Workspace File…": "导出为工作区文件…",
+      "#90:52fca30e3c73ab33": "导出包含画布、框架和布局规则的扩展工作区文件。",
+      "Reference": "引用",
+      "Create": "创建",
+      "#81:b6cc82c81a81d40a": "打开 Python 控制台，并为这个结果建立变量。",
+      "Copy": "复制",
+      "Copy with Annotations": "连同批注复制",
+      "#50:20044c2f09126c9c": "复制带有批注的合成图像。",
+      "Duplicate Graph": "创建节点图副本",
+      "Arrange": "排列",
+      "Fit to Aspect Ratio": "适配宽高比",
+      "Reset Card Size": "重置卡片大小",
+      "Fit to Text": "适应文本",
+      "Re-create Graph as New Canvas": "将节点图重建为新画布",
+      "#94:802c498e5156ae63": "在新画布打开来源节点图，修改后可再次生成。",
+      "Import Level Snapshot": "导入关卡快照",
+      "#96:ca5a9a10394f39b6": "将渲染时的关卡状态保存到内容浏览器，供检查或应用。",
+      "Edit": "编辑",
+      "Remove Reroute": "移除重路由节点",
+      "Restore Severed Wiring": "恢复断开的连线",
+      "Stop Keeping Cached Result": "停止保留缓存结果",
+      "#73:fc87c3d85c31dfbf": "参数或输入变化时允许重新执行。",
+      "Keep Cached Result": "保留缓存结果",
+      "#81:7feb90424d8705e4": "节点下次变更前使用已有结果。",
+      "Inspect": "检查",
+      "Compare": "比较",
+      "Play videos together": "同步播放视频",
+      "Frame": "框架",
+      "Alignment": "对齐",
+      "Auto-align": "自动对齐",
+      "Text Card": "文本卡片",
+      "Import File…": "导入文件…",
+      "Canvas Settings": "画布设置"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"]:is([aria-label=\"Open canvas\"],[aria-label=\"打开画布\"]) section > div,[role=\"dialog\"]:is([aria-label=\"Open canvas\"],[aria-label=\"打开画布\"]) button",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Local": "本地画布",
+      "Shared": "共享画布",
+      "#22:b4c378b052f5e685": "本机还没有画布。",
+      "#16:bde07a2f8506682e": "还没有画布。",
+      "#57:dc74f6028d9f0c2a": "当前会话无法读取共享画布列表，请查看上方消息。",
+      "#98:b0174dd0df9b53f9": "尚未共享画布。可从「设置 → 协作」或「打开 → 共享画布」添加。",
+      "Open shared canvas": "打开共享画布"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"]:is([aria-label=\"Rename canvas\"],[aria-label=\"重命名画布\"],[aria-label=\"Delete canvas?\"],[aria-label=\"删除画布？\"]),[role=\"dialog\"]:is([aria-label=\"Rename canvas\"],[aria-label=\"重命名画布\"],[aria-label=\"Delete canvas?\"],[aria-label=\"删除画布？\"]) :is(button,input),[role=\"dialog\"]:is([aria-label=\"Rename canvas\"],[aria-label=\"重命名画布\"],[aria-label=\"Delete canvas?\"],[aria-label=\"删除画布？\"]) > div:first-child",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Rename canvas": "重命名画布",
+      "#14:f671b187491f4f07": "确定删除画布？",
+      "new canvas name": "新的画布名称",
+      "Cancel": "取消",
+      "Renaming…": "正在重命名…",
+      "Rename": "重命名",
+      "Deleting…": "正在删除…",
+      "Delete": "删除"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"]:is([aria-label=\"Collaborate\"],[aria-label=\"协作\"]) :is(div,p,button)",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Reshare (same code)": "重新共享（沿用原共享码）",
+      "Unshare": "取消共享",
+      "#7:dfb2b12b255de30c": "已复制到剪贴板",
+      "Stop sharing": "停止共享",
+      "#36:22a4e26db4132c12": "文件存放在共享目录中。",
+      "#74:97c78af822439f5b": "项目成员可通过画布列表或共享码打开。",
+      "#38:850896edf6471e94": "画布共享成功，以下文件需要另行处理：",
+      "#137:9c9b19b82b5232ef": "关闭共享后，其他人将无法在 Canvas 列表看到画布；共享目录原有的文件访问权限仍然有效。"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"]:is([aria-label=\"Filter cards\"],[aria-label=\"筛选卡片\"]) .ue-menu:has(input[type=\"range\"]) :is(input,span),[role=\"dialog\"]:is([aria-label=\"Filter cards\"],[aria-label=\"筛选卡片\"]) .ue-menu-note,[role=\"dialog\"]:is([aria-label=\"Filter cards\"],[aria-label=\"筛选卡片\"]) .ue-menu-inline-remove",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "#54:c198ce30813971f7": "保留天数，滑到最右侧为不限。",
+      "today": "今天",
+      "today only": "仅限今天",
+      "any age": "不限时间",
+      "any": "不限",
+      "#20:d3fddbc48e698c03": "没有可供选择的值。",
+      "#69:9a4780096c8fcb8b": "尚无已保存的筛选。请在「自定义筛选」中命名并保存。",
+      "Delete this saved filter": "删除此筛选条件"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"][aria-modal=\"true\"],[role=\"dialog\"]:is([aria-label=\"Custom Filter\"],[aria-label=\"自定义筛选\"]) > div,[role=\"dialog\"]:is([aria-label=\"Custom Filter\"],[aria-label=\"自定义筛选\"]) > div:first-child > span:first-child,[role=\"dialog\"]:is([aria-label=\"Custom Filter\"],[aria-label=\"自定义筛选\"]) input,[role=\"dialog\"]:is([aria-label=\"Custom Filter\"],[aria-label=\"自定义筛选\"]) > div:last-child > button,[role=\"dialog\"]:is([aria-label=\"Custom Filter\"],[aria-label=\"自定义筛选\"]) button.custom-select,[role=\"dialog\"]:is([aria-label=\"Custom Filter\"],[aria-label=\"自定义筛选\"]) select option[value=\"\"],[role=\"dialog\"]:is([aria-label=\"Custom Filter\"],[aria-label=\"自定义筛选\"]) button.custom-select > span,[role=\"dialog\"]:is([aria-label=\"Custom Filter\"],[aria-label=\"自定义筛选\"]) [role=\"group\"] > button,[role=\"dialog\"]:is([aria-label=\"Custom Filter\"],[aria-label=\"自定义筛选\"]) [role=\"group\"] [role=\"group\"] button",
+    "fields": [
+      "text",
+      "title",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Custom Filter": "自定义筛选",
+      "#302:e96bb70aef520d84": "先添加字段，再填写条件或选取值。文本忽略大小写，可用「不等于」排除，多行可重复使用同一字段。「且」优先于「或」，编辑立即生效。",
+      "+ Add field…": "+ 添加字段…",
+      "Saved filter name": "筛选条件名称",
+      "Name this filter…": "为筛选条件命名…",
+      "#35:a090e7bbee0515c0": "至少添加一个条件才能保存。",
+      "Save filter": "保存筛选条件",
+      "Remove this criterion": "移除此条件",
+      "Combine with the row above": "与上一行组合",
+      "Combine with AND": "与上一行同时满足",
+      "Combine with OR": "与上一行满足其一",
+      "and": "且",
+      "or": "或",
+      "is": "等于",
+      "is not": "不等于"
+    }
+  },
+  {
+    "selector": ".merlin-skill-picker,.merlin-skill-picker input,.merlin-skill-picker-list,.merlin-skill-picker-empty,.merlin-skill-attach [role=\"group\"],button[data-graph-edit-lock],.canvas-card-toolbar .node-header-btn",
+    "fields": [
+      "text",
+      "aria-label",
+      "placeholder",
+      "title"
+    ],
+    "entries": {
+      "Attach a skill": "添加技能",
+      "Search skills": "搜索技能",
+      "Skills to attach": "可添加的技能",
+      "Attached skills": "已添加的技能",
+      "#19:6b096e5403455ad5": "找不到符合条件的技能。",
+      "#42:1a4fb8bf8998402d": "尚无技能，点击工具箱的「+」创建。",
+      "#24:3be9dca31e95a221": "可选技能均已添加。",
+      "Loading skills…": "正在加载技能…",
+      "Graph editing open": "节点图可编辑",
+      "Graph editing locked": "节点图编辑已锁定",
+      "Edit Script": "编辑脚本"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"]:is([aria-label=\"Rename canvas\"],[aria-label=\"重命名画布\"]) > div:nth-child(2) > div > div:first-child",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "New name for \"": "画布“",
+      "\":": "”的新名称"
+    }
+  }
+]
