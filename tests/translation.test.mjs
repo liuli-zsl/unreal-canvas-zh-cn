@@ -214,3 +214,30 @@ test('loading progress keeps the canvas name and updates the translated count', 
   assert.equal(button.title, 'Save — background results');
   dom.window.close();
 });
+
+test('editor picker distinguishes connection actions from project names, level names and paths', async () => {
+  const {dom, d, stop} = setup('<div class="unreal-editor-menu"><div class="ue-menu-heading">Running editors</div>'
+    + '<div class="unreal-editor-menu-status-title">Save has Unreal Canvas Bridge: every Unreal node works.</div>'
+    + '<button role="menuitemradio"><span class="ue-menu-label">Disconnect</span><span class="ue-menu-detail">Back</span></button>'
+    + '<div class="unreal-editor-menu-row"><button title="D:/Save.uproject\nOpens with UE 5.9 (source), D:/UE"><span class="ue-menu-label">Start in the background</span><span class="ue-menu-count">UE 5.9 (source)</span></button></div>'
+    + '<button role="menuitem"><span class="ue-menu-label">Disconnect</span></button></div>');
+  const title = d.querySelector('.unreal-editor-menu-status-title');
+  const selected = d.querySelector('[role=menuitemradio]');
+  const recent = d.querySelector('.unreal-editor-menu-row button');
+  const action = d.querySelector('[role=menuitem]');
+  assert.equal(title.textContent, 'Save 已启用 Unreal Canvas Bridge，所有 Unreal 节点均可使用。');
+  assert.equal(selected.firstChild.textContent, 'Disconnect');
+  assert.equal(selected.lastChild.textContent, 'Back');
+  assert.equal(recent.firstChild.textContent, 'Start in the background');
+  assert.equal(recent.lastChild.textContent, 'UE 5.9（源码版）');
+  assert.match(recent.title, /^D:\/Save\.uproject\n使用 UE 5\.9（源码版）.*D:\/UE$/);
+  assert.equal(action.textContent, '断开连接');
+  title.firstChild.nodeValue = "Back doesn't have Unreal Canvas Bridge.";
+  await tick();
+  assert.equal(title.textContent, 'Back 未启用 Unreal Canvas Bridge。');
+  stop();
+  assert.equal(action.textContent, 'Disconnect');
+  assert.equal(title.textContent, "Back doesn't have Unreal Canvas Bridge.");
+  assert.equal(recent.title, 'D:/Save.uproject\nOpens with UE 5.9 (source), D:/UE');
+  dom.window.close();
+});

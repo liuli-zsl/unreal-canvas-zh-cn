@@ -1,0 +1,173 @@
+[
+  {
+    "selector": ".media-library-archived-grab,.media-library-locate,.media-library .merlin-panel-icon-button,.media-library .merlin-panel-chip,.media-library-more,.media-library .merlin-panel-search input,.media-library-results [role=dialog] :is(div,button),.media-library [role=alert]",
+    "fields": [
+      "text",
+      "aria-label",
+      "title",
+      "placeholder"
+    ],
+    "entries": {
+      "Show on canvas": "在画布中定位",
+      "#52:c3e7512bfd14c3b0": "拖回画布即可在落点恢复卡片。",
+      "Show everything again": "重新显示全部内容",
+      "#203:7545c6b720320389": "删除卡片也会移除生成结果。卡组和节点图会连同内部内容删除；清空历史前可撤销。",
+      "Cancel": "取消",
+      "Delete permanently": "永久删除",
+      "Show more (": "显示更多（还有",
+      "remaining)": "项）",
+      "Find an item…": "查找项目…",
+      "#79:ed343c00dbdee216": "来源已失效，请刷新资源库。",
+      "#80:1e13d804fd549b7f": "刷新资源库后重新选择卡片。",
+      "#77:8139b3d1d7a06319": "找不到该卡片，请刷新资源库。"
+    }
+  },
+  {
+    "selector": ".merlin-rail-body-content:has(.media-library) > .ue-menu .ue-menu-item > .ue-menu-label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Restore": "恢复",
+      "Show where it was": "定位归档前的位置",
+      "Show on canvas": "在画布中定位",
+      "Delete permanently": "永久删除",
+      "Copy file path": "复制文件路径"
+    }
+  },
+  {
+    "selector": "[data-testid=timeline-trim-start],[data-testid=timeline-trim-end],[data-testid=shared-viewer-transport],[data-testid=shared-viewer-transport] > [role=status]",
+    "fields": [
+      "aria-label",
+      "text"
+    ],
+    "entries": {
+      "Trim start": "修剪起点",
+      "Trim end": "修剪终点",
+      "Synchronized playback": "同步播放",
+      "Waiting for playable media…": "正在等待可播放的媒体…"
+    }
+  },
+  {
+    "selector": "button[title][aria-label]:has(> span),button[title][aria-label]:not(:has(*)),span[title]:has(> span)",
+    "fields": [
+      "aria-label",
+      "title"
+    ],
+    "entries": {
+      "#71:95598d0387b5db2d": "正在联动播放，点击可解除同步。",
+      "#37:31524456b408afe0": "让多个片段共用播放时间。",
+      "#45:be1455458b484226": "调整片段起始偏移以对齐画面。",
+      "One frame earlier": "提前一帧",
+      "One frame later": "推迟一帧",
+      "#29:a2a474e3e405194f": "逗号退一帧，句号进一帧。"
+    }
+  },
+  {
+    "selector": "button:is([title^='Sync is on:'],[title^='Play the clips together'],[title^='片段正同步播放'],[title='使用同一时间基准同步播放片段'],[title^='Offsets:'],[title='调整时间偏移，使各片段对齐']) > span,div:has(> button > svg[data-icon=step-back]) > span:not([title])",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Sync": "同步",
+      "Offsets": "时间偏移",
+      "Waiting for every clip": "正在等待所有片段就绪"
+    }
+  },
+  {
+    "selector": "div:has(> button > svg[data-icon=step-back]) > span[title],span[title]:has(+ button):not(:first-child)",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "#68:331283c3ad2280b3": "拖动调整偏移。按住 Shift 以十帧为步长，双击归零。"
+    }
+  },
+  {
+    "selector": ".nodrag.nowheel:has(.merlin-pane-collapse[aria-expanded]) div:not([title]):not([role])",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "No children": "没有子项"
+    }
+  },
+  {
+    "selector": ".viewer-compact-toolbar button,.viewer-header-tools .toolbar-section,.bottom-node-viewer > .merlin-panel-control-btn,.bottom-node-viewer > .merlin-split-handle,.annotation-toolbar button,.bottom-node-viewer [aria-label='Hierarchy'],.bottom-node-viewer [aria-label='层级']",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Fill Canvas (F11)": "填满画布（F11）",
+      "Resize viewer": "调整查看器大小",
+      "#57:27dedf13805575cc": "拖动边缘调节查看器尺寸，拖到右端可关闭。",
+      "Playback": "播放控制",
+      "Panels": "面板",
+      "View": "视图",
+      "Capture": "捕获",
+      "Render pass": "渲染通道",
+      "Close this pane": "关闭此窗格",
+      "View result": "查看结果",
+      "Pick points": "选取点",
+      "Segment image": "分割图像",
+      "Cancel segmentation": "取消分割",
+      "Toggle draw mode (D)": "切换绘制模式（D）",
+      "#66:1b5c3ead78407b04": "请在图像层或批注层添加标记。",
+      "Delete annotation layer": "删除批注层",
+      "Delete mask layer": "删除遮罩层",
+      "Mesh view": "网格视图",
+      "Comparison layout": "对比布局",
+      "Exit compare (Esc)": "退出对比（Esc）",
+      "Capture frame to history": "将当前帧保存到历史记录",
+      "Grab frame at current time": "截取当前帧",
+      "#66:3209e53cf8ee3b10": "封面已固定，点击恢复自动更新。",
+      "#58:2a563ea9589650ca": "封面跟随视图，点击可固定当前画面。",
+      "Download mesh": "下载网格",
+      "Download video": "下载视频",
+      "Undo stroke (Ctrl+Z)": "撤销笔画（Ctrl+Z）",
+      "Redo stroke (Ctrl+Shift+Z)": "重做笔画（Ctrl+Shift+Z）",
+      "Compare results": "对比结果",
+      "Crop, turn or flip": "裁剪、旋转或翻转",
+      "Cancel crop (Esc)": "取消裁剪（Esc）",
+      "Turn left": "向左旋转",
+      "Turn right": "向右旋转",
+      "Flip horizontally": "水平翻转",
+      "Flip vertically": "垂直翻转",
+      "Back to the original": "恢复原始状态",
+      "#65:8e200eec2455bade": "保留原图，并在旁边创建编辑后的图像。",
+      "#65:b3dbef0a27b58588": "保留原视频，并在旁边创建编辑后的视频。",
+      "Cancel (Esc)": "取消（Esc）",
+      "Apply (Enter)": "应用（Enter）",
+      "#30:c1bab43421b18e95": "保存为新版本（Enter）",
+      "Remove the crop": "移除裁剪",
+      "Show hierarchy": "显示层级",
+      "Hide hierarchy": "隐藏层级",
+      "Hierarchy": "层级"
+    }
+  },
+  {
+    "selector": ".viewer-compact-toolbar button[title]",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Reset": "重置",
+      "Cancel": "取消",
+      "Done": "完成",
+      "Applying…": "正在应用…",
+      "Save as new": "另存为新",
+      "image": "图像",
+      "video": "视频"
+    }
+  },
+  {
+    "selector": ".nodrag.nowheel:has(.merlin-pane-collapse[aria-expanded]) button:not([title]):not([role]):not(:has(*))",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      ")": "）"
+    }
+  }
+]

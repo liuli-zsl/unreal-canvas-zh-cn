@@ -1,0 +1,87 @@
+[
+  {
+    "selector": ".unreal-editor-menu",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Unreal Editors": "虚幻编辑器"
+    }
+  },
+  {
+    "selector": ".unreal-editor-menu .ue-menu-heading,.unreal-editor-menu .ue-menu-note,.unreal-editor-menu .unreal-editor-menu-tag,.unreal-editor-menu .unreal-editor-menu-recheck,.unreal-editor-menu .unreal-editor-menu-quit,.unreal-editor-menu .unreal-editor-menu-status-detail,.unreal-editor-menu .unreal-editor-menu-starting[role=presentation] .ue-menu-label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Running editors": "运行中的编辑器",
+      "Recent projects": "最近的工程",
+      "#28:6d1446d1be1e7e59": "当前没有运行中的 UE 编辑器。",
+      "#46:1ebde62fc8139d3b": "在这台电脑上未发现 UE 安装。",
+      "#17:aa391b3cc9a2695d": "没有找到符合条件的关卡。",
+      "Listing levels…": "正在获取关卡列表…",
+      "Unsaved changes": "未保存的更改",
+      "MCP only": "仅 MCP",
+      "No MCP server": "无 MCP 服务",
+      "Starting…": "启动中…",
+      "Background": "后台运行",
+      "Check again": "重新检查",
+      "Quit": "退出",
+      "#58:305e82aae6604507": "待编辑器载入后，这里会自动刷新。",
+      "#105:99c682275e71013d": "等待编辑器的 MCP 服务启动，Canvas 会自动连接。",
+      "#87:09de7f859d02eb44": "请检查编辑器的 MCP 服务，必要时重启编辑器。",
+      "#29:2eec99eba00799a3": "此编辑器不支持执行 Unreal 节点。",
+      "#90:eac2052656246ce9": "请在「编辑 → 插件」启用 Unreal Canvas Bridge 并重启 UE。",
+      "#145:30855131def92714": "请启用 Model Context Protocol。如已安装 Unreal Canvas Bridge，也请启用。重启 UE 后生效。"
+    }
+  },
+  {
+    "selector": ".unreal-editor-menu > button > .ue-menu-label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Start in the background": "在后台启动",
+      "Open UProject…": "打开 UE 工程…",
+      "Open level…": "打开关卡…",
+      "Disconnect": "断开连接",
+      "Quit and disconnect": "退出编辑器并断开连接",
+      "Back": "返回",
+      "Cancel": "取消"
+    }
+  },
+  {
+    "selector": ".unreal-editor-menu button",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "#103:95ec55ebb494a4f5": "隐藏编辑器窗口并在后台运行，仍可编辑关卡、渲染和接收视口画面。",
+      "#55:4d06b39eab5d3d57": "在编辑器中打开选定的 .uproject 文件。",
+      "#68:6070839266997c59": "选择要打开的关卡。",
+      "#84:82df894e2b58940f": "暂停此编辑器的关卡操作，重新选择即可连接。",
+      "#95:aca8fbe77dd4280d": "退出并断开连接。退出前可处理尚未保存的更改。",
+      "#114:82b72f3f5755a466": "关闭后台编辑器。退出前可选择是否保存更改。",
+      "Remove from recent projects": "从最近工程中移除"
+    }
+  },
+  {
+    "selector": ".unreal-level-picker-search input,.unreal-level-picker-search [aria-label]",
+    "fields": [
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Search levels": "搜索关卡"
+    }
+  },
+  {
+    "selector": ".unreal-editor-chip",
+    "fields": [
+      "aria-description"
+    ],
+    "entries": {
+      "#49:7e481c7ef0ae84fc": "连接 UE 编辑器并选择工程"
+    }
+  }
+]

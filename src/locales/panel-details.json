@@ -1,0 +1,363 @@
+[
+  {
+    "selector": ".merlin-skill-attach-list, .merlin-skill-attach-actions > button, .merlin-skill-picker, .merlin-skill-picker-list, .merlin-skill-picker-search input, .merlin-skill-picker-empty:not([role=\"alert\"]), .chat-skills-scope-editor button[aria-expanded], .chat-skills-scope-editor button[aria-expanded] > span, .chat-skills-scope-editor summary",
+    "fields": [
+      "text",
+      "aria-label",
+      "title",
+      "placeholder"
+    ],
+    "entries": {
+      "Attached skills": "已挂接的技能",
+      "+ Attach skill": "+ 挂接技能",
+      "Manage in Toolbox": "在工具箱中管理",
+      "#69:50af44b598806a58": "在工具箱里添加、编辑、重命名或删除技能。",
+      "Attach a skill": "挂接技能",
+      "Search skills": "搜索技能",
+      "Skills to attach": "可挂接的技能",
+      "#19:6b096e5403455ad5": "找不到符合条件的技能。",
+      "#42:1a4fb8bf8998402d": "尚无技能，点击工具箱的「+」创建。",
+      "#24:3be9dca31e95a221": "可选技能均已添加。",
+      "Loading skills…": "正在加载技能…",
+      "Canvas defaults": "画布默认设置"
+    }
+  },
+  {
+    "selector": "[role=\"listbox\"]:is([aria-label=\"Skill selection\"],[aria-label=\"技能选择\"]), .chat-skills-reset, .mini-agent-chat .agent-setup-header > strong",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Skill selection": "技能选择",
+      "Agent setup": "智能体设置",
+      "Close canvas skills": "收起画布技能"
+    }
+  },
+  {
+    "selector": ".chat-skills-scope-editor .merlin-skill-attach-actions button,.chat-skills-reset,.chat-skills-section-heading > small,.chat-skills-heading,.chat-skills-list > label > span > small:first-of-type",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Close canvas skills": "收起画布技能",
+      "Selectable here": "可在此选择",
+      "Read-only": "只读",
+      "Excluded in this conversation": "已在本次对话中排除",
+      "#33:ff4ee518b8ae05d4": "提示词建议使用此技能，尚未开启。",
+      "Available to add": "可以添加"
+    }
+  },
+  {
+    "selector": ".provider-settings-row > span,.provider-settings-row > button",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Credential available": "凭据可用",
+      "Manage": "管理"
+    }
+  },
+  {
+    "selector": ".mini-agent-chat-compose [role=\"separator\"]",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "Drag to resize": "拖动以调整输入框大小"
+    }
+  },
+  {
+    "selector": ".merlin-script-editor > p,.merlin-script-side-locked",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#59:48f73e0bf08e5993": "脚本编辑器出错，画布内容已保留。",
+      "#117:aa277e5895531c14": "存在优先级更高的同 ID 技能，本文件的更改只保存在本库。"
+    }
+  },
+  {
+    "selector": ".agent-detail-tabs, .agent-detail-tabs > button",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Agent details": "智能体详情",
+      "Messages": "消息",
+      "Tasks": "任务",
+      "Activity": "活动"
+    }
+  },
+  {
+    "selector": ".agent-detail-header h2",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "Double-click to rename": "双击重命名"
+    }
+  },
+  {
+    "selector": ".agent-locate-button",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Locate agent": "定位智能体",
+      "No location available": "当前没有可定位的位置"
+    }
+  },
+  {
+    "selector": ".agent-chat-status .agent-status, .agent-status-text, .agent-chat-status .agent-setup-inline-link, .agent-configure-button, .mini-agent-chat-model:disabled:not(:has(*)), .mini-agent-chat .generation-shelf-conversation",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "#36:f730e39f90d48e58": "先完成智能体设置，即可开始交谈。",
+      "Setup required": "需要配置",
+      "Manage connections": "管理连接",
+      "Setup agent": "配置智能体",
+      "No model": "未选择模型",
+      "Agent conversation": "智能体对话"
+    }
+  },
+  {
+    "selector": ".agent-task-heading :is(h2,p), .agent-task-empty > :is(strong,p), .agent-task-filters, .agent-task-filters > button, .agent-task-composer, .agent-task-title-input > span, .agent-task-title-input > input, .agent-task-compose-row > button, .agent-task-dependencies, .agent-task-breadcrumb > button",
+    "fields": [
+      "text",
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Our task list": "我们的任务列表",
+      "Team & independent work": "团队任务与独立任务",
+      "Show tasks": "筛选任务",
+      "Everyone": "所有人",
+      "Needs you": "需要你处理",
+      "New task": "新建任务",
+      "Task": "任务",
+      "+ Add a task…": "+ 添加任务…",
+      "Add": "添加",
+      "No tasks yet": "暂无任务",
+      "#66:591429eee537291f": "手动分派任务，或让智能体在工作时生成计划。",
+      "Task dependencies": "任务依赖",
+      "Task path": "任务路径",
+      "All tasks": "全部任务"
+    }
+  },
+  {
+    "selector": ".agent-task-owner-input .agent-assignee-picker",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Assign to": "分派给"
+    }
+  },
+  {
+    "selector": ".agent-activity-heading > :is(h2,p), .agent-activity-presence, .agent-activity-presence > summary, .agent-activity-feed, .agent-activity-empty, .agent-activity-diagnostics > :is(summary,h3,p.agent-detail-muted), .agent-activity-diagnostics .agent-detail-disclosure > :is(summary,p.agent-detail-muted), .agent-activity-task, .agent-activity-presence > div > button, .agent-task-breadcrumb > button",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Team activity": "团队活动",
+      "#51:ad9a741ac90e9d85": "追踪任务负责人、交接与进度。",
+      "Current agent status": "智能体当前状态",
+      "Agent status ·": "智能体状态 ·",
+      "active": "个正在工作",
+      "Team activity timeline": "团队活动时间线",
+      "#61:1ca80a942781eb64": "团队开始执行后将在此列出任务进度。",
+      "Runtime details": "运行详情",
+      "Current activity": "当前活动",
+      "#29:5519cc35951ea572": "暂无进行中的活动记录。",
+      "Recent activity (": "最近活动 (",
+      "#28:5c53adf6c3ab9150": "近期没有活动记录。",
+      "Sessions & diagnostics": "会话与诊断",
+      "View task ↗": "查看任务 ↗",
+      "Reconnect": "重新连接",
+      "All activity": "全部活动"
+    }
+  },
+  {
+    "selector": ".agent-action-menu .ue-menu-label, .agent-appearance-picker .ue-menu-heading, .agent-action-shapes, .agent-action-colors, .agent-name-editor",
+    "fields": [
+      "text",
+      "aria-label",
+      "title"
+    ],
+    "entries": {
+      "Messages": "消息",
+      "Rename…": "重命名…",
+      "Appearance…": "外观…",
+      "Close…": "关闭…",
+      "Agent appearance": "智能体外观",
+      "Agent color": "智能体颜色",
+      "Appearance": "外观",
+      "Color": "颜色",
+      "Back": "返回",
+      "Done": "完成",
+      "Agent name": "智能体名称",
+      "#32:0499cfe5b98c7d98": "Enter 确认，Esc 放弃。"
+    }
+  },
+  {
+    "selector": ".chat-skills-popover, .chat-skills, .chat-skills-heading > :is(strong,span), .chat-skills-search input, .chat-skills-expansion, .chat-skills-expansion > span:first-child, .chat-skills-expansion button.custom-select, .chat-skills-expansion button.custom-select span[aria-hidden] , .chat-skills-help, .chat-skills-chips > span:not([role]), .chat-skills-chips > span[role=\"alert\"] > button, .chat-skills-reset, .chat-skills-list > p, .chat-skills-section-heading > :is(span,strong), .chat-skills-scope-editor",
+    "fields": [
+      "text",
+      "aria-label",
+      "placeholder",
+      "title"
+    ],
+    "entries": {
+      "Chat skills": "聊天技能",
+      "Skills for this conversation": "本次对话的技能",
+      "Skills": "技能",
+      "No active skills": "没有启用的技能",
+      "Loading skills": "正在加载技能",
+      "Loading skills…": "正在加载技能…",
+      "Skills could not be loaded": "无法加载技能",
+      "Search skills": "搜索技能",
+      "Search skills…": "搜索技能…",
+      "#207:1dd024eca85ac53b": "可固定使用已选技能、由智能体建议，或让它说明理由并自动添加。排除项仍然有效，两个菜单共用这项策略。",
+      "Skill selection": "技能选择",
+      "Selected only": "仅使用所选技能",
+      "Suggest": "建议启用",
+      "Add automatically": "自动添加",
+      "#33:da8bc8f26abc8be0": "此消息未选用技能。",
+      "#122:39066dfe56f7fcf9": "团队工作期间暂时锁定选择策略，当前提示词的技能仍可调整。",
+      "#95:003bac548bafaf5d": "画布技能取决于当前位置。此选择和策略仅适用于这段对话。",
+      "Edit canvas skills": "编辑画布技能",
+      "#99:39b462a9610881ff": "先在工具箱创建技能，再把它加入当前画布或对话。",
+      "#19:6b096e5403455ad5": "找不到符合条件的技能。",
+      "Reset conversation choices": "重置本次对话的选择",
+      "Canvas defaults": "画布默认设置",
+      "Unreal Canvas skills": "Unreal Canvas 技能",
+      "Selectable here": "可在此选择",
+      "Inherited from local CLI": "继承自本地命令行",
+      "Read-only": "只读",
+      "Retry": "重试"
+    }
+  },
+  {
+    "selector": ".agent-mcp-servers, .agent-mcp-servers-header > :is(h2,h3,strong), .agent-mcp-servers > p, .agent-mcp-servers > a, .agent-provider-setup-request, .agent-provider-setup-request button, .agent-chat-open-messages",
+    "fields": [
+      "text",
+      "aria-label",
+      "title"
+    ],
+    "entries": {
+      "MCP servers": "MCP 服务器",
+      "Checking this chat's MCP servers…": "正在检查本次聊天的 MCP 服务器…",
+      "#29:3287d8b4db8d62a2": "当前对话尚未连接 MCP 服务器。",
+      "Open the sign-in page": "打开登录页",
+      "Provider setup invitation": "服务商配置邀请",
+      "Open provider setup": "打开服务商配置",
+      "Not now": "暂不配置",
+      "Open Messages": "打开消息"
+    }
+  },
+  {
+    "selector": ".merlin-script-editor-btn, .merlin-script-form-remove, .merlin-script-heading-edit, .merlin-script-form, .merlin-skill-attach-inherited-label",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Close the editor": "关闭编辑器",
+      "Clear the icon": "清除图标",
+      "Rename workspace": "重命名工作区",
+      "Workspace structure": "工作区结构",
+      "Workspace summary": "工作区摘要",
+      "Also active by inheritance": "同时通过继承生效"
+    }
+  },
+  {
+    "selector": ".agent-action-shapes > button > span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Pebble": "石子",
+      "Flame": "火焰",
+      "Cat": "猫",
+      "Cowboy": "牛仔",
+      "Baseball": "棒球",
+      "Rabbit": "兔子",
+      "Cloud": "云朵",
+      "Star": "星星",
+      "Cthulhu": "克苏鲁",
+      "Dino": "恐龙",
+      "Skeleton": "骷髅",
+      "Buff": "大力士",
+      "Merlin": "梅林"
+    }
+  },
+  {
+    "selector": ".agent-action-shapes > button",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Pebble appearance": "石子外观",
+      "Flame appearance": "火焰外观",
+      "Cat appearance": "猫外观",
+      "Cowboy appearance": "牛仔外观",
+      "Baseball appearance": "棒球外观",
+      "Rabbit appearance": "兔子外观",
+      "Cloud appearance": "云朵外观",
+      "Star appearance": "星星外观",
+      "Cthulhu appearance": "克苏鲁外观",
+      "Dino appearance": "恐龙外观",
+      "Skeleton appearance": "骷髅外观",
+      "Buff appearance": "大力士外观",
+      "Merlin appearance": "梅林外观"
+    }
+  },
+  {
+    "selector": ".agent-action-colors > button",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "Mint": "薄荷绿",
+      "Lilac": "淡紫色",
+      "Sky": "天蓝色",
+      "Peach": "桃色",
+      "Rose": "玫瑰色",
+      "Gold": "金色",
+      "Coral": "珊瑚色",
+      "Orange": "橙色",
+      "Lime": "青柠色",
+      "Teal": "青绿色",
+      "Indigo": "靛蓝色",
+      "Magenta": "品红色"
+    }
+  },
+  {
+    "selector": ".agent-action-colors > button",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Mint agent": "薄荷绿智能体",
+      "Lilac agent": "淡紫色智能体",
+      "Sky agent": "天蓝色智能体",
+      "Peach agent": "桃色智能体",
+      "Rose agent": "玫瑰色智能体",
+      "Gold agent": "金色智能体",
+      "Coral agent": "珊瑚色智能体",
+      "Orange agent": "橙色智能体",
+      "Lime agent": "青柠色智能体",
+      "Teal agent": "青绿色智能体",
+      "Indigo agent": "靛蓝色智能体",
+      "Magenta agent": "品红色智能体"
+    }
+  }
+]

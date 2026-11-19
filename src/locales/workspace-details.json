@@ -1,0 +1,2481 @@
+{
+  "translations": {
+    "#62:79a7b024c350d9dc": "（按资产补偿 glTF 与 UE 的正面朝向差异）",
+    "#40:f4d0aed7b77bf0d2": "（留空以使用定序器当前打开的序列）",
+    "#20:ef18a3fa5ddd7aa0": "（取去掉扩展名的文件名）",
+    "+ Add Image": "+ 添加图像",
+    "+ Add input": "+ 添加输入",
+    "#54:b5313adf324aa7c9": "＋添加输入，点击或将连线拖到接口圆点",
+    "+ Add output": "+ 添加输出",
+    "#55:ad374fbb345e8610": "＋添加输出，点击或将连线拖到接口圆点",
+    "0 = unlimited": "0 表示无限制",
+    "#29:592d289632575ba6": "填 0 即使用从当前位置到片尾的全部内容。",
+    "1 per pixel": "每像素 1 次",
+    "1 · red": "1 · 红",
+    "10 (fast)": "10（快速）",
+    "10 seconds": "10 秒",
+    "1024 × 1024 (square)": "1024 × 1024（正方形）",
+    "1080 × 1920 (vertical)": "1080 × 1920（竖屏）",
+    "16 per pixel": "每像素 16 次",
+    "1920 × 1080 (HD)": "1920 × 1080（高清）",
+    "2 · blue": "2 · 蓝",
+    "20 (recommended)": "20（推荐）",
+    "2048 × 2048 (square)": "2048 × 2048（正方形）",
+    "262K (max quality)": "262K（最高质量）",
+    "3 · green": "3 · 绿",
+    "32K (fastest)": "32K（最快）",
+    "3840 × 2160 (UHD)": "3840 × 2160（超高清）",
+    "4 per pixel": "每像素 4 次",
+    "4 · orange": "4 · 橙",
+    "5 seconds": "5 秒",
+    "5 · pink": "5 · 粉",
+    "6 · purple": "6 · 紫",
+    "7 · cyan": "7 · 青",
+    "720 × 1280 (vertical)": "720 × 1280（竖屏）",
+    "8 · lime": "8 · 黄绿",
+    "AR": "阿拉伯语",
+    "#40:ac0223608540d7e2": "支持算式，例如 1920/512。",
+    "Add": "相加",
+    "Add USD scene": "添加 USD 场景",
+    "#43:f4812ea0f3580fa7": "从画布、磁盘或剪贴板导入 USD 场景",
+    "Add a task…": "添加任务…",
+    "Add additional providers": "添加更多服务商",
+    "Add audio": "添加音频",
+    "#39:3dc20ff5dfef957d": "从画布、磁盘或剪贴板导入音频",
+    "#129:4c8582e382f0bede": "在目标内部标前景点，在需要排除的位置标背景点。坐标以源图像素计。",
+    "Add image": "添加图像",
+    "#39:5081216f6aea5e5e": "从画布、磁盘或剪贴板导入图像",
+    "Add mesh": "添加网格",
+    "#38:14d2de54cb5e9906": "从画布、磁盘或剪贴板导入网格",
+    "Add provider": "添加服务商",
+    "Add task (Enter)": "添加任务（Enter）",
+    "Add video": "添加视频",
+    "#39:552ba26bd2cd3bd0": "从画布、磁盘或剪贴板导入视频",
+    "Aggregator": "聚合方式",
+    "Align to image": "与图像对齐",
+    "Allow Overwrite": "允许覆盖",
+    "#111:beac051b71025325": "额外从原始几何体烘焙环境光遮蔽。原网格缺少遮蔽贴图时会采用烘焙结果。",
+    "#121:4b59784bab7d7ea2": "可将生成的序列同时存到 /Game/Merlin/RepositionSequence，供定序器打开。默认关闭。",
+    "Ambient Occlusion": "环境光遮蔽",
+    "#194:4edb2da01f55e2f4": "UE 离屏运行时按给定宽高输出。使用可见窗口时保留视口大小，并等比缩放到目标范围内。",
+    "Android OpenGL High": "Android OpenGL 高画质",
+    "Android OpenGL Low": "Android OpenGL 低画质",
+    "Android OpenGL Mid": "Android OpenGL 中画质",
+    "Android Vulkan High": "Android Vulkan 高画质",
+    "Android Vulkan Low": "Android Vulkan 低画质",
+    "Android Vulkan Mid": "Android Vulkan 中画质",
+    "Annotated": "已批注",
+    "Annotations": "批注",
+    "Any": "任意",
+    "#43:55abbad72de02e73": "接受任意值，请到详情面板指定类型。",
+    "Aperture size": "孔径大小",
+    "#162:58d2b798aab3c8a2": "把骨骼用于原始分辨率的带纹理网格。导入 UE 时建议保留此项。",
+    "#88:8b13039ae460d8a3": "渲染采用视口当前的显示标志，可控制雾、地形、粒子或网格线等。",
+    "#196:037be524fa65bdb0": "渲染沿用视口模式，如光照、无光照或线框等。缓冲区可视化由 MRG 作为数据通道单独输出。",
+    "Aspect Ratio": "宽高比",
+    "Asset": "资产",
+    "Asset Name": "资产名称",
+    "Asset Path": "资产路径",
+    "Asset orientation": "资产朝向",
+    "#136:80837529dbbc1509": "K 限定每步候选数。减小 K 可使骨架更稳定，增大可增加多样性。",
+    "Audio": "音频",
+    "Audio File": "音频文件",
+    "Auto": "自动",
+    "Auto (detect)": "自动检测",
+    "Auto-detect": "自动检测",
+    "#71:632cc84e7be15a45": "自动判断导入类型。有绑定的 GLB 或 FBX 按骨骼网格体处理，其他文件按静态网格体处理。",
+    "BG": "背景",
+    "Background": "背景",
+    "Background Color": "背景颜色",
+    "Bake": "烘焙",
+    "Balanced": "均衡",
+    "Bank sampler": "视图库采样器",
+    "Base Model": "基础模型",
+    "BaseColor": "基础颜色",
+    "#127:7e76ada0560c013d": "增大束宽会同时尝试更多骨架，可能提高完整性并增加耗时。",
+    "Beams": "束搜索宽度",
+    "Beauty": "最终合成",
+    "Bias to cam roll": "偏向相机滚转角",
+    "Black": "黑色",
+    "Boolean": "布尔值",
+    "Bottom": "下",
+    "Box threshold": "检测框阈值",
+    "Browse": "浏览",
+    "Cam prior (narrow grid)": "相机先验（窄网格）",
+    "#240:f50203ab176880d2": "相机先验使用 45 个视角，预热约 3 秒。适用于 Tripo 3.1 的 align_image。cam_prior 以 3×3×5 采样，偏航 ±5°、俯仰和滚转各 ±25°。",
+    "Camera": "相机",
+    "Camera Cuts Track": "相机切换轨道",
+    "Camera Rotation": "相机旋转",
+    "CameraSource": "相机来源",
+    "Canny (classical, thresholded)": "Canny（经典阈值法）",
+    "Canny Edges": "Canny 边缘",
+    "Canvas": "画布",
+    "Capture": "采集",
+    "Capture stage": "采集阶段",
+    "#222:a025985003ec29e7": "cam_prior 以输入相机在 UE 世界坐标中的滚转角为搜索中心，适合倾斜相机。fibonacci 采样忽略此项。",
+    "Checking…": "正在检查…",
+    "#35:39febc428643d894": "指定渲染时要使用的相机。",
+    "Choose…": "选择…",
+    "#106:f417834180423247": "对蒙皮权重进行体素平滑，以改善变形效果。",
+    "#46:df10faca100769d5": "点击预设以载入参数，再按各资产单独微调",
+    "#10:8fd1ee4971931fc1": "顺时针方向。",
+    "#45:2c6f2f1bb1fcf40e": "闭合此路径，使末点连回起点",
+    "Coarse": "粗略",
+    "Coarser": "更粗略",
+    "Coarsest — major boundaries only": "最粗（仅主要边界）",
+    "Color": "颜色",
+    "Colour group": "颜色组",
+    "#239:72702cb7633566bc": "校正资产正面相对 UE Actor 的 +X 偏角。Tripo 3.1 使用 align_image 时可从 90° 起调，也可按 45° 间隔尝试其他角度。",
+    "Compression": "压缩",
+    "Configured checks": "已配置的检查项",
+    "Connect Image to pick pixel": "连接图像以选择像素",
+    "#58:92fcbd9db6bdc016": "将视口渲染节点或其烘焙帧接到",
+    "#41:de50f86d740a1817": "将视频接到背景输入以显示预览。",
+    "#27:5c0fdaddfeae7228": "接入视频以显示预览。",
+    "#42:fc5be90b22e39603": "将图像接到背景输入以显示预览。",
+    "#28:a7499a865b9af2ec": "接入图像以显示预览。",
+    "Connected": "已连接",
+    "Connection": "连接",
+    "Count": "数量",
+    "Creative": "创意",
+    "Crop (% of source)": "裁剪（占原图百分比）",
+    "Custom": "自定义",
+    "Cutout": "抠像",
+    "DE": "德语",
+    "Darken": "变暗",
+    "Decrease font size": "减小字号",
+    "Depth": "深度",
+    "Depth Estimation": "深度估计",
+    "Depth aggregator": "深度聚合",
+    "#242:3b603774d70cc7b9": "单张图像推算的是无单位的相对深度。接入 UE 的原始深度可换算成厘米。模型在本机执行，首次会安装 Python 依赖。",
+    "DepthMap": "深度图",
+    "Destination": "目标位置",
+    "Destination Path": "目标路径",
+    "Detail": "细节",
+    "DexiNed (perceptual, no calibration)": "DexiNed（感知式，无需校准）",
+    "Dialog": "对话框",
+    "Difference": "差值",
+    "Disable PBR": "禁用 PBR",
+    "Disappear": "消失",
+    "Double-click to edit": "双击编辑",
+    "Double-click to rename": "双击重命名",
+    "#30:9f1d11d4a234078c": "设为 2 可使长和宽各扩大一倍。",
+    "#38:44145690b3bd997e": "拖动可改变尺寸，双击可还原。",
+    "Duration": "时长",
+    "Duration (s)": "时长（秒）",
+    "EN": "英语",
+    "ES": "西班牙语",
+    "#27:2cefdf7c0b06e523": "每一项都应填写数值。",
+    "Edge Detection": "边缘检测",
+    "Edges": "边",
+    "Editor world (no PIE)": "编辑器世界（无 PIE）",
+    "Editor's platform": "编辑器所在平台",
+    "Emissive": "自发光",
+    "#74:2b1a168de0d757ab": "自发光强度取 0 到 10。超出范围会在生成时取最近的界限值。",
+    "Enabled": "已启用",
+    "Encoding": "编码",
+    "End (s)": "终点（秒）",
+    "End_frame": "结束帧",
+    "Ends early": "前景提前结束时",
+    "Enhance Details": "增强细节",
+    "EstimatedDepth": "估计深度",
+    "Exact size": "精确尺寸",
+    "Expected aspect:": "预期宽高比：",
+    "Export Images": "导出图像",
+    "Expose as input pin": "公开为输入引脚",
+    "External file": "外部文件",
+    "FG": "前景",
+    "FIGMA FETCH": "获取 Figma 设计",
+    "FLUX.1-Krea-dev (realistic)": "FLUX.1-Krea-dev（写实）",
+    "FLUX.1-dev (stylized)": "FLUX.1-dev（风格化）",
+    "FPS": "帧率",
+    "FR": "法语",
+    "Face limit": "面数上限",
+    "Far cm": "远端（厘米）",
+    "Fibonacci (uniform)": "斐波那契（均匀）",
+    "#226:0488cc9e2d1aa132": "斐波那契方案使用 300 个均匀分布的视角，预热约 5–8 秒。适用于朝向未知的网格，如 Rodin、Meshy、Trellis 或未启用 align_image 的 Tripo。",
+    "Fill": "填充",
+    "Fill opacity": "填充不透明度",
+    "Fine": "精细",
+    "Finest — includes texture": "最细（含纹理）",
+    "First frame": "第一帧",
+    "Fit": "适应",
+    "#197:6b6689af025d015b": "适应会保留整图和比例，空余处露出背景。填充会等比放大并裁边。拉伸则分别调整宽和高。",
+    "Flip horizontal": "水平翻转",
+    "Flip vertical": "垂直翻转",
+    "Float": "浮点数",
+    "Font size (8–48)": "字号（8–48）",
+    "Foreground": "前景",
+    "Frame": "框架",
+    "Frame number": "帧编号",
+    "Frame rate": "帧率",
+    "Frame to extract": "要提取的帧",
+    "Fused (default, balanced)": "融合（默认，均衡）",
+    "Gap": "间距",
+    "Generic (fibonacci)": "通用（斐波那契）",
+    "Google Search": "Google 搜索",
+    "Grain": "颗粒",
+    "Graph inputs": "节点图输入",
+    "Graph outputs": "节点图输出",
+    "Guide": "引导图",
+    "H.264 output": "H.264 输出",
+    "HI": "印地语",
+    "HTML source": "HTML 源码",
+    "#120:b6a10ccd83a948b3": "设置 cam_prior 向上和向下搜索的角度。Tripo 资产通常可先试 ±25°。",
+    "#171:f4d0339e27084d0b": "设置 cam_prior 沿相机视轴左右滚转的搜索角度。Tripo 资产可从 ±25° 开始。",
+    "#144:0bfa88d99db3a6ab": "设置 cam_prior 在中心偏航角两侧各搜索多少度。开启 align_image 时通常可先试 ±5°。",
+    "Halo": "光晕",
+    "Height": "高度",
+    "High threshold": "高阈值",
+    "#63:7f33a06867ebc82b": "增大数值能更好地保留原图结构。",
+    "#50:54a0038d5cd8b021": "增大数值允许模型更自由地创作。",
+    "Hold last frame": "保持最后一帧",
+    "Host": "主机",
+    "#175:9c1949b060a9031b": "重复惩罚过大会漏掉手指或尾部等骨骼。出现此情况可试用 1.1–1.3。",
+    "#249:ec697229f6d438c2": "前景可选适应、填充或拉伸。适应保留整幅前景，填充等比裁边，拉伸单独匹配背景宽高。",
+    "#286:6e40eb4534442bef": "将遮罩内的深度汇总为 depth_estimate_m。min 取最近点，median 取中位数，pNN 表示第 NN 百分位。默认 p5 侧重前表面，遮罩边缘有误差时比中位数更合适。",
+    "IT": "意大利语",
+    "Image": "图像",
+    "Image 1": "图像 1",
+    "Image A": "图像 A",
+    "Image B": "图像 B",
+    "Image Scale": "图像缩放比例",
+    "Image[]": "图像数组",
+    "Images": "图像",
+    "Imagination": "想象力",
+    "Import": "导入",
+    "#65:ea5c765a8dbe4d86": "使用指定的资产名和目标路径直接导入",
+    "In": "输入",
+    "Increase font size": "增大字号",
+    "Indexed instance": "按索引选择实例",
+    "#30:ba5c96c3f746b97d": "请填写整数索引。",
+    "InitialTransform": "初始变换",
+    "Inputs": "输入",
+    "#84:66420fe547b70207": "把父画布的值经输入引脚送到子画布。",
+    "Int": "整数",
+    "Intensity": "强度",
+    "JA": "日语",
+    "KO": "韩语",
+    "Keep scene state": "保留场景状态",
+    "#226:aeec6d88ef13f43b": "调整卡片光照时可实时预览编辑器视口、UE 视口卡片及编辑器世界渲染。每个编辑器仅预览一张卡片，关闭后还原关卡光照。",
+    "L2 gradient": "L2 梯度",
+    "Language": "语言",
+    "Largest score": "最高分",
+    "Last frame": "最后一帧",
+    "Last run": "上次运行",
+    "Layout": "布局",
+    "#36:9658df68934a7e2e": "留空使用模型预设。",
+    "#68:531f5ad352d32c50": "留空沿用原帧率，指定新帧率可启用补帧。",
+    "#40:98fc44b233fc0650": "留空以采用 Canvas 的默认值",
+    "Left": "左",
+    "#50:3dab86785159c5ed": "设置 A 到 B 的时长。使用 Seedance 时至少为 4 秒。",
+    "Level Sequence": "关卡序列",
+    "Lighten": "变亮",
+    "Lighting": "光照",
+    "Lists": "列表",
+    "Loc X": "X 位置",
+    "Loc Y": "Y 位置",
+    "Loc Z": "Z 位置",
+    "Location (cm)": "位置（厘米）",
+    "Look": "外观",
+    "Loop": "循环播放",
+    "Loudness": "响度",
+    "Low threshold": "低阈值",
+    "#117:05e1d89f35646f90": "未找到目标可调低检测阈值。多个标签用逗号分开，例如",
+    "MCP Tool": "MCP 工具",
+    "MCP URL": "MCP 地址",
+    "MD": "Markdown",
+    "MRG Preset": "MRG 预设",
+    "Markdown source": "Markdown 源码",
+    "Mask": "遮罩",
+    "Match Aspect": "匹配宽高比",
+    "Match Visibility": "匹配可见性",
+    "Match preset": "匹配预设",
+    "#216:69b3feb9b6d22c58": "可沿用 MRG 预设或填写自定义宽高。1080p、1440p 和 2160p 为 16:9。匹配相机宽高比时，所选尺寸确定长边。",
+    "Match size": "匹配尺寸",
+    "#157:bf756a474452dbae": "按编辑器中的可见状态渲染 Actor。编辑器里隐藏的对象不参与，在编辑器中显示但设为游戏中隐藏的对象仍会渲染。",
+    "Material IDs": "材质 ID",
+    "Matte": "遮罩",
+    "Max Tokens": "最大词元数",
+    "Medium": "中等",
+    "Merge": "合成",
+    "Mesh": "网格模型",
+    "Mesh Source": "网格来源",
+    "Mesh Type": "网格类型",
+    "#89:6ac478a97913d136": "将重新展开 UV 的网格接到“网格”，原始带纹理的网格接到“来源”。",
+    "MetallicRoughness": "金属度与粗糙度",
+    "Method": "方法",
+    "Metric": "公制",
+    "Mode": "模式",
+    "Model": "模型",
+    "More options (": "更多选项（",
+    "#48:9ed95722ed6e357d": "提高采样数可让贴图更平滑，也会增加烘焙时间。",
+    "Move X (px)": "X 向位移（像素）",
+    "Move Y (px)": "Y 向位移（像素）",
+    "Multiply": "正片叠底",
+    "#20:a49982e2aed77f67": "偏航、俯仰和滚转方向的采样数量",
+    "NL": "荷兰语",
+    "Name": "名称",
+    "Near cm": "近端（厘米）",
+    "No file selected": "未选择文件",
+    "No models available": "没有可用模型",
+    "#70:26225f44ffca1d55": "当前没有引脚。点击下方横条或将连线接到圆点即可新增。",
+    "No tasks yet": "暂无任务",
+    "#235:a741c90f45c937b8": "DexiNed 生成边缘概率图，无需阈值。细节参数可选七个内部图之一，也可接入整数引脚。请先在设置中指定模型目录。",
+    "No tool selected": "尚未选择工具",
+    "Noise": "噪声",
+    "Normal": "法线",
+    "#118:865f1d7424e8e875": "P 决定累计概率覆盖范围，减小它可收窄候选集。",
+    "#46:3575f0cf619c22b6": "cam_prior 沿俯仰方向的采样数量。",
+    "#85:d1937965274524b6": "每个偏航和俯仰位置的滚转采样数。总视角数为三个轴的采样数相乘。",
+    "#44:e6a59b5c5139c0a5": "cam_prior 沿偏航方向的采样数量。",
+    "#37:68ac20425923e04b": "用逗号或换行分隔多个数字",
+    "Occlusion": "遮蔽",
+    "#12:8f3c27b29a7a6e7e": "停用后采用 H.265 编码。",
+    "#193:17e820fc501f60eb": "开启后按渲染相机比例输出并消除黑边，分辨率仅决定大小。关闭则按指定宽高输出，必要时补黑边。",
+    "#50:75f58383097bdb62": "每行输入一组 RGB 或 RGBA 数值，以逗号分隔。每个分量在 0 到 1 之间。",
+    "#30:96aad74d3785cb01": "每行输入一对索引",
+    "#24:d4c6a3acd0108d45": "每行输入一个二维点 x, y",
+    "#27:311a1904a4be90b1": "每行输入一个三维点 x, y, z",
+    "#138:621b7a9c22726aeb": "每行一组 x, y 表示顶点，空行分隔多边形。单独一行减号表示接下来输入上一多边形的孔。",
+    "#97:8364adf17b18e916": "每行填一个变换。先填位移 x, y, z，可以用分号依次接上旋转 pitch, yaw, roll 和缩放 x, y, z。",
+    "#43:3b008fb108e45d01": "每行输入构成一个三角形的三个顶点索引",
+    "#35:5feb1fb382932e15": "需先开启“跳过对话框”",
+    "Opacity (%)": "不透明度（%）",
+    "Operation": "操作",
+    "#40:fb49e49072e1a21f": "可选填希望增加的图片细节…",
+    "#44:558a9a1210df82df": "可选填模型回复要求。",
+    "#65:ad17fdc94f75b8f4": "可省略网格输入，操作将以空网格为起点。",
+    "Original Size": "原始尺寸",
+    "Out": "输出",
+    "Output": "输出",
+    "#104:c94bdedc7aa92d9f": "导出带背景声音的 H.264 MP4。仅在当前页面无法播放 MP4 时生成额外的 WebM。",
+    "#82:eed569a7a821c1d1": "输出可放大 2–8 倍，支持小数。",
+    "Over": "正常叠加",
+    "#467:5e1f5962814325d3": "正常按透明度叠放，滤色可提亮，相加可产生辉光并以白色为上限。变亮和变暗逐通道取较亮或较暗值，正片叠底压暗，差值将相同颜色显示成黑色。",
+    "PL": "波兰语",
+    "PT": "葡萄牙语",
+    "Padding": "内边距",
+    "Parameters": "参数",
+    "Pick a mesh from Unreal…": "从 UE 选择网格…",
+    "Piloted": "当前驾驶的相机",
+    "Pitch": "音高",
+    "Pitch ± (°)": "俯仰 ±（°）",
+    "#122:8332119d6f736bcc": "默认以公告板底部为枢轴并吸附地面。悬挂牌或壁画可取消此项，改用中心枢轴。",
+    "Pixel": "像素",
+    "Pixel X": "像素 X",
+    "Pixel Y": "像素 Y",
+    "Platform": "平台",
+    "Play In Editor": "在编辑器中播放（PIE）",
+    "#290:ac3ca218fef30914": "需要物理、蓝图或序列事件时使用“在编辑器中播放”。大型关卡可能等待数分钟。快速预览可选“编辑器世界”，直接采用现有光照和时刻。",
+    "#80:8114e411ef5dafd7": "播放后捕获当前视口的一帧，然后停止。",
+    "PointCloud": "点云",
+    "Points (": "标记点（",
+    "PolyGroups": "多边形组",
+    "Port": "端口",
+    "#98:f57de92c9eeb3337": "用 DINOv2 与 PnP 拟合姿态，结合经仿射对齐的单目深度恢复实际尺度。请连接",
+    "#20:38f89e27b336c8ae": "正数表示向下偏移。",
+    "Post-final (after FXAA/SMAA)": "最终处理后（FXAA/SMAA 之后）",
+    "Post-process rig": "后处理骨骼绑定",
+    "Post-tonemap (after TSR/TAA)": "色调映射后（TSR/TAA 之后）",
+    "Pre-postprocess (HDR, no AA)": "后期处理前（HDR，无抗锯齿）",
+    "Precise": "精确",
+    "Preserve original mesh": "保留原始网格",
+    "Preset": "预设",
+    "Preview": "预览",
+    "Prompt": "提示词",
+    "#106:c3f83f9afcf91dd3": "输入要朗读的文字，可用 @Audio1、@Audio2、@Audio3 指代接入的音频。",
+    "#131:92a223d6b16da9f7": "从输入视频选取静帧。有无损 MP4 时优先使用，以便准确选帧。",
+    "Quad topology": "四边形拓扑",
+    "RICH": "富文本",
+    "RU": "俄语",
+    "Radius": "半径",
+    "Radius (cm)": "半径（厘米）",
+    "#122:a1fe5876c0537055": "调低随机性可得到较稳定的骨架，调高可探索更多结构。",
+    "RawDepth": "原始深度",
+    "Recover Detail": "恢复细节",
+    "Reference": "引用",
+    "Reference image": "参考图像",
+    "Refresh asset list from Unreal": "从 UE 刷新资产列表",
+    "#62:66e9f0b680c8e0da": "加载序列后，从 UE 重新读取相机",
+    "#33:a55fbdfd1f6b55f2": "向 Bridge 重新请求工具清单",
+    "Remove pin": "移除引脚",
+    "Render in": "渲染环境",
+    "Repetition penalty": "重复惩罚",
+    "Reposition": "重定位",
+    "Reposition clip": "位置变化片段",
+    "Reset all": "全部重置",
+    "Resolution": "分辨率",
+    "Resolution (px)": "分辨率（像素）",
+    "Result": "结果",
+    "Rich text editor": "富文本编辑器",
+    "Right": "右",
+    "Roll ± (°)": "滚转 ±（°）",
+    "Rot Pitch": "俯仰角",
+    "Rot Roll": "滚转角",
+    "Rot Yaw": "偏航角",
+    "Rotate (°)": "旋转（°）",
+    "Rotation (deg)": "旋转（度）",
+    "#106:b49893d5a2a1170f": "运行节点生成底图，再双击打开，按 D 用批注工具绘制。",
+    "#38:dc6f1d723a462a88": "运行后可查看输出列表。",
+    "#42:e09dcd0644f67d7e": "运行后可查看数值结果。",
+    "#39:824cdcc3c729d63e": "运行后可查看校验结果。",
+    "#138:aded24c3ee35ea77": "一次处理音画并导出 H.264 MP4，音频随片段一起裁切。页面无法播放 MP4 时另生成 WebM。",
+    "#102:7c612186c6322fc8": "用 cv2.Canny 处理每帧并导出 H.264 MP4。页面不支持 MP4 播放时另生成 WebM。",
+    "SPEECH TO TEXT": "语音转文本",
+    "Sample Rate": "采样率",
+    "Sampler": "采样器",
+    "Samples": "采样数",
+    "Sampling Steps": "采样步数",
+    "Save sequence": "保存序列",
+    "Scale": "缩放",
+    "Scale %": "缩放（%）",
+    "Scale Factor": "缩放倍数",
+    "Scale X": "X 向缩放",
+    "Scale Y": "Y 向缩放",
+    "Scale Z": "Z 向缩放",
+    "Scene": "场景",
+    "Scene State": "场景状态",
+    "Screen": "滤色",
+    "Screenshot": "截图",
+    "Seam ΔE threshold:": "接缝 ΔE 阈值：",
+    "Search…": "搜索…",
+    "Seed": "随机种子",
+    "Segmentation": "分割",
+    "Sequence": "序列",
+    "Set the time of day": "设置当天时刻",
+    "Show": "显示",
+    "Show Flags": "显示标志",
+    "Show in Unreal": "在 UE 中显示",
+    "Size": "大小",
+    "Size (cm)": "尺寸（厘米）",
+    "Size X": "X 向尺寸",
+    "Size Y": "Y 向尺寸",
+    "Size Z": "Z 向尺寸",
+    "Skeletal Mesh": "骨骼网格体",
+    "Skeleton Type": "骨架类型",
+    "Skip Dialog": "跳过对话框",
+    "Snap to floor": "吸附到地面",
+    "Snapshot only": "仅拍摄快照",
+    "Source": "源素材",
+    "Source (after crop)": "源尺寸（裁剪后）",
+    "Spatial Prompt Synthesis": "空间提示词合成",
+    "Speech Rate": "语速",
+    "Sphere": "球体",
+    "Splat": "高斯泼溅",
+    "Splat Count": "高斯点数量",
+    "#115:5dc0c9523e46729e": "给引脚加星号后，与之连接的节点可控制工作流图的缩略图、内嵌控件与详情。",
+    "Start (s)": "起点（秒）",
+    "Start_frame": "起始帧",
+    "Static Mesh": "静态网格体",
+    "Steps": "步数",
+    "Stretch": "拉伸",
+    "Structure": "结构",
+    "Summary": "摘要",
+    "Sync": "同步",
+    "#44:ddb9e175d4711a7c": "从 UE 读取最新的渲染通道与变量",
+    "System Prompt": "系统提示词",
+    "#282:dbe5922232252638": "启用后随渲染保存关卡快照，供比较物体位移或保存为关卡快照。大型关卡每次可多耗约一分钟与数百 MB。若需重定位，应在移动物体前开启。",
+    "Target": "目标",
+    "Target FPS": "目标帧率",
+    "Target Resolution Size": "目标分辨率",
+    "Temperature": "采样温度",
+    "Text": "文本",
+    "Text Segment": "文本分段",
+    "Text color": "文字颜色",
+    "Text threshold": "文本阈值",
+    "#251:7a88874185693f92": "用指定时刻渲染这张卡片。会暂时调整关卡日间序列并在完成后还原。关闭时沿用编辑器当前时间。",
+    "#15:f82f875fd39b615b": "索引的数据类型",
+    "#85:7c17818a18a0295d": "选择用于烘焙的 UV 通道。UV 展开的默认目标是通道 0。",
+    "#66:7be1d86cb788e3de": "源素材裁剪后的尺寸已经匹配。",
+    "Time (s)": "时间（秒）",
+    "Time of day": "当天时刻",
+    "#30:eab3b60b6d73edf2": "一天中的小时和分钟",
+    "#141:a8a8aa10eb969e28": "可先用变换节点调整前景。将背景接到“匹配尺寸”，底色设为透明。",
+    "Tolerance": "容差",
+    "Tool": "工具",
+    "Top": "上",
+    "#52:fe8d410391fd9e69": "Topaz 视频超分（fal.ai）需要视频输入。",
+    "Transform": "变换",
+    "Transparent": "透明",
+    "Tree": "树状结构",
+    "Triangles": "三角形",
+    "Trim": "修剪",
+    "Tripo 3.1 (optimized)": "Tripo 3.1（已优化）",
+    "Type": "类型",
+    "UK": "乌克兰语",
+    "URL": "网址",
+    "UV Channel": "UV 通道",
+    "Union (all matches)": "合并所有匹配项",
+    "#79:b4d8fae7417310de": "填写 Bridge 的 MCP 服务地址。默认连接当前 UE 编辑器的 MCP 端点。",
+    "Unreal asset": "UE 资产",
+    "#102:d605fccb12e5ef79": "指定 UE 的关卡序列资产路径。留空即使用定序器里打开的序列。",
+    "#184:f265af6931bcde4f": "填写影片渲染图预设的资产路径，例如 /Game/Presets/Render.Render。留空沿用编辑器偏好设置里 Unreal Canvas Bridge 的默认值。",
+    "#124:8774f520efa134e8": "选择内容浏览器里的静态或骨骼网格体，填写完整资产路径。执行节点时会导出 GLB。",
+    "Unreal not reachable": "无法连接 UE",
+    "Unreal offline": "UE 离线",
+    "#70:e6b17dc631f5e784": "输入未连接时采用此处的数字，用逗号或换行分隔。",
+    "#83:dda57af841ba8a15": "输入未连接时使用此处的颜色。每行一组 RGB 或 RGBA，以逗号分隔，各分量范围为 0 到 1。",
+    "#63:f792049317610cf8": "输入未连接时采用此处的索引对，每行一对。",
+    "#60:5daa6d58f006744a": "输入未连接时采用此处的三维点，每行一组 x, y, z。",
+    "#57:ff9fe8d718895578": "输入未连接时采用此处的二维点，每行一组 x, y。",
+    "#171:4f80e45fbfb7fd6e": "输入未连接时从此处读取多边形。每行填一个二维顶点，用空行分隔多边形，用单独一行减号开始填写孔。",
+    "#130:fe43d98f2b10bab7": "输入未连接时从此处读取变换。每行依次填写位移、可选旋转和可选缩放，各组三元数用分号分隔。",
+    "#76:e2774dae3d11e8de": "输入未连接时采用此处的三角形，每行填三个顶点索引。",
+    "#76:7ba3c6e8f30b7c61": "输入未连接时采用此处的整数，用逗号或换行分隔。",
+    "Validation_report": "验证报告",
+    "Value": "明度",
+    "Values": "数值",
+    "Vector2": "二维向量",
+    "Vector3": "三维向量",
+    "Vertices": "顶点",
+    "Via pin": "通过引脚输入",
+    "Video": "视频",
+    "Video A": "视频 A",
+    "Video B": "视频 B",
+    "#53:7b6774c547b7b292": "视频无法保留透明通道，透明区域会输出为黑色。",
+    "View Mode": "视图模式",
+    "Viewport Look": "视口外观",
+    "#79:e4cf5da3490510f0": "前景视频先播完时，选择剩余时段的显示方式。",
+    "#192:e428050668864f28": "选择提取颜色并合成模板的后期阶段。所选通道不可用时，UE 依次尝试最终处理后、色调映射后和后期处理前。",
+    "#39:51f25e8bea630c36": "选择执行骨骼绑定的 GPU。",
+    "White": "白色",
+    "#43:8e9eb420d590a4e8": "用逗号或换行分隔多个整数",
+    "Width": "宽度",
+    "#61:a83e87575aaf8f08": "在“匹配尺寸”端接入视频或图片以沿用它的宽高。",
+    "Wire it in a graph": "请在节点图中连线输入",
+    "Yaw offset": "偏航偏移",
+    "Yaw offset (°)": "偏航偏移（°）",
+    "Yaw ± (°)": "偏航 ±（°）",
+    "ZH": "中文",
+    "bed, chair, floor, walls…": "床、椅子、地板、墙壁…",
+    "#300:80a877d5b010f225": "cam_prior 在预期相机方向附近密集取样，适合已用 align_image 对齐的资产。fibonacci 用 300 个均匀视角覆盖整球，耗时更长但可找到预期外的方向。",
+    "center": "中心",
+    "false": "假",
+    "frame max": "当前帧最大值",
+    "frame min": "当前帧最小值",
+    "hardcoded (pin overrides)": "固定值（引脚优先）",
+    "iOS High": "iOS 高画质",
+    "iOS Low": "iOS 低画质",
+    "iOS Mid": "iOS 中画质",
+    "#192:f3c8fbc425aceb54": "输入端。节点将快照与当前场景对比，渲染物体从旧位置到新位置的过程，相机也会从已存姿态移至当前视口。",
+    "#18:7d89ec264ea75b64": "请检查 UE 是否已启动。",
+    "node into the": "节点连接至",
+    "#30:e9e3626f07727203": "接口。选用下方预设后，各资产通常只需微调",
+    "string value…": "字符串值…",
+    "true": "真",
+    "#33:67241c9fdb8aaeea": "。",
+    "— pick a group —": "— 选择颜色组 —",
+    "#26:0368a54677c00855": "— 请在节点上指定工具 —",
+    "→ preview unavailable (": "→ 无法预览（"
+  },
+  "defaults": {
+    "audioGenerator": {
+      "Audio Generator": "音频生成器"
+    },
+    "audioInput": {
+      "Audio Input": "音频输入"
+    },
+    "autoRig": {
+      "Auto-Rig": "自动绑定骨骼"
+    },
+    "boolConstant": {
+      "Boolean": "布尔值"
+    },
+    "cannyEdgesImage": {
+      "Canny Edges (Image)": "Canny 边缘（图像）"
+    },
+    "cannyEdgesVideo": {
+      "Canny Edges (Video)": "Canny 边缘（视频）"
+    },
+    "canvasInput": {
+      "Inputs": "画布输入"
+    },
+    "canvasOutput": {
+      "Outputs": "画布输出"
+    },
+    "choice": {
+      "Choice": "选项"
+    },
+    "consoleLog": {
+      "Console Log": "控制台日志"
+    },
+    "constant": {
+      "Constant": "常量"
+    },
+    "convert": {
+      "Convert": "转换"
+    },
+    "createStaticMeshAsset": {
+      "Create Static Mesh Asset": "创建静态网格体资产"
+    },
+    "cubeMesh": {
+      "Cube Mesh": "立方体网格"
+    },
+    "depthEstimation": {
+      "Depth Estimation": "深度估计"
+    },
+    "doodle": {
+      "Doodle": "涂鸦"
+    },
+    "edgeDetectionImage": {
+      "Edge Detection (Image)": "边缘检测（图像）"
+    },
+    "edgeDetectionVideo": {
+      "Edge Detection (Video)": "边缘检测（视频）"
+    },
+    "figmaFetch": {
+      "Figma Fetch": "从 Figma 获取"
+    },
+    "floatConstant": {
+      "Float": "浮点数"
+    },
+    "icpAlign": {
+      "ICP Align": "ICP 对齐"
+    },
+    "imageGenerator": {
+      "Image Generator": "图像生成器"
+    },
+    "imageGrid": {
+      "Image Grid": "图像网格"
+    },
+    "imageInput": {
+      "Image Input": "图像输入"
+    },
+    "imageMerge": {
+      "Merge (Image)": "合并图像"
+    },
+    "imageTransform": {
+      "Transform (Image)": "图像变换"
+    },
+    "imageUpscaler": {
+      "Image Upscaler": "图像超分辨率"
+    },
+    "imageValidator": {
+      "Image Validator": "图像校验"
+    },
+    "imageViewer": {
+      "Image Viewer": "图像查看器"
+    },
+    "intConstant": {
+      "Integer": "整数"
+    },
+    "mcpTool": {
+      "MCP Tool": "MCP 工具"
+    },
+    "meshBake": {
+      "Bake Textures": "烘焙纹理"
+    },
+    "meshGenerator": {
+      "Mesh Generator": "网格生成器"
+    },
+    "meshInput": {
+      "Mesh Input": "网格输入"
+    },
+    "meshOp": {
+      "UV Unwrap": "UV 展开",
+      "Remesh": "重构网格",
+      "Simplify": "简化网格",
+      "Recompute Normals": "重算法线",
+      "Fill Holes": "填补孔洞",
+      "Weld Edges": "焊接边",
+      "Solidify": "实体化"
+    },
+    "meshViewer": {
+      "Mesh Viewer": "网格查看器"
+    },
+    "panoramaViewer": {
+      "Panorama Viewer": "全景查看器"
+    },
+    "pointCloud": {
+      "Point Cloud": "点云"
+    },
+    "pointCorrespondencePoseFit": {
+      "Point Correspondence Pose Fit": "通过对应点拟合姿态"
+    },
+    "projectedWorldTransformAt": {
+      "Projected World Transform At": "指定位置的投影世界变换"
+    },
+    "repositionRender": {
+      "Reposition Render": "调整渲染位置"
+    },
+    "segmentation": {
+      "Segmentation": "分割"
+    },
+    "select": {
+      "Select": "选择"
+    },
+    "sequenceRender": {
+      "Sequence Render": "序列渲染"
+    },
+    "setCamera": {
+      "Set Camera": "设置摄像机"
+    },
+    "simpleAlign": {
+      "Simple Align": "简单对齐"
+    },
+    "spatialMaskGuide": {
+      "Spatial Mask Guide": "空间遮罩引导"
+    },
+    "spatialPromptSynthesis": {
+      "Spatial Prompt Synthesis": "空间提示词合成"
+    },
+    "spawnCutoutAt": {
+      "Spawn Cutout At": "在指定位置生成剪影"
+    },
+    "spawnMeshAt": {
+      "Spawn Mesh At": "在指定位置生成网格"
+    },
+    "speechToText": {
+      "Speech to Text": "语音转文本"
+    },
+    "sphereMesh": {
+      "Sphere Mesh": "球体网格"
+    },
+    "splatGenerator": {
+      "Splat Generator": "高斯泼溅生成器"
+    },
+    "stringConstant": {
+      "String": "字符串"
+    },
+    "switch": {
+      "Switch": "切换"
+    },
+    "task": {
+      "Tasks": "任务"
+    },
+    "textInput": {
+      "Text Input": "文本输入"
+    },
+    "textSegment": {
+      "Text Segment": "文本分段"
+    },
+    "textureGenerator": {
+      "Texture Generator": "纹理生成器"
+    },
+    "unrealRender": {
+      "Viewport Render": "视口渲染"
+    },
+    "usdInput": {
+      "USD Input": "USD 输入"
+    },
+    "vector2Constant": {
+      "Vector 2": "二维向量"
+    },
+    "vector3Constant": {
+      "Vector 3": "三维向量"
+    },
+    "videoFrameExtract": {
+      "Extract Frame": "提取帧"
+    },
+    "videoGenerator": {
+      "Video Generator": "视频生成器"
+    },
+    "videoInput": {
+      "Video Input": "视频输入"
+    },
+    "videoMerge": {
+      "Merge (Video)": "合并视频"
+    },
+    "videoTransform": {
+      "Transform (Video)": "视频变换"
+    },
+    "videoUpscaler": {
+      "Video Upscaler": "视频超分辨率"
+    },
+    "videoViewer": {
+      "Video Viewer": "视频查看器"
+    },
+    "viewportCapture": {
+      "UE Viewport": "UE 视口"
+    },
+    "webcamCapture": {
+      "Webcam Capture": "摄像头采集"
+    }
+  },
+  "nodes": {
+    "appendBundles": {
+      "title": [
+        "Double-click to rename"
+      ]
+    },
+    "audioGenerator": {
+      "aria-label": [
+        "Loudness",
+        "Pitch",
+        "Sample Rate",
+        "Speech Rate"
+      ],
+      "field": [
+        "Count",
+        "Loudness",
+        "Model",
+        "Pitch",
+        "Sample Rate",
+        "Speech Rate"
+      ],
+      "pin": [
+        "Audio",
+        "Prompt",
+        "Reference image"
+      ],
+      "title": [
+        "Expose as input pin"
+      ],
+      "body": [
+        "#106:c3f83f9afcf91dd3"
+      ]
+    },
+    "audioInput": {
+      "button": [
+        "Add audio"
+      ],
+      "pin": [
+        "Audio"
+      ],
+      "title": [
+        "#39:3dc20ff5dfef957d"
+      ]
+    },
+    "autoRig": {
+      "aria-label": [
+        "Beams",
+        "Post-process rig",
+        "Preserve original mesh",
+        "Repetition penalty",
+        "Temperature"
+      ],
+      "field": [
+        "#162:58d2b798aab3c8a2",
+        "#136:80837529dbbc1509",
+        "#127:7e76ada0560c013d",
+        "Beams",
+        "#106:f417834180423247",
+        "#175:9c1949b060a9031b",
+        "Model",
+        "#118:865f1d7424e8e875",
+        "Post-process rig",
+        "Preserve original mesh",
+        "#122:a1fe5876c0537055",
+        "Repetition penalty",
+        "Temperature",
+        "#39:51f25e8bea630c36"
+      ],
+      "pin": [
+        "Mesh",
+        "Screenshot",
+        "Skeleton Type"
+      ],
+      "title": [
+        "Expose as input pin"
+      ]
+    },
+    "boolConstant": {
+      "body": [
+        "false",
+        "true"
+      ],
+      "pin": [
+        "Boolean"
+      ]
+    },
+    "bundle": {
+      "title": [
+        "Double-click to rename"
+      ]
+    },
+    "cannyEdgesImage": {
+      "aria-label": [
+        "High threshold",
+        "L2 gradient",
+        "Low threshold"
+      ],
+      "field": [
+        "Aperture size",
+        "High threshold",
+        "L2 gradient",
+        "Low threshold"
+      ],
+      "params": [
+        "Canny Edges"
+      ],
+      "pin": [
+        "Edges",
+        "Image"
+      ],
+      "title": [
+        "Expose as input pin"
+      ]
+    },
+    "cannyEdgesVideo": {
+      "aria-label": [
+        "High threshold",
+        "L2 gradient",
+        "Low threshold"
+      ],
+      "field": [
+        "Aperture size",
+        "High threshold",
+        "L2 gradient",
+        "Low threshold"
+      ],
+      "params": [
+        "Canny Edges",
+        "#102:7c612186c6322fc8"
+      ],
+      "pin": [
+        "Edges",
+        "Video"
+      ],
+      "title": [
+        "Expose as input pin"
+      ]
+    },
+    "canvasInput": {
+      "button": [
+        "+ Add input"
+      ],
+      "params": [
+        "Graph inputs",
+        "#84:66420fe547b70207",
+        "#70:26225f44ffca1d55"
+      ],
+      "title": [
+        "#54:b5313adf324aa7c9"
+      ]
+    },
+    "canvasOutput": {
+      "button": [
+        "+ Add output"
+      ],
+      "params": [
+        "Graph outputs",
+        "#70:26225f44ffca1d55",
+        "#115:5dc0c9523e46729e"
+      ],
+      "title": [
+        "#55:ad374fbb345e8610"
+      ]
+    },
+    "consoleLog": {
+      "field": [
+        "Value"
+      ],
+      "pin": [
+        "Value"
+      ],
+      "placeholder": [
+        "hardcoded (pin overrides)"
+      ]
+    },
+    "constant": {
+      "pin": [
+        "Value"
+      ],
+      "placeholder": [
+        "#43:55abbad72de02e73"
+      ]
+    },
+    "convert": {
+      "pin": [
+        "In",
+        "Out"
+      ]
+    },
+    "createStaticMeshAsset": {
+      "aria-label": [
+        "Allow Overwrite",
+        "Asset Name",
+        "Destination Path",
+        "Skip Dialog"
+      ],
+      "choice": [
+        "Auto (detect)",
+        "Skeletal Mesh",
+        "Static Mesh"
+      ],
+      "field": [
+        "Allow Overwrite",
+        "Asset Name",
+        "Destination Path",
+        "Mesh Type",
+        "Skip Dialog"
+      ],
+      "params": [
+        "Destination",
+        "Dialog",
+        "Import"
+      ],
+      "pin": [
+        "Asset Name",
+        "Asset Path",
+        "Destination Path",
+        "Mesh"
+      ],
+      "placeholder": [
+        "#20:ef18a3fa5ddd7aa0"
+      ],
+      "title": [
+        "#71:632cc84e7be15a45",
+        "Expose as input pin",
+        "#65:ea5c765a8dbe4d86",
+        "#35:5feb1fb382932e15"
+      ]
+    },
+    "cubeMesh": {
+      "field": [
+        "Size X",
+        "Size Y",
+        "Size Z"
+      ],
+      "params": [
+        "Size (cm)"
+      ],
+      "pin": [
+        "Mesh",
+        "Screenshot",
+        "Size X",
+        "Size Y",
+        "Size Z"
+      ]
+    },
+    "depthEstimation": {
+      "field": [
+        "Model"
+      ],
+      "params": [
+        "Depth Estimation",
+        "#242:3b603774d70cc7b9"
+      ],
+      "pin": [
+        "DepthMap",
+        "Image",
+        "Mask",
+        "RawDepth"
+      ]
+    },
+    "doodle": {
+      "params": [
+        "Background Color",
+        "Canvas",
+        "Resolution (px)",
+        "#106:b49893d5a2a1170f"
+      ],
+      "pin": [
+        "Image"
+      ]
+    },
+    "edgeDetectionImage": {
+      "choice": [
+        "Canny (classical, thresholded)",
+        "Coarse",
+        "Coarser",
+        "Coarsest — major boundaries only",
+        "DexiNed (perceptual, no calibration)",
+        "Fine",
+        "Finest — includes texture",
+        "Fused (default, balanced)",
+        "Medium"
+      ],
+      "field": [
+        "Detail",
+        "Method"
+      ],
+      "params": [
+        "Edge Detection",
+        "#235:a741c90f45c937b8"
+      ],
+      "pin": [
+        "Edges",
+        "Image"
+      ],
+      "title": [
+        "Expose as input pin"
+      ]
+    },
+    "edgeDetectionVideo": {
+      "choice": [
+        "Canny (classical, thresholded)",
+        "Coarse",
+        "Coarser",
+        "Coarsest — major boundaries only",
+        "DexiNed (perceptual, no calibration)",
+        "Fine",
+        "Finest — includes texture",
+        "Fused (default, balanced)",
+        "Medium"
+      ],
+      "field": [
+        "Detail",
+        "Method"
+      ],
+      "params": [
+        "Edge Detection",
+        "#235:a741c90f45c937b8"
+      ],
+      "pin": [
+        "Edges",
+        "Video"
+      ],
+      "title": [
+        "Expose as input pin"
+      ]
+    },
+    "figmaFetch": {
+      "field": [
+        "Depth",
+        "Export Images",
+        "Image Scale",
+        "URL"
+      ],
+      "params": [
+        "FIGMA FETCH"
+      ],
+      "pin": [
+        "Image",
+        "Summary",
+        "Tree",
+        "URL"
+      ],
+      "title": [
+        "0 = unlimited",
+        "Remove pin"
+      ]
+    },
+    "floatConstant": {
+      "pin": [
+        "Float"
+      ]
+    },
+    "icpAlign": {
+      "pin": [
+        "InitialTransform",
+        "Mesh",
+        "PointCloud",
+        "Transform"
+      ]
+    },
+    "imageGenerator": {
+      "choice": [
+        "Auto"
+      ],
+      "field": [
+        "Aspect Ratio",
+        "Count",
+        "Google Search",
+        "Model",
+        "Resolution",
+        "Seed"
+      ],
+      "pin": [
+        "Image",
+        "Image[]",
+        "Prompt"
+      ],
+      "title": [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    "imageGrid": {
+      "button": [
+        "+ Add Image"
+      ],
+      "field": [
+        "Background",
+        "Color",
+        "Enabled",
+        "Gap",
+        "Original Size",
+        "Padding",
+        "Scale %",
+        "Width"
+      ],
+      "params": [
+        "Frame",
+        "Image 1",
+        "Images",
+        "Layout"
+      ],
+      "pin": [
+        "Image",
+        "Image 1"
+      ]
+    },
+    "imageInput": {
+      "button": [
+        "Add image"
+      ],
+      "pin": [
+        "Image"
+      ],
+      "title": [
+        "#39:5081216f6aea5e5e"
+      ]
+    },
+    "imageMerge": {
+      "button": [
+        "Reset all"
+      ],
+      "choice": [
+        "Add",
+        "Darken",
+        "Difference",
+        "Fill",
+        "Fit",
+        "Lighten",
+        "Multiply",
+        "Over",
+        "Screen",
+        "Stretch"
+      ],
+      "field": [
+        "Fit",
+        "#249:ec697229f6d438c2",
+        "Mode",
+        "Opacity (%)",
+        "#467:5e1f5962814325d3"
+      ],
+      "params": [
+        "#42:fc5be90b22e39603",
+        "Merge",
+        "Preview",
+        "#141:a8a8aa10eb969e28"
+      ],
+      "pin": [
+        "Background",
+        "Foreground",
+        "Image"
+      ],
+      "title": [
+        "Expose as input pin"
+      ]
+    },
+    "imageTransform": {
+      "button": [
+        "Reset all"
+      ],
+      "choice": [
+        "1024 × 1024 (square)",
+        "1080 × 1920 (vertical)",
+        "1920 × 1080 (HD)",
+        "2048 × 2048 (square)",
+        "3840 × 2160 (UHD)",
+        "720 × 1280 (vertical)",
+        "Black",
+        "Custom",
+        "Fill",
+        "Fit",
+        "Source (after crop)",
+        "Stretch",
+        "Transparent",
+        "White"
+      ],
+      "field": [
+        "Background",
+        "Bottom",
+        "#10:8fd1ee4971931fc1",
+        "Fit",
+        "#197:6b6689af025d015b",
+        "Flip horizontal",
+        "Flip vertical",
+        "Left",
+        "Move X (px)",
+        "Move Y (px)",
+        "#20:38f89e27b336c8ae",
+        "Right",
+        "Rotate (°)",
+        "Scale",
+        "Size",
+        "Top",
+        "#61:a83e87575aaf8f08"
+      ],
+      "params": [
+        "#28:a7499a865b9af2ec",
+        "Crop (% of source)",
+        "Output",
+        "Preview",
+        "Transform"
+      ],
+      "pin": [
+        "Image",
+        "Match size"
+      ],
+      "title": [
+        "Expose as input pin",
+        "#66:7be1d86cb788e3de"
+      ]
+    },
+    "imageUpscaler": {
+      "aria-label": [
+        "Base Model",
+        "Enhance Details",
+        "Imagination",
+        "Preset",
+        "Prompt",
+        "Scale Factor",
+        "Steps",
+        "Structure"
+      ],
+      "choice": [
+        "Balanced",
+        "Creative",
+        "FLUX.1-Krea-dev (realistic)",
+        "FLUX.1-dev (stylized)",
+        "Precise"
+      ],
+      "control": [
+        "#40:fb49e49072e1a21f"
+      ],
+      "field": [
+        "Base Model",
+        "Count",
+        "Enhance Details",
+        "#63:7f33a06867ebc82b",
+        "#50:54a0038d5cd8b021",
+        "Imagination",
+        "Model",
+        "#82:eed569a7a821c1d1",
+        "Preset",
+        "Prompt",
+        "Scale Factor",
+        "Seed",
+        "Steps",
+        "Structure"
+      ],
+      "pin": [
+        "Image"
+      ],
+      "title": [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    "imageValidator": {
+      "params": [
+        "Configured checks",
+        "Last run",
+        "#39:824cdcc3c729d63e",
+        "Expected aspect:",
+        "Seam ΔE threshold:"
+      ],
+      "pin": [
+        "Image",
+        "Validation_report"
+      ]
+    },
+    "imageViewer": {
+      "pin": [
+        "Image",
+        "Image A",
+        "Image B"
+      ]
+    },
+    "intConstant": {
+      "pin": [
+        "Int"
+      ]
+    },
+    "mcpTool": {
+      "body": [
+        "No tool selected"
+      ],
+      "button": [
+        "Search…"
+      ],
+      "field": [
+        "MCP URL",
+        "Name",
+        "#79:b4d8fae7417310de"
+      ],
+      "params": [
+        "Connection",
+        "MCP Tool",
+        "Tool"
+      ],
+      "title": [
+        "#33:a55fbdfd1f6b55f2"
+      ],
+      "control": [
+        "#26:0368a54677c00855"
+      ]
+    },
+    "meshBake": {
+      "aria-label": [
+        "Ambient Occlusion",
+        "Samples",
+        "UV Channel"
+      ],
+      "choice": [
+        "1 per pixel",
+        "16 per pixel",
+        "4 per pixel"
+      ],
+      "control": [
+        "Via pin"
+      ],
+      "field": [
+        "#111:beac051b71025325",
+        "Ambient Occlusion",
+        "Mesh",
+        "#48:9ed95722ed6e357d",
+        "Resolution",
+        "Samples",
+        "Source",
+        "#85:7c17818a18a0295d",
+        "UV Channel"
+      ],
+      "params": [
+        "Bake",
+        "Inputs",
+        "#89:6ac478a97913d136"
+      ],
+      "pin": [
+        "Ambient Occlusion",
+        "BaseColor",
+        "Emissive",
+        "Mesh",
+        "MetallicRoughness",
+        "Normal",
+        "Occlusion",
+        "Screenshot",
+        "Source"
+      ],
+      "title": [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin",
+        "Remove pin"
+      ]
+    },
+    "meshGenerator": {
+      "aria-label": [
+        "Align to image",
+        "Disable PBR",
+        "Face limit",
+        "Quad topology"
+      ],
+      "field": [
+        "Align to image",
+        "Count",
+        "Disable PBR",
+        "Face limit",
+        "Model",
+        "Quad topology",
+        "Seed"
+      ],
+      "pin": [
+        "Image",
+        "Mesh",
+        "Prompt",
+        "Screenshot"
+      ],
+      "title": [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    "meshInput": {
+      "button": [
+        "Add mesh"
+      ],
+      "choice": [
+        "External file",
+        "Skeletal Mesh",
+        "Static Mesh",
+        "Unreal asset"
+      ],
+      "field": [
+        "Asset",
+        "Source",
+        "Type"
+      ],
+      "params": [
+        "Mesh Source"
+      ],
+      "pin": [
+        "Asset",
+        "Mesh",
+        "Screenshot"
+      ],
+      "placeholder": [
+        "Pick a mesh from Unreal…"
+      ],
+      "title": [
+        "#38:14d2de54cb5e9906",
+        "Refresh asset list from Unreal",
+        "#124:8774f520efa134e8"
+      ]
+    },
+    "meshOp": {
+      "control": [
+        "#38:dc6f1d723a462a88",
+        "Via pin",
+        "Wire it in a graph"
+      ],
+      "field": [
+        "Mesh",
+        "Operation"
+      ],
+      "params": [
+        "#45:2c6f2f1bb1fcf40e",
+        "#27:2cefdf7c0b06e523",
+        "#30:ba5c96c3f746b97d",
+        "Inputs",
+        "Lists",
+        "Operation",
+        "#65:ad17fdc94f75b8f4",
+        "Parameters",
+        "#42:e09dcd0644f67d7e",
+        "#15:f82f875fd39b615b",
+        "#70:e6b17dc631f5e784",
+        "#83:dda57af841ba8a15",
+        "#63:f792049317610cf8",
+        "#60:5daa6d58f006744a",
+        "#57:ff9fe8d718895578",
+        "#171:4f80e45fbfb7fd6e",
+        "#130:fe43d98f2b10bab7",
+        "#76:e2774dae3d11e8de",
+        "#76:7ba3c6e8f30b7c61",
+        "Values"
+      ],
+      "pin": [
+        "Mesh",
+        "Screenshot"
+      ],
+      "title": [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin",
+        "Remove pin"
+      ],
+      "choice": [
+        "Any",
+        "Choose…",
+        "Edges",
+        "Material IDs",
+        "PolyGroups",
+        "Triangles",
+        "Vertices"
+      ],
+      "button": [
+        "More options ("
+      ],
+      "placeholder": [
+        "#37:68ac20425923e04b",
+        "#50:75f58383097bdb62",
+        "#30:96aad74d3785cb01",
+        "#24:d4c6a3acd0108d45",
+        "#27:311a1904a4be90b1",
+        "#138:621b7a9c22726aeb",
+        "#97:8364adf17b18e916",
+        "#43:3b008fb108e45d01",
+        "#43:8e9eb420d590a4e8"
+      ]
+    },
+    "meshViewer": {
+      "pin": [
+        "Mesh",
+        "Screenshot"
+      ]
+    },
+    "panoramaViewer": {
+      "pin": [
+        "Image"
+      ]
+    },
+    "pointCloud": {
+      "pin": [
+        "Camera",
+        "Image",
+        "Mask",
+        "PointCloud",
+        "RawDepth",
+        "Screenshot"
+      ]
+    },
+    "pointCorrespondencePoseFit": {
+      "button": [
+        "Generic (fibonacci)",
+        "Tripo 3.1 (optimized)"
+      ],
+      "choice": [
+        "Cam prior (narrow grid)",
+        "Fibonacci (uniform)"
+      ],
+      "field": [
+        "Aggregator",
+        "Bias to cam roll",
+        "#20:a49982e2aed77f67",
+        "Pitch ± (°)",
+        "Roll ± (°)",
+        "Sampler",
+        "Yaw offset (°)",
+        "Yaw ± (°)"
+      ],
+      "params": [
+        "#62:79a7b024c350d9dc",
+        "Asset orientation",
+        "Bank sampler",
+        "#46:df10faca100769d5",
+        "Depth aggregator",
+        "#98:f57de92c9eeb3337",
+        "Preset",
+        "Yaw offset",
+        "node into the",
+        "#30:e9e3626f07727203",
+        "#33:67241c9fdb8aaeea"
+      ],
+      "pin": [
+        "Camera",
+        "EstimatedDepth",
+        "Image",
+        "Mask",
+        "Mesh",
+        "RawDepth",
+        "Transform"
+      ],
+      "title": [
+        "#240:f50203ab176880d2",
+        "#222:a025985003ec29e7",
+        "#239:72702cb7633566bc",
+        "#226:0488cc9e2d1aa132",
+        "#120:b6a10ccd83a948b3",
+        "#171:f4d0339e27084d0b",
+        "#144:0bfa88d99db3a6ab",
+        "#286:6e40eb4534442bef",
+        "#46:3575f0cf619c22b6",
+        "#85:d1937965274524b6",
+        "#44:e6a59b5c5139c0a5",
+        "#300:80a877d5b010f225"
+      ]
+    },
+    "projectedWorldTransformAt": {
+      "aria-label": [
+        "Camera Rotation",
+        "Pixel X",
+        "Pixel Y"
+      ],
+      "field": [
+        "Camera Rotation",
+        "Pixel X",
+        "Pixel Y"
+      ],
+      "params": [
+        "Pixel",
+        "Transform"
+      ],
+      "pin": [
+        "Camera",
+        "Image",
+        "RawDepth",
+        "Transform"
+      ],
+      "placeholder": [
+        "center"
+      ],
+      "body": [
+        "Connect Image to pick pixel",
+        "center"
+      ]
+    },
+    "repositionRender": {
+      "aria-label": [
+        "Save sequence"
+      ],
+      "field": [
+        "#121:4b59784bab7d7ea2",
+        "Duration (s)",
+        "#50:3dab86785159c5ed",
+        "Save sequence"
+      ],
+      "params": [
+        "#58:92fcbd9db6bdc016",
+        "Reposition clip",
+        "Scene State",
+        "#192:f3c8fbc425aceb54"
+      ],
+      "pin": [
+        "Beauty",
+        "Depth",
+        "Normal",
+        "Scene State"
+      ]
+    },
+    "segmentation": {
+      "choice": [
+        "BG",
+        "FG"
+      ],
+      "field": [
+        "Model"
+      ],
+      "params": [
+        "#129:4c8582e382f0bede",
+        "Segmentation",
+        "Points ("
+      ],
+      "pin": [
+        "Image",
+        "Mask"
+      ]
+    },
+    "sequenceRender": {
+      "button": [
+        "Camera Cuts Track",
+        "Sync"
+      ],
+      "choice": [
+        "Android OpenGL High",
+        "Android OpenGL Low",
+        "Android OpenGL Mid",
+        "Android Vulkan High",
+        "Android Vulkan Low",
+        "Android Vulkan Mid",
+        "Custom",
+        "Editor's platform",
+        "Match preset",
+        "iOS High",
+        "iOS Low",
+        "iOS Mid"
+      ],
+      "field": [
+        "#88:8b13039ae460d8a3",
+        "#196:037be524fa65bdb0",
+        "Camera",
+        "Level Sequence",
+        "Match Aspect",
+        "Match Visibility",
+        "#157:bf756a474452dbae",
+        "Platform",
+        "Preset",
+        "Show Flags",
+        "Target Resolution Size",
+        "View Mode"
+      ],
+      "params": [
+        "MRG Preset",
+        "Sequence",
+        "Viewport Look",
+        "→ preview unavailable (",
+        "#18:7d89ec264ea75b64"
+      ],
+      "pin": [
+        "Beauty",
+        "Depth",
+        "Level Sequence",
+        "Normal",
+        "Resolution"
+      ],
+      "placeholder": [
+        "#40:f4d0aed7b77bf0d2",
+        "#40:98fc44b233fc0650"
+      ],
+      "title": [
+        "#35:39febc428643d894",
+        "Expose as input pin",
+        "#216:69b3feb9b6d22c58",
+        "#193:17e820fc501f60eb",
+        "Refresh asset list from Unreal",
+        "#62:66e9f0b680c8e0da",
+        "Remove pin",
+        "#44:ddb9e175d4711a7c",
+        "#102:d605fccb12e5ef79",
+        "#184:f265af6931bcde4f",
+        "Unreal not reachable"
+      ],
+      "body": [
+        "Unreal offline",
+        "Checking…",
+        "Connected"
+      ]
+    },
+    "setCamera": {
+      "pin": [
+        "Camera"
+      ]
+    },
+    "simpleAlign": {
+      "pin": [
+        "Mesh",
+        "PointCloud",
+        "Screenshot",
+        "Transform"
+      ]
+    },
+    "spatialMaskGuide": {
+      "choice": [
+        "1 · red",
+        "2 · blue",
+        "3 · green",
+        "4 · orange",
+        "5 · pink",
+        "6 · purple",
+        "7 · cyan",
+        "8 · lime",
+        "— pick a group —"
+      ],
+      "field": [
+        "Colour group",
+        "Fill opacity",
+        "Tolerance"
+      ],
+      "params": [
+        "Look",
+        "Target"
+      ],
+      "pin": [
+        "Frame",
+        "Guide",
+        "Matte",
+        "Reference"
+      ]
+    },
+    "spatialPromptSynthesis": {
+      "aria-label": [
+        "Max Tokens",
+        "System Prompt",
+        "Temperature"
+      ],
+      "control": [
+        "#44:558a9a1210df82df"
+      ],
+      "field": [
+        "Max Tokens",
+        "Model",
+        "System Prompt",
+        "Temperature"
+      ],
+      "params": [
+        "Spatial Prompt Synthesis"
+      ],
+      "pin": [
+        "Annotated",
+        "Annotations",
+        "Scene",
+        "Text"
+      ],
+      "title": [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    "spawnCutoutAt": {
+      "aria-label": [
+        "Intensity",
+        "Loc X",
+        "Loc Y",
+        "Loc Z",
+        "MCP URL",
+        "Rot Pitch",
+        "Rot Roll",
+        "Rot Yaw",
+        "Snap to floor"
+      ],
+      "field": [
+        "Intensity",
+        "Loc X",
+        "Loc Y",
+        "Loc Z",
+        "MCP URL",
+        "Rot Pitch",
+        "Rot Roll",
+        "Rot Yaw",
+        "Snap to floor"
+      ],
+      "params": [
+        "Connection",
+        "Cutout",
+        "Location (cm)",
+        "Rotation (deg)"
+      ],
+      "pin": [
+        "Image",
+        "Transform"
+      ],
+      "title": [
+        "#74:2b1a168de0d757ab",
+        "#122:8332119d6f736bcc"
+      ]
+    },
+    "spawnMeshAt": {
+      "aria-label": [
+        "Loc X",
+        "Loc Y",
+        "Loc Z",
+        "MCP URL",
+        "Rot Pitch",
+        "Rot Roll",
+        "Rot Yaw",
+        "Scale X",
+        "Scale Y",
+        "Scale Z"
+      ],
+      "field": [
+        "Loc X",
+        "Loc Y",
+        "Loc Z",
+        "MCP URL",
+        "Rot Pitch",
+        "Rot Roll",
+        "Rot Yaw",
+        "Scale X",
+        "Scale Y",
+        "Scale Z"
+      ],
+      "params": [
+        "Connection",
+        "Location (cm)",
+        "Rotation (deg)",
+        "Scale"
+      ],
+      "pin": [
+        "Mesh",
+        "Result",
+        "Transform"
+      ]
+    },
+    "speechToText": {
+      "button": [
+        "Browse"
+      ],
+      "choice": [
+        "AR",
+        "Auto-detect",
+        "DE",
+        "EN",
+        "ES",
+        "FR",
+        "HI",
+        "IT",
+        "JA",
+        "KO",
+        "NL",
+        "PL",
+        "PT",
+        "RU",
+        "UK",
+        "ZH"
+      ],
+      "params": [
+        "Audio File",
+        "Language",
+        "Model",
+        "SPEECH TO TEXT"
+      ],
+      "pin": [
+        "Audio",
+        "Text"
+      ],
+      "placeholder": [
+        "No file selected"
+      ]
+    },
+    "sphereMesh": {
+      "field": [
+        "Radius (cm)"
+      ],
+      "params": [
+        "Sphere"
+      ],
+      "pin": [
+        "Mesh",
+        "Radius",
+        "Screenshot"
+      ]
+    },
+    "splatGenerator": {
+      "aria-label": [
+        "Sampling Steps",
+        "Splat Count"
+      ],
+      "choice": [
+        "10 (fast)",
+        "20 (recommended)",
+        "262K (max quality)",
+        "32K (fastest)"
+      ],
+      "field": [
+        "Count",
+        "Model",
+        "Sampling Steps",
+        "Seed",
+        "Splat Count"
+      ],
+      "pin": [
+        "Image",
+        "Splat"
+      ],
+      "title": [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    "stringConstant": {
+      "pin": [
+        "Text"
+      ],
+      "placeholder": [
+        "string value…"
+      ]
+    },
+    "task": {
+      "body": [
+        "No tasks yet"
+      ],
+      "placeholder": [
+        "Add a task…"
+      ],
+      "title": [
+        "Add task (Enter)"
+      ]
+    },
+    "textInput": {
+      "blankText": [
+        "Double-click to edit"
+      ],
+      "button": [
+        "MD",
+        "RICH"
+      ],
+      "pin": [
+        "Text"
+      ],
+      "title": [
+        "Decrease font size",
+        "Font size (8–48)",
+        "HTML source",
+        "Increase font size",
+        "Markdown source",
+        "Rich text editor",
+        "Text color"
+      ]
+    },
+    "textSegment": {
+      "aria-label": [
+        "Box threshold",
+        "Text threshold"
+      ],
+      "choice": [
+        "Indexed instance",
+        "Largest score",
+        "Union (all matches)"
+      ],
+      "field": [
+        "Box threshold",
+        "Mode",
+        "Prompt",
+        "Text threshold"
+      ],
+      "params": [
+        "#117:05e1d89f35646f90",
+        "Text Segment"
+      ],
+      "pin": [
+        "Image",
+        "Mask",
+        "Prompt"
+      ],
+      "placeholder": [
+        "bed, chair, floor, walls…"
+      ],
+      "title": [
+        "#38:44145690b3bd997e"
+      ]
+    },
+    "textureGenerator": {
+      "field": [
+        "Count",
+        "Seed"
+      ],
+      "pin": [
+        "Image",
+        "Mesh",
+        "Screenshot"
+      ],
+      "title": [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    "unrealRender": {
+      "aria-label": [
+        "Set the time of day",
+        "Show in Unreal",
+        "Time of day",
+        "#30:eab3b60b6d73edf2"
+      ],
+      "button": [
+        "Piloted",
+        "Show",
+        "Sync"
+      ],
+      "choice": [
+        "Android OpenGL High",
+        "Android OpenGL Low",
+        "Android OpenGL Mid",
+        "Android Vulkan High",
+        "Android Vulkan Low",
+        "Android Vulkan Mid",
+        "Custom",
+        "Editor world (no PIE)",
+        "Editor's platform",
+        "Match preset",
+        "Play In Editor",
+        "iOS High",
+        "iOS Low",
+        "iOS Mid"
+      ],
+      "field": [
+        "#88:8b13039ae460d8a3",
+        "#196:037be524fa65bdb0",
+        "Camera",
+        "Keep scene state",
+        "#226:aeec6d88ef13f43b",
+        "Match Aspect",
+        "Match Visibility",
+        "#157:bf756a474452dbae",
+        "Platform",
+        "Preset",
+        "Render in",
+        "Show Flags",
+        "Show in Unreal",
+        "#282:dbe5922232252638",
+        "Target Resolution Size",
+        "#251:7a88874185693f92",
+        "Time of day",
+        "View Mode"
+      ],
+      "params": [
+        "Lighting",
+        "MRG Preset",
+        "Reposition",
+        "Viewport Look",
+        "→ preview unavailable (",
+        "#18:7d89ec264ea75b64"
+      ],
+      "pin": [
+        "Beauty",
+        "Camera",
+        "CameraSource",
+        "Depth",
+        "Normal",
+        "RawDepth",
+        "Time of day"
+      ],
+      "placeholder": [
+        "#40:98fc44b233fc0650"
+      ],
+      "title": [
+        "#35:39febc428643d894",
+        "Expose as input pin",
+        "#226:aeec6d88ef13f43b",
+        "#216:69b3feb9b6d22c58",
+        "#193:17e820fc501f60eb",
+        "#290:ac3ca218fef30914",
+        "Refresh asset list from Unreal",
+        "#62:66e9f0b680c8e0da",
+        "Set the time of day",
+        "#44:ddb9e175d4711a7c",
+        "#184:f265af6931bcde4f",
+        "Unreal not reachable"
+      ],
+      "body": [
+        "Unreal offline",
+        "Checking…",
+        "Connected"
+      ]
+    },
+    "usdInput": {
+      "button": [
+        "Add USD scene"
+      ],
+      "title": [
+        "#43:f4812ea0f3580fa7"
+      ]
+    },
+    "vector2Constant": {
+      "pin": [
+        "Vector2"
+      ]
+    },
+    "vector3Constant": {
+      "pin": [
+        "Vector3"
+      ]
+    },
+    "videoFrameExtract": {
+      "choice": [
+        "First frame",
+        "Frame number",
+        "Last frame",
+        "Time (s)"
+      ],
+      "field": [
+        "Frame"
+      ],
+      "params": [
+        "Frame to extract",
+        "#131:92a223d6b16da9f7"
+      ],
+      "pin": [
+        "Image",
+        "Video"
+      ]
+    },
+    "videoGenerator": {
+      "aria-label": [
+        "Duration",
+        "Loop"
+      ],
+      "choice": [
+        "10 seconds",
+        "5 seconds",
+        "Auto"
+      ],
+      "field": [
+        "Aspect Ratio",
+        "Count",
+        "Duration",
+        "Loop",
+        "Model",
+        "Resolution"
+      ],
+      "pin": [
+        "End_frame",
+        "Prompt",
+        "Start_frame",
+        "Video"
+      ],
+      "title": [
+        "Expose as input pin"
+      ]
+    },
+    "videoInput": {
+      "button": [
+        "Add video"
+      ],
+      "pin": [
+        "Video"
+      ],
+      "title": [
+        "#39:552ba26bd2cd3bd0"
+      ]
+    },
+    "videoMerge": {
+      "button": [
+        "Reset all"
+      ],
+      "choice": [
+        "Add",
+        "Darken",
+        "Difference",
+        "Disappear",
+        "Fill",
+        "Fit",
+        "Hold last frame",
+        "Lighten",
+        "Loop",
+        "Multiply",
+        "Over",
+        "Screen",
+        "Stretch"
+      ],
+      "field": [
+        "Ends early",
+        "Fit",
+        "#249:ec697229f6d438c2",
+        "Mode",
+        "Opacity (%)",
+        "#467:5e1f5962814325d3",
+        "#79:e4cf5da3490510f0"
+      ],
+      "params": [
+        "#41:de50f86d740a1817",
+        "Merge",
+        "Preview",
+        "#141:a8a8aa10eb969e28",
+        "#104:c94bdedc7aa92d9f"
+      ],
+      "pin": [
+        "Background",
+        "Foreground",
+        "Video"
+      ],
+      "title": [
+        "Expose as input pin"
+      ]
+    },
+    "videoTransform": {
+      "button": [
+        "Reset all"
+      ],
+      "choice": [
+        "1024 × 1024 (square)",
+        "1080 × 1920 (vertical)",
+        "1920 × 1080 (HD)",
+        "2048 × 2048 (square)",
+        "3840 × 2160 (UHD)",
+        "720 × 1280 (vertical)",
+        "Black",
+        "Custom",
+        "Fill",
+        "Fit",
+        "Source",
+        "Source (after crop)",
+        "Stretch",
+        "Transparent",
+        "White"
+      ],
+      "field": [
+        "#29:592d289632575ba6",
+        "Background",
+        "Bottom",
+        "#10:8fd1ee4971931fc1",
+        "End (s)",
+        "Fit",
+        "#197:6b6689af025d015b",
+        "Flip horizontal",
+        "Flip vertical",
+        "Frame rate",
+        "Left",
+        "Move X (px)",
+        "Move Y (px)",
+        "#20:38f89e27b336c8ae",
+        "Right",
+        "Rotate (°)",
+        "Scale",
+        "Size",
+        "Start (s)",
+        "Top",
+        "#53:7b6774c547b7b292",
+        "#61:a83e87575aaf8f08"
+      ],
+      "params": [
+        "#27:5c0fdaddfeae7228",
+        "Crop (% of source)",
+        "Output",
+        "Preview",
+        "#138:aded24c3ee35ea77",
+        "Transform",
+        "Trim"
+      ],
+      "pin": [
+        "Match size",
+        "Video"
+      ],
+      "title": [
+        "Expose as input pin",
+        "#66:7be1d86cb788e3de"
+      ]
+    },
+    "videoUpscaler": {
+      "aria-label": [
+        "Compression",
+        "Grain",
+        "H.264 output",
+        "Halo",
+        "Noise",
+        "Recover Detail",
+        "Scale Factor",
+        "Target FPS"
+      ],
+      "field": [
+        "Compression",
+        "#30:9f1d11d4a234078c",
+        "Grain",
+        "H.264 output",
+        "Halo",
+        "#36:9658df68934a7e2e",
+        "#68:531f5ad352d32c50",
+        "Model",
+        "Noise",
+        "#12:8f3c27b29a7a6e7e",
+        "Recover Detail",
+        "Scale Factor",
+        "Target FPS"
+      ],
+      "pin": [
+        "Video"
+      ],
+      "title": [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ],
+      "body": [
+        "#52:fe8d410391fd9e69"
+      ]
+    },
+    "videoViewer": {
+      "pin": [
+        "Video",
+        "Video A",
+        "Video B"
+      ]
+    },
+    "viewportCapture": {
+      "aria-label": [
+        "Exact size",
+        "FPS",
+        "Far cm",
+        "Host",
+        "Near cm",
+        "Port",
+        "Snapshot only"
+      ],
+      "choice": [
+        "Metric",
+        "Post-final (after FXAA/SMAA)",
+        "Post-tonemap (after TSR/TAA)",
+        "Pre-postprocess (HDR, no AA)"
+      ],
+      "field": [
+        "Capture stage",
+        "Encoding",
+        "Exact size",
+        "FPS",
+        "Far cm",
+        "Height",
+        "Host",
+        "Near cm",
+        "Port",
+        "Snapshot only",
+        "Width"
+      ],
+      "params": [
+        "Capture",
+        "Color",
+        "Connection",
+        "Depth"
+      ],
+      "pin": [
+        "Camera",
+        "Depth",
+        "Frame",
+        "Normal"
+      ],
+      "placeholder": [
+        "frame max",
+        "frame min"
+      ],
+      "title": [
+        "#194:4edb2da01f55e2f4",
+        "Expose as input pin",
+        "#80:8114e411ef5dafd7",
+        "#192:e428050668864f28"
+      ]
+    },
+    "webcamCapture": {
+      "pin": [
+        "Frame"
+      ]
+    }
+  },
+  "meshOperations": {
+    "UVs.AutoGenerateXAtlasMeshUVs": "UV Unwrap",
+    "Remesh.ApplyUniformRemesh": "Remesh",
+    "Simplify.ApplySimplifyToTriangleCount": "Simplify",
+    "Normals.RecomputeNormals": "Recompute Normals",
+    "Repair.FillAllMeshHoles": "Fill Holes",
+    "Repair.WeldMeshEdges": "Weld Edges",
+    "Voxel.ApplyMeshSolidify": "Solidify"
+  }
+}

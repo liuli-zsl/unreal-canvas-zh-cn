@@ -1,7 +1,7 @@
 {
   "FileVersion": 3,
-  "Version": 4,
-  "VersionName": "0.2.2",
+  "Version": 5,
+  "VersionName": "0.2.3",
   "FriendlyName": "Unreal Canvas App 简体中文菜单资源",
   "Description": "为独立 Unreal Canvas App 的原生菜单提供简体中文文本。",
   "Category": "Localization",

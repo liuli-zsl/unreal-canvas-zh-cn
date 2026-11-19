@@ -1,5 +1,5 @@
 // src/index.ts
-import { loadSignal } from "@merlin/plugin-api";
+import { loadSignal, useCanvasStore } from "@merlin/plugin-api";
 
 // src/copy-id.ts
 function copyId(value) {
@@ -841,6 +841,3369 @@ function translateShelfAction(element, field, value) {
   }
 }
 
+// src/locales/workspace-details.json
+var workspace_details_default = {
+  translations: {
+    "#62:79a7b024c350d9dc": "（按资产补偿 glTF 与 UE 的正面朝向差异）",
+    "#40:f4d0aed7b77bf0d2": "（留空以使用定序器当前打开的序列）",
+    "#20:ef18a3fa5ddd7aa0": "（取去掉扩展名的文件名）",
+    "+ Add Image": "+ 添加图像",
+    "+ Add input": "+ 添加输入",
+    "#54:b5313adf324aa7c9": "＋添加输入，点击或将连线拖到接口圆点",
+    "+ Add output": "+ 添加输出",
+    "#55:ad374fbb345e8610": "＋添加输出，点击或将连线拖到接口圆点",
+    "0 = unlimited": "0 表示无限制",
+    "#29:592d289632575ba6": "填 0 即使用从当前位置到片尾的全部内容。",
+    "1 per pixel": "每像素 1 次",
+    "1 · red": "1 · 红",
+    "10 (fast)": "10（快速）",
+    "10 seconds": "10 秒",
+    "1024 × 1024 (square)": "1024 × 1024（正方形）",
+    "1080 × 1920 (vertical)": "1080 × 1920（竖屏）",
+    "16 per pixel": "每像素 16 次",
+    "1920 × 1080 (HD)": "1920 × 1080（高清）",
+    "2 · blue": "2 · 蓝",
+    "20 (recommended)": "20（推荐）",
+    "2048 × 2048 (square)": "2048 × 2048（正方形）",
+    "262K (max quality)": "262K（最高质量）",
+    "3 · green": "3 · 绿",
+    "32K (fastest)": "32K（最快）",
+    "3840 × 2160 (UHD)": "3840 × 2160（超高清）",
+    "4 per pixel": "每像素 4 次",
+    "4 · orange": "4 · 橙",
+    "5 seconds": "5 秒",
+    "5 · pink": "5 · 粉",
+    "6 · purple": "6 · 紫",
+    "7 · cyan": "7 · 青",
+    "720 × 1280 (vertical)": "720 × 1280（竖屏）",
+    "8 · lime": "8 · 黄绿",
+    AR: "阿拉伯语",
+    "#40:ac0223608540d7e2": "支持算式，例如 1920/512。",
+    Add: "相加",
+    "Add USD scene": "添加 USD 场景",
+    "#43:f4812ea0f3580fa7": "从画布、磁盘或剪贴板导入 USD 场景",
+    "Add a task…": "添加任务…",
+    "Add additional providers": "添加更多服务商",
+    "Add audio": "添加音频",
+    "#39:3dc20ff5dfef957d": "从画布、磁盘或剪贴板导入音频",
+    "#129:4c8582e382f0bede": "在目标内部标前景点，在需要排除的位置标背景点。坐标以源图像素计。",
+    "Add image": "添加图像",
+    "#39:5081216f6aea5e5e": "从画布、磁盘或剪贴板导入图像",
+    "Add mesh": "添加网格",
+    "#38:14d2de54cb5e9906": "从画布、磁盘或剪贴板导入网格",
+    "Add provider": "添加服务商",
+    "Add task (Enter)": "添加任务（Enter）",
+    "Add video": "添加视频",
+    "#39:552ba26bd2cd3bd0": "从画布、磁盘或剪贴板导入视频",
+    Aggregator: "聚合方式",
+    "Align to image": "与图像对齐",
+    "Allow Overwrite": "允许覆盖",
+    "#111:beac051b71025325": "额外从原始几何体烘焙环境光遮蔽。原网格缺少遮蔽贴图时会采用烘焙结果。",
+    "#121:4b59784bab7d7ea2": "可将生成的序列同时存到 /Game/Merlin/RepositionSequence，供定序器打开。默认关闭。",
+    "Ambient Occlusion": "环境光遮蔽",
+    "#194:4edb2da01f55e2f4": "UE 离屏运行时按给定宽高输出。使用可见窗口时保留视口大小，并等比缩放到目标范围内。",
+    "Android OpenGL High": "Android OpenGL 高画质",
+    "Android OpenGL Low": "Android OpenGL 低画质",
+    "Android OpenGL Mid": "Android OpenGL 中画质",
+    "Android Vulkan High": "Android Vulkan 高画质",
+    "Android Vulkan Low": "Android Vulkan 低画质",
+    "Android Vulkan Mid": "Android Vulkan 中画质",
+    Annotated: "已批注",
+    Annotations: "批注",
+    Any: "任意",
+    "#43:55abbad72de02e73": "接受任意值，请到详情面板指定类型。",
+    "Aperture size": "孔径大小",
+    "#162:58d2b798aab3c8a2": "把骨骼用于原始分辨率的带纹理网格。导入 UE 时建议保留此项。",
+    "#88:8b13039ae460d8a3": "渲染采用视口当前的显示标志，可控制雾、地形、粒子或网格线等。",
+    "#196:037be524fa65bdb0": "渲染沿用视口模式，如光照、无光照或线框等。缓冲区可视化由 MRG 作为数据通道单独输出。",
+    "Aspect Ratio": "宽高比",
+    Asset: "资产",
+    "Asset Name": "资产名称",
+    "Asset Path": "资产路径",
+    "Asset orientation": "资产朝向",
+    "#136:80837529dbbc1509": "K 限定每步候选数。减小 K 可使骨架更稳定，增大可增加多样性。",
+    Audio: "音频",
+    "Audio File": "音频文件",
+    Auto: "自动",
+    "Auto (detect)": "自动检测",
+    "Auto-detect": "自动检测",
+    "#71:632cc84e7be15a45": "自动判断导入类型。有绑定的 GLB 或 FBX 按骨骼网格体处理，其他文件按静态网格体处理。",
+    BG: "背景",
+    Background: "背景",
+    "Background Color": "背景颜色",
+    Bake: "烘焙",
+    Balanced: "均衡",
+    "Bank sampler": "视图库采样器",
+    "Base Model": "基础模型",
+    BaseColor: "基础颜色",
+    "#127:7e76ada0560c013d": "增大束宽会同时尝试更多骨架，可能提高完整性并增加耗时。",
+    Beams: "束搜索宽度",
+    Beauty: "最终合成",
+    "Bias to cam roll": "偏向相机滚转角",
+    Black: "黑色",
+    Boolean: "布尔值",
+    Bottom: "下",
+    "Box threshold": "检测框阈值",
+    Browse: "浏览",
+    "Cam prior (narrow grid)": "相机先验（窄网格）",
+    "#240:f50203ab176880d2": "相机先验使用 45 个视角，预热约 3 秒。适用于 Tripo 3.1 的 align_image。cam_prior 以 3×3×5 采样，偏航 ±5°、俯仰和滚转各 ±25°。",
+    Camera: "相机",
+    "Camera Cuts Track": "相机切换轨道",
+    "Camera Rotation": "相机旋转",
+    CameraSource: "相机来源",
+    "Canny (classical, thresholded)": "Canny（经典阈值法）",
+    "Canny Edges": "Canny 边缘",
+    Canvas: "画布",
+    Capture: "采集",
+    "Capture stage": "采集阶段",
+    "#222:a025985003ec29e7": "cam_prior 以输入相机在 UE 世界坐标中的滚转角为搜索中心，适合倾斜相机。fibonacci 采样忽略此项。",
+    "Checking…": "正在检查…",
+    "#35:39febc428643d894": "指定渲染时要使用的相机。",
+    "Choose…": "选择…",
+    "#106:f417834180423247": "对蒙皮权重进行体素平滑，以改善变形效果。",
+    "#46:df10faca100769d5": "点击预设以载入参数，再按各资产单独微调",
+    "#10:8fd1ee4971931fc1": "顺时针方向。",
+    "#45:2c6f2f1bb1fcf40e": "闭合此路径，使末点连回起点",
+    Coarse: "粗略",
+    Coarser: "更粗略",
+    "Coarsest — major boundaries only": "最粗（仅主要边界）",
+    Color: "颜色",
+    "Colour group": "颜色组",
+    "#239:72702cb7633566bc": "校正资产正面相对 UE Actor 的 +X 偏角。Tripo 3.1 使用 align_image 时可从 90° 起调，也可按 45° 间隔尝试其他角度。",
+    Compression: "压缩",
+    "Configured checks": "已配置的检查项",
+    "Connect Image to pick pixel": "连接图像以选择像素",
+    "#58:92fcbd9db6bdc016": "将视口渲染节点或其烘焙帧接到",
+    "#41:de50f86d740a1817": "将视频接到背景输入以显示预览。",
+    "#27:5c0fdaddfeae7228": "接入视频以显示预览。",
+    "#42:fc5be90b22e39603": "将图像接到背景输入以显示预览。",
+    "#28:a7499a865b9af2ec": "接入图像以显示预览。",
+    Connected: "已连接",
+    Connection: "连接",
+    Count: "数量",
+    Creative: "创意",
+    "Crop (% of source)": "裁剪（占原图百分比）",
+    Custom: "自定义",
+    Cutout: "抠像",
+    DE: "德语",
+    Darken: "变暗",
+    "Decrease font size": "减小字号",
+    Depth: "深度",
+    "Depth Estimation": "深度估计",
+    "Depth aggregator": "深度聚合",
+    "#242:3b603774d70cc7b9": "单张图像推算的是无单位的相对深度。接入 UE 的原始深度可换算成厘米。模型在本机执行，首次会安装 Python 依赖。",
+    DepthMap: "深度图",
+    Destination: "目标位置",
+    "Destination Path": "目标路径",
+    Detail: "细节",
+    "DexiNed (perceptual, no calibration)": "DexiNed（感知式，无需校准）",
+    Dialog: "对话框",
+    Difference: "差值",
+    "Disable PBR": "禁用 PBR",
+    Disappear: "消失",
+    "Double-click to edit": "双击编辑",
+    "Double-click to rename": "双击重命名",
+    "#30:9f1d11d4a234078c": "设为 2 可使长和宽各扩大一倍。",
+    "#38:44145690b3bd997e": "拖动可改变尺寸，双击可还原。",
+    Duration: "时长",
+    "Duration (s)": "时长（秒）",
+    EN: "英语",
+    ES: "西班牙语",
+    "#27:2cefdf7c0b06e523": "每一项都应填写数值。",
+    "Edge Detection": "边缘检测",
+    Edges: "边",
+    "Editor world (no PIE)": "编辑器世界（无 PIE）",
+    "Editor's platform": "编辑器所在平台",
+    Emissive: "自发光",
+    "#74:2b1a168de0d757ab": "自发光强度取 0 到 10。超出范围会在生成时取最近的界限值。",
+    Enabled: "已启用",
+    Encoding: "编码",
+    "End (s)": "终点（秒）",
+    End_frame: "结束帧",
+    "Ends early": "前景提前结束时",
+    "Enhance Details": "增强细节",
+    EstimatedDepth: "估计深度",
+    "Exact size": "精确尺寸",
+    "Expected aspect:": "预期宽高比：",
+    "Export Images": "导出图像",
+    "Expose as input pin": "公开为输入引脚",
+    "External file": "外部文件",
+    FG: "前景",
+    "FIGMA FETCH": "获取 Figma 设计",
+    "FLUX.1-Krea-dev (realistic)": "FLUX.1-Krea-dev（写实）",
+    "FLUX.1-dev (stylized)": "FLUX.1-dev（风格化）",
+    FPS: "帧率",
+    FR: "法语",
+    "Face limit": "面数上限",
+    "Far cm": "远端（厘米）",
+    "Fibonacci (uniform)": "斐波那契（均匀）",
+    "#226:0488cc9e2d1aa132": "斐波那契方案使用 300 个均匀分布的视角，预热约 5–8 秒。适用于朝向未知的网格，如 Rodin、Meshy、Trellis 或未启用 align_image 的 Tripo。",
+    Fill: "填充",
+    "Fill opacity": "填充不透明度",
+    Fine: "精细",
+    "Finest — includes texture": "最细（含纹理）",
+    "First frame": "第一帧",
+    Fit: "适应",
+    "#197:6b6689af025d015b": "适应会保留整图和比例，空余处露出背景。填充会等比放大并裁边。拉伸则分别调整宽和高。",
+    "Flip horizontal": "水平翻转",
+    "Flip vertical": "垂直翻转",
+    Float: "浮点数",
+    "Font size (8–48)": "字号（8–48）",
+    Foreground: "前景",
+    Frame: "框架",
+    "Frame number": "帧编号",
+    "Frame rate": "帧率",
+    "Frame to extract": "要提取的帧",
+    "Fused (default, balanced)": "融合（默认，均衡）",
+    Gap: "间距",
+    "Generic (fibonacci)": "通用（斐波那契）",
+    "Google Search": "Google 搜索",
+    Grain: "颗粒",
+    "Graph inputs": "节点图输入",
+    "Graph outputs": "节点图输出",
+    Guide: "引导图",
+    "H.264 output": "H.264 输出",
+    HI: "印地语",
+    "HTML source": "HTML 源码",
+    "#120:b6a10ccd83a948b3": "设置 cam_prior 向上和向下搜索的角度。Tripo 资产通常可先试 ±25°。",
+    "#171:f4d0339e27084d0b": "设置 cam_prior 沿相机视轴左右滚转的搜索角度。Tripo 资产可从 ±25° 开始。",
+    "#144:0bfa88d99db3a6ab": "设置 cam_prior 在中心偏航角两侧各搜索多少度。开启 align_image 时通常可先试 ±5°。",
+    Halo: "光晕",
+    Height: "高度",
+    "High threshold": "高阈值",
+    "#63:7f33a06867ebc82b": "增大数值能更好地保留原图结构。",
+    "#50:54a0038d5cd8b021": "增大数值允许模型更自由地创作。",
+    "Hold last frame": "保持最后一帧",
+    Host: "主机",
+    "#175:9c1949b060a9031b": "重复惩罚过大会漏掉手指或尾部等骨骼。出现此情况可试用 1.1–1.3。",
+    "#249:ec697229f6d438c2": "前景可选适应、填充或拉伸。适应保留整幅前景，填充等比裁边，拉伸单独匹配背景宽高。",
+    "#286:6e40eb4534442bef": "将遮罩内的深度汇总为 depth_estimate_m。min 取最近点，median 取中位数，pNN 表示第 NN 百分位。默认 p5 侧重前表面，遮罩边缘有误差时比中位数更合适。",
+    IT: "意大利语",
+    Image: "图像",
+    "Image 1": "图像 1",
+    "Image A": "图像 A",
+    "Image B": "图像 B",
+    "Image Scale": "图像缩放比例",
+    "Image[]": "图像数组",
+    Images: "图像",
+    Imagination: "想象力",
+    Import: "导入",
+    "#65:ea5c765a8dbe4d86": "使用指定的资产名和目标路径直接导入",
+    In: "输入",
+    "Increase font size": "增大字号",
+    "Indexed instance": "按索引选择实例",
+    "#30:ba5c96c3f746b97d": "请填写整数索引。",
+    InitialTransform: "初始变换",
+    Inputs: "输入",
+    "#84:66420fe547b70207": "把父画布的值经输入引脚送到子画布。",
+    Int: "整数",
+    Intensity: "强度",
+    JA: "日语",
+    KO: "韩语",
+    "Keep scene state": "保留场景状态",
+    "#226:aeec6d88ef13f43b": "调整卡片光照时可实时预览编辑器视口、UE 视口卡片及编辑器世界渲染。每个编辑器仅预览一张卡片，关闭后还原关卡光照。",
+    "L2 gradient": "L2 梯度",
+    Language: "语言",
+    "Largest score": "最高分",
+    "Last frame": "最后一帧",
+    "Last run": "上次运行",
+    Layout: "布局",
+    "#36:9658df68934a7e2e": "留空使用模型预设。",
+    "#68:531f5ad352d32c50": "留空沿用原帧率，指定新帧率可启用补帧。",
+    "#40:98fc44b233fc0650": "留空以采用 Canvas 的默认值",
+    Left: "左",
+    "#50:3dab86785159c5ed": "设置 A 到 B 的时长。使用 Seedance 时至少为 4 秒。",
+    "Level Sequence": "关卡序列",
+    Lighten: "变亮",
+    Lighting: "光照",
+    Lists: "列表",
+    "Loc X": "X 位置",
+    "Loc Y": "Y 位置",
+    "Loc Z": "Z 位置",
+    "Location (cm)": "位置（厘米）",
+    Look: "外观",
+    Loop: "循环播放",
+    Loudness: "响度",
+    "Low threshold": "低阈值",
+    "#117:05e1d89f35646f90": "未找到目标可调低检测阈值。多个标签用逗号分开，例如",
+    "MCP Tool": "MCP 工具",
+    "MCP URL": "MCP 地址",
+    MD: "Markdown",
+    "MRG Preset": "MRG 预设",
+    "Markdown source": "Markdown 源码",
+    Mask: "遮罩",
+    "Match Aspect": "匹配宽高比",
+    "Match Visibility": "匹配可见性",
+    "Match preset": "匹配预设",
+    "#216:69b3feb9b6d22c58": "可沿用 MRG 预设或填写自定义宽高。1080p、1440p 和 2160p 为 16:9。匹配相机宽高比时，所选尺寸确定长边。",
+    "Match size": "匹配尺寸",
+    "#157:bf756a474452dbae": "按编辑器中的可见状态渲染 Actor。编辑器里隐藏的对象不参与，在编辑器中显示但设为游戏中隐藏的对象仍会渲染。",
+    "Material IDs": "材质 ID",
+    Matte: "遮罩",
+    "Max Tokens": "最大词元数",
+    Medium: "中等",
+    Merge: "合成",
+    Mesh: "网格模型",
+    "Mesh Source": "网格来源",
+    "Mesh Type": "网格类型",
+    "#89:6ac478a97913d136": "将重新展开 UV 的网格接到“网格”，原始带纹理的网格接到“来源”。",
+    MetallicRoughness: "金属度与粗糙度",
+    Method: "方法",
+    Metric: "公制",
+    Mode: "模式",
+    Model: "模型",
+    "More options (": "更多选项（",
+    "#48:9ed95722ed6e357d": "提高采样数可让贴图更平滑，也会增加烘焙时间。",
+    "Move X (px)": "X 向位移（像素）",
+    "Move Y (px)": "Y 向位移（像素）",
+    Multiply: "正片叠底",
+    "#20:a49982e2aed77f67": "偏航、俯仰和滚转方向的采样数量",
+    NL: "荷兰语",
+    Name: "名称",
+    "Near cm": "近端（厘米）",
+    "No file selected": "未选择文件",
+    "No models available": "没有可用模型",
+    "#70:26225f44ffca1d55": "当前没有引脚。点击下方横条或将连线接到圆点即可新增。",
+    "No tasks yet": "暂无任务",
+    "#235:a741c90f45c937b8": "DexiNed 生成边缘概率图，无需阈值。细节参数可选七个内部图之一，也可接入整数引脚。请先在设置中指定模型目录。",
+    "No tool selected": "尚未选择工具",
+    Noise: "噪声",
+    Normal: "法线",
+    "#118:865f1d7424e8e875": "P 决定累计概率覆盖范围，减小它可收窄候选集。",
+    "#46:3575f0cf619c22b6": "cam_prior 沿俯仰方向的采样数量。",
+    "#85:d1937965274524b6": "每个偏航和俯仰位置的滚转采样数。总视角数为三个轴的采样数相乘。",
+    "#44:e6a59b5c5139c0a5": "cam_prior 沿偏航方向的采样数量。",
+    "#37:68ac20425923e04b": "用逗号或换行分隔多个数字",
+    Occlusion: "遮蔽",
+    "#12:8f3c27b29a7a6e7e": "停用后采用 H.265 编码。",
+    "#193:17e820fc501f60eb": "开启后按渲染相机比例输出并消除黑边，分辨率仅决定大小。关闭则按指定宽高输出，必要时补黑边。",
+    "#50:75f58383097bdb62": "每行输入一组 RGB 或 RGBA 数值，以逗号分隔。每个分量在 0 到 1 之间。",
+    "#30:96aad74d3785cb01": "每行输入一对索引",
+    "#24:d4c6a3acd0108d45": "每行输入一个二维点 x, y",
+    "#27:311a1904a4be90b1": "每行输入一个三维点 x, y, z",
+    "#138:621b7a9c22726aeb": "每行一组 x, y 表示顶点，空行分隔多边形。单独一行减号表示接下来输入上一多边形的孔。",
+    "#97:8364adf17b18e916": "每行填一个变换。先填位移 x, y, z，可以用分号依次接上旋转 pitch, yaw, roll 和缩放 x, y, z。",
+    "#43:3b008fb108e45d01": "每行输入构成一个三角形的三个顶点索引",
+    "#35:5feb1fb382932e15": "需先开启“跳过对话框”",
+    "Opacity (%)": "不透明度（%）",
+    Operation: "操作",
+    "#40:fb49e49072e1a21f": "可选填希望增加的图片细节…",
+    "#44:558a9a1210df82df": "可选填模型回复要求。",
+    "#65:ad17fdc94f75b8f4": "可省略网格输入，操作将以空网格为起点。",
+    "Original Size": "原始尺寸",
+    Out: "输出",
+    Output: "输出",
+    "#104:c94bdedc7aa92d9f": "导出带背景声音的 H.264 MP4。仅在当前页面无法播放 MP4 时生成额外的 WebM。",
+    "#82:eed569a7a821c1d1": "输出可放大 2–8 倍，支持小数。",
+    Over: "正常叠加",
+    "#467:5e1f5962814325d3": "正常按透明度叠放，滤色可提亮，相加可产生辉光并以白色为上限。变亮和变暗逐通道取较亮或较暗值，正片叠底压暗，差值将相同颜色显示成黑色。",
+    PL: "波兰语",
+    PT: "葡萄牙语",
+    Padding: "内边距",
+    Parameters: "参数",
+    "Pick a mesh from Unreal…": "从 UE 选择网格…",
+    Piloted: "当前驾驶的相机",
+    Pitch: "音高",
+    "Pitch ± (°)": "俯仰 ±（°）",
+    "#122:8332119d6f736bcc": "默认以公告板底部为枢轴并吸附地面。悬挂牌或壁画可取消此项，改用中心枢轴。",
+    Pixel: "像素",
+    "Pixel X": "像素 X",
+    "Pixel Y": "像素 Y",
+    Platform: "平台",
+    "Play In Editor": "在编辑器中播放（PIE）",
+    "#290:ac3ca218fef30914": "需要物理、蓝图或序列事件时使用“在编辑器中播放”。大型关卡可能等待数分钟。快速预览可选“编辑器世界”，直接采用现有光照和时刻。",
+    "#80:8114e411ef5dafd7": "播放后捕获当前视口的一帧，然后停止。",
+    PointCloud: "点云",
+    "Points (": "标记点（",
+    PolyGroups: "多边形组",
+    Port: "端口",
+    "#98:f57de92c9eeb3337": "用 DINOv2 与 PnP 拟合姿态，结合经仿射对齐的单目深度恢复实际尺度。请连接",
+    "#20:38f89e27b336c8ae": "正数表示向下偏移。",
+    "Post-final (after FXAA/SMAA)": "最终处理后（FXAA/SMAA 之后）",
+    "Post-process rig": "后处理骨骼绑定",
+    "Post-tonemap (after TSR/TAA)": "色调映射后（TSR/TAA 之后）",
+    "Pre-postprocess (HDR, no AA)": "后期处理前（HDR，无抗锯齿）",
+    Precise: "精确",
+    "Preserve original mesh": "保留原始网格",
+    Preset: "预设",
+    Preview: "预览",
+    Prompt: "提示词",
+    "#106:c3f83f9afcf91dd3": "输入要朗读的文字，可用 @Audio1、@Audio2、@Audio3 指代接入的音频。",
+    "#131:92a223d6b16da9f7": "从输入视频选取静帧。有无损 MP4 时优先使用，以便准确选帧。",
+    "Quad topology": "四边形拓扑",
+    RICH: "富文本",
+    RU: "俄语",
+    Radius: "半径",
+    "Radius (cm)": "半径（厘米）",
+    "#122:a1fe5876c0537055": "调低随机性可得到较稳定的骨架，调高可探索更多结构。",
+    RawDepth: "原始深度",
+    "Recover Detail": "恢复细节",
+    Reference: "引用",
+    "Reference image": "参考图像",
+    "Refresh asset list from Unreal": "从 UE 刷新资产列表",
+    "#62:66e9f0b680c8e0da": "加载序列后，从 UE 重新读取相机",
+    "#33:a55fbdfd1f6b55f2": "向 Bridge 重新请求工具清单",
+    "Remove pin": "移除引脚",
+    "Render in": "渲染环境",
+    "Repetition penalty": "重复惩罚",
+    Reposition: "重定位",
+    "Reposition clip": "位置变化片段",
+    "Reset all": "全部重置",
+    Resolution: "分辨率",
+    "Resolution (px)": "分辨率（像素）",
+    Result: "结果",
+    "Rich text editor": "富文本编辑器",
+    Right: "右",
+    "Roll ± (°)": "滚转 ±（°）",
+    "Rot Pitch": "俯仰角",
+    "Rot Roll": "滚转角",
+    "Rot Yaw": "偏航角",
+    "Rotate (°)": "旋转（°）",
+    "Rotation (deg)": "旋转（度）",
+    "#106:b49893d5a2a1170f": "运行节点生成底图，再双击打开，按 D 用批注工具绘制。",
+    "#38:dc6f1d723a462a88": "运行后可查看输出列表。",
+    "#42:e09dcd0644f67d7e": "运行后可查看数值结果。",
+    "#39:824cdcc3c729d63e": "运行后可查看校验结果。",
+    "#138:aded24c3ee35ea77": "一次处理音画并导出 H.264 MP4，音频随片段一起裁切。页面无法播放 MP4 时另生成 WebM。",
+    "#102:7c612186c6322fc8": "用 cv2.Canny 处理每帧并导出 H.264 MP4。页面不支持 MP4 播放时另生成 WebM。",
+    "SPEECH TO TEXT": "语音转文本",
+    "Sample Rate": "采样率",
+    Sampler: "采样器",
+    Samples: "采样数",
+    "Sampling Steps": "采样步数",
+    "Save sequence": "保存序列",
+    Scale: "缩放",
+    "Scale %": "缩放（%）",
+    "Scale Factor": "缩放倍数",
+    "Scale X": "X 向缩放",
+    "Scale Y": "Y 向缩放",
+    "Scale Z": "Z 向缩放",
+    Scene: "场景",
+    "Scene State": "场景状态",
+    Screen: "滤色",
+    Screenshot: "截图",
+    "Seam ΔE threshold:": "接缝 ΔE 阈值：",
+    "Search…": "搜索…",
+    Seed: "随机种子",
+    Segmentation: "分割",
+    Sequence: "序列",
+    "Set the time of day": "设置当天时刻",
+    Show: "显示",
+    "Show Flags": "显示标志",
+    "Show in Unreal": "在 UE 中显示",
+    Size: "大小",
+    "Size (cm)": "尺寸（厘米）",
+    "Size X": "X 向尺寸",
+    "Size Y": "Y 向尺寸",
+    "Size Z": "Z 向尺寸",
+    "Skeletal Mesh": "骨骼网格体",
+    "Skeleton Type": "骨架类型",
+    "Skip Dialog": "跳过对话框",
+    "Snap to floor": "吸附到地面",
+    "Snapshot only": "仅拍摄快照",
+    Source: "源素材",
+    "Source (after crop)": "源尺寸（裁剪后）",
+    "Spatial Prompt Synthesis": "空间提示词合成",
+    "Speech Rate": "语速",
+    Sphere: "球体",
+    Splat: "高斯泼溅",
+    "Splat Count": "高斯点数量",
+    "#115:5dc0c9523e46729e": "给引脚加星号后，与之连接的节点可控制工作流图的缩略图、内嵌控件与详情。",
+    "Start (s)": "起点（秒）",
+    Start_frame: "起始帧",
+    "Static Mesh": "静态网格体",
+    Steps: "步数",
+    Stretch: "拉伸",
+    Structure: "结构",
+    Summary: "摘要",
+    Sync: "同步",
+    "#44:ddb9e175d4711a7c": "从 UE 读取最新的渲染通道与变量",
+    "System Prompt": "系统提示词",
+    "#282:dbe5922232252638": "启用后随渲染保存关卡快照，供比较物体位移或保存为关卡快照。大型关卡每次可多耗约一分钟与数百 MB。若需重定位，应在移动物体前开启。",
+    Target: "目标",
+    "Target FPS": "目标帧率",
+    "Target Resolution Size": "目标分辨率",
+    Temperature: "采样温度",
+    Text: "文本",
+    "Text Segment": "文本分段",
+    "Text color": "文字颜色",
+    "Text threshold": "文本阈值",
+    "#251:7a88874185693f92": "用指定时刻渲染这张卡片。会暂时调整关卡日间序列并在完成后还原。关闭时沿用编辑器当前时间。",
+    "#15:f82f875fd39b615b": "索引的数据类型",
+    "#85:7c17818a18a0295d": "选择用于烘焙的 UV 通道。UV 展开的默认目标是通道 0。",
+    "#66:7be1d86cb788e3de": "源素材裁剪后的尺寸已经匹配。",
+    "Time (s)": "时间（秒）",
+    "Time of day": "当天时刻",
+    "#30:eab3b60b6d73edf2": "一天中的小时和分钟",
+    "#141:a8a8aa10eb969e28": "可先用变换节点调整前景。将背景接到“匹配尺寸”，底色设为透明。",
+    Tolerance: "容差",
+    Tool: "工具",
+    Top: "上",
+    "#52:fe8d410391fd9e69": "Topaz 视频超分（fal.ai）需要视频输入。",
+    Transform: "变换",
+    Transparent: "透明",
+    Tree: "树状结构",
+    Triangles: "三角形",
+    Trim: "修剪",
+    "Tripo 3.1 (optimized)": "Tripo 3.1（已优化）",
+    Type: "类型",
+    UK: "乌克兰语",
+    URL: "网址",
+    "UV Channel": "UV 通道",
+    "Union (all matches)": "合并所有匹配项",
+    "#79:b4d8fae7417310de": "填写 Bridge 的 MCP 服务地址。默认连接当前 UE 编辑器的 MCP 端点。",
+    "Unreal asset": "UE 资产",
+    "#102:d605fccb12e5ef79": "指定 UE 的关卡序列资产路径。留空即使用定序器里打开的序列。",
+    "#184:f265af6931bcde4f": "填写影片渲染图预设的资产路径，例如 /Game/Presets/Render.Render。留空沿用编辑器偏好设置里 Unreal Canvas Bridge 的默认值。",
+    "#124:8774f520efa134e8": "选择内容浏览器里的静态或骨骼网格体，填写完整资产路径。执行节点时会导出 GLB。",
+    "Unreal not reachable": "无法连接 UE",
+    "Unreal offline": "UE 离线",
+    "#70:e6b17dc631f5e784": "输入未连接时采用此处的数字，用逗号或换行分隔。",
+    "#83:dda57af841ba8a15": "输入未连接时使用此处的颜色。每行一组 RGB 或 RGBA，以逗号分隔，各分量范围为 0 到 1。",
+    "#63:f792049317610cf8": "输入未连接时采用此处的索引对，每行一对。",
+    "#60:5daa6d58f006744a": "输入未连接时采用此处的三维点，每行一组 x, y, z。",
+    "#57:ff9fe8d718895578": "输入未连接时采用此处的二维点，每行一组 x, y。",
+    "#171:4f80e45fbfb7fd6e": "输入未连接时从此处读取多边形。每行填一个二维顶点，用空行分隔多边形，用单独一行减号开始填写孔。",
+    "#130:fe43d98f2b10bab7": "输入未连接时从此处读取变换。每行依次填写位移、可选旋转和可选缩放，各组三元数用分号分隔。",
+    "#76:e2774dae3d11e8de": "输入未连接时采用此处的三角形，每行填三个顶点索引。",
+    "#76:7ba3c6e8f30b7c61": "输入未连接时采用此处的整数，用逗号或换行分隔。",
+    Validation_report: "验证报告",
+    Value: "明度",
+    Values: "数值",
+    Vector2: "二维向量",
+    Vector3: "三维向量",
+    Vertices: "顶点",
+    "Via pin": "通过引脚输入",
+    Video: "视频",
+    "Video A": "视频 A",
+    "Video B": "视频 B",
+    "#53:7b6774c547b7b292": "视频无法保留透明通道，透明区域会输出为黑色。",
+    "View Mode": "视图模式",
+    "Viewport Look": "视口外观",
+    "#79:e4cf5da3490510f0": "前景视频先播完时，选择剩余时段的显示方式。",
+    "#192:e428050668864f28": "选择提取颜色并合成模板的后期阶段。所选通道不可用时，UE 依次尝试最终处理后、色调映射后和后期处理前。",
+    "#39:51f25e8bea630c36": "选择执行骨骼绑定的 GPU。",
+    White: "白色",
+    "#43:8e9eb420d590a4e8": "用逗号或换行分隔多个整数",
+    Width: "宽度",
+    "#61:a83e87575aaf8f08": "在“匹配尺寸”端接入视频或图片以沿用它的宽高。",
+    "Wire it in a graph": "请在节点图中连线输入",
+    "Yaw offset": "偏航偏移",
+    "Yaw offset (°)": "偏航偏移（°）",
+    "Yaw ± (°)": "偏航 ±（°）",
+    ZH: "中文",
+    "bed, chair, floor, walls…": "床、椅子、地板、墙壁…",
+    "#300:80a877d5b010f225": "cam_prior 在预期相机方向附近密集取样，适合已用 align_image 对齐的资产。fibonacci 用 300 个均匀视角覆盖整球，耗时更长但可找到预期外的方向。",
+    center: "中心",
+    false: "假",
+    "frame max": "当前帧最大值",
+    "frame min": "当前帧最小值",
+    "hardcoded (pin overrides)": "固定值（引脚优先）",
+    "iOS High": "iOS 高画质",
+    "iOS Low": "iOS 低画质",
+    "iOS Mid": "iOS 中画质",
+    "#192:f3c8fbc425aceb54": "输入端。节点将快照与当前场景对比，渲染物体从旧位置到新位置的过程，相机也会从已存姿态移至当前视口。",
+    "#18:7d89ec264ea75b64": "请检查 UE 是否已启动。",
+    "node into the": "节点连接至",
+    "#30:e9e3626f07727203": "接口。选用下方预设后，各资产通常只需微调",
+    "string value…": "字符串值…",
+    true: "真",
+    "#33:67241c9fdb8aaeea": "。",
+    "— pick a group —": "— 选择颜色组 —",
+    "#26:0368a54677c00855": "— 请在节点上指定工具 —",
+    "→ preview unavailable (": "→ 无法预览（"
+  },
+  defaults: {
+    audioGenerator: {
+      "Audio Generator": "音频生成器"
+    },
+    audioInput: {
+      "Audio Input": "音频输入"
+    },
+    autoRig: {
+      "Auto-Rig": "自动绑定骨骼"
+    },
+    boolConstant: {
+      Boolean: "布尔值"
+    },
+    cannyEdgesImage: {
+      "Canny Edges (Image)": "Canny 边缘（图像）"
+    },
+    cannyEdgesVideo: {
+      "Canny Edges (Video)": "Canny 边缘（视频）"
+    },
+    canvasInput: {
+      Inputs: "画布输入"
+    },
+    canvasOutput: {
+      Outputs: "画布输出"
+    },
+    choice: {
+      Choice: "选项"
+    },
+    consoleLog: {
+      "Console Log": "控制台日志"
+    },
+    constant: {
+      Constant: "常量"
+    },
+    convert: {
+      Convert: "转换"
+    },
+    createStaticMeshAsset: {
+      "Create Static Mesh Asset": "创建静态网格体资产"
+    },
+    cubeMesh: {
+      "Cube Mesh": "立方体网格"
+    },
+    depthEstimation: {
+      "Depth Estimation": "深度估计"
+    },
+    doodle: {
+      Doodle: "涂鸦"
+    },
+    edgeDetectionImage: {
+      "Edge Detection (Image)": "边缘检测（图像）"
+    },
+    edgeDetectionVideo: {
+      "Edge Detection (Video)": "边缘检测（视频）"
+    },
+    figmaFetch: {
+      "Figma Fetch": "从 Figma 获取"
+    },
+    floatConstant: {
+      Float: "浮点数"
+    },
+    icpAlign: {
+      "ICP Align": "ICP 对齐"
+    },
+    imageGenerator: {
+      "Image Generator": "图像生成器"
+    },
+    imageGrid: {
+      "Image Grid": "图像网格"
+    },
+    imageInput: {
+      "Image Input": "图像输入"
+    },
+    imageMerge: {
+      "Merge (Image)": "合并图像"
+    },
+    imageTransform: {
+      "Transform (Image)": "图像变换"
+    },
+    imageUpscaler: {
+      "Image Upscaler": "图像超分辨率"
+    },
+    imageValidator: {
+      "Image Validator": "图像校验"
+    },
+    imageViewer: {
+      "Image Viewer": "图像查看器"
+    },
+    intConstant: {
+      Integer: "整数"
+    },
+    mcpTool: {
+      "MCP Tool": "MCP 工具"
+    },
+    meshBake: {
+      "Bake Textures": "烘焙纹理"
+    },
+    meshGenerator: {
+      "Mesh Generator": "网格生成器"
+    },
+    meshInput: {
+      "Mesh Input": "网格输入"
+    },
+    meshOp: {
+      "UV Unwrap": "UV 展开",
+      Remesh: "重构网格",
+      Simplify: "简化网格",
+      "Recompute Normals": "重算法线",
+      "Fill Holes": "填补孔洞",
+      "Weld Edges": "焊接边",
+      Solidify: "实体化"
+    },
+    meshViewer: {
+      "Mesh Viewer": "网格查看器"
+    },
+    panoramaViewer: {
+      "Panorama Viewer": "全景查看器"
+    },
+    pointCloud: {
+      "Point Cloud": "点云"
+    },
+    pointCorrespondencePoseFit: {
+      "Point Correspondence Pose Fit": "通过对应点拟合姿态"
+    },
+    projectedWorldTransformAt: {
+      "Projected World Transform At": "指定位置的投影世界变换"
+    },
+    repositionRender: {
+      "Reposition Render": "调整渲染位置"
+    },
+    segmentation: {
+      Segmentation: "分割"
+    },
+    select: {
+      Select: "选择"
+    },
+    sequenceRender: {
+      "Sequence Render": "序列渲染"
+    },
+    setCamera: {
+      "Set Camera": "设置摄像机"
+    },
+    simpleAlign: {
+      "Simple Align": "简单对齐"
+    },
+    spatialMaskGuide: {
+      "Spatial Mask Guide": "空间遮罩引导"
+    },
+    spatialPromptSynthesis: {
+      "Spatial Prompt Synthesis": "空间提示词合成"
+    },
+    spawnCutoutAt: {
+      "Spawn Cutout At": "在指定位置生成剪影"
+    },
+    spawnMeshAt: {
+      "Spawn Mesh At": "在指定位置生成网格"
+    },
+    speechToText: {
+      "Speech to Text": "语音转文本"
+    },
+    sphereMesh: {
+      "Sphere Mesh": "球体网格"
+    },
+    splatGenerator: {
+      "Splat Generator": "高斯泼溅生成器"
+    },
+    stringConstant: {
+      String: "字符串"
+    },
+    switch: {
+      Switch: "切换"
+    },
+    task: {
+      Tasks: "任务"
+    },
+    textInput: {
+      "Text Input": "文本输入"
+    },
+    textSegment: {
+      "Text Segment": "文本分段"
+    },
+    textureGenerator: {
+      "Texture Generator": "纹理生成器"
+    },
+    unrealRender: {
+      "Viewport Render": "视口渲染"
+    },
+    usdInput: {
+      "USD Input": "USD 输入"
+    },
+    vector2Constant: {
+      "Vector 2": "二维向量"
+    },
+    vector3Constant: {
+      "Vector 3": "三维向量"
+    },
+    videoFrameExtract: {
+      "Extract Frame": "提取帧"
+    },
+    videoGenerator: {
+      "Video Generator": "视频生成器"
+    },
+    videoInput: {
+      "Video Input": "视频输入"
+    },
+    videoMerge: {
+      "Merge (Video)": "合并视频"
+    },
+    videoTransform: {
+      "Transform (Video)": "视频变换"
+    },
+    videoUpscaler: {
+      "Video Upscaler": "视频超分辨率"
+    },
+    videoViewer: {
+      "Video Viewer": "视频查看器"
+    },
+    viewportCapture: {
+      "UE Viewport": "UE 视口"
+    },
+    webcamCapture: {
+      "Webcam Capture": "摄像头采集"
+    }
+  },
+  nodes: {
+    appendBundles: {
+      title: [
+        "Double-click to rename"
+      ]
+    },
+    audioGenerator: {
+      "aria-label": [
+        "Loudness",
+        "Pitch",
+        "Sample Rate",
+        "Speech Rate"
+      ],
+      field: [
+        "Count",
+        "Loudness",
+        "Model",
+        "Pitch",
+        "Sample Rate",
+        "Speech Rate"
+      ],
+      pin: [
+        "Audio",
+        "Prompt",
+        "Reference image"
+      ],
+      title: [
+        "Expose as input pin"
+      ],
+      body: [
+        "#106:c3f83f9afcf91dd3"
+      ]
+    },
+    audioInput: {
+      button: [
+        "Add audio"
+      ],
+      pin: [
+        "Audio"
+      ],
+      title: [
+        "#39:3dc20ff5dfef957d"
+      ]
+    },
+    autoRig: {
+      "aria-label": [
+        "Beams",
+        "Post-process rig",
+        "Preserve original mesh",
+        "Repetition penalty",
+        "Temperature"
+      ],
+      field: [
+        "#162:58d2b798aab3c8a2",
+        "#136:80837529dbbc1509",
+        "#127:7e76ada0560c013d",
+        "Beams",
+        "#106:f417834180423247",
+        "#175:9c1949b060a9031b",
+        "Model",
+        "#118:865f1d7424e8e875",
+        "Post-process rig",
+        "Preserve original mesh",
+        "#122:a1fe5876c0537055",
+        "Repetition penalty",
+        "Temperature",
+        "#39:51f25e8bea630c36"
+      ],
+      pin: [
+        "Mesh",
+        "Screenshot",
+        "Skeleton Type"
+      ],
+      title: [
+        "Expose as input pin"
+      ]
+    },
+    boolConstant: {
+      body: [
+        "false",
+        "true"
+      ],
+      pin: [
+        "Boolean"
+      ]
+    },
+    bundle: {
+      title: [
+        "Double-click to rename"
+      ]
+    },
+    cannyEdgesImage: {
+      "aria-label": [
+        "High threshold",
+        "L2 gradient",
+        "Low threshold"
+      ],
+      field: [
+        "Aperture size",
+        "High threshold",
+        "L2 gradient",
+        "Low threshold"
+      ],
+      params: [
+        "Canny Edges"
+      ],
+      pin: [
+        "Edges",
+        "Image"
+      ],
+      title: [
+        "Expose as input pin"
+      ]
+    },
+    cannyEdgesVideo: {
+      "aria-label": [
+        "High threshold",
+        "L2 gradient",
+        "Low threshold"
+      ],
+      field: [
+        "Aperture size",
+        "High threshold",
+        "L2 gradient",
+        "Low threshold"
+      ],
+      params: [
+        "Canny Edges",
+        "#102:7c612186c6322fc8"
+      ],
+      pin: [
+        "Edges",
+        "Video"
+      ],
+      title: [
+        "Expose as input pin"
+      ]
+    },
+    canvasInput: {
+      button: [
+        "+ Add input"
+      ],
+      params: [
+        "Graph inputs",
+        "#84:66420fe547b70207",
+        "#70:26225f44ffca1d55"
+      ],
+      title: [
+        "#54:b5313adf324aa7c9"
+      ]
+    },
+    canvasOutput: {
+      button: [
+        "+ Add output"
+      ],
+      params: [
+        "Graph outputs",
+        "#70:26225f44ffca1d55",
+        "#115:5dc0c9523e46729e"
+      ],
+      title: [
+        "#55:ad374fbb345e8610"
+      ]
+    },
+    consoleLog: {
+      field: [
+        "Value"
+      ],
+      pin: [
+        "Value"
+      ],
+      placeholder: [
+        "hardcoded (pin overrides)"
+      ]
+    },
+    constant: {
+      pin: [
+        "Value"
+      ],
+      placeholder: [
+        "#43:55abbad72de02e73"
+      ]
+    },
+    convert: {
+      pin: [
+        "In",
+        "Out"
+      ]
+    },
+    createStaticMeshAsset: {
+      "aria-label": [
+        "Allow Overwrite",
+        "Asset Name",
+        "Destination Path",
+        "Skip Dialog"
+      ],
+      choice: [
+        "Auto (detect)",
+        "Skeletal Mesh",
+        "Static Mesh"
+      ],
+      field: [
+        "Allow Overwrite",
+        "Asset Name",
+        "Destination Path",
+        "Mesh Type",
+        "Skip Dialog"
+      ],
+      params: [
+        "Destination",
+        "Dialog",
+        "Import"
+      ],
+      pin: [
+        "Asset Name",
+        "Asset Path",
+        "Destination Path",
+        "Mesh"
+      ],
+      placeholder: [
+        "#20:ef18a3fa5ddd7aa0"
+      ],
+      title: [
+        "#71:632cc84e7be15a45",
+        "Expose as input pin",
+        "#65:ea5c765a8dbe4d86",
+        "#35:5feb1fb382932e15"
+      ]
+    },
+    cubeMesh: {
+      field: [
+        "Size X",
+        "Size Y",
+        "Size Z"
+      ],
+      params: [
+        "Size (cm)"
+      ],
+      pin: [
+        "Mesh",
+        "Screenshot",
+        "Size X",
+        "Size Y",
+        "Size Z"
+      ]
+    },
+    depthEstimation: {
+      field: [
+        "Model"
+      ],
+      params: [
+        "Depth Estimation",
+        "#242:3b603774d70cc7b9"
+      ],
+      pin: [
+        "DepthMap",
+        "Image",
+        "Mask",
+        "RawDepth"
+      ]
+    },
+    doodle: {
+      params: [
+        "Background Color",
+        "Canvas",
+        "Resolution (px)",
+        "#106:b49893d5a2a1170f"
+      ],
+      pin: [
+        "Image"
+      ]
+    },
+    edgeDetectionImage: {
+      choice: [
+        "Canny (classical, thresholded)",
+        "Coarse",
+        "Coarser",
+        "Coarsest — major boundaries only",
+        "DexiNed (perceptual, no calibration)",
+        "Fine",
+        "Finest — includes texture",
+        "Fused (default, balanced)",
+        "Medium"
+      ],
+      field: [
+        "Detail",
+        "Method"
+      ],
+      params: [
+        "Edge Detection",
+        "#235:a741c90f45c937b8"
+      ],
+      pin: [
+        "Edges",
+        "Image"
+      ],
+      title: [
+        "Expose as input pin"
+      ]
+    },
+    edgeDetectionVideo: {
+      choice: [
+        "Canny (classical, thresholded)",
+        "Coarse",
+        "Coarser",
+        "Coarsest — major boundaries only",
+        "DexiNed (perceptual, no calibration)",
+        "Fine",
+        "Finest — includes texture",
+        "Fused (default, balanced)",
+        "Medium"
+      ],
+      field: [
+        "Detail",
+        "Method"
+      ],
+      params: [
+        "Edge Detection",
+        "#235:a741c90f45c937b8"
+      ],
+      pin: [
+        "Edges",
+        "Video"
+      ],
+      title: [
+        "Expose as input pin"
+      ]
+    },
+    figmaFetch: {
+      field: [
+        "Depth",
+        "Export Images",
+        "Image Scale",
+        "URL"
+      ],
+      params: [
+        "FIGMA FETCH"
+      ],
+      pin: [
+        "Image",
+        "Summary",
+        "Tree",
+        "URL"
+      ],
+      title: [
+        "0 = unlimited",
+        "Remove pin"
+      ]
+    },
+    floatConstant: {
+      pin: [
+        "Float"
+      ]
+    },
+    icpAlign: {
+      pin: [
+        "InitialTransform",
+        "Mesh",
+        "PointCloud",
+        "Transform"
+      ]
+    },
+    imageGenerator: {
+      choice: [
+        "Auto"
+      ],
+      field: [
+        "Aspect Ratio",
+        "Count",
+        "Google Search",
+        "Model",
+        "Resolution",
+        "Seed"
+      ],
+      pin: [
+        "Image",
+        "Image[]",
+        "Prompt"
+      ],
+      title: [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    imageGrid: {
+      button: [
+        "+ Add Image"
+      ],
+      field: [
+        "Background",
+        "Color",
+        "Enabled",
+        "Gap",
+        "Original Size",
+        "Padding",
+        "Scale %",
+        "Width"
+      ],
+      params: [
+        "Frame",
+        "Image 1",
+        "Images",
+        "Layout"
+      ],
+      pin: [
+        "Image",
+        "Image 1"
+      ]
+    },
+    imageInput: {
+      button: [
+        "Add image"
+      ],
+      pin: [
+        "Image"
+      ],
+      title: [
+        "#39:5081216f6aea5e5e"
+      ]
+    },
+    imageMerge: {
+      button: [
+        "Reset all"
+      ],
+      choice: [
+        "Add",
+        "Darken",
+        "Difference",
+        "Fill",
+        "Fit",
+        "Lighten",
+        "Multiply",
+        "Over",
+        "Screen",
+        "Stretch"
+      ],
+      field: [
+        "Fit",
+        "#249:ec697229f6d438c2",
+        "Mode",
+        "Opacity (%)",
+        "#467:5e1f5962814325d3"
+      ],
+      params: [
+        "#42:fc5be90b22e39603",
+        "Merge",
+        "Preview",
+        "#141:a8a8aa10eb969e28"
+      ],
+      pin: [
+        "Background",
+        "Foreground",
+        "Image"
+      ],
+      title: [
+        "Expose as input pin"
+      ]
+    },
+    imageTransform: {
+      button: [
+        "Reset all"
+      ],
+      choice: [
+        "1024 × 1024 (square)",
+        "1080 × 1920 (vertical)",
+        "1920 × 1080 (HD)",
+        "2048 × 2048 (square)",
+        "3840 × 2160 (UHD)",
+        "720 × 1280 (vertical)",
+        "Black",
+        "Custom",
+        "Fill",
+        "Fit",
+        "Source (after crop)",
+        "Stretch",
+        "Transparent",
+        "White"
+      ],
+      field: [
+        "Background",
+        "Bottom",
+        "#10:8fd1ee4971931fc1",
+        "Fit",
+        "#197:6b6689af025d015b",
+        "Flip horizontal",
+        "Flip vertical",
+        "Left",
+        "Move X (px)",
+        "Move Y (px)",
+        "#20:38f89e27b336c8ae",
+        "Right",
+        "Rotate (°)",
+        "Scale",
+        "Size",
+        "Top",
+        "#61:a83e87575aaf8f08"
+      ],
+      params: [
+        "#28:a7499a865b9af2ec",
+        "Crop (% of source)",
+        "Output",
+        "Preview",
+        "Transform"
+      ],
+      pin: [
+        "Image",
+        "Match size"
+      ],
+      title: [
+        "Expose as input pin",
+        "#66:7be1d86cb788e3de"
+      ]
+    },
+    imageUpscaler: {
+      "aria-label": [
+        "Base Model",
+        "Enhance Details",
+        "Imagination",
+        "Preset",
+        "Prompt",
+        "Scale Factor",
+        "Steps",
+        "Structure"
+      ],
+      choice: [
+        "Balanced",
+        "Creative",
+        "FLUX.1-Krea-dev (realistic)",
+        "FLUX.1-dev (stylized)",
+        "Precise"
+      ],
+      control: [
+        "#40:fb49e49072e1a21f"
+      ],
+      field: [
+        "Base Model",
+        "Count",
+        "Enhance Details",
+        "#63:7f33a06867ebc82b",
+        "#50:54a0038d5cd8b021",
+        "Imagination",
+        "Model",
+        "#82:eed569a7a821c1d1",
+        "Preset",
+        "Prompt",
+        "Scale Factor",
+        "Seed",
+        "Steps",
+        "Structure"
+      ],
+      pin: [
+        "Image"
+      ],
+      title: [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    imageValidator: {
+      params: [
+        "Configured checks",
+        "Last run",
+        "#39:824cdcc3c729d63e",
+        "Expected aspect:",
+        "Seam ΔE threshold:"
+      ],
+      pin: [
+        "Image",
+        "Validation_report"
+      ]
+    },
+    imageViewer: {
+      pin: [
+        "Image",
+        "Image A",
+        "Image B"
+      ]
+    },
+    intConstant: {
+      pin: [
+        "Int"
+      ]
+    },
+    mcpTool: {
+      body: [
+        "No tool selected"
+      ],
+      button: [
+        "Search…"
+      ],
+      field: [
+        "MCP URL",
+        "Name",
+        "#79:b4d8fae7417310de"
+      ],
+      params: [
+        "Connection",
+        "MCP Tool",
+        "Tool"
+      ],
+      title: [
+        "#33:a55fbdfd1f6b55f2"
+      ],
+      control: [
+        "#26:0368a54677c00855"
+      ]
+    },
+    meshBake: {
+      "aria-label": [
+        "Ambient Occlusion",
+        "Samples",
+        "UV Channel"
+      ],
+      choice: [
+        "1 per pixel",
+        "16 per pixel",
+        "4 per pixel"
+      ],
+      control: [
+        "Via pin"
+      ],
+      field: [
+        "#111:beac051b71025325",
+        "Ambient Occlusion",
+        "Mesh",
+        "#48:9ed95722ed6e357d",
+        "Resolution",
+        "Samples",
+        "Source",
+        "#85:7c17818a18a0295d",
+        "UV Channel"
+      ],
+      params: [
+        "Bake",
+        "Inputs",
+        "#89:6ac478a97913d136"
+      ],
+      pin: [
+        "Ambient Occlusion",
+        "BaseColor",
+        "Emissive",
+        "Mesh",
+        "MetallicRoughness",
+        "Normal",
+        "Occlusion",
+        "Screenshot",
+        "Source"
+      ],
+      title: [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin",
+        "Remove pin"
+      ]
+    },
+    meshGenerator: {
+      "aria-label": [
+        "Align to image",
+        "Disable PBR",
+        "Face limit",
+        "Quad topology"
+      ],
+      field: [
+        "Align to image",
+        "Count",
+        "Disable PBR",
+        "Face limit",
+        "Model",
+        "Quad topology",
+        "Seed"
+      ],
+      pin: [
+        "Image",
+        "Mesh",
+        "Prompt",
+        "Screenshot"
+      ],
+      title: [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    meshInput: {
+      button: [
+        "Add mesh"
+      ],
+      choice: [
+        "External file",
+        "Skeletal Mesh",
+        "Static Mesh",
+        "Unreal asset"
+      ],
+      field: [
+        "Asset",
+        "Source",
+        "Type"
+      ],
+      params: [
+        "Mesh Source"
+      ],
+      pin: [
+        "Asset",
+        "Mesh",
+        "Screenshot"
+      ],
+      placeholder: [
+        "Pick a mesh from Unreal…"
+      ],
+      title: [
+        "#38:14d2de54cb5e9906",
+        "Refresh asset list from Unreal",
+        "#124:8774f520efa134e8"
+      ]
+    },
+    meshOp: {
+      control: [
+        "#38:dc6f1d723a462a88",
+        "Via pin",
+        "Wire it in a graph"
+      ],
+      field: [
+        "Mesh",
+        "Operation"
+      ],
+      params: [
+        "#45:2c6f2f1bb1fcf40e",
+        "#27:2cefdf7c0b06e523",
+        "#30:ba5c96c3f746b97d",
+        "Inputs",
+        "Lists",
+        "Operation",
+        "#65:ad17fdc94f75b8f4",
+        "Parameters",
+        "#42:e09dcd0644f67d7e",
+        "#15:f82f875fd39b615b",
+        "#70:e6b17dc631f5e784",
+        "#83:dda57af841ba8a15",
+        "#63:f792049317610cf8",
+        "#60:5daa6d58f006744a",
+        "#57:ff9fe8d718895578",
+        "#171:4f80e45fbfb7fd6e",
+        "#130:fe43d98f2b10bab7",
+        "#76:e2774dae3d11e8de",
+        "#76:7ba3c6e8f30b7c61",
+        "Values"
+      ],
+      pin: [
+        "Mesh",
+        "Screenshot"
+      ],
+      title: [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin",
+        "Remove pin"
+      ],
+      choice: [
+        "Any",
+        "Choose…",
+        "Edges",
+        "Material IDs",
+        "PolyGroups",
+        "Triangles",
+        "Vertices"
+      ],
+      button: [
+        "More options ("
+      ],
+      placeholder: [
+        "#37:68ac20425923e04b",
+        "#50:75f58383097bdb62",
+        "#30:96aad74d3785cb01",
+        "#24:d4c6a3acd0108d45",
+        "#27:311a1904a4be90b1",
+        "#138:621b7a9c22726aeb",
+        "#97:8364adf17b18e916",
+        "#43:3b008fb108e45d01",
+        "#43:8e9eb420d590a4e8"
+      ]
+    },
+    meshViewer: {
+      pin: [
+        "Mesh",
+        "Screenshot"
+      ]
+    },
+    panoramaViewer: {
+      pin: [
+        "Image"
+      ]
+    },
+    pointCloud: {
+      pin: [
+        "Camera",
+        "Image",
+        "Mask",
+        "PointCloud",
+        "RawDepth",
+        "Screenshot"
+      ]
+    },
+    pointCorrespondencePoseFit: {
+      button: [
+        "Generic (fibonacci)",
+        "Tripo 3.1 (optimized)"
+      ],
+      choice: [
+        "Cam prior (narrow grid)",
+        "Fibonacci (uniform)"
+      ],
+      field: [
+        "Aggregator",
+        "Bias to cam roll",
+        "#20:a49982e2aed77f67",
+        "Pitch ± (°)",
+        "Roll ± (°)",
+        "Sampler",
+        "Yaw offset (°)",
+        "Yaw ± (°)"
+      ],
+      params: [
+        "#62:79a7b024c350d9dc",
+        "Asset orientation",
+        "Bank sampler",
+        "#46:df10faca100769d5",
+        "Depth aggregator",
+        "#98:f57de92c9eeb3337",
+        "Preset",
+        "Yaw offset",
+        "node into the",
+        "#30:e9e3626f07727203",
+        "#33:67241c9fdb8aaeea"
+      ],
+      pin: [
+        "Camera",
+        "EstimatedDepth",
+        "Image",
+        "Mask",
+        "Mesh",
+        "RawDepth",
+        "Transform"
+      ],
+      title: [
+        "#240:f50203ab176880d2",
+        "#222:a025985003ec29e7",
+        "#239:72702cb7633566bc",
+        "#226:0488cc9e2d1aa132",
+        "#120:b6a10ccd83a948b3",
+        "#171:f4d0339e27084d0b",
+        "#144:0bfa88d99db3a6ab",
+        "#286:6e40eb4534442bef",
+        "#46:3575f0cf619c22b6",
+        "#85:d1937965274524b6",
+        "#44:e6a59b5c5139c0a5",
+        "#300:80a877d5b010f225"
+      ]
+    },
+    projectedWorldTransformAt: {
+      "aria-label": [
+        "Camera Rotation",
+        "Pixel X",
+        "Pixel Y"
+      ],
+      field: [
+        "Camera Rotation",
+        "Pixel X",
+        "Pixel Y"
+      ],
+      params: [
+        "Pixel",
+        "Transform"
+      ],
+      pin: [
+        "Camera",
+        "Image",
+        "RawDepth",
+        "Transform"
+      ],
+      placeholder: [
+        "center"
+      ],
+      body: [
+        "Connect Image to pick pixel",
+        "center"
+      ]
+    },
+    repositionRender: {
+      "aria-label": [
+        "Save sequence"
+      ],
+      field: [
+        "#121:4b59784bab7d7ea2",
+        "Duration (s)",
+        "#50:3dab86785159c5ed",
+        "Save sequence"
+      ],
+      params: [
+        "#58:92fcbd9db6bdc016",
+        "Reposition clip",
+        "Scene State",
+        "#192:f3c8fbc425aceb54"
+      ],
+      pin: [
+        "Beauty",
+        "Depth",
+        "Normal",
+        "Scene State"
+      ]
+    },
+    segmentation: {
+      choice: [
+        "BG",
+        "FG"
+      ],
+      field: [
+        "Model"
+      ],
+      params: [
+        "#129:4c8582e382f0bede",
+        "Segmentation",
+        "Points ("
+      ],
+      pin: [
+        "Image",
+        "Mask"
+      ]
+    },
+    sequenceRender: {
+      button: [
+        "Camera Cuts Track",
+        "Sync"
+      ],
+      choice: [
+        "Android OpenGL High",
+        "Android OpenGL Low",
+        "Android OpenGL Mid",
+        "Android Vulkan High",
+        "Android Vulkan Low",
+        "Android Vulkan Mid",
+        "Custom",
+        "Editor's platform",
+        "Match preset",
+        "iOS High",
+        "iOS Low",
+        "iOS Mid"
+      ],
+      field: [
+        "#88:8b13039ae460d8a3",
+        "#196:037be524fa65bdb0",
+        "Camera",
+        "Level Sequence",
+        "Match Aspect",
+        "Match Visibility",
+        "#157:bf756a474452dbae",
+        "Platform",
+        "Preset",
+        "Show Flags",
+        "Target Resolution Size",
+        "View Mode"
+      ],
+      params: [
+        "MRG Preset",
+        "Sequence",
+        "Viewport Look",
+        "→ preview unavailable (",
+        "#18:7d89ec264ea75b64"
+      ],
+      pin: [
+        "Beauty",
+        "Depth",
+        "Level Sequence",
+        "Normal",
+        "Resolution"
+      ],
+      placeholder: [
+        "#40:f4d0aed7b77bf0d2",
+        "#40:98fc44b233fc0650"
+      ],
+      title: [
+        "#35:39febc428643d894",
+        "Expose as input pin",
+        "#216:69b3feb9b6d22c58",
+        "#193:17e820fc501f60eb",
+        "Refresh asset list from Unreal",
+        "#62:66e9f0b680c8e0da",
+        "Remove pin",
+        "#44:ddb9e175d4711a7c",
+        "#102:d605fccb12e5ef79",
+        "#184:f265af6931bcde4f",
+        "Unreal not reachable"
+      ],
+      body: [
+        "Unreal offline",
+        "Checking…",
+        "Connected"
+      ]
+    },
+    setCamera: {
+      pin: [
+        "Camera"
+      ]
+    },
+    simpleAlign: {
+      pin: [
+        "Mesh",
+        "PointCloud",
+        "Screenshot",
+        "Transform"
+      ]
+    },
+    spatialMaskGuide: {
+      choice: [
+        "1 · red",
+        "2 · blue",
+        "3 · green",
+        "4 · orange",
+        "5 · pink",
+        "6 · purple",
+        "7 · cyan",
+        "8 · lime",
+        "— pick a group —"
+      ],
+      field: [
+        "Colour group",
+        "Fill opacity",
+        "Tolerance"
+      ],
+      params: [
+        "Look",
+        "Target"
+      ],
+      pin: [
+        "Frame",
+        "Guide",
+        "Matte",
+        "Reference"
+      ]
+    },
+    spatialPromptSynthesis: {
+      "aria-label": [
+        "Max Tokens",
+        "System Prompt",
+        "Temperature"
+      ],
+      control: [
+        "#44:558a9a1210df82df"
+      ],
+      field: [
+        "Max Tokens",
+        "Model",
+        "System Prompt",
+        "Temperature"
+      ],
+      params: [
+        "Spatial Prompt Synthesis"
+      ],
+      pin: [
+        "Annotated",
+        "Annotations",
+        "Scene",
+        "Text"
+      ],
+      title: [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    spawnCutoutAt: {
+      "aria-label": [
+        "Intensity",
+        "Loc X",
+        "Loc Y",
+        "Loc Z",
+        "MCP URL",
+        "Rot Pitch",
+        "Rot Roll",
+        "Rot Yaw",
+        "Snap to floor"
+      ],
+      field: [
+        "Intensity",
+        "Loc X",
+        "Loc Y",
+        "Loc Z",
+        "MCP URL",
+        "Rot Pitch",
+        "Rot Roll",
+        "Rot Yaw",
+        "Snap to floor"
+      ],
+      params: [
+        "Connection",
+        "Cutout",
+        "Location (cm)",
+        "Rotation (deg)"
+      ],
+      pin: [
+        "Image",
+        "Transform"
+      ],
+      title: [
+        "#74:2b1a168de0d757ab",
+        "#122:8332119d6f736bcc"
+      ]
+    },
+    spawnMeshAt: {
+      "aria-label": [
+        "Loc X",
+        "Loc Y",
+        "Loc Z",
+        "MCP URL",
+        "Rot Pitch",
+        "Rot Roll",
+        "Rot Yaw",
+        "Scale X",
+        "Scale Y",
+        "Scale Z"
+      ],
+      field: [
+        "Loc X",
+        "Loc Y",
+        "Loc Z",
+        "MCP URL",
+        "Rot Pitch",
+        "Rot Roll",
+        "Rot Yaw",
+        "Scale X",
+        "Scale Y",
+        "Scale Z"
+      ],
+      params: [
+        "Connection",
+        "Location (cm)",
+        "Rotation (deg)",
+        "Scale"
+      ],
+      pin: [
+        "Mesh",
+        "Result",
+        "Transform"
+      ]
+    },
+    speechToText: {
+      button: [
+        "Browse"
+      ],
+      choice: [
+        "AR",
+        "Auto-detect",
+        "DE",
+        "EN",
+        "ES",
+        "FR",
+        "HI",
+        "IT",
+        "JA",
+        "KO",
+        "NL",
+        "PL",
+        "PT",
+        "RU",
+        "UK",
+        "ZH"
+      ],
+      params: [
+        "Audio File",
+        "Language",
+        "Model",
+        "SPEECH TO TEXT"
+      ],
+      pin: [
+        "Audio",
+        "Text"
+      ],
+      placeholder: [
+        "No file selected"
+      ]
+    },
+    sphereMesh: {
+      field: [
+        "Radius (cm)"
+      ],
+      params: [
+        "Sphere"
+      ],
+      pin: [
+        "Mesh",
+        "Radius",
+        "Screenshot"
+      ]
+    },
+    splatGenerator: {
+      "aria-label": [
+        "Sampling Steps",
+        "Splat Count"
+      ],
+      choice: [
+        "10 (fast)",
+        "20 (recommended)",
+        "262K (max quality)",
+        "32K (fastest)"
+      ],
+      field: [
+        "Count",
+        "Model",
+        "Sampling Steps",
+        "Seed",
+        "Splat Count"
+      ],
+      pin: [
+        "Image",
+        "Splat"
+      ],
+      title: [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    stringConstant: {
+      pin: [
+        "Text"
+      ],
+      placeholder: [
+        "string value…"
+      ]
+    },
+    task: {
+      body: [
+        "No tasks yet"
+      ],
+      placeholder: [
+        "Add a task…"
+      ],
+      title: [
+        "Add task (Enter)"
+      ]
+    },
+    textInput: {
+      blankText: [
+        "Double-click to edit"
+      ],
+      button: [
+        "MD",
+        "RICH"
+      ],
+      pin: [
+        "Text"
+      ],
+      title: [
+        "Decrease font size",
+        "Font size (8–48)",
+        "HTML source",
+        "Increase font size",
+        "Markdown source",
+        "Rich text editor",
+        "Text color"
+      ]
+    },
+    textSegment: {
+      "aria-label": [
+        "Box threshold",
+        "Text threshold"
+      ],
+      choice: [
+        "Indexed instance",
+        "Largest score",
+        "Union (all matches)"
+      ],
+      field: [
+        "Box threshold",
+        "Mode",
+        "Prompt",
+        "Text threshold"
+      ],
+      params: [
+        "#117:05e1d89f35646f90",
+        "Text Segment"
+      ],
+      pin: [
+        "Image",
+        "Mask",
+        "Prompt"
+      ],
+      placeholder: [
+        "bed, chair, floor, walls…"
+      ],
+      title: [
+        "#38:44145690b3bd997e"
+      ]
+    },
+    textureGenerator: {
+      field: [
+        "Count",
+        "Seed"
+      ],
+      pin: [
+        "Image",
+        "Mesh",
+        "Screenshot"
+      ],
+      title: [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ]
+    },
+    unrealRender: {
+      "aria-label": [
+        "Set the time of day",
+        "Show in Unreal",
+        "Time of day",
+        "#30:eab3b60b6d73edf2"
+      ],
+      button: [
+        "Piloted",
+        "Show",
+        "Sync"
+      ],
+      choice: [
+        "Android OpenGL High",
+        "Android OpenGL Low",
+        "Android OpenGL Mid",
+        "Android Vulkan High",
+        "Android Vulkan Low",
+        "Android Vulkan Mid",
+        "Custom",
+        "Editor world (no PIE)",
+        "Editor's platform",
+        "Match preset",
+        "Play In Editor",
+        "iOS High",
+        "iOS Low",
+        "iOS Mid"
+      ],
+      field: [
+        "#88:8b13039ae460d8a3",
+        "#196:037be524fa65bdb0",
+        "Camera",
+        "Keep scene state",
+        "#226:aeec6d88ef13f43b",
+        "Match Aspect",
+        "Match Visibility",
+        "#157:bf756a474452dbae",
+        "Platform",
+        "Preset",
+        "Render in",
+        "Show Flags",
+        "Show in Unreal",
+        "#282:dbe5922232252638",
+        "Target Resolution Size",
+        "#251:7a88874185693f92",
+        "Time of day",
+        "View Mode"
+      ],
+      params: [
+        "Lighting",
+        "MRG Preset",
+        "Reposition",
+        "Viewport Look",
+        "→ preview unavailable (",
+        "#18:7d89ec264ea75b64"
+      ],
+      pin: [
+        "Beauty",
+        "Camera",
+        "CameraSource",
+        "Depth",
+        "Normal",
+        "RawDepth",
+        "Time of day"
+      ],
+      placeholder: [
+        "#40:98fc44b233fc0650"
+      ],
+      title: [
+        "#35:39febc428643d894",
+        "Expose as input pin",
+        "#226:aeec6d88ef13f43b",
+        "#216:69b3feb9b6d22c58",
+        "#193:17e820fc501f60eb",
+        "#290:ac3ca218fef30914",
+        "Refresh asset list from Unreal",
+        "#62:66e9f0b680c8e0da",
+        "Set the time of day",
+        "#44:ddb9e175d4711a7c",
+        "#184:f265af6931bcde4f",
+        "Unreal not reachable"
+      ],
+      body: [
+        "Unreal offline",
+        "Checking…",
+        "Connected"
+      ]
+    },
+    usdInput: {
+      button: [
+        "Add USD scene"
+      ],
+      title: [
+        "#43:f4812ea0f3580fa7"
+      ]
+    },
+    vector2Constant: {
+      pin: [
+        "Vector2"
+      ]
+    },
+    vector3Constant: {
+      pin: [
+        "Vector3"
+      ]
+    },
+    videoFrameExtract: {
+      choice: [
+        "First frame",
+        "Frame number",
+        "Last frame",
+        "Time (s)"
+      ],
+      field: [
+        "Frame"
+      ],
+      params: [
+        "Frame to extract",
+        "#131:92a223d6b16da9f7"
+      ],
+      pin: [
+        "Image",
+        "Video"
+      ]
+    },
+    videoGenerator: {
+      "aria-label": [
+        "Duration",
+        "Loop"
+      ],
+      choice: [
+        "10 seconds",
+        "5 seconds",
+        "Auto"
+      ],
+      field: [
+        "Aspect Ratio",
+        "Count",
+        "Duration",
+        "Loop",
+        "Model",
+        "Resolution"
+      ],
+      pin: [
+        "End_frame",
+        "Prompt",
+        "Start_frame",
+        "Video"
+      ],
+      title: [
+        "Expose as input pin"
+      ]
+    },
+    videoInput: {
+      button: [
+        "Add video"
+      ],
+      pin: [
+        "Video"
+      ],
+      title: [
+        "#39:552ba26bd2cd3bd0"
+      ]
+    },
+    videoMerge: {
+      button: [
+        "Reset all"
+      ],
+      choice: [
+        "Add",
+        "Darken",
+        "Difference",
+        "Disappear",
+        "Fill",
+        "Fit",
+        "Hold last frame",
+        "Lighten",
+        "Loop",
+        "Multiply",
+        "Over",
+        "Screen",
+        "Stretch"
+      ],
+      field: [
+        "Ends early",
+        "Fit",
+        "#249:ec697229f6d438c2",
+        "Mode",
+        "Opacity (%)",
+        "#467:5e1f5962814325d3",
+        "#79:e4cf5da3490510f0"
+      ],
+      params: [
+        "#41:de50f86d740a1817",
+        "Merge",
+        "Preview",
+        "#141:a8a8aa10eb969e28",
+        "#104:c94bdedc7aa92d9f"
+      ],
+      pin: [
+        "Background",
+        "Foreground",
+        "Video"
+      ],
+      title: [
+        "Expose as input pin"
+      ]
+    },
+    videoTransform: {
+      button: [
+        "Reset all"
+      ],
+      choice: [
+        "1024 × 1024 (square)",
+        "1080 × 1920 (vertical)",
+        "1920 × 1080 (HD)",
+        "2048 × 2048 (square)",
+        "3840 × 2160 (UHD)",
+        "720 × 1280 (vertical)",
+        "Black",
+        "Custom",
+        "Fill",
+        "Fit",
+        "Source",
+        "Source (after crop)",
+        "Stretch",
+        "Transparent",
+        "White"
+      ],
+      field: [
+        "#29:592d289632575ba6",
+        "Background",
+        "Bottom",
+        "#10:8fd1ee4971931fc1",
+        "End (s)",
+        "Fit",
+        "#197:6b6689af025d015b",
+        "Flip horizontal",
+        "Flip vertical",
+        "Frame rate",
+        "Left",
+        "Move X (px)",
+        "Move Y (px)",
+        "#20:38f89e27b336c8ae",
+        "Right",
+        "Rotate (°)",
+        "Scale",
+        "Size",
+        "Start (s)",
+        "Top",
+        "#53:7b6774c547b7b292",
+        "#61:a83e87575aaf8f08"
+      ],
+      params: [
+        "#27:5c0fdaddfeae7228",
+        "Crop (% of source)",
+        "Output",
+        "Preview",
+        "#138:aded24c3ee35ea77",
+        "Transform",
+        "Trim"
+      ],
+      pin: [
+        "Match size",
+        "Video"
+      ],
+      title: [
+        "Expose as input pin",
+        "#66:7be1d86cb788e3de"
+      ]
+    },
+    videoUpscaler: {
+      "aria-label": [
+        "Compression",
+        "Grain",
+        "H.264 output",
+        "Halo",
+        "Noise",
+        "Recover Detail",
+        "Scale Factor",
+        "Target FPS"
+      ],
+      field: [
+        "Compression",
+        "#30:9f1d11d4a234078c",
+        "Grain",
+        "H.264 output",
+        "Halo",
+        "#36:9658df68934a7e2e",
+        "#68:531f5ad352d32c50",
+        "Model",
+        "Noise",
+        "#12:8f3c27b29a7a6e7e",
+        "Recover Detail",
+        "Scale Factor",
+        "Target FPS"
+      ],
+      pin: [
+        "Video"
+      ],
+      title: [
+        "#40:ac0223608540d7e2",
+        "Expose as input pin"
+      ],
+      body: [
+        "#52:fe8d410391fd9e69"
+      ]
+    },
+    videoViewer: {
+      pin: [
+        "Video",
+        "Video A",
+        "Video B"
+      ]
+    },
+    viewportCapture: {
+      "aria-label": [
+        "Exact size",
+        "FPS",
+        "Far cm",
+        "Host",
+        "Near cm",
+        "Port",
+        "Snapshot only"
+      ],
+      choice: [
+        "Metric",
+        "Post-final (after FXAA/SMAA)",
+        "Post-tonemap (after TSR/TAA)",
+        "Pre-postprocess (HDR, no AA)"
+      ],
+      field: [
+        "Capture stage",
+        "Encoding",
+        "Exact size",
+        "FPS",
+        "Far cm",
+        "Height",
+        "Host",
+        "Near cm",
+        "Port",
+        "Snapshot only",
+        "Width"
+      ],
+      params: [
+        "Capture",
+        "Color",
+        "Connection",
+        "Depth"
+      ],
+      pin: [
+        "Camera",
+        "Depth",
+        "Frame",
+        "Normal"
+      ],
+      placeholder: [
+        "frame max",
+        "frame min"
+      ],
+      title: [
+        "#194:4edb2da01f55e2f4",
+        "Expose as input pin",
+        "#80:8114e411ef5dafd7",
+        "#192:e428050668864f28"
+      ]
+    },
+    webcamCapture: {
+      pin: [
+        "Frame"
+      ]
+    }
+  },
+  meshOperations: {
+    "UVs.AutoGenerateXAtlasMeshUVs": "UV Unwrap",
+    "Remesh.ApplyUniformRemesh": "Remesh",
+    "Simplify.ApplySimplifyToTriangleCount": "Simplify",
+    "Normals.RecomputeNormals": "Recompute Normals",
+    "Repair.FillAllMeshHoles": "Fill Holes",
+    "Repair.WeldMeshEdges": "Weld Edges",
+    "Voxel.ApplyMeshSolidify": "Solidify"
+  }
+};
+
+// src/locales/geometry-menu.json
+var geometry_menu_default = {
+  categories: {
+    "Basic Edits": "基础编辑",
+    "Bone Weights": "骨骼权重",
+    Booleans: "布尔运算",
+    Comparison: "网格比较",
+    Containment: "包围体",
+    Decomposition: "网格分解",
+    Deformation: "变形",
+    "List Math": "列表运算",
+    Lists: "列表",
+    "Material IDs": "材质 ID",
+    Modeling: "建模",
+    Normals: "法线",
+    Paths: "路径",
+    "Point Sets": "点集",
+    Polygon: "多边形",
+    "Polygon Lists": "多边形列表",
+    PolyGroups: "多边形组",
+    Primitives: "基本体",
+    Queries: "查询",
+    Remeshing: "重新网格化",
+    Repair: "修复",
+    "Sculpt Layers": "雕刻层",
+    Selection: "选择",
+    "Selection Queries": "选区查询",
+    Simplification: "简化",
+    Subdivision: "细分",
+    Transforms: "变换",
+    UVs: "UV 坐标",
+    "Vertex Colors": "顶点颜色",
+    Voxel: "体素"
+  },
+  operations: {
+    "Add Triangles to Mesh": "向网格添加三角形",
+    "Add Vertices to Mesh": "向网格添加顶点",
+    "Append Mesh": "追加网格",
+    "Append Mesh Repeated": "重复追加网格",
+    "Append Mesh Transformed": "追加变换后的网格",
+    "Delete Selected Triangles from Mesh": "从网格删除选中的三角形",
+    "Delete Triangles from Mesh": "从网格删除三角形",
+    "Delete Vertices from Mesh": "从网格删除顶点",
+    "Discard Mesh Attributes": "丢弃网格属性",
+    "Merge Mesh Vertices in Selections": "合并选区中的网格顶点",
+    "Set All Mesh Vertex Positions": "设置所有网格顶点的位置",
+    "Compute Smooth Bone Weights": "计算平滑骨骼权重",
+    "Copy Bones from Mesh": "从网格复制骨骼",
+    "Discard Bones from Mesh": "从网格移除骨骼",
+    "Get Bone Info": "获取骨骼信息",
+    "Get Max Bone Weight Index": "获取蒙皮权重使用的最大骨骼索引",
+    "Get Root Bone Name": "获取根骨骼名称",
+    "Mesh Copy Bone Weights": "在网格的蒙皮配置之间复制骨骼权重",
+    "Mesh Create Bone Weights": "创建网格骨骼权重属性",
+    "Mesh Has Bone Weights": "检查网格是否具有骨骼权重",
+    "Transfer Bone Weights from Mesh": "从网格传递骨骼权重",
+    "Apply Mesh Boolean": "对网格执行布尔运算",
+    "Apply Mesh Iso Curves": "在网格上生成等值曲线",
+    "Apply Mesh Mirror": "镜像网格",
+    "Apply Mesh Plane Cut": "按平面切割网格",
+    "Apply Mesh Plane Slice": "按平面切片网格",
+    "Apply Mesh Self Union": "对网格执行自身并集",
+    "Is Intersecting Mesh": "判断网格是否相交",
+    "Is Same Mesh As": "判断两个网格是否相同",
+    "Measure Distances Between Meshes": "测量网格之间的距离",
+    "Compute Mesh Convex Decomposition": "计算网格凸分解",
+    "Compute Mesh Convex Hull": "计算网格凸包",
+    "Compute Mesh Oriented Box": "计算网格有向包围盒",
+    "Compute Mesh Swept Hull": "计算网格扫掠包络",
+    "Copy Mesh Selection to Mesh": "将网格选区复制到网格",
+    "Split Mesh by Connected Islands": "按连通区域拆分网格",
+    "Split Mesh by Material IDs": "按材质 ID 拆分网格",
+    "Split Mesh By PolyGroups": "按多边形组拆分网格",
+    "Split Mesh by Vertex Overlap": "按顶点重叠拆分网格",
+    "Apply Bend Warp to Mesh": "对网格应用弯曲变形",
+    "Apply Displace from Per Vertex Vectors": "根据逐顶点向量进行位移",
+    "Apply Displace from Texture Map": "根据纹理贴图进行位移",
+    "Apply Flare Warp to Mesh": "对网格应用扩口变形",
+    "Apply Implicit Smoothing to Mesh": "对网格应用隐式平滑",
+    "Apply Iterative Smoothing to Mesh": "对网格应用迭代平滑",
+    "Apply Math Warp to Mesh": "对网格应用数学变形",
+    "Apply Perlin Noise to Mesh": "对网格应用柏林噪声",
+    "Apply Twist Warp to Mesh": "对网格应用扭转变形",
+    "Compute Perlin Noise": "计算柏林噪声",
+    "Constant Scalar Multiply": "标量列表乘常数",
+    "Constant Scalar Multiply in Place": "标量列表原地乘常数",
+    "Constant Vector Multiply": "向量列表乘常数",
+    "Constant Vector Multiply in Place": "向量列表原地乘常数",
+    "Scalar Blend": "混合标量列表",
+    "Scalar Blend in Place": "原地混合标量列表",
+    "Scalar Invert": "标量列表取倒数",
+    "Scalar Invert in Place": "标量列表原地取倒数",
+    "Scalar Multiply": "标量列表相乘",
+    "Scalar Multiply in Place": "标量列表原地相乘",
+    "Scalar Vector Multiply": "标量与向量列表相乘",
+    "Scalar Vector Multiply in Place": "标量与向量列表原地相乘",
+    "Vector Blend": "混合向量列表",
+    "Vector Blend in Place": "原地混合向量列表",
+    "Vector Cross": "向量叉积",
+    "Vector Dot": "向量点积",
+    "Vector Inverse Transform in Place": "原地对向量应用逆变换",
+    "Vector Length": "计算向量长度",
+    "Vector Normalize in Place": "原地归一化向量",
+    "Vector Plane Project in Place": "原地将向量投影到平面",
+    "Vector to Scalar": "将向量转换为标量",
+    "Vector Transform in Place": "原地变换向量",
+    "Clear Color List": "清空颜色列表",
+    "Clear Index List": "清空索引列表",
+    "Clear Scalar List": "清空标量列表",
+    "Clear UVList": "清空 UV 列表",
+    "Clear Vector List": "清空向量列表",
+    "Convert Array to Color List": "将数组转换为颜色列表",
+    "Convert Array to Index List": "将数组转换为索引列表",
+    "Convert Array to Scalar List": "将数组转换为标量列表",
+    "Convert Array to Triangle List": "将数组转换为三角形列表",
+    "Convert Array to UVList": "将数组转换为 UV 列表",
+    "Convert Array to Vector List": "将数组转换为向量列表",
+    "Convert Color List to Array": "将颜色列表转换为数组",
+    "Convert Index List to Array": "将索引列表转换为数组",
+    "Convert Scalar List to Array": "将标量列表转换为数组",
+    "Convert Triangle List to Array": "将三角形列表转换为数组",
+    "Convert UVList to Array": "将 UV 列表转换为数组",
+    "Convert Vector List to Array": "将向量列表转换为数组",
+    "Duplicate Color List": "复制颜色列表",
+    "Duplicate Index List": "复制索引列表",
+    "Duplicate Scalar List": "复制标量列表",
+    "Duplicate UVList": "复制 UV 列表",
+    "Duplicate Vector List": "复制向量列表",
+    "Extract Color List Channel": "提取颜色列表通道",
+    "Extract Color List Channels": "提取颜色列表的多个通道",
+    "Extract UVList Component": "提取 UV 列表分量",
+    "Extract Vector List Component": "提取向量列表分量",
+    "Extract Vector List Components As UVs": "将向量列表分量提取为 UV",
+    "Get Color List Item": "获取颜色列表项",
+    "Get Color List Last Index": "获取颜色列表末尾索引",
+    "Get Color List Length": "获取颜色列表长度",
+    "Get Index List Item": "获取索引列表项",
+    "Get Index List Last Index": "获取索引列表末尾索引",
+    "Get Index List Length": "获取索引列表长度",
+    "Get Scalar List Item": "获取标量列表项",
+    "Get Scalar List Last Index": "获取标量列表末尾索引",
+    "Get Scalar List Length": "获取标量列表长度",
+    "Get Triangle List Last Triangle": "获取三角形列表的最后一个三角形",
+    "Get Triangle List Length": "获取三角形列表长度",
+    "Get UVList Item": "获取 UV 列表项",
+    "Get UVList Last Index": "获取 UV 列表末尾索引",
+    "Get UVList Length": "获取 UV 列表长度",
+    "Get Vector List Item": "获取向量列表项",
+    "Get Vector List Last Index": "获取向量列表末尾索引",
+    "Get Vector List Length": "获取向量列表长度",
+    "Set Color List Channel from Scalars": "用标量设置颜色列表通道",
+    "Set Color List Channels From UVs": "用 UV 设置颜色列表通道",
+    "Set Color List Channels from Vectors": "用向量设置颜色列表通道",
+    "Set Color List Item": "设置颜色列表项",
+    "Set Index List Item": "设置索引列表项",
+    "Set Scalar List Item": "设置标量列表项",
+    "Set UVList Component from Scalars": "用标量设置 UV 列表分量",
+    "Set UVList Item": "设置 UV 列表项",
+    "Set Vector List Component from Scalars": "用标量设置向量列表分量",
+    "Set Vector List Components From UVs": "用 UV 设置向量列表分量",
+    "Set Vector List Item": "设置向量列表项",
+    "Clear Material IDs": "清除材质 ID",
+    "Delete Triangles by Material ID": "按材质 ID 删除三角形",
+    "Enable Material IDs": "启用材质 ID",
+    "Get Material IDs Of All Triangles": "获取所有三角形的材质 ID",
+    "Get Material IDs Of Triangles": "获取三角形的材质 ID",
+    "Get Max Material ID": "获取最大材质 ID",
+    "Get Triangles by Material ID": "按材质 ID 获取三角形",
+    "Remap Material IDs": "重新映射材质 ID",
+    "Set Material IDs On All Triangles": "设置所有三角形的材质 ID",
+    "Set Material ID For Mesh Selection": "设置网格选区的材质 ID",
+    "Set Material ID On Triangles": "设置三角形的材质 ID",
+    "Set PolyGroup Material ID": "设置多边形组的材质 ID",
+    "Apply Mesh Bevel Edge Selection": "对选中边倒角",
+    "Apply Mesh Bevel Region Selection": "对选中区域倒角",
+    "Apply Mesh Disconnect Faces": "断开网格面",
+    "Apply Mesh Disconnect Faces Along Edges": "沿边断开网格面",
+    "Apply Mesh Inset Outset Faces": "向内或向外偏移选中的面",
+    "Apply Mesh Linear Extrude Faces": "线性挤出网格面",
+    "Apply Mesh Offset": "偏移网格",
+    "Apply Mesh Offset Faces": "偏移网格面",
+    "Apply Mesh PolyGroup Bevel": "对多边形组倒角",
+    "Apply Mesh Shell": "生成网格壳体",
+    "Auto Repair Normals": "自动修复法线",
+    "Compute Split Normals": "计算分离法线",
+    "Compute Tangents": "计算切线",
+    "Discard Tangents": "丢弃切线",
+    "Flip Normals": "翻转法线",
+    "Flip Triangle Selection Normals": "翻转所选三角形的法线",
+    "Get Mesh Has Tangents": "检查网格是否具有切线",
+    "Get Mesh Normal Element Values": "获取网格法线元素值",
+    "Get Mesh Per Corner Normal Element IDs": "获取网格各角点的法线元素 ID",
+    "Get Mesh Per Corner Tangent Element IDs": "获取网格各角点的切线元素 ID",
+    "Get Mesh Per Vertex Normals": "获取网格的逐顶点法线",
+    "Get Mesh Per Vertex Tangents": "获取网格的逐顶点切线",
+    "Get Mesh Tangent Element Values": "获取网格切线元素值",
+    "Recompute Normals": "重算法线",
+    "Recompute Normals for Mesh Selection": "重新计算网格选区的法线",
+    "Set Mesh To Per Vertex Normals (From List)": "从列表设置网格的逐顶点法线",
+    "Set Mesh Per Vertex Tangents": "设置网格的逐顶点切线",
+    "Set Mesh To Facet Normals": "将网格设置为逐面法线",
+    "Set Mesh To Per Vertex Normals (Computed)": "计算并设置网格的逐顶点法线",
+    "Set Split Normals Along Selected Edges": "沿选中边设置分离法线",
+    "Array Of Vector2D To PolyPath": "将二维向量数组转换为折线路径",
+    "Array Of Vector To PolyPath": "将向量数组转换为折线路径",
+    "PolyPath To Array Of Vector": "将折线路径转换为向量数组",
+    "PolyPath To Array Of Vector2D": "将折线路径转换为二维向量数组",
+    "Convert Array Of Vector 2DTo Poly Path": "将二维向量数组转换为折线路径",
+    "Convert Array to Poly Path": "将数组转换为折线路径",
+    "Convert Poly Path to Array": "将折线路径转换为数组",
+    "Convert Poly Path to Array Of Vector 2D": "将折线路径转换为二维向量数组",
+    "Create Arc Path 2D": "创建二维圆弧路径",
+    "Create Arc Path 3D": "创建三维圆弧路径",
+    "Create Circle Path 2D": "创建二维圆形路径",
+    "Create Circle Path 3D": "创建三维圆形路径",
+    "Flatten To 2D On Axis": "沿指定轴展平到二维",
+    "Get Nearest Vertex Index": "获取最近顶点索引",
+    "Get Poly Path Arc Length": "获取折线路径弧长",
+    "Get Poly Path Last Index": "获取折线路径末尾索引",
+    "Get Poly Path Num Vertices": "获取折线路径顶点数",
+    "Get Poly Path Tangent": "获取折线路径切线",
+    "Get Poly Path Vertex": "获取折线路径顶点",
+    "Downsample Points": "对点集降采样",
+    "Flatten Points": "展平点集",
+    "Get Points from Index List": "按索引列表获取点",
+    "KMeans Cluster to IDs": "使用 K 均值聚类生成簇 ID",
+    "Make Bounding Box from Points": "从点集创建包围盒",
+    "Offset Transforms": "偏移变换列表",
+    "Transforms to Points": "将变换转换为点",
+    "Unflatten Points": "将展平的点集还原到三维",
+    "Add Polygon Vertex": "添加多边形顶点",
+    "Array Of Vector2D To Simple Polygon": "将二维向量数组转换为简单多边形",
+    "Array Of Vector To Simple Polygon": "将向量数组转换为简单多边形",
+    "Simple Polygon To Array Of Vector": "将简单多边形转换为向量数组",
+    "Simple Polygon To Array Of Vector2D": "将简单多边形转换为二维向量数组",
+    "Get Polygon Arc Length": "获取多边形周长",
+    "Get Simple Polygon Area": "获取简单多边形面积",
+    "Get Polygon Bounds": "获取多边形边界",
+    "Get Polygon Vertex Count": "获取多边形顶点数",
+    "Append Polygon List": "追加多边形列表",
+    "Create Polygons from Path Offset": "用路径偏移创建多边形",
+    "Get Area of Polygon in List": "获取列表中指定多边形的面积",
+    "Get Polygon Count": "获取多边形数量",
+    "Get Polygon Hole Count": "获取多边形孔洞数",
+    "Get Polygon List Area": "获取多边形列表面积",
+    "Get Polygon List Bounds": "获取多边形列表边界",
+    "Get Polygon Vertices": "获取多边形顶点",
+    "Get Simple Polygon": "获取简单多边形",
+    "Polygons Difference": "计算多边形差集",
+    "Polygons Exclusive Or": "计算多边形异或",
+    "Polygons Intersection": "计算多边形交集",
+    "Polygons Morphology Close": "对多边形执行形态学闭运算",
+    "Polygons Morphology Open": "对多边形执行形态学开运算",
+    "Polygons Offset": "偏移多边形",
+    "Polygons Offsets": "对多边形进行多次偏移",
+    "Polygons Union": "计算多边形并集",
+    "Add Named PolyGroup Layer": "添加命名多边形组图层",
+    "Clear PolyGroups": "清除多边形组",
+    "Compute PolyGroups From Angle Threshold": "按角度阈值计算多边形组",
+    "Compute PolyGroups From Polygon Detection": "通过检测多边形生成多边形组",
+    "Convert Connected Islands To PolyGroups": "将连通区域转换为多边形组",
+    "Convert UV Islands To PolyGroups": "将 UV 岛转换为多边形组",
+    "Copy PolyGroups Layer": "复制多边形组图层",
+    "Delete Triangles In PolyGroup": "删除多边形组中的三角形",
+    "Enable PolyGroups": "启用多边形组",
+    "Find Extended PolyGroup Layer By Name": "按名称查找扩展多边形组图层",
+    "Get All Triangle PolyGroup IDs": "获取所有三角形的多边形组 ID",
+    "Get PolyGroup Bounding Box": "获取多边形组包围盒",
+    "Get PolyGroup IDs In Mesh": "获取网格中的多边形组 ID",
+    "Get PolyGroup UV Bounding Box": "获取多边形组的 UV 包围盒",
+    "Get PolyGroup UV Centroid": "获取多边形组的 UV 质心",
+    "Get Triangles In PolyGroup": "获取多边形组中的三角形",
+    "Set Num Extended PolyGroup Layers": "设置扩展多边形组图层数",
+    "Set PolyGroup For Mesh Selection": "为网格选区设置多边形组",
+    "Append Bounding Box": "追加包围盒",
+    "Append Box": "追加长方体",
+    "Append Capsule": "追加胶囊体",
+    "Append Cone": "追加圆锥体",
+    "Append Curved Stairs": "追加弧形楼梯",
+    "Append Cylinder": "追加圆柱体",
+    "Append Delaunay Triangulation 2D": "追加二维德劳内三角剖分",
+    "Append Disc": "追加圆盘",
+    "Append Linear Stairs": "追加直线楼梯",
+    "Append Oriented Box": "追加有向包围盒",
+    "Append Polygon List Triangulation": "追加多边形列表的三角剖分",
+    "Append Rectangle XY": "在 XY 平面追加矩形",
+    "Append Revolve Path": "追加由路径旋转生成的网格",
+    "Append Revolve Polygon": "追加由多边形旋转生成的网格",
+    "Append Round Rectangle XY": "在 XY 平面追加圆角矩形",
+    "Append Simple Extrude Polygon": "追加简单多边形挤出体",
+    "Append Simple Swept Polygon": "追加简单多边形扫掠体",
+    "Append Sphere Box": "追加由立方体细分生成的球体",
+    "Append Sphere Lat Long": "追加经纬球体",
+    "Append Spiral Revolve Polygon": "追加螺旋旋转多边形",
+    "Append Sweep Polygon": "追加多边形扫掠体",
+    "Append Sweep Polyline": "追加折线扫掠体",
+    "Append Torus": "追加圆环体",
+    "Append Triangulated Polygon": "追加三角化多边形",
+    "Append Triangulated Polygon 3D": "追加三角化三维多边形",
+    "Append Voronoi Diagram 2D": "追加二维沃罗诺伊图",
+    "Create Constrained Edges Chain": "创建约束边链",
+    "Create Constrained Edges Loop": "创建闭合约束边环",
+    "Get All Boundary Edge IDs": "获取所有边界边 ID",
+    "Get All Bowtie Vertex IDs": "获取所有蝴蝶结顶点 ID",
+    "Get All Degenerate Triangle IDs": "获取所有退化三角形 ID",
+    "Get All Normal Seam Edge IDs": "获取所有法线接缝边 ID",
+    "Get All PolyGroup Boundary Edge IDs": "获取所有多边形组边界边 ID",
+    "Get All Triangle IDs": "获取所有三角形 ID",
+    "Get All Triangle Indices": "获取所有三角形顶点索引",
+    "Get All Unset UVTriangle IDs": "获取所有未设置 UV 的三角形 ID",
+    "Get All UVBowtie Vertex IDs": "获取所有 UV 蝴蝶结顶点 ID",
+    "Get All UVSeam Edges": "获取所有 UV 接缝边",
+    "Get All Vertex IDs": "获取所有顶点 ID",
+    "Get All Vertex Positions": "获取所有顶点位置",
+    "Get All Vertex Positions at Edges": "获取指定边的所有端点位置",
+    "Get Has Material IDs": "检查是否具有材质 ID",
+    "Get Has PolyGroups": "检查是否具有多边形组",
+    "Get Has Triangle IDGaps": "检查三角形 ID 是否存在间断",
+    "Get Has Triangle Normals": "检查是否具有三角形法线",
+    "Get Has Vertex Colors": "检查是否具有顶点颜色",
+    "Get Has Vertex IDGaps": "检查顶点 ID 是否存在间断",
+    "Get Is Closed Mesh": "检查网格是否闭合",
+    "Get Is Dense Mesh": "检查网格 ID 是否紧密排列",
+    "Get Mesh Bounding Box": "获取网格包围盒",
+    "Get Mesh Has Attribute Set": "检查网格是否具有属性集",
+    "Get Mesh Info String": "获取网格信息字符串",
+    "Get Mesh UV Area": "获取网格 UV 面积",
+    "Get Mesh Volume Area": "获取网格体积与表面积",
+    "Get Mesh Volume Area Center": "获取网格体积、表面积和质心",
+    "Get Num Connected Islands": "获取连通区域数量",
+    "Get Num Extended PolyGroup Layers": "获取扩展多边形组图层数",
+    "Get Num Open Border Edges": "获取开放边界边数",
+    "Get Num Open Border Loops": "获取开放边界环数",
+    "Get Num Triangle IDs": "获取三角形 ID 数量",
+    "Get Num UV Islands": "获取 UV 岛数量",
+    "Get Num UV Channels": "获取 UV 通道数量",
+    "Get Num Vertex IDs": "获取顶点 ID 数量",
+    "Get UVSet Bounding Box": "获取 UV 集包围盒",
+    "Get Vertex Count": "获取顶点数",
+    "Get Weight Map Handle By Name": "按名称获取权重图句柄",
+    "Apply Adaptive Remesh": "执行自适应重新网格化",
+    "Apply Uniform Remesh": "执行均匀重新网格化",
+    "Compact Mesh": "压紧网格索引",
+    "Fill All Mesh Holes": "填补所有网格孔洞",
+    "Remove Hidden Triangles": "移除隐藏三角形",
+    "Remove Small Connected Islands": "移除较小的连通区域",
+    "Remove Unused Vertices": "移除未使用的顶点",
+    "Repair Mesh Degenerate Geometry": "修复网格中的退化几何体",
+    "Resolve Mesh TJunctions": "修复网格 T 形接点",
+    "Snap Mesh Open Boundaries": "吸附网格开放边界",
+    "Split Mesh Bowties": "拆分网格中的蝴蝶结顶点",
+    "Weld Mesh Edges": "焊接网格边",
+    "Discard Sculpt Layers": "丢弃雕刻层",
+    "Enable Sculpt Layers": "启用雕刻层",
+    "Get Active Sculpt Layer": "获取活动雕刻层",
+    "Get Num Sculpt Layers": "获取雕刻层数量",
+    "Get Sculpt Layer Weights Array": "获取雕刻层权重数组",
+    "Merge Sculpt Layers": "合并雕刻层",
+    "Set Active Sculpt Layer": "设置活动雕刻层",
+    "Set Sculpt Layer Weight": "设置雕刻层权重",
+    "Set Sculpt Layer Weights Array": "设置雕刻层权重数组",
+    "Combine Mesh Selections": "组合网格选区",
+    "Convert Index Array to Mesh Selection": "将索引数组转换为网格选区",
+    "Convert Index List to Mesh Selection": "将索引列表转换为网格选区",
+    "Convert Mesh Selection": "转换网格选区类型",
+    "Convert Mesh Selection to Index Array": "将网格选区转换为索引数组",
+    "Convert Mesh Selection to Index List": "将网格选区转换为索引列表",
+    "Create Select All Mesh Selection": "创建包含整个网格的选区",
+    "Expand Contract Mesh Selection": "扩展或收缩网格选区",
+    "Expand Mesh Selection to Connected": "将网格选区扩展到连通元素",
+    "Get Mesh Selection Info": "获取网格选区信息",
+    "Get Mesh Unique Selection Info": "获取去重后的网格选区信息",
+    "Invert Mesh Selection": "反转网格选区",
+    "Select Mesh Boundary Edges": "选择网格边界边",
+    "Select Mesh Elements by Material ID": "按材质 ID 选择网格元素",
+    "Select Mesh Elements by Normal Angle": "按法线角度选择网格元素",
+    "Select Mesh Elements by Polygroup": "按多边形组选择网格元素",
+    "Select Mesh Elements in Box": "选择盒内的网格元素",
+    "Select Mesh Elements Inside Mesh": "选择网格内部的元素",
+    "Select Mesh Elements in Sphere": "选择球内的网格元素",
+    "Select Mesh Elements with Plane": "使用平面选择网格元素",
+    "Select Mesh PolyGroup Boundary Edges": "选择多边形组边界边",
+    "Select Mesh Sharp Edges": "选择网格锐边",
+    "Select Mesh Split Normal Edges": "选择网格的法线分离边",
+    "Select Mesh UV Seam Edges": "选择网格 UV 接缝边",
+    "Select Selection Boundary Edges": "选择选区边界边",
+    "Get Mesh Selection Bounding Box": "获取网格选区包围盒",
+    "Apply Cluster Simplify to Edge Length": "按边长执行聚类简化",
+    "Apply Editor Simplify to Triangle Count": "用编辑器简化器按三角形数简化",
+    "Apply Editor Simplify to Vertex Count": "用编辑器简化器按顶点数简化",
+    "Apply Simplify to Edge Length": "按目标边长简化",
+    "Apply Simplify to Planar": "简化共面区域",
+    "Apply Simplify To PolyGroup Topology": "按多边形组拓扑简化",
+    "Apply Simplify to Tolerance": "按误差容限简化",
+    "Apply Simplify to Triangle Count": "按目标三角形数简化",
+    "Apply Simplify to Vertex Count": "按目标顶点数简化",
+    "Apply PN Tessellation": "应用 PN 三角形曲面细分",
+    "Apply Selective Tessellation": "细分选中区域",
+    "Apply Uniform Tessellation": "应用均匀细分",
+    "Inverse Transform Mesh": "对网格应用逆变换",
+    "Inverse Transform Mesh Selection": "对网格选区应用逆变换",
+    "Rotate Mesh": "旋转网格",
+    "Rotate Mesh Selection": "旋转网格选区",
+    "Scale Mesh": "缩放网格",
+    "Scale Mesh Selection": "缩放网格选区",
+    "Transform Mesh": "变换网格",
+    "Transform Mesh Selection": "变换网格选区",
+    "Translate Mesh": "平移网格",
+    "Translate Mesh Selection": "平移网格选区",
+    "Translate Pivot to Location": "将轴心平移到指定位置",
+    "Apply Texel Density UVScaling": "按纹素密度缩放 UV",
+    "Auto Generate Patch Builder Mesh UVs": "使用分片构建器自动生成网格 UV",
+    "Auto Generate XAtlas Mesh UVs": "使用 XAtlas 自动生成网格 UV",
+    "Clear UV Channel": "清除 UV 通道",
+    "Copy Mesh UV Channel To Mesh": "将网格 UV 通道复制到其他网格",
+    "Copy UV Channel": "复制 UV 通道",
+    "Get Mesh Per Vertex UVs": "获取网格的逐顶点 UV",
+    "Get Mesh UVDistortion Metrics": "获取网格 UV 畸变指标",
+    "Get Mesh UVSize Info": "获取网格 UV 尺寸信息",
+    "Layout Mesh UVs": "排列网格 UV",
+    "Recompute Mesh UVs": "重新计算网格 UV",
+    "Repack Mesh UVs": "重新打包网格 UV",
+    "Rotate Mesh UVs": "旋转网格 UV",
+    "Scale Mesh UVs": "缩放网格 UV",
+    "Set Mesh UVs from Box Projection": "通过盒状投影设置网格 UV",
+    "Set Mesh UVs from Cylinder Projection": "通过柱面投影设置网格 UV",
+    "Set Mesh UVs from Planar Projection": "通过平面投影设置网格 UV",
+    "Set Num UV Channels": "设置 UV 通道数量",
+    "Set UV Seams Along Selected Edges": "沿选中边设置 UV 接缝",
+    "Transfer Mesh UVs by Projection": "通过投影传递网格 UV",
+    "Translate Mesh UVs": "平移网格 UV",
+    "Blur Mesh Vertex Colors": "模糊网格顶点颜色",
+    "Convert Mesh Vertex Colors Linear to SRGB": "将顶点颜色从线性空间转换为 sRGB",
+    "Convert Mesh Vertex Colors SRGBTo Linear": "将顶点颜色从 sRGB 转换为线性空间",
+    "Get Mesh Per Vertex Colors": "获取网格的逐顶点颜色",
+    "Set Mesh Constant Vertex Color": "设置网格的统一顶点颜色",
+    "Set Mesh Per Vertex Colors": "设置网格的逐顶点颜色",
+    "Set Mesh Selection Vertex Color": "设置网格选区的顶点颜色",
+    "Transfer Vertex Colors from Mesh": "从网格传递顶点颜色",
+    "Apply Mesh Morphology (Voxel Offset)": "应用网格形态学运算（体素偏移）",
+    "Apply Mesh Solidify (Voxel Wrap)": "实体化网格（体素包裹）"
+  }
+};
+
+// src/workspace-details.ts
+var words = new Map(Object.entries(workspace_details_default.translations));
+var helpLengths = new Set(Array.from(words.keys(), keyLength));
+var defaultNames = new Map(
+  Object.entries(workspace_details_default.defaults).map(([kind, names]) => [kind, new Map(Object.entries(names))])
+);
+var nodeRules = new Map(
+  Object.entries(workspace_details_default.nodes).map(([kind, roles]) => [kind, Object.fromEntries(Object.entries(roles).map(([role, names]) => [role, new Set(names)]))])
+);
+var operationLabels = new Map(Object.entries(geometry_menu_default.operations));
+var operationGroups = new Map(Object.entries(geometry_menu_default.categories));
+var meshOperations = new Map(Object.entries(workspace_details_default.meshOperations));
+var englishRename = " — Double-click to rename";
+var chineseRename = " — 双击重命名";
+var bridgeRequirement = "Needs the Unreal Editor (Unreal Canvas Bridge).";
+var bridgeStatus = "Not connected: could not reach ";
+var platformHelpLength = 284;
+function isPlatformHelp(value) {
+  return value.length >= platformHelpLength && value.startsWith("Render as ") && copyId(value.slice(0, platformHelpLength)) === "2ab094780cb80e80";
+}
+var platformNoteZh = "临时切换编辑器的预览平台后渲染，首次切换可能需要编译着色器。";
+function ownerOfList(element) {
+  const list = element.closest('[role="listbox"][id]');
+  if (!list) return;
+  for (const button of element.ownerDocument.querySelectorAll('.react-flow__node [role="combobox"][aria-controls]')) {
+    if (button.getAttribute("aria-controls")?.split(/\s+/).includes(list.id)) return button;
+  }
+}
+function uiRole(element, field, isPopup) {
+  if (isPopup) return field === "text" ? "choice" : field;
+  if (element.classList.contains("merlin-pin-label")) return "pin";
+  if (element.classList.contains("merlin-param-label")) return "field";
+  if (field !== "text") return field;
+  if (element.matches(".text-input-rich[data-merlin-text-surface] > span:only-child")) return "blankText";
+  if (element.closest("[contenteditable],pre,code,textarea,[data-merlin-text-surface]")) return;
+  if (element.closest('[role="combobox"]')) return "choice";
+  if (element.closest('button,[role="button"]')) return "button";
+  if (element.closest(".merlin-param-control")) return "control";
+  if (element.closest(".graph-node-params")) return "params";
+  if (element.closest(".graph-node-body")) return "body";
+}
+function createWorkspaceTranslator(readCanvas) {
+  const indexes = /* @__PURE__ */ new WeakMap();
+  function displayedNode(id) {
+    const state = readCanvas?.();
+    const nodes = state?.activeCanvasId && state.canvases[state.activeCanvasId]?.nodes;
+    if (!nodes) return;
+    let index = indexes.get(nodes);
+    if (!index) {
+      index = new Map(nodes.map((node) => [node.id, node]));
+      indexes.set(nodes, index);
+    }
+    return index.get(id);
+  }
+  return (element, field, value) => {
+    const header = element.matches(".graph-node-header-title span[title]");
+    const rename = header && field === "title" && value.endsWith(englishRename);
+    const dynamic = value.startsWith(bridgeRequirement) || isPlatformHelp(value) || value.startsWith("Could not fetch MCP tool list from ") || value.startsWith("Error — Could not fetch MCP tool list from ");
+    const key = words.has(value) || !helpLengths.has(value.length) ? value : copyKey(value);
+    const translation = words.get(key);
+    const geometryName = operationLabels.get(value) ?? operationGroups.get(value);
+    if (!translation && !geometryName && !header && !dynamic) return;
+    const popupOwner = ownerOfList(element);
+    const owner = (popupOwner ?? element).closest(".react-flow__node[data-id]");
+    const id = owner?.getAttribute("data-id");
+    const node = id ? displayedNode(id) : void 0;
+    if (!node) return;
+    if (header && (rename || field === "text")) {
+      const original = rename ? value.slice(0, -englishRename.length) : value;
+      let kindName = defaultNames.get(node.kind)?.get(original);
+      if (node.kind === "meshOp" && original !== meshOperations.get(String(node.params?.meshOp))) {
+        const selector = owner?.querySelector('[role="combobox"][data-value]');
+        const selected = selector?.querySelector('[aria-hidden="false"]')?.textContent;
+        kindName = operationLabels.get(original);
+        if (!kindName || selector?.getAttribute("data-value") !== node.params.meshOp || selected !== original && selected !== kindName) return;
+      }
+      if (kindName && !node.name) return rename ? kindName + chineseRename : kindName;
+      if (rename && kindName && original === node.name) return original + "（" + kindName + "）" + chineseRename;
+      return;
+    }
+    const rules = nodeRules.get(node.kind);
+    if (!rules) return;
+    if (dynamic && element.closest(".graph-node-body")) {
+      if (value.startsWith(bridgeRequirement) && field === "text") {
+        const rest = value.slice(bridgeRequirement.length).replace(bridgeStatus, "未连接，无法访问 ");
+        return "此节点需要连接虚幻编辑器（Unreal Canvas Bridge）。" + rest.trimStart();
+      }
+      if ((node.kind === "sequenceRender" || node.kind === "unrealRender") && field === "title" && isPlatformHelp(value)) {
+        return platformNoteZh + value.slice(platformHelpLength).replace("Could not read the editor's list: ", "无法读取编辑器平台列表：");
+      }
+      if (node.kind === "mcpTool" && (field === "text" || field === "title")) {
+        return value.replace(/^(Error — )?Could not fetch MCP tool list from /, "无法获取 MCP 工具列表，服务地址为 ");
+      }
+    }
+    if (geometryName && field === "text" && node.kind === "meshOp") {
+      const selector = popupOwner ?? element.closest('[role="combobox"]');
+      const row = selector?.closest(".merlin-param-row:not([data-param-key])");
+      const fieldLabel = row?.querySelector(":scope > .merlin-param-label")?.textContent;
+      if ((fieldLabel === "Operation" || fieldLabel === "操作") && selector?.getAttribute("data-value") === node.params.meshOp) return geometryName;
+    }
+    if (field === "text" && translation && (value === "Add provider" || value === "Add additional providers" || value === "No models available")) {
+      const button = popupOwner ?? element.closest('[role="combobox"]');
+      const key2 = button?.closest("[data-param-key]")?.getAttribute("data-param-key");
+      const isModel = key2 === "model" || key2 === "modelId" || node.kind === "spatialPromptSynthesis" && ["Model", "模型"].includes(button?.getAttribute("aria-label") ?? "");
+      if (!isModel) return;
+      const option = element.closest('[role="option"]');
+      if (popupOwner) {
+        if (option?.getAttribute("data-value") === "\0footer-action") return translation;
+      } else if (button && element.parentElement?.parentElement === button) {
+        const container = element.parentElement;
+        if (value !== "No models available" && element === container.lastElementChild) return translation;
+        if (value === "No models available" && element === container.firstElementChild && container.children.length === 2 && ["Add provider", "添加服务商"].includes(container.lastElementChild?.textContent ?? "")) return translation;
+      }
+    }
+    const role = uiRole(element, field, !!popupOwner);
+    if (!role || !translation || !rules[role]?.has(key)) return;
+    if (role === "blankText" && node.params?.markdown) return;
+    if (role === "pin") {
+      const pinId = element.parentElement?.querySelector(":scope > [data-pin-dot]")?.getAttribute("data-pin-dot");
+      const pin = node.pins.find((item) => item.id === pinId);
+      if (!pin || !pin.systemManaged && /^[0-9a-f]{8}-[0-9a-f-]{27}$/i.test(pin.id)) return;
+    }
+    if (role === "body" && node.kind === "task" && Array.isArray(node.params?.tasks) && node.params.tasks.length) return;
+    if (role === "body" && node.kind === "mcpTool" && node.params?.toolName && node.params.toolName !== "None") return;
+    if (role === "choice") {
+      const button = popupOwner ?? element.closest('[role="combobox"]');
+      const rowKey = button?.closest("[data-param-key]")?.getAttribute("data-param-key");
+      if (rowKey === "modelId" || rowKey === "model" || ["Model", "模型"].includes(button?.getAttribute("aria-label") ?? "")) return;
+    }
+    return translation;
+  };
+}
+
+// src/media-details.ts
+var mediaTypes = {
+  Image: "图像",
+  Video: "视频",
+  Audio: "音频",
+  Mesh: "网格",
+  Text: "文本",
+  File: "文件",
+  Splat: "高斯泼溅"
+};
+function libraryCardTitle(card, english) {
+  const name = card.querySelector(".media-library-caption strong")?.textContent;
+  if (!name || !english.startsWith(name + "\n")) return;
+  const detail = english.slice(name.length + 1);
+  if (card.classList.contains("media-library-archived-card")) {
+    const archive = /^Archived (.+)\nWas on ([\s\S]*)\nRight-click to restore\b.*$/.exec(detail);
+    if (archive) return name + "\n归档时间：" + archive[1] + "\n原画布：" + archive[2] + "\n右键可恢复，或拖到画布上恢复";
+    return;
+  }
+  const lines = detail.split("\n");
+  if (lines.length < 3 || !(lines[0] in mediaTypes)) return;
+  lines[0] = mediaTypes[lines[0]];
+  if (lines.length === 4) lines[2] = lines[2].replace(/^Used in (\d+) places: /, "共 $1 处引用：");
+  return [name, ...lines].join("\n");
+}
+function archiveDialogTitle(english) {
+  const single = /^Delete “([\s\S]*)” permanently\?$/.exec(english);
+  if (single) return "永久删除“" + single[1] + "”？";
+  const multi = /^Delete (\d+) archived cards permanently\?$/.exec(english);
+  if (multi) return "永久删除 " + multi[1] + " 张已归档卡片？";
+}
+function translateMediaDetails(element, field, english, node) {
+  if (field === "title" && element.classList.contains("media-library-card")) return libraryCardTitle(element, english);
+  if ((field === "title" || field === "aria-label") && element.matches(".card-version-tray button")) {
+    const choose = /^Show ([\s\S]+) as the component card's face$/.exec(english);
+    if (choose) return "将“" + choose[1] + "”显示在组件卡片正面";
+    const active = /^([\s\S]+) — the component card's face$/.exec(english);
+    if (active) return "组件卡片正面当前显示“" + active[1] + "”";
+  }
+  if (field === "aria-label") {
+    if (element.classList.contains("media-library-select") && english.startsWith("Select ")) return "选择“" + english.slice(7) + "”";
+    if (element.classList.contains("media-library-locate") && english.startsWith("Show ") && english.endsWith(" on the canvas")) {
+      return "在画布中定位“" + english.slice(5, -14) + "”";
+    }
+    if (element.classList.contains("media-library-open-viewer") && english.startsWith("Open Viewer — ")) {
+      return "在查看器中打开“" + english.slice("Open Viewer — ".length) + "”";
+    }
+    if (element.matches('.media-library-results [role="dialog"]')) return archiveDialogTitle(english);
+  }
+  if (field !== "text") return;
+  if (element.matches('.media-library-results [role="dialog"] > div:first-child')) return archiveDialogTitle(english);
+  if (element.matches(".media-library-archived-card .media-library-caption > span") && element.firstChild === node && english === "Archived") return "归档于";
+  if (element.classList.contains("ue-menu-label") && element.closest(".ue-menu")?.parentElement?.querySelector(".media-library")) {
+    const prefix = element.firstChild?.nodeValue?.trim();
+    if ((prefix === "Show in" || prefix === "定位到") && element.childNodes.length === 4 && element.childNodes[2].nodeValue === " · ") {
+      return node === element.firstChild ? "定位到" : english;
+    }
+    const restore = /^Restore (\d+) cards$/.exec(english);
+    if (restore) return "恢复 " + restore[1] + " 张卡片";
+    const remove = /^Delete (\d+) cards permanently$/.exec(english);
+    if (remove) return "永久删除 " + remove[1] + " 张卡片";
+    const files = /^Copy (\d+) file paths$/.exec(english);
+    if (files) return "复制 " + files[1] + " 个文件路径";
+  }
+  if (element.localName === "button" && element.childNodes.length === 5 && !element.hasAttribute("title") && element.closest(".nodrag.nowheel:has(.merlin-pane-collapse[aria-expanded])")) {
+    const prefix = element.firstChild?.nodeValue;
+    if (prefix !== "Load more (" && prefix !== "加载更多（已显示 ") return;
+    if (node === element.firstChild) return "加载更多（已显示 ";
+    if (node === element.childNodes[2] && english === "of") return "/";
+    if (node === element.lastChild && english === ")") return "）";
+  }
+}
+
+// src/editor-connection.ts
+var chipPrefix = "Unreal Editor: ";
+var chipStates = [
+  [/^connected to (.+), which is still loading\.$/, "已连接到 $1，编辑器仍在加载。"],
+  [/^connected to (.+), without Unreal Canvas Bridge\. Some Unreal nodes won't work; open this menu for details\.$/, "已连接到 $1。该编辑器没有 Unreal Canvas Bridge，部分 Unreal 节点不可用。打开菜单可查看详情。"],
+  [/^connected to (.+), but it isn't answering\. Open this menu for details\.$/, "已连接到 $1，但编辑器没有响应。打开菜单可查看详情。"],
+  [/^connected to (.+), but Unreal nodes can't run in it\. Open this menu for details\.$/, "已连接到 $1，但该编辑器无法运行 Unreal 节点。打开菜单可查看详情。"],
+  [/^connected to (.+)\. Renders, imports and the viewport go there\.$/, "已连接到 $1。渲染、导入和视口操作将发送到该编辑器。"],
+  [/^not connected\. One editor is running; pick it to send renders, imports and the viewport to it\.$/, "尚未连接。有一个编辑器正在运行，选择后即可向它发送渲染、导入和视口操作。"],
+  [/^not connected\. (\d+) editors are running; pick the one renders, imports and the viewport go to\.$/, "尚未连接。有 $1 个编辑器正在运行，请选择接收渲染、导入和视口操作的编辑器。"],
+  [/^not connected\. (.+) (?:is|are) running without an MCP server; open this menu for details\.$/, "尚未连接。$1 正在运行，但未启动 MCP 服务。打开菜单可查看详情。"],
+  [/^not connected\. Renders, imports and the viewport need an Unreal Editor with your project open\.$/, "尚未连接。请在虚幻编辑器中打开工程，以便渲染、导入和使用视口。"],
+  [/^(.+) is running but has no MCP server, so it can't connect\. Open this menu for details\.$/, "$1 正在运行，但没有 MCP 服务，无法连接。打开菜单可查看详情。"],
+  [/^starting (.+)\. It connects once it has loaded\.$/, "正在启动 $1。加载完成后将自动连接。"],
+  [/^(.+) is opening (.+)\.$/, "$1 正在打开 $2。"]
+];
+var capability = [
+  [/^(.+) has Unreal Canvas Bridge: every Unreal node works\.$/, "$1 已启用 Unreal Canvas Bridge，所有 Unreal 节点均可使用。"],
+  [/^(.+) has Unreal Canvas Bridge, but can't run Python for Unreal Canvas\.$/, "$1 已启用 Unreal Canvas Bridge，但无法为 Unreal Canvas 运行 Python。"],
+  [/^(.+) is still loading\.$/, "$1 仍在加载。"],
+  [/^(.+) isn't answering\.$/, "$1 没有响应。"],
+  [/^(.+) doesn't have Unreal Canvas Bridge\.$/, "$1 未启用 Unreal Canvas Bridge。"],
+  [/^(.+) has neither Unreal Canvas Bridge nor engine Python\.$/, "$1 未启用 Unreal Canvas Bridge，也未启用引擎 Python。"],
+  [/^(.+) is running, but it has no MCP server\.$/, "$1 正在运行，但没有 MCP 服务。"],
+  [/^(.+) didn't open (.+)\.$/, "$1 未能打开 $2。"]
+];
+function matchMessage(value, messages) {
+  for (const [pattern, replacement] of messages) {
+    if (pattern.test(value)) return value.replace(pattern, replacement);
+  }
+}
+function editorVersion(label) {
+  return label.replace(/^(UE [\d.]+) \(source\)$/, "$1（源码版）");
+}
+function describeRow(value) {
+  const newline = value.indexOf("\n");
+  if (newline < 0) return;
+  const lines = value.slice(newline + 1);
+  const path = value.slice(0, newline + 1);
+  const engine = /^Opens with (.+?), (.+)$/.exec(lines);
+  if (engine) return path + "使用 " + editorVersion(engine[1]) + " 打开，路径：" + engine[2];
+  if (copyId(lines) === "a22f81473ffecbf7") return path + "此电脑未安装工程使用的引擎，请选择一个引擎打开它。";
+  const process = /^(?:Unreal Engine ([^\n,]+), )?process (\d+), MCP port (\d+)(?:\n(Found by its MCP server:[^\n]+))?$/.exec(lines);
+  if (process) return path + (process[1] ? "虚幻引擎 " + process[1] + "，" : "") + "进程 " + process[2] + "，MCP 端口 " + process[3] + (process[4] ? "\n通过 MCP 服务发现。Unreal Canvas Bridge 未列出此编辑器，其中的渲染、导入和视口功能可能不可用。" : "");
+  if (lines.startsWith("This editor has no MCP server, so Unreal Canvas")) return path + "此编辑器没有 MCP 服务，Unreal Canvas 无法连接。请在“编辑 → 插件”中启用 Model Context Protocol 和可用的 Unreal Canvas Bridge，然后重启编辑器。";
+}
+var detailStates = [
+  [/^These won't work: (.+)\.$/, "以下节点不可用：$1。"],
+  [/^Its MCP server didn't respond \(([\s\S]+)\)\. A busy editor \(loading, compiling shaders\) answers again once it's idle\.$/, "MCP 服务没有响应（$1）。编辑器正在加载或编译着色器时可能繁忙，空闲后会恢复响应。"],
+  [/^Renders, imports and spawns run through engine Python instead\. These won't work: (.+)\.$/, "渲染、导入和生成对象将通过引擎 Python 执行。以下节点不可用：$1。"],
+  [/^Renders, imports and spawns run through engine Python instead\.$/, "渲染、导入和生成对象将通过引擎 Python 执行。"],
+  [/^Unreal nodes can't run in it: (.+)\.$/, "以下 Unreal 节点无法在此编辑器中运行：$1。"]
+];
+var pythonHelp = "检查 Bridge 的蓝图执行设置，或启用 EditorToolset 和 Python 后重启。";
+function changeAction(value) {
+  if (value === "quit" || value === "Quit") return "退出编辑器";
+  if (value === "Quitting") return "退出编辑器";
+  return value.replace(/^(?:open|Open|Opening) (.+)$/, "打开 $1");
+}
+function translateEditorConnection(el, field, value, node) {
+  if (el.classList.contains("unreal-editor-chip") && field === "aria-label" && value.startsWith(chipPrefix)) {
+    const status = matchMessage(value.slice(chipPrefix.length), chipStates);
+    if (status) return "虚幻编辑器：" + status;
+  }
+  const tip = el.closest('[role="tooltip"]');
+  if (tip?.id && field === "text") {
+    const chip = el.ownerDocument.querySelector(".unreal-editor-chip");
+    if (chip?.getAttribute("aria-describedby")?.split(/\s+/).includes(tip.id)) {
+      if (value === "Unreal Editor") return "虚幻编辑器";
+      if (copyId(value) === "7e481c7ef0ae84fc") return "连接虚幻编辑器并打开工程";
+      return matchMessage(value.charAt(0).toLowerCase() + value.slice(1), chipStates);
+    }
+  }
+  if (!el.closest(".unreal-editor-menu")) return;
+  if (field === "title" && el.matches("button,.unreal-editor-menu-starting")) {
+    if (copyId(value) === "3f8a09e9464431a3") return "当前编辑器无法为 Unreal Canvas 运行 Python。" + pythonHelp;
+    return describeRow(value);
+  }
+  if (field === "aria-label") {
+    if (el.classList.contains("unreal-editor-menu-forget")) return value.replace(/^Remove (.+) from recent projects$/, "从最近工程中移除“$1”");
+    if (el.classList.contains("unreal-editor-menu-quit")) return value.replace(/^Quit (.+)$/, "退出 $1");
+  }
+  if (field === "placeholder" && el.closest(".unreal-level-picker-search")) {
+    const n = /^Search (\d+) levels$/.exec(value);
+    if (n) return "搜索 " + n[1] + " 个关卡";
+  }
+  if (field !== "text") return;
+  if (el.closest('[role="alert"]') && !el.classList.contains("unreal-editor-menu-note")) return null;
+  const cls = el.classList;
+  if (cls.contains("unreal-editor-menu-status-title")) return matchMessage(value, capability);
+  if (cls.contains("unreal-editor-menu-status-detail")) {
+    if (copyId(value) === "11e3055b87885f7d") return pythonHelp;
+    if (value.startsWith("To fix: enable") && value.includes("Unreal Canvas Bridge")) {
+      return "请启用 Unreal Canvas Bridge 并重启。仅使用渲染与导入等功能时，也可检查 EditorToolset、Python 和 Movie Render Queue。";
+    }
+    return matchMessage(value, detailStates);
+  }
+  if (el.matches(".unreal-editor-menu-row .ue-menu-count:not(.unreal-editor-menu-path)")) return value === "No engine" ? "未找到引擎" : editorVersion(value);
+  if (el.closest('.unreal-editor-menu-path,button[role="menuitemradio"] .ue-menu-label,.unreal-editor-menu-row .ue-menu-label,button[role="menuitemradio"] .ue-menu-detail,[aria-disabled="true"] .ue-menu-label')) return null;
+  if (el.matches('.unreal-editor-menu-starting[role="status"] .ue-menu-label')) return matchMessage(value, [
+    [/^Saving, then quitting (.+)…$/, "正在保存，随后退出 $1…"],
+    [/^Quitting (.+)…$/, "正在退出 $1…"]
+  ]);
+  if (el.childNodes.length > 1) {
+    if (cls.contains("ue-menu-heading")) {
+      if (node === el.firstChild && value === "Open a level in") return "打开此工程中的关卡：";
+      if (node === el.firstChild && value === "Open") return "选择打开工程";
+      if (node === el.lastChild && value === "with") return "所用的引擎";
+      return null;
+    }
+    if (cls.contains("unreal-editor-menu-note")) {
+      if (node === el.firstChild && ["Open now:", "Didn't open", "Didn't quit"].includes(value)) return value === "Open now:" ? "当前关卡：" : value === "Didn't open" ? "未能打开" : "未能退出";
+      if (node === el.lastChild && copyId(value) === "5bad8359f1866095") return "项未显示。输入部分名称或文件夹名可查找关卡。";
+      if (node === el.lastChild && value === ". A large level takes a while.") return "。大型关卡可能需要一些时间。";
+      if (node === el.firstChild && value === "Saving, then opening") return "正在保存，随后打开";
+      if (node === el.firstChild && value === "Opening") return "正在打开";
+      if (node.previousSibling && value === "has unsaved changes in") return "有未保存的更改，涉及";
+      if (node === el.lastChild && value === "drops them unless they are saved first.") return "将丢弃这些更改，请先保存。";
+      if (node === el.lastChild && value === "without saving, or cancel.") return "且不保存，或取消。";
+      if (node.previousSibling && value === "was never saved. Save it as") return "尚未保存，请另存为";
+      if (node.previousSibling && copyId(value) === "6904898a54d24aa6") return "尚未保存，也不是当前打开的关卡，无法在此保存。你可以";
+      const following = node.nextSibling?.textContent?.trim();
+      if (following && ["drops them unless they are saved first.", "without saving, or cancel.", "将丢弃这些更改，请先保存。", "且不保存，或取消。"].includes(following)) return changeAction(value);
+      return null;
+    }
+    if (cls.contains("ue-menu-label")) {
+      if (el.closest(".unreal-editor-menu-starting")) {
+        if (node === el.firstChild && value === "Opening") return "正在打开";
+        if (node === el.firstChild && value === "Starting") return "正在启动";
+        if (node.previousSibling && value === "in the background") return "（后台）";
+        return null;
+      }
+      if (node === el.firstChild && value === "Save and") return "保存并";
+      if (node === el.lastChild && value === "without saving") return "且不保存";
+      return changeAction(value);
+    }
+  }
+}
+
+// src/geometry-menu.ts
+var categories = new Map(Object.entries(geometry_menu_default.categories));
+var operations = new Map(Object.entries(geometry_menu_default.operations));
+var nodePicker = '.pill-menu:has(.merlin-panel-search),.ue-menu:has(input:is([aria-label="Search nodes"],[aria-label="搜索节点"]))';
+function translateGeometryMenu(element, field, english) {
+  if (field !== "text") return;
+  const category = categories.get(english);
+  const operation = operations.get(english);
+  if (!category && !operation) return;
+  const isLabel = element.classList.contains("ue-menu-label");
+  const isCategoryHint = element.classList.contains("ue-menu-count");
+  if (!isLabel && !isCategoryHint || !element.closest(nodePicker)) return;
+  const button = element.parentElement;
+  if (!button || button.tagName !== "BUTTON") return;
+  const swatch = button.querySelector(":scope > .ue-menu-icon > span");
+  if (swatch?.style.backgroundColor !== "rgb(110, 231, 183)") return;
+  return isCategoryHint || button.hasAttribute("aria-haspopup") ? category : operation;
+}
+
+// src/panel-details.ts
+var skillModes = {
+  selected: ["Selected only", "仅使用所选技能"],
+  suggest: ["Suggest", "建议启用"],
+  auto: ["Add automatically", "自动添加"]
+};
+function skillStatus(english) {
+  const count = /^(\d+) active skills?$/.exec(english);
+  if (count) return `已启用 ${count[1]} 项技能`;
+  switch (english) {
+    case "No active skills":
+      return "没有启用的技能";
+    case "Loading skills":
+      return "正在加载技能";
+    case "Skills could not be loaded":
+      return "无法加载技能";
+  }
+}
+function translatePanelDetails(element, field, english, node) {
+  if (field === "text") {
+    if (element.matches(".agent-process-session > p:first-of-type") && node === element.firstChild) {
+      if (english === "No active turn") return "没有正在进行的交互";
+      if (english === "Agent turn active") return "智能体正在处理请求";
+      if (english === "Closed") return "已关闭";
+    }
+    if (element.matches(".mini-agent-chat-empty") && node === element.firstChild && english === "Start a conversation with") {
+      return "开始对话：";
+    }
+    if (element.matches(".merlin-skill-attach > .merlin-script-form-none")) {
+      if (node === element.firstChild && english === "No skills attached to") return "尚未挂接技能的位置：";
+      if (node === element.childNodes[1]) {
+        const scope = /^(root canvas|subcanvas|graph) “(.+)”$/s.exec(english);
+        if (scope) {
+          const label = scope[1] === "root canvas" ? "根画布" : scope[1] === "subcanvas" ? "子画布" : "节点图";
+          return label + "“" + scope[2] + "”";
+        }
+      }
+    }
+    if (element.matches('.mini-agent-chat-compose [contenteditable="true"][role="textbox"] + [role="separator"] + div:not([contenteditable])') && english.startsWith("Message ") && english.endsWith("…")) {
+      return "发消息给 " + english.slice(8);
+    }
+    if (element.matches(".agent-task-filters > button:nth-child(2)") && english.endsWith("’s tasks")) {
+      return english.slice(0, -"’s tasks".length) + "的任务";
+    }
+    if (element.matches(".agent-activity-presence > summary")) {
+      const disconnected = /^· (\d+) disconnected$/.exec(english);
+      if (disconnected) return `· ${disconnected[1]} 个已断开`;
+    }
+    if (element.matches(".chat-skills-heading > span")) return skillStatus(english);
+    const option = element.closest('[role="listbox"]:is([aria-label="Skill selection"],[aria-label="技能选择"]) > [role="option"][data-value]');
+    const mode = option && skillModes[option.getAttribute("data-value")];
+    if (mode && mode[0] === english) return mode[1];
+  }
+  if (field === "aria-label") {
+    if (element.matches(".agent-detail-shell") && english.endsWith(" details")) return english.slice(0, -8) + "的详情";
+    if (element.matches(".agent-action-menu") && english.startsWith("Manage ")) return "管理 " + english.slice(7);
+    if (element.matches(".merlin-skill-attach-remove") && english.startsWith("Detach ")) return "解除挂接：" + english.slice(7);
+    if (element.matches('.agent-nav-identity button, .mini-agent-chat-compose [contenteditable="true"]') && english.startsWith("Message ")) return "发消息给 " + english.slice(8);
+    if (element.matches('.mini-agent-chat-compose [role="separator"]') && english.startsWith("Resize Message ")) return "调整给 " + english.slice(15) + " 的消息输入框大小";
+    if (element.matches(".mini-agent-chat-skills") && english.startsWith("Skills: ")) {
+      const [status, policy] = english.slice(8).split(" · ");
+      const label = skillStatus(status);
+      if (label && !policy) return "技能：" + label;
+      if (label && policy === "Agent can suggest skills") return "技能：" + label + " · 智能体可以建议技能";
+      if (label && policy === "Agent can choose skills") return "技能：" + label + " · 智能体可以选择技能";
+    }
+  }
+  if (field === "title" && element.matches(".agent-task-owner-input .agent-assignee-picker") && english.startsWith("Assign to: ")) {
+    return "分派给：" + english.slice(11);
+  }
+}
+
 // src/translate.ts
 var attributes = ["title", "aria-label", "aria-description", "placeholder", "data-tooltip", "alt"];
 var scopeAttributes = ["class", "role", "contenteditable", "translate", "data-testid", "data-package-row", "data-value"];
@@ -850,14 +4213,15 @@ var searchMessageStart = "No settings in this category match “";
 var searchEndId = "38f7650709e6c304";
 var searchMessageStartZh = "当前分类没有与“";
 var searchMessageEndZh = "”匹配的设置。要搜索其他分类，请先在左侧选择。";
-function localize(doc, dictionary2) {
+function localize(doc, dictionary2, readCanvas) {
+  const translateWorkspaceDetails = createWorkspaceTranslator(readCanvas);
   const rules = /* @__PURE__ */ new Map();
-  const helpLengths = /* @__PURE__ */ new Set();
+  const helpLengths2 = /* @__PURE__ */ new Set();
   for (const group of dictionary2) {
     for (const [english, translation] of Object.entries(group.entries)) {
       if (!translation) continue;
       const length = keyLength(english);
-      if (length !== void 0) helpLengths.add(length);
+      if (length !== void 0) helpLengths2.add(length);
       for (const field of group.fields) {
         const key = field + "\n" + english;
         const candidates = rules.get(key) ?? [];
@@ -881,10 +4245,15 @@ function localize(doc, dictionary2) {
     const original = prior && prior.displayed === value ? prior.original : value;
     const english = original?.trim();
     let translated;
-    const candidates = english ? rules.get(field + "\n" + english) ?? (helpLengths.has(english.length) ? rules.get(field + "\n" + copyKey(english)) : void 0) : void 0;
+    const candidates = english ? rules.get(field + "\n" + english) ?? (helpLengths2.has(english.length) ? rules.get(field + "\n" + copyKey(english)) : void 0) : void 0;
     const splitMessage = element.classList.contains("ue-menu-note") || element.classList.contains("merlin-graphs-empty");
     if (english && (candidates || splitMessage || english === "(" || /[A-Za-z]/.test(english))) {
-      translated = translatePanelsDynamic(element, field, english, node);
+      translated = translateEditorConnection(element, field, english, node);
+      if (translated === void 0) translated = translateGeometryMenu(element, field, english);
+      if (translated === void 0) translated = translateMediaDetails(element, field, english, node);
+      if (translated === void 0) translated = translateWorkspaceDetails(element, field, english);
+      if (translated === void 0) translated = translatePanelDetails(element, field, english, node);
+      if (translated === void 0) translated = translatePanelsDynamic(element, field, english, node);
       if (translated === void 0) translated = translateCanvasAction(element, field, english);
       if (translated === void 0) translated = translatePanelActions(element, field, english);
       if (translated === void 0) translated = translateSettingsActions(element, field, english);
@@ -906,7 +4275,8 @@ function localize(doc, dictionary2) {
       const packageName = element.closest("[data-package-row]")?.getAttribute("data-package-row");
       const modelName = element.querySelector(':scope > [data-testid="provider-icon"]');
       const tabAction = isTabCloseAttribute(element, field) && english?.startsWith("Close ") || field === "title" && element.matches(".merlin-canvas-tab > span") && english?.endsWith(" — Double-click to rename");
-      if (english === packageName || modelName || element.matches('[data-testid="provider-icon"]') || element.closest(protectedContent) || element.closest(".merlin-canvas-tab") && !tabAction || field === "text" && element.closest(editableContent + ',option[value="custom"]')) translated = void 0;
+      const emptyTextInputHint = field === "text" && english === "Double-click to edit" && translated === "双击编辑" && element.matches(".text-input-rich[data-merlin-text-surface] > span:only-child") && !element.closest("[contenteditable]");
+      if (english === packageName || modelName || element.matches('[data-testid="provider-icon"]') || element.closest(protectedContent) && !emptyTextInputHint || element.closest(".merlin-canvas-tab") && !tabAction || field === "text" && element.closest(editableContent + ',option[value="custom"]')) translated = void 0;
     }
     if (translated && original && english) {
       const start = original.indexOf(english);
@@ -5787,14 +9157,643 @@ var settings_actions_022_default = [
   }
 ];
 
+// src/locales/media-details.json
+var media_details_default = [
+  {
+    selector: ".media-library-archived-grab,.media-library-locate,.media-library .merlin-panel-icon-button,.media-library .merlin-panel-chip,.media-library-more,.media-library .merlin-panel-search input,.media-library-results [role=dialog] :is(div,button),.media-library [role=alert]",
+    fields: [
+      "text",
+      "aria-label",
+      "title",
+      "placeholder"
+    ],
+    entries: {
+      "Show on canvas": "在画布中定位",
+      "#52:c3e7512bfd14c3b0": "拖回画布即可在落点恢复卡片。",
+      "Show everything again": "重新显示全部内容",
+      "#203:7545c6b720320389": "删除卡片也会移除生成结果。卡组和节点图会连同内部内容删除；清空历史前可撤销。",
+      Cancel: "取消",
+      "Delete permanently": "永久删除",
+      "Show more (": "显示更多（还有",
+      "remaining)": "项）",
+      "Find an item…": "查找项目…",
+      "#79:ed343c00dbdee216": "来源已失效，请刷新资源库。",
+      "#80:1e13d804fd549b7f": "刷新资源库后重新选择卡片。",
+      "#77:8139b3d1d7a06319": "找不到该卡片，请刷新资源库。"
+    }
+  },
+  {
+    selector: ".merlin-rail-body-content:has(.media-library) > .ue-menu .ue-menu-item > .ue-menu-label",
+    fields: [
+      "text"
+    ],
+    entries: {
+      Restore: "恢复",
+      "Show where it was": "定位归档前的位置",
+      "Show on canvas": "在画布中定位",
+      "Delete permanently": "永久删除",
+      "Copy file path": "复制文件路径"
+    }
+  },
+  {
+    selector: "[data-testid=timeline-trim-start],[data-testid=timeline-trim-end],[data-testid=shared-viewer-transport],[data-testid=shared-viewer-transport] > [role=status]",
+    fields: [
+      "aria-label",
+      "text"
+    ],
+    entries: {
+      "Trim start": "修剪起点",
+      "Trim end": "修剪终点",
+      "Synchronized playback": "同步播放",
+      "Waiting for playable media…": "正在等待可播放的媒体…"
+    }
+  },
+  {
+    selector: "button[title][aria-label]:has(> span),button[title][aria-label]:not(:has(*)),span[title]:has(> span)",
+    fields: [
+      "aria-label",
+      "title"
+    ],
+    entries: {
+      "#71:95598d0387b5db2d": "正在联动播放，点击可解除同步。",
+      "#37:31524456b408afe0": "让多个片段共用播放时间。",
+      "#45:be1455458b484226": "调整片段起始偏移以对齐画面。",
+      "One frame earlier": "提前一帧",
+      "One frame later": "推迟一帧",
+      "#29:a2a474e3e405194f": "逗号退一帧，句号进一帧。"
+    }
+  },
+  {
+    selector: "button:is([title^='Sync is on:'],[title^='Play the clips together'],[title^='片段正同步播放'],[title='使用同一时间基准同步播放片段'],[title^='Offsets:'],[title='调整时间偏移，使各片段对齐']) > span,div:has(> button > svg[data-icon=step-back]) > span:not([title])",
+    fields: [
+      "text"
+    ],
+    entries: {
+      Sync: "同步",
+      Offsets: "时间偏移",
+      "Waiting for every clip": "正在等待所有片段就绪"
+    }
+  },
+  {
+    selector: "div:has(> button > svg[data-icon=step-back]) > span[title],span[title]:has(+ button):not(:first-child)",
+    fields: [
+      "title"
+    ],
+    entries: {
+      "#68:331283c3ad2280b3": "拖动调整偏移。按住 Shift 以十帧为步长，双击归零。"
+    }
+  },
+  {
+    selector: ".nodrag.nowheel:has(.merlin-pane-collapse[aria-expanded]) div:not([title]):not([role])",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "No children": "没有子项"
+    }
+  },
+  {
+    selector: ".viewer-compact-toolbar button,.viewer-header-tools .toolbar-section,.bottom-node-viewer > .merlin-panel-control-btn,.bottom-node-viewer > .merlin-split-handle,.annotation-toolbar button,.bottom-node-viewer [aria-label='Hierarchy'],.bottom-node-viewer [aria-label='层级']",
+    fields: [
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Fill Canvas (F11)": "填满画布（F11）",
+      "Resize viewer": "调整查看器大小",
+      "#57:27dedf13805575cc": "拖动边缘调节查看器尺寸，拖到右端可关闭。",
+      Playback: "播放控制",
+      Panels: "面板",
+      View: "视图",
+      Capture: "捕获",
+      "Render pass": "渲染通道",
+      "Close this pane": "关闭此窗格",
+      "View result": "查看结果",
+      "Pick points": "选取点",
+      "Segment image": "分割图像",
+      "Cancel segmentation": "取消分割",
+      "Toggle draw mode (D)": "切换绘制模式（D）",
+      "#66:1b5c3ead78407b04": "请在图像层或批注层添加标记。",
+      "Delete annotation layer": "删除批注层",
+      "Delete mask layer": "删除遮罩层",
+      "Mesh view": "网格视图",
+      "Comparison layout": "对比布局",
+      "Exit compare (Esc)": "退出对比（Esc）",
+      "Capture frame to history": "将当前帧保存到历史记录",
+      "Grab frame at current time": "截取当前帧",
+      "#66:3209e53cf8ee3b10": "封面已固定，点击恢复自动更新。",
+      "#58:2a563ea9589650ca": "封面跟随视图，点击可固定当前画面。",
+      "Download mesh": "下载网格",
+      "Download video": "下载视频",
+      "Undo stroke (Ctrl+Z)": "撤销笔画（Ctrl+Z）",
+      "Redo stroke (Ctrl+Shift+Z)": "重做笔画（Ctrl+Shift+Z）",
+      "Compare results": "对比结果",
+      "Crop, turn or flip": "裁剪、旋转或翻转",
+      "Cancel crop (Esc)": "取消裁剪（Esc）",
+      "Turn left": "向左旋转",
+      "Turn right": "向右旋转",
+      "Flip horizontally": "水平翻转",
+      "Flip vertically": "垂直翻转",
+      "Back to the original": "恢复原始状态",
+      "#65:8e200eec2455bade": "保留原图，并在旁边创建编辑后的图像。",
+      "#65:b3dbef0a27b58588": "保留原视频，并在旁边创建编辑后的视频。",
+      "Cancel (Esc)": "取消（Esc）",
+      "Apply (Enter)": "应用（Enter）",
+      "#30:c1bab43421b18e95": "保存为新版本（Enter）",
+      "Remove the crop": "移除裁剪",
+      "Show hierarchy": "显示层级",
+      "Hide hierarchy": "隐藏层级",
+      Hierarchy: "层级"
+    }
+  },
+  {
+    selector: ".viewer-compact-toolbar button[title]",
+    fields: [
+      "text"
+    ],
+    entries: {
+      Reset: "重置",
+      Cancel: "取消",
+      Done: "完成",
+      "Applying…": "正在应用…",
+      "Save as new": "另存为新",
+      image: "图像",
+      video: "视频"
+    }
+  },
+  {
+    selector: ".nodrag.nowheel:has(.merlin-pane-collapse[aria-expanded]) button:not([title]):not([role]):not(:has(*))",
+    fields: [
+      "text"
+    ],
+    entries: {
+      ")": "）"
+    }
+  }
+];
+
+// src/locales/editor-connection.json
+var editor_connection_default = [
+  {
+    selector: ".unreal-editor-menu",
+    fields: [
+      "aria-label"
+    ],
+    entries: {
+      "Unreal Editors": "虚幻编辑器"
+    }
+  },
+  {
+    selector: ".unreal-editor-menu .ue-menu-heading,.unreal-editor-menu .ue-menu-note,.unreal-editor-menu .unreal-editor-menu-tag,.unreal-editor-menu .unreal-editor-menu-recheck,.unreal-editor-menu .unreal-editor-menu-quit,.unreal-editor-menu .unreal-editor-menu-status-detail,.unreal-editor-menu .unreal-editor-menu-starting[role=presentation] .ue-menu-label",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Running editors": "运行中的编辑器",
+      "Recent projects": "最近的工程",
+      "#28:6d1446d1be1e7e59": "当前没有运行中的 UE 编辑器。",
+      "#46:1ebde62fc8139d3b": "在这台电脑上未发现 UE 安装。",
+      "#17:aa391b3cc9a2695d": "没有找到符合条件的关卡。",
+      "Listing levels…": "正在获取关卡列表…",
+      "Unsaved changes": "未保存的更改",
+      "MCP only": "仅 MCP",
+      "No MCP server": "无 MCP 服务",
+      "Starting…": "启动中…",
+      Background: "后台运行",
+      "Check again": "重新检查",
+      Quit: "退出",
+      "#58:305e82aae6604507": "待编辑器载入后，这里会自动刷新。",
+      "#105:99c682275e71013d": "等待编辑器的 MCP 服务启动，Canvas 会自动连接。",
+      "#87:09de7f859d02eb44": "请检查编辑器的 MCP 服务，必要时重启编辑器。",
+      "#29:2eec99eba00799a3": "此编辑器不支持执行 Unreal 节点。",
+      "#90:eac2052656246ce9": "请在「编辑 → 插件」启用 Unreal Canvas Bridge 并重启 UE。",
+      "#145:30855131def92714": "请启用 Model Context Protocol。如已安装 Unreal Canvas Bridge，也请启用。重启 UE 后生效。"
+    }
+  },
+  {
+    selector: ".unreal-editor-menu > button > .ue-menu-label",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Start in the background": "在后台启动",
+      "Open UProject…": "打开 UE 工程…",
+      "Open level…": "打开关卡…",
+      Disconnect: "断开连接",
+      "Quit and disconnect": "退出编辑器并断开连接",
+      Back: "返回",
+      Cancel: "取消"
+    }
+  },
+  {
+    selector: ".unreal-editor-menu button",
+    fields: [
+      "title"
+    ],
+    entries: {
+      "#103:95ec55ebb494a4f5": "隐藏编辑器窗口并在后台运行，仍可编辑关卡、渲染和接收视口画面。",
+      "#55:4d06b39eab5d3d57": "在编辑器中打开选定的 .uproject 文件。",
+      "#68:6070839266997c59": "选择要打开的关卡。",
+      "#84:82df894e2b58940f": "暂停此编辑器的关卡操作，重新选择即可连接。",
+      "#95:aca8fbe77dd4280d": "退出并断开连接。退出前可处理尚未保存的更改。",
+      "#114:82b72f3f5755a466": "关闭后台编辑器。退出前可选择是否保存更改。",
+      "Remove from recent projects": "从最近工程中移除"
+    }
+  },
+  {
+    selector: ".unreal-level-picker-search input,.unreal-level-picker-search [aria-label]",
+    fields: [
+      "aria-label",
+      "placeholder"
+    ],
+    entries: {
+      "Search levels": "搜索关卡"
+    }
+  },
+  {
+    selector: ".unreal-editor-chip",
+    fields: [
+      "aria-description"
+    ],
+    entries: {
+      "#49:7e481c7ef0ae84fc": "连接 UE 编辑器并选择工程"
+    }
+  }
+];
+
+// src/locales/panel-details.json
+var panel_details_default = [
+  {
+    selector: '.merlin-skill-attach-list, .merlin-skill-attach-actions > button, .merlin-skill-picker, .merlin-skill-picker-list, .merlin-skill-picker-search input, .merlin-skill-picker-empty:not([role="alert"]), .chat-skills-scope-editor button[aria-expanded], .chat-skills-scope-editor button[aria-expanded] > span, .chat-skills-scope-editor summary',
+    fields: [
+      "text",
+      "aria-label",
+      "title",
+      "placeholder"
+    ],
+    entries: {
+      "Attached skills": "已挂接的技能",
+      "+ Attach skill": "+ 挂接技能",
+      "Manage in Toolbox": "在工具箱中管理",
+      "#69:50af44b598806a58": "在工具箱里添加、编辑、重命名或删除技能。",
+      "Attach a skill": "挂接技能",
+      "Search skills": "搜索技能",
+      "Skills to attach": "可挂接的技能",
+      "#19:6b096e5403455ad5": "找不到符合条件的技能。",
+      "#42:1a4fb8bf8998402d": "尚无技能，点击工具箱的「+」创建。",
+      "#24:3be9dca31e95a221": "可选技能均已添加。",
+      "Loading skills…": "正在加载技能…",
+      "Canvas defaults": "画布默认设置"
+    }
+  },
+  {
+    selector: '[role="listbox"]:is([aria-label="Skill selection"],[aria-label="技能选择"]), .chat-skills-reset, .mini-agent-chat .agent-setup-header > strong',
+    fields: [
+      "text",
+      "aria-label"
+    ],
+    entries: {
+      "Skill selection": "技能选择",
+      "Agent setup": "智能体设置",
+      "Close canvas skills": "收起画布技能"
+    }
+  },
+  {
+    selector: ".chat-skills-scope-editor .merlin-skill-attach-actions button,.chat-skills-reset,.chat-skills-section-heading > small,.chat-skills-heading,.chat-skills-list > label > span > small:first-of-type",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Close canvas skills": "收起画布技能",
+      "Selectable here": "可在此选择",
+      "Read-only": "只读",
+      "Excluded in this conversation": "已在本次对话中排除",
+      "#33:ff4ee518b8ae05d4": "提示词建议使用此技能，尚未开启。",
+      "Available to add": "可以添加"
+    }
+  },
+  {
+    selector: ".provider-settings-row > span,.provider-settings-row > button",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Credential available": "凭据可用",
+      Manage: "管理"
+    }
+  },
+  {
+    selector: '.mini-agent-chat-compose [role="separator"]',
+    fields: [
+      "title"
+    ],
+    entries: {
+      "Drag to resize": "拖动以调整输入框大小"
+    }
+  },
+  {
+    selector: ".merlin-script-editor > p,.merlin-script-side-locked",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#59:48f73e0bf08e5993": "脚本编辑器出错，画布内容已保留。",
+      "#117:aa277e5895531c14": "存在优先级更高的同 ID 技能，本文件的更改只保存在本库。"
+    }
+  },
+  {
+    selector: ".agent-detail-tabs, .agent-detail-tabs > button",
+    fields: [
+      "text",
+      "aria-label"
+    ],
+    entries: {
+      "Agent details": "智能体详情",
+      Messages: "消息",
+      Tasks: "任务",
+      Activity: "活动"
+    }
+  },
+  {
+    selector: ".agent-detail-header h2",
+    fields: [
+      "title"
+    ],
+    entries: {
+      "Double-click to rename": "双击重命名"
+    }
+  },
+  {
+    selector: ".agent-locate-button",
+    fields: [
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Locate agent": "定位智能体",
+      "No location available": "当前没有可定位的位置"
+    }
+  },
+  {
+    selector: ".agent-chat-status .agent-status, .agent-status-text, .agent-chat-status .agent-setup-inline-link, .agent-configure-button, .mini-agent-chat-model:disabled:not(:has(*)), .mini-agent-chat .generation-shelf-conversation",
+    fields: [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "#36:f730e39f90d48e58": "先完成智能体设置，即可开始交谈。",
+      "Setup required": "需要配置",
+      "Manage connections": "管理连接",
+      "Setup agent": "配置智能体",
+      "No model": "未选择模型",
+      "Agent conversation": "智能体对话"
+    }
+  },
+  {
+    selector: ".agent-task-heading :is(h2,p), .agent-task-empty > :is(strong,p), .agent-task-filters, .agent-task-filters > button, .agent-task-composer, .agent-task-title-input > span, .agent-task-title-input > input, .agent-task-compose-row > button, .agent-task-dependencies, .agent-task-breadcrumb > button",
+    fields: [
+      "text",
+      "aria-label",
+      "placeholder"
+    ],
+    entries: {
+      "Our task list": "我们的任务列表",
+      "Team & independent work": "团队任务与独立任务",
+      "Show tasks": "筛选任务",
+      Everyone: "所有人",
+      "Needs you": "需要你处理",
+      "New task": "新建任务",
+      Task: "任务",
+      "+ Add a task…": "+ 添加任务…",
+      Add: "添加",
+      "No tasks yet": "暂无任务",
+      "#66:591429eee537291f": "手动分派任务，或让智能体在工作时生成计划。",
+      "Task dependencies": "任务依赖",
+      "Task path": "任务路径",
+      "All tasks": "全部任务"
+    }
+  },
+  {
+    selector: ".agent-task-owner-input .agent-assignee-picker",
+    fields: [
+      "aria-label"
+    ],
+    entries: {
+      "Assign to": "分派给"
+    }
+  },
+  {
+    selector: ".agent-activity-heading > :is(h2,p), .agent-activity-presence, .agent-activity-presence > summary, .agent-activity-feed, .agent-activity-empty, .agent-activity-diagnostics > :is(summary,h3,p.agent-detail-muted), .agent-activity-diagnostics .agent-detail-disclosure > :is(summary,p.agent-detail-muted), .agent-activity-task, .agent-activity-presence > div > button, .agent-task-breadcrumb > button",
+    fields: [
+      "text",
+      "aria-label"
+    ],
+    entries: {
+      "Team activity": "团队活动",
+      "#51:ad9a741ac90e9d85": "追踪任务负责人、交接与进度。",
+      "Current agent status": "智能体当前状态",
+      "Agent status ·": "智能体状态 ·",
+      active: "个正在工作",
+      "Team activity timeline": "团队活动时间线",
+      "#61:1ca80a942781eb64": "团队开始执行后将在此列出任务进度。",
+      "Runtime details": "运行详情",
+      "Current activity": "当前活动",
+      "#29:5519cc35951ea572": "暂无进行中的活动记录。",
+      "Recent activity (": "最近活动 (",
+      "#28:5c53adf6c3ab9150": "近期没有活动记录。",
+      "Sessions & diagnostics": "会话与诊断",
+      "View task ↗": "查看任务 ↗",
+      Reconnect: "重新连接",
+      "All activity": "全部活动"
+    }
+  },
+  {
+    selector: ".agent-action-menu .ue-menu-label, .agent-appearance-picker .ue-menu-heading, .agent-action-shapes, .agent-action-colors, .agent-name-editor",
+    fields: [
+      "text",
+      "aria-label",
+      "title"
+    ],
+    entries: {
+      Messages: "消息",
+      "Rename…": "重命名…",
+      "Appearance…": "外观…",
+      "Close…": "关闭…",
+      "Agent appearance": "智能体外观",
+      "Agent color": "智能体颜色",
+      Appearance: "外观",
+      Color: "颜色",
+      Back: "返回",
+      Done: "完成",
+      "Agent name": "智能体名称",
+      "#32:0499cfe5b98c7d98": "Enter 确认，Esc 放弃。"
+    }
+  },
+  {
+    selector: '.chat-skills-popover, .chat-skills, .chat-skills-heading > :is(strong,span), .chat-skills-search input, .chat-skills-expansion, .chat-skills-expansion > span:first-child, .chat-skills-expansion button.custom-select, .chat-skills-expansion button.custom-select span[aria-hidden] , .chat-skills-help, .chat-skills-chips > span:not([role]), .chat-skills-chips > span[role="alert"] > button, .chat-skills-reset, .chat-skills-list > p, .chat-skills-section-heading > :is(span,strong), .chat-skills-scope-editor',
+    fields: [
+      "text",
+      "aria-label",
+      "placeholder",
+      "title"
+    ],
+    entries: {
+      "Chat skills": "聊天技能",
+      "Skills for this conversation": "本次对话的技能",
+      Skills: "技能",
+      "No active skills": "没有启用的技能",
+      "Loading skills": "正在加载技能",
+      "Loading skills…": "正在加载技能…",
+      "Skills could not be loaded": "无法加载技能",
+      "Search skills": "搜索技能",
+      "Search skills…": "搜索技能…",
+      "#207:1dd024eca85ac53b": "可固定使用已选技能、由智能体建议，或让它说明理由并自动添加。排除项仍然有效，两个菜单共用这项策略。",
+      "Skill selection": "技能选择",
+      "Selected only": "仅使用所选技能",
+      Suggest: "建议启用",
+      "Add automatically": "自动添加",
+      "#33:da8bc8f26abc8be0": "此消息未选用技能。",
+      "#122:39066dfe56f7fcf9": "团队工作期间暂时锁定选择策略，当前提示词的技能仍可调整。",
+      "#95:003bac548bafaf5d": "画布技能取决于当前位置。此选择和策略仅适用于这段对话。",
+      "Edit canvas skills": "编辑画布技能",
+      "#99:39b462a9610881ff": "先在工具箱创建技能，再把它加入当前画布或对话。",
+      "#19:6b096e5403455ad5": "找不到符合条件的技能。",
+      "Reset conversation choices": "重置本次对话的选择",
+      "Canvas defaults": "画布默认设置",
+      "Unreal Canvas skills": "Unreal Canvas 技能",
+      "Selectable here": "可在此选择",
+      "Inherited from local CLI": "继承自本地命令行",
+      "Read-only": "只读",
+      Retry: "重试"
+    }
+  },
+  {
+    selector: ".agent-mcp-servers, .agent-mcp-servers-header > :is(h2,h3,strong), .agent-mcp-servers > p, .agent-mcp-servers > a, .agent-provider-setup-request, .agent-provider-setup-request button, .agent-chat-open-messages",
+    fields: [
+      "text",
+      "aria-label",
+      "title"
+    ],
+    entries: {
+      "MCP servers": "MCP 服务器",
+      "Checking this chat's MCP servers…": "正在检查本次聊天的 MCP 服务器…",
+      "#29:3287d8b4db8d62a2": "当前对话尚未连接 MCP 服务器。",
+      "Open the sign-in page": "打开登录页",
+      "Provider setup invitation": "服务商配置邀请",
+      "Open provider setup": "打开服务商配置",
+      "Not now": "暂不配置",
+      "Open Messages": "打开消息"
+    }
+  },
+  {
+    selector: ".merlin-script-editor-btn, .merlin-script-form-remove, .merlin-script-heading-edit, .merlin-script-form, .merlin-skill-attach-inherited-label",
+    fields: [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Close the editor": "关闭编辑器",
+      "Clear the icon": "清除图标",
+      "Rename workspace": "重命名工作区",
+      "Workspace structure": "工作区结构",
+      "Workspace summary": "工作区摘要",
+      "Also active by inheritance": "同时通过继承生效"
+    }
+  },
+  {
+    selector: ".agent-action-shapes > button > span",
+    fields: [
+      "text"
+    ],
+    entries: {
+      Pebble: "石子",
+      Flame: "火焰",
+      Cat: "猫",
+      Cowboy: "牛仔",
+      Baseball: "棒球",
+      Rabbit: "兔子",
+      Cloud: "云朵",
+      Star: "星星",
+      Cthulhu: "克苏鲁",
+      Dino: "恐龙",
+      Skeleton: "骷髅",
+      Buff: "大力士",
+      Merlin: "梅林"
+    }
+  },
+  {
+    selector: ".agent-action-shapes > button",
+    fields: [
+      "aria-label"
+    ],
+    entries: {
+      "Pebble appearance": "石子外观",
+      "Flame appearance": "火焰外观",
+      "Cat appearance": "猫外观",
+      "Cowboy appearance": "牛仔外观",
+      "Baseball appearance": "棒球外观",
+      "Rabbit appearance": "兔子外观",
+      "Cloud appearance": "云朵外观",
+      "Star appearance": "星星外观",
+      "Cthulhu appearance": "克苏鲁外观",
+      "Dino appearance": "恐龙外观",
+      "Skeleton appearance": "骷髅外观",
+      "Buff appearance": "大力士外观",
+      "Merlin appearance": "梅林外观"
+    }
+  },
+  {
+    selector: ".agent-action-colors > button",
+    fields: [
+      "title"
+    ],
+    entries: {
+      Mint: "薄荷绿",
+      Lilac: "淡紫色",
+      Sky: "天蓝色",
+      Peach: "桃色",
+      Rose: "玫瑰色",
+      Gold: "金色",
+      Coral: "珊瑚色",
+      Orange: "橙色",
+      Lime: "青柠色",
+      Teal: "青绿色",
+      Indigo: "靛蓝色",
+      Magenta: "品红色"
+    }
+  },
+  {
+    selector: ".agent-action-colors > button",
+    fields: [
+      "aria-label"
+    ],
+    entries: {
+      "Mint agent": "薄荷绿智能体",
+      "Lilac agent": "淡紫色智能体",
+      "Sky agent": "天蓝色智能体",
+      "Peach agent": "桃色智能体",
+      "Rose agent": "玫瑰色智能体",
+      "Gold agent": "金色智能体",
+      "Coral agent": "珊瑚色智能体",
+      "Orange agent": "橙色智能体",
+      "Lime agent": "青柠色智能体",
+      "Teal agent": "青绿色智能体",
+      "Indigo agent": "靛蓝色智能体",
+      "Magenta agent": "品红色智能体"
+    }
+  }
+];
+
 // src/dictionary.ts
-var dictionary = [...canvas_actions_022_default, ...panel_actions_022_default, ...settings_actions_022_default, ...shelf_actions_default, ...generation_extra_default, ...editors_extra_default, ...script_authoring_extra_default, ...viewers_extra_default, ...menus_extra_default, ...panels_extra_default, ...settings_extra_default, ...zh_CN_default];
+var dictionary = [...editor_connection_default, ...panel_details_default, ...media_details_default, ...canvas_actions_022_default, ...panel_actions_022_default, ...settings_actions_022_default, ...shelf_actions_default, ...generation_extra_default, ...editors_extra_default, ...script_authoring_extra_default, ...viewers_extra_default, ...menus_extra_default, ...panels_extra_default, ...settings_extra_default, ...zh_CN_default];
 
 // manifest.json
 var manifest_default = {
   id: "unreal-canvas-zh-cn",
   name: "Unreal Canvas 简体中文",
-  version: "0.2.2",
+  version: "0.2.3",
   apiVersion: 1,
   namespaces: [
     "canvaszh"
@@ -5803,7 +9802,7 @@ var manifest_default = {
 
 // src/index.ts
 if (!loadSignal.aborted) {
-  const stop = localize(document, dictionary);
+  const stop = localize(document, dictionary, () => useCanvasStore.getState());
   loadSignal.addEventListener("abort", stop, { once: true });
   console.info(`[unreal-canvas-zh-cn] 简体中文已加载（${manifest_default.version}）`);
 }

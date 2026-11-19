@@ -1,0 +1,374 @@
+{
+  "FUnrealCanvasBridgeModule": {
+    "LaunchUnrealCanvasAppErrorTitle": [
+      "55160411",
+      "独立应用启动失败"
+    ],
+    "LaunchUnrealCanvasAppNotInstalled": [
+      "19188237",
+      "此引擎缺少独立应用。"
+    ],
+    "LaunchUnrealCanvasAppNotBuilt": [
+      "7fe0a6e7",
+      "请先编译 UnrealCanvasApp 目标。"
+    ],
+    "LaunchUnrealCanvasAppRunning": [
+      "1c85a047",
+      "独立应用已开启"
+    ],
+    "LaunchUnrealCanvasAppFailed": [
+      "7df71f0c",
+      "创建独立应用进程失败。"
+    ],
+    "LaunchedUnrealCanvasApp": [
+      "16ad723b",
+      "已启动 Unreal Canvas 独立应用"
+    ],
+    "UnrealCanvasTabTooltip": [
+      "2c82cd7c",
+      "AI 资产生成工作区"
+    ],
+    "OpenUnrealCanvasMenuTooltip": [
+      "76804fa3",
+      "打开资产生成工作区"
+    ],
+    "LaunchUnrealCanvasAppMenu": [
+      "809f0d66",
+      "启动 Unreal Canvas 独立应用"
+    ],
+    "LaunchUnrealCanvasAppMenuTooltip": [
+      "045611a3",
+      "打开独立画布窗口"
+    ],
+    "OpenUnrealCanvasToolbarTooltip": [
+      "76804fa3",
+      "进入画布工作区"
+    ]
+  },
+  "UnrealCanvasBridge": {
+    "InstallingPerforceBuild": [
+      "ba3bfd6d",
+      "正在从 Perforce 工作区安装 Unreal Canvas。"
+    ],
+    "InstallRequiredReason": [
+      "d46515b7",
+      "需要先安装 Canvas 服务。"
+    ],
+    "NoVersionResolvedReason": [
+      "c091028a",
+      "当前构建目录中没有兼容的服务版本。"
+    ],
+    "ServerExeMissingReason": [
+      "6a1a5019",
+      "未找到服务程序。位置为 {0}"
+    ],
+    "VersionMismatchTitle": [
+      "3733d9ca",
+      "服务版本不匹配"
+    ],
+    "VersionMismatchBody": [
+      "d7f3be9a",
+      "当前 Unreal Canvas 插件支持服务端 v{0}，而所选构建\n  {1}\n附带的服务端版本为 v{2}。\n\n请运行 `p4 sync`。如果使用开发工作区，还需重新构建插件。然后重启虚幻编辑器。"
+    ],
+    "LaunchFailedReason": [
+      "4ce5f0e8",
+      "启动服务失败。{0}"
+    ],
+    "CrashLoopReason": [
+      "0860e07f",
+      "服务在 {1} 秒内退出 {0} 次。最近的错误为 {2}。"
+    ],
+    "CrashLoopNoStderr": [
+      "ead37e1f",
+      "（未捕获到错误输出）"
+    ],
+    "NoInstalledBuildReason": [
+      "35717d2c",
+      "缺少已安装的版本。{0}"
+    ],
+    "BindFailedReason": [
+      "02acfd12",
+      "端口 {0} 无法使用。{1}"
+    ]
+  },
+  "UnrealCanvasPanel": {
+    "WebBrowserModuleUnavailable": [
+      "b2e8f62e",
+      "网页视图不可用"
+    ],
+    "WaitingForUnrealCanvas": [
+      "0dd800dd",
+      "等待画布就绪"
+    ],
+    "UnrealCanvasFailedTitle": [
+      "9f6134ad",
+      "Unreal Canvas 启动失败"
+    ],
+    "UnrealCanvasRetry": [
+      "8c3375d3",
+      "重试"
+    ],
+    "UnrealCanvasRetryTooltip": [
+      "756342f3",
+      "重新启动 Unreal Canvas 服务"
+    ],
+    "UnrealCanvasInstallTitle": [
+      "4e4cffa9",
+      "尚未安装 Unreal Canvas"
+    ],
+    "UnrealCanvasInstall": [
+      "9da61c97",
+      "安装 Unreal Canvas"
+    ],
+    "UnrealCanvasInstallTooltip": [
+      "b0add953",
+      "将 Perforce 提供的 Unreal Canvas 服务程序解压到当前用户目录"
+    ],
+    "UnrealCanvasInstalling": [
+      "969ae8fb",
+      "正在安装 Unreal Canvas"
+    ],
+    "UnrealCanvasUpdateAvailable": [
+      "bb1c1edf",
+      "Perforce 工作区中有 Unreal Canvas {0}。更新后将重启并使用该版本。"
+    ],
+    "UnrealCanvasUpdate": [
+      "a7f296d4",
+      "更新"
+    ],
+    "UnrealCanvasUpdateTooltip": [
+      "798c74dc",
+      "将 Perforce 提供的新版服务程序解压到用户目录，并重启 Unreal Canvas 以使用新版"
+    ],
+    "UnrealCanvasUpdateDismiss": [
+      "de348f3f",
+      "暂不更新"
+    ],
+    "UnrealCanvasUpdateDismissTooltip": [
+      "9d1ba882",
+      "继续运行当前已安装的版本"
+    ],
+    "UnrealCanvasComponentWaiting": [
+      "a1f2ba1f",
+      "等待中"
+    ],
+    "UnrealCanvasComponentInstalled": [
+      "003cba2d",
+      "已安装"
+    ],
+    "UnrealCanvasComponentSkipped": [
+      "a64c9688",
+      "已跳过"
+    ],
+    "UnrealCanvasComponentFailed": [
+      "9a6ec5c5",
+      "失败"
+    ],
+    "UnrealCanvasComponentSkippedTooltip": [
+      "36d71265",
+      "此组件已跳过，请查看现有安装或其他下载任务。"
+    ],
+    "UnrealCanvasComponentsMissing": [
+      "f37d724e",
+      "可选组件不完整，相关节点暂不可用。"
+    ],
+    "UnrealCanvasComponentsStarting": [
+      "063bf9c1",
+      "正在准备组件下载"
+    ],
+    "UnrealCanvasComponentsDetails": [
+      "86c27b02",
+      "详情"
+    ],
+    "UnrealCanvasComponentsDetailsTooltip": [
+      "4e8df99f",
+      "查看各项组件进度"
+    ],
+    "UnrealCanvasComponentsDownload": [
+      "83a691c0",
+      "下载"
+    ],
+    "UnrealCanvasComponentsDownloadTooltip": [
+      "6e319400",
+      "选择并下载缺少的组件"
+    ],
+    "UnrealCanvasComponentsDismiss": [
+      "de348f3f",
+      "暂时隐藏"
+    ],
+    "UnrealCanvasComponentsDismissTooltip": [
+      "36d78ffb",
+      "本次打开期间隐藏提示"
+    ],
+    "UnrealCanvasAssetConsentBody": [
+      "4f0a57a4",
+      "要下载 Unreal Canvas 的可选组件吗？\n\n{0}\n下载总量：{1}\n\n安装位置：\n{2}\n这些组件将从上方列出的网络地址下载，并逐项与 Perforce 工作区中指定的校验和核对。Unreal Canvas 服务程序的安装来源与这些组件不同。\n\n你可以跳过下载并继续使用 Unreal Canvas。依赖这些组件的节点将不可用。"
+    ],
+    "UnrealCanvasAssetConsentTitle": [
+      "9cb76283",
+      "下载 Unreal Canvas 附加组件"
+    ],
+    "UnrealCanvasAssetInstallStarted": [
+      "8b91fd17",
+      "组件正在后台下载。画布可继续使用。"
+    ],
+    "UnrealCanvasInstallPrompt": [
+      "4a6d1541",
+      "Perforce 工作区中有可用的 Unreal Canvas 服务端构建。安装后即可开始使用画布。"
+    ],
+    "FullscreenPlaceholder": [
+      "e9b36801",
+      "按 F11 退出全屏"
+    ]
+  },
+  "UnrealCanvasInstall": {
+    "AssetRunnerMissing": [
+      "a60090fc",
+      "未找到组件安装程序 {0}。现有服务仍可使用。"
+    ],
+    "AssetPythonMissing": [
+      "b62817f5",
+      "缺少引擎 Python，组件未安装。"
+    ],
+    "AssetLaunchFailed": [
+      "d9535488",
+      "可选组件安装程序未能启动。"
+    ],
+    "AssetDigestMismatch": [
+      "d5c00552",
+      "组件校验失败，已丢弃下载文件。"
+    ],
+    "AssetManifestMalformed": [
+      "d2f0026c",
+      "组件清单无法读取，请查看日志。"
+    ],
+    "AssetDownloadFailed": [
+      "805897fe",
+      "组件下载失败，请检查网络连接。"
+    ],
+    "AssetDiskFailed": [
+      "ab6c921c",
+      "组件写入失败，请检查磁盘空间和权限。"
+    ],
+    "AssetPartial": [
+      "6df65d62",
+      "以下组件仍待安装：{0}"
+    ],
+    "AssetBadInvocation": [
+      "135a8da6",
+      "组件安装参数无效。"
+    ],
+    "AssetUnknownFailure": [
+      "b327a9a7",
+      "组件安装异常退出，代码 {0}。"
+    ],
+    "Working": [
+      "fa1d3435",
+      "正在安装"
+    ],
+    "NoAssetForPlatform": [
+      "2955a928",
+      "未提供 {0} 平台的构建。"
+    ],
+    "ServerVersionOutOfStep": [
+      "6d5bb0e6",
+      "Unreal Canvas 插件支持服务端 v{0}，Perforce 提供的构建为 v{1}。\n\n请对插件运行 p4 sync，再重启虚幻编辑器。"
+    ],
+    "NoAsset": [
+      "2d697304",
+      "未找到适配本机的安装文件。"
+    ],
+    "ZipMissing": [
+      "1464b22c",
+      "工作区中找不到 Unreal Canvas 服务端安装包：\n\n{0}\n\n请运行以下命令同步：\n  p4 sync .../UnrealCanvasBridge/Binaries/...\n\n如果没有同步到文件，请检查客户端视图或流过滤器是否排除了此目录。"
+    ],
+    "RemoteNoAsset": [
+      "f4106248",
+      "此版本没有适用的下载项。"
+    ],
+    "Downloading": [
+      "5e0a5ea9",
+      "正在下载 Unreal Canvas {0}"
+    ],
+    "DownloadNotStarted": [
+      "9ed099f8",
+      "下载尚未开始。"
+    ],
+    "BootstrapMissing": [
+      "416bb7e9",
+      "缺少 Unreal Canvas 安装引导程序。请对插件的 Binaries 目录运行 p4 sync。"
+    ],
+    "LockHeld": [
+      "cea6a331",
+      "安装目录正被占用，或当前用户无权写入。"
+    ],
+    "LockUnwritable": [
+      "3cafc27b",
+      "无法创建安装锁，请检查目录权限。"
+    ],
+    "Starting": [
+      "c8e58e50",
+      "正在开始安装"
+    ],
+    "PipeFailed": [
+      "4b35bf9d",
+      "引导程序的通信管道创建失败。"
+    ],
+    "LaunchFailed": [
+      "b11e3110",
+      "引导程序启动失败。"
+    ],
+    "RemoteDigestMismatch": [
+      "7a158359",
+      "下载文件校验失败，请刷新并重试。"
+    ],
+    "DigestMismatch": [
+      "49616016",
+      "Unreal Canvas 服务端安装包未通过完整性校验。请对插件的 Binaries 目录运行 p4 sync 完成同步后重试。"
+    ],
+    "ZipVanished": [
+      "4619e4c4",
+      "服务安装包已丢失。"
+    ],
+    "ExtractFailed": [
+      "30b41a8e",
+      "解压失败，请检查可用空间。"
+    ],
+    "PlaceFailed": [
+      "aa01d63e",
+      "无法写入目标位置，请检查占用情况。"
+    ],
+    "BadInvocation": [
+      "8b268190",
+      "安装参数有误，请查看日志。"
+    ],
+    "BootstrapFailed": [
+      "f5d60220",
+      "安装结束，错误代码 {0}。"
+    ],
+    "LockLost": [
+      "cafc46e6",
+      "另一安装进程已接手，请稍后重试。"
+    ],
+    "DownloadingProgress": [
+      "c0b4b3dc",
+      "正在下载 {0}：{1} / {2}"
+    ],
+    "ZipGone": [
+      "efb6ac25",
+      "此版本已下架，请刷新。"
+    ],
+    "ZipHttpStatus": [
+      "c2495cfe",
+      "下载失败，HTTP {0}。"
+    ],
+    "ZipUnreachable": [
+      "7b4d3f2c",
+      "无法连接下载服务器。"
+    ],
+    "DownloadingLore": [
+      "c37e1d71",
+      "正在下载 Lore 库"
+    ]
+  }
+}

@@ -8,6 +8,12 @@ import { translateCanvasAction } from './canvas-actions-022';
 import { translatePanelActions } from './panel-actions-022';
 import { translateSettingsActions } from './settings-actions-022';
 import { translateShelfAction } from './shelf-actions';
+import type { ReadonlyCanvasState } from '@merlin/plugin-api';
+import { createWorkspaceTranslator } from './workspace-details';
+import { translateMediaDetails } from './media-details';
+import { translateEditorConnection } from './editor-connection';
+import { translateGeometryMenu } from './geometry-menu';
+import { translatePanelDetails } from './panel-details';
 
 export interface Group {
   selector: string;
@@ -25,7 +31,8 @@ const searchEndId = '38f7650709e6c304';
 const searchMessageStartZh = '当前分类没有与“';
 const searchMessageEndZh = '”匹配的设置。要搜索其他分类，请先在左侧选择。';
 
-export function localize(doc: Document, dictionary: Group[]) {
+export function localize(doc: Document, dictionary: Group[], readCanvas?: () => ReadonlyCanvasState) {
+  const translateWorkspaceDetails = createWorkspaceTranslator(readCanvas);
   const rules = new Map<string, Rule[]>();
   const helpLengths = new Set<number>();
   for (const group of dictionary) {
@@ -60,7 +67,12 @@ export function localize(doc: Document, dictionary: Group[]) {
       ?? (helpLengths.has(english.length) ? rules.get(field + '\n' + copyKey(english)) : undefined)) : undefined;
     const splitMessage = element.classList.contains('ue-menu-note') || element.classList.contains('merlin-graphs-empty');
     if (english && (candidates || splitMessage || english === '(' || /[A-Za-z]/.test(english))) {
-      translated = translatePanelsDynamic(element, field, english, node);
+      translated = translateEditorConnection(element, field, english, node);
+      if (translated === undefined) translated = translateGeometryMenu(element, field, english);
+      if (translated === undefined) translated = translateMediaDetails(element, field, english, node);
+      if (translated === undefined) translated = translateWorkspaceDetails(element, field, english);
+      if (translated === undefined) translated = translatePanelDetails(element, field, english, node);
+      if (translated === undefined) translated = translatePanelsDynamic(element, field, english, node);
       if (translated === undefined) translated = translateCanvasAction(element, field, english);
       if (translated === undefined) translated = translatePanelActions(element, field, english);
       if (translated === undefined) translated = translateSettingsActions(element, field, english);
@@ -84,8 +96,10 @@ export function localize(doc: Document, dictionary: Group[]) {
       const modelName = element.querySelector(':scope > [data-testid="provider-icon"]');
       const tabAction = (isTabCloseAttribute(element, field) && english?.startsWith('Close '))
         || (field === 'title' && element.matches('.merlin-canvas-tab > span') && english?.endsWith(' — Double-click to rename'));
+      const emptyTextInputHint = field === 'text' && english === 'Double-click to edit' && translated === '双击编辑'
+        && element.matches('.text-input-rich[data-merlin-text-surface] > span:only-child') && !element.closest('[contenteditable]');
       if (english === packageName || modelName || element.matches('[data-testid="provider-icon"]')
-        || element.closest(protectedContent) || (element.closest('.merlin-canvas-tab') && !tabAction)
+        || (element.closest(protectedContent) && !emptyTextInputHint) || (element.closest('.merlin-canvas-tab') && !tabAction)
         || (field === 'text' && element.closest(editableContent + ',option[value="custom"]'))) translated = undefined;
     }
     if (translated && original && english) {
