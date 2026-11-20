@@ -2,6 +2,7 @@
   "name": "unreal-canvas-zh-cn",
   "version": "0.2.6",
   "private": true,
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit && node scripts/build.mjs",
@@ -17,6 +18,5 @@
     "jsdom": "26.1.0",
     "playwright-core": "1.55.1",
     "typescript": "5.9.3"
-  },
-  "license": "Apache-2.0"
+  }
 }
