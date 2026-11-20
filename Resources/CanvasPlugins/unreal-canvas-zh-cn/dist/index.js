@@ -64,9 +64,9 @@ function footer(element, field, value) {
     if (count) return (count[1] ? "内容：" : "") + count[2] + " 张卡片";
   }
   if (id === "sys:runStatus") {
-    const label = value.startsWith("Run ") ? value.slice(4) : value;
-    const state = runStates.get(label);
-    if (state) return (label === value ? "" : "运行状态：") + state;
+    const label2 = value.startsWith("Run ") ? value.slice(4) : value;
+    const state = runStates.get(label2);
+    if (state) return (label2 === value ? "" : "运行状态：") + state;
   }
   if (id === "sys:cardType") {
     const prefix = value.startsWith("Card type ") ? "Card type " : "";
@@ -119,13 +119,13 @@ function translateGeneration(element, field, value, node) {
     if (element.matches(".generation-shelf-workflow-menu input")) {
       const mode = /^Search (\w+) scripts$/.exec(value)?.[1];
       if (mode) {
-        const label = media.get(mode[0].toUpperCase() + mode.slice(1));
-        if (label) return "搜索" + label + "脚本";
+        const label2 = media.get(mode[0].toUpperCase() + mode.slice(1));
+        if (label2) return "搜索" + label2 + "脚本";
       }
     }
     if (element.classList.contains("generation-shelf-reference-pick")) {
-      const label = /* @__PURE__ */ new Map([["Start Frame reference", "起始帧参考素材"], ["End Frame reference", "结束帧参考素材"], ["Image reference", "参考图像"]]);
-      return label.get(value);
+      const label2 = /* @__PURE__ */ new Map([["Start Frame reference", "起始帧参考素材"], ["End Frame reference", "结束帧参考素材"], ["Image reference", "参考图像"]]);
+      return label2.get(value);
     }
   }
   if (field === "text" && element.matches(".generation-shelf-script > strong")) {
@@ -158,9 +158,9 @@ function translateMenuDynamic(element, field, english) {
     }
   }
   if (element.closest('[data-testid="canvas-settings-popover"],.merlin-graph-inspector')) {
-    const label = /^(root canvas|subcanvas|nested canvas|graph) (“[\s\S]*”)$/.exec(english);
-    if (field === "text" && label && element.matches(".merlin-script-form-none")) {
-      return (label[1] === "graph" ? "节点图" : label[1] === "root canvas" ? "根画布" : "子画布") + label[2];
+    const label2 = /^(root canvas|subcanvas|nested canvas|graph) (“[\s\S]*”)$/.exec(english);
+    if (field === "text" && label2 && element.matches(".merlin-script-form-none")) {
+      return (label2[1] === "graph" ? "节点图" : label2[1] === "root canvas" ? "根画布" : "子画布") + label2[2];
     }
     const attach = /^Attach a skill to (root canvas|subcanvas|nested canvas|graph) (“[\s\S]*”)$/.exec(english);
     if (field === "title" && attach && element.matches(".merlin-skill-attach-add")) {
@@ -304,10 +304,10 @@ function translatePanelsDynamic(element, field, english, node) {
     return "输出：" + types2.map((type) => Object.prototype.hasOwnProperty.call(outputTypes, type) ? outputTypes[type] : type).join("、");
   }
   if (classes.contains("merlin-panel-control-btn")) {
-    for (const [name, label] of Object.entries(panelNames)) {
-      if (english === "Close " + name) return "关闭" + label;
-      if (english === "Fill Canvas with " + name) return "用" + label + "填满画布";
-      if (english === "Restore " + name + " Side Panel") return "还原" + label + "侧栏";
+    for (const [name, label2] of Object.entries(panelNames)) {
+      if (english === "Close " + name) return "关闭" + label2;
+      if (english === "Fill Canvas with " + name) return "用" + label2 + "填满画布";
+      if (english === "Restore " + name + " Side Panel") return "还原" + label2 + "侧栏";
     }
   }
   if (classes.contains("merlin-rail-pin")) {
@@ -407,9 +407,9 @@ function groupTitle(title) {
 function fieldControls(element, field, english) {
   const row = element.closest("[data-field-id]");
   if (!row) return;
-  const label = builtInFields.get(row.getAttribute("data-field-id") ?? "");
-  const display = (name) => label?.[0] === name ? label[1] : name;
-  if (field === "text" && element.parentElement === row && label?.[0] === english) return label[1];
+  const label2 = builtInFields.get(row.getAttribute("data-field-id") ?? "");
+  const display = (name) => label2?.[0] === name ? label2[1] : name;
+  if (field === "text" && element.parentElement === row && label2?.[0] === english) return label2[1];
   if (element.tagName !== "BUTTON") return;
   if (field === "title") {
     const hide = /^Hide "(.+)" from this layout — .*\bHidden\b.*$/.exec(english);
@@ -636,12 +636,12 @@ function fieldOption(element, english) {
   const pair = filterFields.get(id);
   return pair && english === pair[0] ? pair[1] : null;
 }
-function dataType(label) {
-  if (label.endsWith("[]")) {
-    const single = types.get(label.slice(0, -2));
+function dataType(label2) {
+  if (label2.endsWith("[]")) {
+    const single = types.get(label2.slice(0, -2));
     if (single) return single + "数组";
   }
-  return types.get(label);
+  return types.get(label2);
 }
 function scriptOption(element, english) {
   let control = element.closest("button.custom-select");
@@ -734,11 +734,11 @@ function translateSettingsActions(element, field, english) {
     return english.slice(0, -accepted.length) + " 已通过连接检查。";
   }
   if (element.matches('.settings-window-body main [role="dialog"]:has(> div > h3) > div > div[style*="color: var(--color-danger-muted)"]')) {
-    for (const [prefix, label] of [
+    for (const [prefix, label2] of [
       ["Invalid JSON in file: ", "文件中的 JSON 格式无效："],
       ["Invalid JSON: ", "JSON 格式无效："]
     ]) {
-      if (english.startsWith(prefix)) return label + english.slice(prefix.length);
+      if (english.startsWith(prefix)) return label2 + english.slice(prefix.length);
     }
   }
 }
@@ -844,9 +844,9 @@ function progress(element, field, value) {
     if (/^(…| \d+…| \d+\/\d+\+?)?$/.test(suffix)) return translated + suffix;
   }
 }
-function batchPosition(label) {
-  const reference = /^Reference (\d+)$/.exec(label);
-  return reference ? "参考素材 " + reference[1] : label;
+function batchPosition(label2) {
+  const reference = /^Reference (\d+)$/.exec(label2);
+  return reference ? "参考素材 " + reference[1] : label2;
 }
 function tooltip(element, value) {
   const parent = element.parentElement;
@@ -4099,8 +4099,8 @@ function matchMessage(value, messages) {
     if (pattern.test(value)) return value.replace(pattern, replacement);
   }
 }
-function editorVersion(label) {
-  return label.replace(/^(UE [\d.]+) \(source\)$/, "$1（源码版）");
+function editorVersion(label2) {
+  return label2.replace(/^(UE [\d.]+) \(source\)$/, "$1（源码版）");
 }
 function describeRow(value) {
   const newline = value.indexOf("\n");
@@ -4251,6 +4251,31 @@ function skillStatus(english) {
 }
 function translatePanelDetails(element, field, english, node) {
   if (field === "text") {
+    if (element.matches(".agent-retry-status > div > span")) {
+      const recovering = /^(\d+) requests recovering\. (Active retry|Next retry)$/.exec(english);
+      if (recovering) return recovering[1] + " 个请求正在恢复。" + (recovering[2] === "Next retry" ? "下次重试" : "正在重试");
+      const delay = /^in (\d+)s…$/.exec(english);
+      if (delay) return delay[1] + " 秒后重试…";
+    }
+    if (element.matches(".generation-shelf-approval > strong") && element.childNodes.length === 3) {
+      if (node === element.firstChild && english === "Allow organization on") return "是否允许整理画布";
+      if (node === element.lastChild && english === "?") return "？";
+      return null;
+    }
+    if (element.matches(".generation-shelf-approval > small")) {
+      if (english === "Local CLI action on the server computer") return "在服务器所在电脑上执行的本地命令行操作";
+      if (english.startsWith("Canvas: ")) return "画布：" + english.slice(8);
+    }
+    if (element.matches(".agent-history-list > button[data-follower] > span > strong + small") && node === element.firstChild) {
+      if (english === "Closed") return "已关闭";
+      if (english === "Open") return "已打开";
+    }
+    if (element.matches(".agent-mcp-servers > p[role=status]") && element.childNodes.length === 3) {
+      if (node === element.firstChild && english === "Finish signing in to") return "请在浏览器中完成登录：";
+      if (node === element.lastChild && copyId(english) === "7fb86d60be24c1c7") return "。连接成功后，即可在本次对话中使用其工具。";
+      return null;
+    }
+    if (element.matches(".agent-mcp-servers li > small") && node === element.firstChild && element.childNodes.length === 2 && english === "The sign-in did not finish:") return "登录未完成：";
     if (element.matches(".agent-process-session > p:first-of-type") && node === element.firstChild) {
       if (english === "No active turn") return "没有正在进行的交互";
       if (english === "Agent turn active") return "智能体正在处理请求";
@@ -4264,8 +4289,8 @@ function translatePanelDetails(element, field, english, node) {
       if (node === element.childNodes[1]) {
         const scope = /^(root canvas|subcanvas|graph) “(.+)”$/s.exec(english);
         if (scope) {
-          const label = scope[1] === "root canvas" ? "根画布" : scope[1] === "subcanvas" ? "子画布" : "节点图";
-          return label + "“" + scope[2] + "”";
+          const label2 = scope[1] === "root canvas" ? "根画布" : scope[1] === "subcanvas" ? "子画布" : "节点图";
+          return label2 + "“" + scope[2] + "”";
         }
       }
     }
@@ -4285,6 +4310,20 @@ function translatePanelDetails(element, field, english, node) {
     if (mode && mode[0] === english) return mode[1];
   }
   if (field === "aria-label") {
+    if (english.startsWith("Working with ") && element.classList.contains("agent-squad-select")) {
+      if (english === "Working with Choose an agent" && !element.querySelector(".agent-squad-current > strong[title]")) return "选择协作的智能体";
+      return "正在与 " + english.slice(13) + " 协作";
+    }
+    if (english.startsWith("Reopen ") && element.matches(".agent-history-list > button")) return "重新打开 " + english.slice(7);
+    if (element.matches(".agent-nav-team-toggle")) {
+      if (english.startsWith("Expand team under ")) return "展开团队：" + english.slice(18);
+      if (english.startsWith("Collapse team under ")) return "收起团队：" + english.slice(20);
+    }
+    if (english.startsWith("Following ") && element.matches(".agent-message-switcher ul")) return "跟随 " + english.slice(10);
+    if (element.matches(".agent-mcp-servers li > button")) {
+      if (english.startsWith("Signing in to ")) return "正在登录 " + english.slice(14);
+      if (english.startsWith("Sign in to ")) return "登录 " + english.slice(11);
+    }
     if (element.matches(".agent-detail-shell") && english.endsWith(" details")) return english.slice(0, -8) + "的详情";
     if (element.matches(".agent-action-menu") && english.startsWith("Manage ")) return "管理 " + english.slice(7);
     if (element.matches(".merlin-skill-attach-remove") && english.startsWith("Detach ")) return "解除挂接：" + english.slice(7);
@@ -4292,21 +4331,648 @@ function translatePanelDetails(element, field, english, node) {
     if (element.matches('.mini-agent-chat-compose [role="separator"]') && english.startsWith("Resize Message ")) return "调整给 " + english.slice(15) + " 的消息输入框大小";
     if (element.matches(".mini-agent-chat-skills") && english.startsWith("Skills: ")) {
       const [status, policy] = english.slice(8).split(" · ");
-      const label = skillStatus(status);
-      if (label && !policy) return "技能：" + label;
-      if (label && policy === "Agent can suggest skills") return "技能：" + label + " · 智能体可以建议技能";
-      if (label && policy === "Agent can choose skills") return "技能：" + label + " · 智能体可以选择技能";
+      const label2 = skillStatus(status);
+      if (label2 && !policy) return "技能：" + label2;
+      if (label2 && policy === "Agent can suggest skills") return "技能：" + label2 + " · 智能体可以建议技能";
+      if (label2 && policy === "Agent can choose skills") return "技能：" + label2 + " · 智能体可以选择技能";
     }
   }
   if (field === "title" && element.matches(".agent-task-owner-input .agent-assignee-picker") && english.startsWith("Assign to: ")) {
     return "分派给：" + english.slice(11);
   }
+  if (field === "title" && english.startsWith("Following ") && element.matches(".agent-history-list > button")) return "跟随 " + english.slice(10);
+}
+
+// src/agent-chat.ts
+var statusText = new Map(Object.entries({
+  "Ready": "就绪",
+  "Closed · work retained": "已关闭 · 工作内容已保留",
+  "Disconnected": "已断开连接",
+  "Connecting": "正在连接",
+  "Waiting for your approval": "等待你批准",
+  "Needs your input": "需要你提供信息",
+  "Working with local Codex": "本地 Codex 正在处理",
+  "Working with local Claude Code": "本地 Claude Code 正在处理",
+  "Waiting for model response": "正在等待模型回复",
+  "Waiting for child reports": "正在等待子智能体反馈",
+  "The reply reached the output limit; continuing": "回复已达到输出上限，正在继续",
+  "Stopping after the current step": "当前步骤结束后停止",
+  "Preparing context": "正在准备上下文",
+  "Background work failed; telling the agent": "后台任务失败，正在通知智能体",
+  "Waiting for a result": "正在等待结果",
+  "Waiting for teammates": "正在等待队友",
+  "Waiting for your team decision": "等待你确认是否组队",
+  "Preparing team assignments": "正在分配团队任务",
+  "Reading a file": "正在读取文件",
+  "Editing files": "正在编辑文件",
+  "Running a command": "正在运行命令",
+  "Searching for information": "正在搜索信息",
+  "Working": "正在处理",
+  "Generating": "正在生成",
+  "Thinking": "正在思考",
+  "Idle": "空闲",
+  "New": "新建",
+  "Unread message": "有未读消息",
+  "Failed": "失败",
+  "Interrupted": "已中断",
+  "Persistence error": "保存失败"
+}));
+var skillSelection = new Map(Object.entries({
+  "Selected only": "仅使用所选技能",
+  "Suggest": "建议启用",
+  "Add automatically": "自动添加"
+}));
+function translateSkillNotice(english) {
+  const skills = /^Skills for this prompt: (.+)\. Skill selection: (Selected only|Suggest|Add automatically)\.(?: Unavailable: (.+)\.)?$/s.exec(english);
+  if (skills) {
+    const list = skills[1] === "None" ? "无" : skills[1];
+    return `本次提示词使用的技能：${list}。技能选择：${skillSelection.get(skills[2])}。` + (skills[3] ? `不可用的技能：${skills[3]}。` : "");
+  }
+  const used = /^Agent reported using: (.+)\.$/s.exec(english);
+  if (used) return `智能体报告使用了以下技能：${used[1]}。`;
+  if (english.startsWith("Added skill: ")) return "已添加技能：" + english.slice("Added skill: ".length);
+  const handoff = /^Continues from “(.+)”\. Its conversation and cards (were|are)\b.*\.$/s.exec(english);
+  if (handoff) return `接续“${handoff[1]}”的工作。${handoff[2] === "were" ? "对话和卡片已随你的第一条消息转交给此智能体。" : "发送第一条消息时，对话和卡片将一并转交给此智能体。"}`;
+}
+var userAuthor = '.agent-chat-message[data-role="user"] > .agent-chat-message-author';
+var userContext = '.agent-chat-message[data-role="user"] > .agent-chat-message-inputs';
+var restoreButton = '.agent-chat-message[data-role="user"] > .agent-chat-message-bubble > button[title]';
+var delivery = new Map(Object.entries({
+  Queued: "已排队",
+  "Not sent": "未发送",
+  "Delivery unconfirmed": "送达状态未知",
+  Delivered: "已送达"
+}));
+function isAgentChatChrome(element, field) {
+  if (field === "aria-label") return element.matches(userContext);
+  if (field === "title") return element.matches(restoreButton);
+  return field === "text" && element.matches(userAuthor + "," + restoreButton);
+}
+function translateAgentChat(element, field, english, node) {
+  const classes = element.classList;
+  if (field === "text") {
+    if (classes.contains("agent-status-text") && element.matches(".agent-chat-status > .agent-status > span")) {
+      const base = english.replace(/(?:…|\.\.\.)$/, "");
+      const translated = statusText.get(base);
+      if (translated) return translated + (english === base ? "" : "…");
+      if (base.startsWith("Waiting for approval: ")) return "等待批准：" + english.slice("Waiting for approval: ".length);
+    }
+    if (classes.contains("shelf-skills-notice") && element.getAttribute("role") === "note") return translateSkillNotice(english);
+    if (classes.contains("agent-chat-message-author") && element.matches(userAuthor)) {
+      if (english === "You") return "你";
+      if (english.startsWith("You → ")) return "你" + english.slice(3);
+      if (english.startsWith("You · ")) {
+        const state = delivery.get(english.slice("You · ".length));
+        if (state) return "你 · " + state;
+      }
+    }
+    if (classes.contains("mini-agent-chat-receipt") && element.getAttribute("role") === "status" && english === "Queued") return "已排队";
+    if (classes.contains("generation-shelf-jump-recent") && english === "Jump to recent") return "跳至最新消息";
+    if (classes.contains("mini-agent-chat-empty") && english === "Start a conversation with the agent.") return "与智能体开始对话。";
+    if (element.matches(".generation-shelf-activity-toggle > span")) {
+      if (english === "activity") return "条活动";
+      if (english === "update" || english === "updates") return "更新";
+    }
+    if (element.matches(restoreButton) && english === "Restore to draft") return "恢复为草稿";
+    if (element.matches(".chat-skills-inherited > span > small") && node === element.lastChild && english === "· active through your Personal context") return "· 已通过个人上下文启用";
+    if (element.matches('.chat-skills-chips > span[role="alert"]')) {
+      if (english === "Skills could not be loaded.") return "无法加载技能。";
+      if (english === "attached") return "项已挂接的";
+      if (english === "skill is" || english === "skills are") return "技能";
+      if (english === "unavailable") return "不可用";
+    }
+  }
+  if (field === "aria-label") {
+    if (english === "Message context" && element.matches(userContext)) return "消息上下文";
+    if (element.closest(".chat-skills-entry") && element.matches('input,button,[role="switch"],[role="checkbox"]')) {
+      if (english.startsWith("Enable ")) return "启用 " + english.slice(7);
+      if (english.startsWith("Inherited ")) return "继承的技能：" + english.slice(10);
+    }
+  }
+  if (field === "title" && element.matches(restoreButton)) {
+    if (copyId(english) === "8356c07c3afad5d1") return "请先检查对话，避免重复发送。";
+    if (copyId(english) === "cf620984371fb920") return "放回草稿，等待手动发送。";
+  }
+  if ((field === "aria-label" || field === "title") && classes.contains("mini-agent-chat-send")) {
+    if (english === "Stop agent") return "停止智能体";
+    if (english === "Stop agent (Esc)") return "停止智能体（Esc）";
+    if (english === "Send") return "发送";
+  }
+}
+
+// src/locales/agent-setup.json
+var agent_setup_default = {
+  labels: {
+    "Agent setup": "智能体设置",
+    "Agent setup details": "智能体设置详情",
+    Setup: "设置",
+    Model: "模型",
+    Permission: "权限",
+    "Always ask": "始终询问",
+    "Ask if risky": "有风险时询问",
+    Autonomous: "自主执行",
+    Effort: "推理强度",
+    Light: "轻量",
+    Standard: "标准",
+    Thorough: "深入",
+    Custom: "自定义",
+    Customize: "自定义",
+    "Reset to defaults": "恢复默认设置",
+    Done: "完成",
+    Back: "返回",
+    Behavior: "行为",
+    Teams: "团队协作",
+    "Allow graph creation": "允许创建节点图",
+    "Response style": "回答风格",
+    Concise: "简洁",
+    Guided: "分步指导",
+    Deliberative: "深入讨论",
+    Investigation: "调查范围",
+    "Resolve important gaps": "补全重要信息",
+    "Look at alternatives": "探索其他方案",
+    "Skill selection": "技能选择",
+    "Selected only": "仅使用所选技能",
+    Suggest: "建议启用",
+    "Add automatically": "自动添加",
+    "Memory and review": "记忆与复核",
+    "Read memories across conversations": "读取跨对话记忆",
+    "Manage memories": "管理记忆",
+    "Read context from other agents": "读取其他智能体的上下文",
+    "Check its work": "检查工作结果",
+    "Don't check": "不检查",
+    "Check and fix": "检查并修复",
+    "Check, second opinion, and fix": "检查、征求第二意见并修复",
+    "Feedback on results": "征求结果反馈",
+    Guidance: "自定义指令",
+    "Tool access": "工具访问权限",
+    "New conversation": "新建对话",
+    "Reset to preset": "恢复预设",
+    "Canvas reach": "画布访问范围",
+    "Root canvas only": "仅根画布",
+    "Root canvas and graph interiors": "根画布和节点图内部",
+    "Tools ·": "工具 ·",
+    "Unavailable saved tools (": "已保存但不可用的工具 (",
+    "Unavailable saved tools": "已保存但不可用的工具",
+    "Select all in": "全选此组工具：",
+    "No model": "无模型",
+    "Not installed": "未安装",
+    "Loading models…": "正在加载模型…",
+    "No models available": "没有可用模型",
+    Unavailable: "不可用",
+    "Choose model": "选择模型",
+    "Chat models": "对话模型",
+    "Search models": "搜索模型",
+    "Search models…": "搜索模型…",
+    "Local Codex": "本地 Codex",
+    "Local Claude Code": "本地 Claude Code",
+    Environment: "运行环境",
+    Context: "上下文",
+    "Agent environment": "智能体运行环境",
+    "Agent context": "智能体上下文",
+    "App-managed (API)": "应用托管（API）",
+    "Local · Codex": "本地 · Codex",
+    "Local · Claude Code": "本地 · Claude Code",
+    Personal: "个人配置",
+    "Personal (default)": "个人配置（默认）",
+    Clean: "空白上下文",
+    "Clean (default)": "空白上下文（默认）",
+    "Manage connections": "管理连接"
+  },
+  modelAndSetupLabels: {
+    "691b83413e87415e": "选中这个智能体以开始配置。",
+    a7f052c0e2b65b85: "按需调查",
+    "12fee6d2a01fd909": "例如：简要回答，并沿用我的用词。",
+    "317817e849685d38": "工具列表已经手动配置。新增的内置工具需要自行开启。",
+    "67037d0dcd36bb89": "当前采用预设工具。修改勾选后，只会授权选中的工具。",
+    "53852b02948964e9": "当前版本未提供这些工具。会记住名称，等待工具可用后再授权。",
+    "4ba431d21ee8435c": "暂不可用，仅保留工具名",
+    "1c71ea4bea582fb5": "请在运行环境中选用此 CLI，以读取它的模型列表。",
+    "6f4545142c055b09": "配置或改用此提供商",
+    "2112af0cb3ac361f": "要使用其他提供商，请新建智能体。",
+    "18d0cb92c01ee039": "Unreal Canvas API · 托管上下文",
+    c45880d7d6d89bd6: "智能体已切换，请重新打开模型选择器。",
+    c3a02d813e673ed4: "设置从本次对话的下一条请求起生效。续办任务将沿用它开始时的行为设置。"
+  },
+  hints: {
+    "36022156d9f5211d": "选择本次对话的模型。同一提供商下可在对话中切换。",
+    ea7bac5f4f3561f9: "指定哪些操作需要你同意。",
+    d544d0abb7f83666: "调整检查和修正结果的力度。",
+    f89dc05c638497f5: "修改或生成前均会先询问。",
+    f34b57f8e5e7ab55: "一般修改可直接执行，高风险和生成操作须先确认。",
+    "86e2152ad80447e6": "可自行修改并生成内容。",
+    "69f7c58c58b97337": "直接完成请求，跳过结果复核。",
+    "826ff0deff81b7ef": "建议合适的技能，检查结果并请你反馈。",
+    "488e9e7dbf1cb55b": "比较方案，复核结果并按需修正。",
+    a4fe7c543bcf1885: "收起设置，稍后可从输入栏调整。",
+    e783ab664195064a: "允许提议组队，获得许可后可启动协作智能体。",
+    "2455666a2548a78b": "允许新建和编辑节点图。",
+    "1beb0a66a40266ed": "选择回答的详细程度和呈现方式。",
+    "88b2ee2a02c80524": "选择何时补查信息或比较方案。",
+    "1dd024eca85ac53b": "指定技能的推荐与启用方式。",
+    "2586cda7bed2e972": "允许读取之前保存的偏好、画布记忆和审核。",
+    b676cd843fa73eeb: "允许参考其他智能体的笔记及卡片评论。",
+    "2222a7343126e1ef": "设置交付前的自查程度。",
+    fe9c912cab4e8ea9: "在结果上请求评分、意见或进一步修改。",
+    f5e217d84443995b: "在这里填写本次对话的额外要求。",
+    "8d05ae84c44eaf72": "设置可用的工具与操作。",
+    "6edb19b7793b9fc1": "管理已保存的记忆。",
+    "606dac6233eab925": "切换提供商时，已开始的对话可能需要重新建立。",
+    a588b415df2672a4: "使用 Canvas 提供的工具与上下文。"
+  },
+  contextHints: {
+    "1c63e1a2897142bb": "加载 Claude Code 的用户设置、钩子、规则、插件、技能、命令和 CLAUDE.md，也加载用户级和插件提供的 MCP 服务。文件与终端工具限于 Claude 工作目录。",
+    f28bd7ed8c6d06c8: "沿用 Claude Code 的账号与连接，在 Canvas 内使用专用设置和工具。工作目录的记忆仍可能生效。",
+    "7c6eb6384c07c37c": "载入 Codex 的本机配置，包括 MCP、插件、钩子、规则、记忆、AGENTS.md 和技能。",
+    "287e3fcf7e61a0de": "只沿用 Codex 登录与模型设置，其他本地扩展和记忆不会载入。仅存在系统密钥环中的凭据不可沿用。"
+  }
+};
+
+// src/locales/agent-setup-tool-groups.json
+var agent_setup_tool_groups_default = {
+  labels: {
+    "Tools from extensions": "扩展提供的工具",
+    "Graphs · Write": "节点图 · 编辑",
+    "Graphs · Run": "节点图 · 运行",
+    "Scripts · Read and use": "脚本 · 读取与使用",
+    "Scripts · Author": "脚本 · 编写",
+    "Cards and layout": "卡片与布局",
+    "Media edits": "媒体编辑",
+    Frames: "框架",
+    "Subcanvases and containers": "子画布与容器",
+    "Canvas files and lifecycle": "画布文件管理",
+    Skills: "技能",
+    Personalities: "智能体个性",
+    Extensions: "扩展",
+    "Models and services": "模型与服务",
+    "Review and assessment": "评审与评估",
+    "Delegation and tasks": "委派与任务",
+    "Memory and preferences": "记忆与偏好",
+    "Unreal Editor": "虚幻编辑器",
+    "Viewer and presentation": "查看器与展示",
+    "Graphs · Read": "节点图 · 读取",
+    "Other Unreal Canvas tools": "其他 Unreal Canvas 工具"
+  },
+  descriptions: {
+    ad7ba1c3a77039e1: "管理扩展提供的工具，可在对应面板中执行或调用其 Python 代码。",
+    "481a2f2eecdc675a": "修改节点、引脚、参数和连线。",
+    a563ace2df26f111: "启动或停止卡片及工作流。",
+    "8f037210721380fd": "查找可复用脚本与工作流，并放入画布、设置输入。",
+    "86543448dfb772e2": "编写 Python 脚本、子脚本和可复用脚本定义。",
+    "0d5c80e71a67b978": "操作卡片、版本、画布图文与布局，可执行右键菜单命令。",
+    "08b629159146de46": "对媒体进行裁剪、变换、剪辑或调色，可与外部编辑器交换结果。",
+    "72078854e7a4fefe": "添加、修改或删除画布框架。",
+    dfee40b15d8b003a: "管理子画布、子图、卡组及工作区。",
+    f89f58c5655c485f: "管理画布文件，包括保存、复制与关闭。",
+    e5f0eca204d28478: "读取并确认本次对话选用的技能。",
+    "8b08a30f66d685f1": "创建、查看或维护智能体个性。",
+    "9b86203cd7bc4418": "浏览扩展、试运行草稿、诊断加载状态或打开扩展面板。",
+    f7bc2414d3de9c88: "查看模型定义、服务商路由与服务能力。",
+    b23c314f8bef3b95: "评估结果并记录审核意见。",
+    b95589228577e007: "创建协作智能体、分配任务并联系团队成员。",
+    ff1ba0b01346b098: "读写画布记忆与个人偏好。",
+    c1a9e64cff0ab92d: "在已连接的编辑器内查找并执行工具。",
+    ba9b0248e3c47214: "操作查看器或展示已有结果。",
+    "865b5993810a67bf": "查看节点图、卡片状态、布局、输入和生成记录。",
+    ef111d8c84a878b1: "收录其余 Canvas 内置工具。"
+  }
+};
+
+// src/locales/agent-setup-tools.json
+var agent_setup_tools_default = {
+  acknowledge_skills: "确认已使用的技能",
+  add_card: "添加卡片",
+  add_card_comment: "添加卡片评论",
+  add_graph_to_library: "将节点图添加到资源库",
+  add_image_slot: "添加图像插槽",
+  apply_media_steps: "应用媒体处理步骤",
+  arrange_canvas_items: "排列画布项目",
+  arrange_graph: "整理节点图",
+  ask_at: "在指定位置提问",
+  auto_align: "自动对齐",
+  bake_to_image_input: "烘焙为图像输入",
+  capture_extension_panel: "截取扩展面板",
+  capture_realtime: "捕获实时画面",
+  choose_shelf_output: "选择工具架输出",
+  close_canvas: "关闭画布",
+  close_subagent: "关闭子智能体",
+  collapse_frame_to_subcanvas: "将框架折叠为子画布",
+  context_menu: "操作右键菜单",
+  control_viewer: "控制查看器",
+  create_agent_task: "创建智能体任务",
+  create_annotation_edit_subgraph: "创建标注编辑子图",
+  create_canvas: "创建画布",
+  create_clean_plate_subgraph: "创建干净底片子图",
+  create_code_script: "创建代码脚本",
+  create_connector: "创建连接器",
+  create_cutout_png_subgraph: "创建 PNG 抠图子图",
+  create_deck: "创建卡组",
+  create_equirect_world_subgraph: "创建等距柱状全景世界子图",
+  create_extension_draft: "创建扩展草稿",
+  create_frame: "创建框架",
+  create_generate_and_place_subgraph: "创建生成并放置资产的子图",
+  create_graph: "创建节点图",
+  create_graph_script: "创建节点图脚本",
+  create_image_edit_subgraph: "创建图像编辑子图",
+  create_image_grid_restyle_subgraph: "创建图像网格风格转换子图",
+  create_image_to_mesh_subgraph: "创建图像转网格子图",
+  create_mrg_image_edit_subgraph: "创建 MRG 图像编辑子图",
+  create_mrg_image_gen_subgraph: "创建 MRG 图像生成子图",
+  create_mrg_mesh_placement_subgraph: "创建 MRG 网格放置子图",
+  create_object_meshes_from_scene: "从场景创建对象网格",
+  create_object_reposition_subgraph: "创建对象重新定位子图",
+  create_pipeline: "创建流程",
+  create_prompt_loop_subgraph: "创建提示词循环子图",
+  create_reference: "创建引用",
+  create_scene_analysis_subgraph: "创建场景分析子图",
+  create_script_node: "创建脚本节点",
+  create_skill: "创建技能",
+  create_spatial_annotation_edit_subgraph: "创建空间标注编辑子图",
+  create_spatial_mask_loop_subgraph: "创建空间遮罩循环子图",
+  create_spatial_prompt_synthesis_subgraph: "创建空间提示词合成子图",
+  create_subagent: "创建子智能体",
+  create_subcanvas: "创建子画布",
+  create_subgraph: "创建子图",
+  create_video_grid_restyle_subgraph: "创建视频网格风格转换子图",
+  crop_node_image: "裁剪节点图像",
+  customize_extension: "自定义扩展",
+  define_custom_field: "定义自定义字段",
+  delete_canvas: "删除画布",
+  delete_connector: "删除连接器",
+  delete_frame: "删除框架",
+  delete_node: "删除节点",
+  delete_skill: "删除技能",
+  delete_text_note: "删除文本便笺",
+  describe_local_server: "查看本地服务器信息",
+  duplicate_canvas: "复制画布",
+  duplicate_cards: "复制卡片",
+  edit_deck: "编辑卡组",
+  edit_graph_inputs: "编辑节点图输入",
+  edit_script_card: "编辑脚本卡片",
+  edit_subscript_face: "编辑子脚本面板",
+  edit_text_note: "编辑文本便笺",
+  execute_python: "执行 Python",
+  export_result: "导出结果",
+  expose_pin: "公开引脚",
+  find_node_kinds: "查找节点类型",
+  freeze_render_passes: "冻结渲染通道",
+  generate_from_annotations: "根据标注生成",
+  get_call_result: "获取调用结果",
+  get_canvas_context: "获取画布上下文",
+  get_canvas_debug: "获取画布调试信息",
+  get_canvas_layout: "获取画布布局",
+  get_card_context: "获取卡片上下文",
+  get_extension_status: "获取扩展状态",
+  get_generation_history: "获取生成历史",
+  get_graph_docs: "获取节点图文档",
+  get_help: "获取帮助",
+  get_node_debug: "获取节点调试信息",
+  get_node_kind_pins: "获取指定节点类型的引脚",
+  get_node_pins: "获取节点引脚",
+  get_node_status: "获取节点状态",
+  get_pipeline_docs: "获取流程文档",
+  get_route: "获取路由",
+  get_selection: "获取选中项",
+  get_service_meta_schema: "获取服务元架构",
+  get_service_schema: "获取服务架构",
+  get_skill: "获取技能",
+  get_spatial_annotations: "获取空间标注",
+  get_subagent_status: "获取子智能体状态",
+  get_tool_schemas: "获取工具架构",
+  get_unreal_console_variable: "获取虚幻引擎控制台变量",
+  get_unreal_selection: "获取虚幻编辑器中的选中项",
+  get_unreal_viewport_camera: "获取虚幻编辑器视口摄像机",
+  import_to_unreal: "导入虚幻编辑器",
+  inspect_node_output: "查看节点输出",
+  inspect_script: "查看脚本",
+  inspect_task_results: "检查任务结果",
+  inspect_toolshelf: "查看工具架",
+  inspect_usd: "查看 USD",
+  inspect_viewer: "检查查看器",
+  isolate_annotation_group: "仅显示指定标注组",
+  launch_subagent: "启动子智能体",
+  list_agent_tasks: "列出智能体任务",
+  list_audio_models: "列出音频模型",
+  list_canvases: "列出画布",
+  list_connectors: "列出连接器",
+  list_extensions: "列出扩展",
+  list_image_models: "列出图像模型",
+  list_media_tools: "列出媒体工具",
+  list_models: "列出模型",
+  list_scripts: "列出脚本",
+  list_skill_activations: "列出技能启用记录",
+  list_skills: "列出技能",
+  list_squad_members: "列出团队成员",
+  list_unreal_levels: "列出虚幻引擎关卡",
+  list_video_models: "列出视频模型",
+  list_workspaces: "列出工作区",
+  manage_agent_personalities: "管理智能体个性",
+  manage_canvas_memory: "管理画布记忆",
+  manage_user_preferences: "管理用户偏好",
+  manage_versions: "管理版本",
+  message_squad_lead: "向团队负责人发消息",
+  message_squad_member: "向团队成员发消息",
+  motion_capture_readiness: "检查动作捕捉是否就绪",
+  move_canvas_items: "移动画布项目",
+  name_agent: "为智能体命名",
+  open_canvas: "打开画布",
+  open_extension_panel: "打开扩展面板",
+  open_unreal_level: "打开虚幻引擎关卡",
+  organization_session: "管理画布整理会话",
+  package_extension: "打包扩展",
+  pause_realtime: "暂停实时处理",
+  place_result: "放置结果",
+  place_script: "放置脚本",
+  place_workspace: "放置工作区",
+  prepare_graph_version: "准备节点图版本",
+  present_nodes: "展示节点",
+  present_unreal: "在虚幻编辑器中展示",
+  preview_usd: "预览 USD",
+  propose_service_schema: "提出服务架构方案",
+  propose_team: "提出团队方案",
+  publish_extension: "发布扩展",
+  query_mrg_passes: "查询 MRG 渲染通道",
+  read_graph: "读取节点图",
+  record_review_feedback: "记录评审反馈",
+  release_inherited_review_criteria: "解除继承的评审标准",
+  reload_extension: "重新加载扩展",
+  remove_stale_pin: "移除过期引脚",
+  rename_canvas: "重命名画布",
+  rename_node: "重命名节点",
+  repair_service_schema: "修复服务架构",
+  request_provider_setup: "请求配置提供商",
+  resize_cards: "调整卡片大小",
+  resolve_skills: "解析技能",
+  resume_subagent: "恢复子智能体",
+  run_node: "运行节点",
+  run_unreal_console_command: "运行虚幻引擎控制台命令",
+  save_canvas: "保存画布",
+  save_workspace_to_extension: "将工作区保存到扩展",
+  search_extensions: "搜索扩展",
+  search_help: "搜索帮助",
+  search_project_reviews: "搜索项目评审",
+  search_unreal_console_variables: "搜索虚幻引擎控制台变量",
+  send_extension_changes: "发送扩展更改",
+  send_to_app: "发送到外部应用",
+  set_canvas_gating_mode: "设置画布执行限制模式",
+  set_card_params: "设置卡片参数",
+  set_local_server_start_command: "设置本地服务器启动命令",
+  set_models_in_pickers: "设置选择器中的模型",
+  set_node_assignees: "设置节点负责人",
+  set_node_semantics: "设置节点语义",
+  set_node_tags: "设置节点标签",
+  set_script_inputs: "设置脚本输入",
+  set_script_metadata: "设置脚本元数据",
+  set_unreal_console_variable: "设置虚幻引擎控制台变量",
+  set_unreal_skybox: "设置虚幻引擎天空盒",
+  set_unreal_viewport_camera: "设置虚幻编辑器视口摄像机",
+  set_unreal_work_targets: "设置虚幻编辑器工作目标",
+  set_visible_annotation_groups: "设置可见标注组",
+  show_all_annotation_groups: "显示所有标注组",
+  spawn_cutout_in_unreal: "在虚幻编辑器中生成抠图",
+  start_local_server: "启动本地服务器",
+  start_realtime: "启动实时处理",
+  stop_realtime: "停止实时处理",
+  stop_run: "停止运行",
+  submit_task_assessment: "提交任务评估",
+  tail_server_log: "查看最新服务器日志",
+  unpack_subcanvas: "展开子画布",
+  unreal_editor_mcp: "调用虚幻编辑器 MCP",
+  update_agent_task: "更新智能体任务",
+  update_code_script: "更新代码脚本",
+  update_connector: "更新连接器",
+  update_frame: "更新框架",
+  update_outdated_cards: "更新过期卡片",
+  update_skill: "更新技能",
+  wait_for_squad_messages: "等待团队消息",
+  wait_subagents: "等待子智能体",
+  wrap_in_subgraph: "封装为子图",
+  write_board_elements: "编辑画布元素",
+  write_frame_sections: "编辑框架分区",
+  write_graph: "编辑节点图",
+  write_text_card: "写入文本卡片",
+  write_usd: "写入 USD"
+};
+
+// src/agent-settings.ts
+var labels = new Map(Object.entries(agent_setup_default.labels));
+var extendedLabels = new Map(Object.entries(agent_setup_default.modelAndSetupLabels));
+var contexts = new Map(Object.entries(agent_setup_default.contextHints));
+var groupHelp = new Map(Object.entries(agent_setup_tool_groups_default.descriptions));
+function label(value) {
+  return labels.get(value) ?? extendedLabels.get(copyId(value));
+}
+var hints = new Map(Object.entries(agent_setup_default.hints));
+var groups = new Map(Object.entries(agent_setup_tool_groups_default.labels));
+var tools = new Map(Object.entries(agent_setup_tools_default));
+var setupScope = ".agent-setup-strip,.agent-setup-popover";
+function translateHint(source) {
+  const parts = /^(.*?)( (?:Available when|The chat keeps|You can change) .*)?$/.exec(source);
+  if (!parts) return;
+  const id = copyId(parts[1]);
+  const hint = hints.get(id) ?? contexts.get(id);
+  if (!hint || !parts[2]) return hint;
+  switch (copyId(parts[2])) {
+    case "e601b6e7c7c2e9c3":
+      return hint + " 本轮完成后即可更改。";
+    case "601322e14408f534":
+      return hint + " 对话已开始，将沿用当前上下文。";
+    case "e22436cbf10bfc3d":
+      return hint + " 开始对话前仍可调整。";
+    default:
+      return void 0;
+  }
+}
+function translateModeSummary(source) {
+  const match = /^(?:(.+) · )?(Always ask|Ask if risky|Autonomous) · (Light|Standard|Thorough|Custom)$/s.exec(source);
+  if (match) return (match[1] ? match[1] + " · " : "") + label(match[2]) + " · " + label(match[3]);
+}
+function isSetupList(list) {
+  if (!list.id) return false;
+  const triggers = list.ownerDocument.querySelectorAll('.agent-setup-body [role="combobox"][aria-controls]');
+  return Array.from(triggers).some((trigger) => trigger.getAttribute("aria-controls") === list.id);
+}
+function translateAgentModelPlaceholder(element, english) {
+  if (!element.classList.contains("agent-model-name")) return;
+  const row = element.parentElement;
+  if (!row?.matches('.agent-setup-body .agent-model-list button[role="menuitemradio"]:disabled')) return;
+  const issue = row.getAttribute("title");
+  if (english === "No models available" && (issue === "Unavailable" || issue === label("Unavailable"))) {
+    return label(english);
+  }
+  if (row.getAttribute("aria-checked") !== "false") return;
+  if ((english === "Not installed" || english === "Loading models…" || copyId(english) === "1c71ea4bea582fb5") && (issue === english || issue === label(english))) return label(english);
+}
+function translateAgentSettings(element, field, english, node) {
+  if (element.matches(".mini-agent-chat-model-personality,.mini-agent-chat-model,.agent-setup-header > .agent-setup-hint")) {
+    if (field === "text" || field === "title") {
+      const summary = translateModeSummary(english);
+      if (summary) return summary;
+    }
+    if (element.matches(".mini-agent-chat-model")) return label(english);
+  }
+  if (field === "text" && element.matches(".mini-agent-chat-model > span:not(.mini-agent-chat-model-personality)")) return null;
+  if (field === "text" && element.matches('[role="tooltip"][data-menu-layer]')) {
+    const hint = translateHint(english);
+    if (hint && element.ownerDocument.querySelector(setupScope)) return hint;
+  }
+  if (!element.closest(setupScope)) {
+    if (label(english) !== void 0 && (field === "text" || field === "aria-label")) {
+      const list = element.closest('[role="listbox"]');
+      if (list && isSetupList(list)) return label(english);
+    }
+    return;
+  }
+  if (field === "text") {
+    if (element.closest(".agent-setup-nav button")) return null;
+    if (element.classList.contains("agent-model-name")) return translateAgentModelPlaceholder(element, english) ?? null;
+    if (element.closest(".agent-model-empty") && element.childNodes.length > 1) {
+      if (node === element.firstChild && english === "No models match “") return "没有与“";
+      if (node === element.lastChild && english === "”.") return "”匹配的模型。";
+      if (node === element.firstChild && english === "Choose") return "请在下方的运行环境中选择";
+      if (node === element.lastChild && english === "in Environment below to load its models.") return "以加载模型。";
+      return null;
+    }
+    if (element.matches(".agent-setup-hint") && element.childNodes.length === 3) {
+      if (node === element.firstChild && copyId(english) === "063452409e766f57") {
+        return "切换后可继续使用当前对话，";
+      }
+      if (node === element.childNodes[1] && english === "the provider stays fixed") return "提供商已固定";
+      if (node === element.childNodes[1] && english === "the provider and context stay fixed") return "提供商和上下文已固定";
+      if (node === element.lastChild && english === ".") return "。";
+    }
+    if (element.matches(".personality-tool-extension")) return node === element.firstChild && english === "from" ? "来自" : null;
+    if (element.matches(".personality-tool-list label > span")) {
+      const id = element.querySelector(":scope > code")?.textContent;
+      if (node === element.firstChild && id && id.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") === english) {
+        return tools.get(id) ?? null;
+      }
+      return null;
+    }
+    if (element.matches(".personality-tool-group > p")) return groupHelp.get(copyId(english));
+    if (element.matches(".personality-tool-group > summary > span,.personality-tool-select-all")) {
+      return groups.get(english) ?? label(english);
+    }
+  }
+  if (field === "aria-label") {
+    if (english.startsWith("Select all tools in ") && element.closest(".personality-tool-select-all")) {
+      const group = groups.get(english.slice("Select all tools in ".length));
+      if (group) return "全选“" + group + "”中的工具";
+    }
+    if (english.endsWith(" tools") && element.matches(".personality-tool-list")) {
+      const group = groups.get(english.slice(0, -" tools".length));
+      if (group) return group + "工具";
+    }
+  }
+  if (element.closest(".personality-tool-list code,.personality-unavailable-tools code,.agent-model-name")) return null;
+  if (field === "text" && element.matches('.agent-model-empty[role="alert"]') && copyId(english) !== "c45880d7d6d89bd6") return null;
+  if (field === "text" && element.matches("textarea,input,[contenteditable]")) return null;
+  return label(english) ?? translateHint(english);
 }
 
 // src/translate.ts
 var attributes = ["title", "aria-label", "aria-description", "placeholder", "data-tooltip", "alt"];
-var scopeAttributes = ["class", "role", "contenteditable", "translate", "data-testid", "data-package-row", "data-value"];
-var protectedContent = 'script,style,pre,code,.cm-content,.view-lines,[translate="no"],[data-merlin-text-surface],.agent-chat-message,.canvas-card-header,.agent-attention-preview,.agent-model-name,.agent-assignee-name,.agent-current-task-title,.merlin-scripts-name,.merlin-scripts-row-name,.merlin-graphs-tile-label,.credential-row-label,.merlin-ops-name';
+var scopeAttributes = ["class", "role", "contenteditable", "translate", "data-testid", "data-package-row", "data-value", "data-role", "disabled", "aria-checked"];
+var protectedContent = 'script,style,pre,code,.cm-content,.view-lines,[translate="no"],[data-merlin-text-surface],.canvas-card-header,.agent-attention-preview,.agent-assignee-name,.agent-current-task-title,.merlin-scripts-name,.merlin-scripts-row-name,.merlin-graphs-tile-label,.credential-row-label,.merlin-ops-name';
 var editableContent = '[contenteditable]:not([contenteditable="false"]),input,textarea,[role="textbox"]';
 var searchMessageStart = "No settings in this category match “";
 var searchEndId = "38f7650709e6c304";
@@ -4345,9 +5011,13 @@ function localize(doc, dictionary2, readCanvas) {
     const english = original?.trim();
     let translated;
     const candidates = english ? rules.get(field + "\n" + english) ?? (helpLengths2.has(english.length) ? rules.get(field + "\n" + copyKey(english)) : void 0) : void 0;
-    const splitMessage = element.classList.contains("ue-menu-note") || element.classList.contains("merlin-graphs-empty") || english === "." && element.matches(".agent-onboarding-content > p");
-    if (english && (candidates || splitMessage || english === "(" || /[A-Za-z]/.test(english))) {
-      translated = translateEditorConnection(element, field, english, node);
+    const splitMessage = element.classList.contains("ue-menu-note") || element.classList.contains("merlin-graphs-empty") || english === "." && element.matches(".agent-onboarding-content > p,.agent-setup-hint") || english === "”." && element.classList.contains("agent-model-empty") || english === "?" && element.matches(".generation-shelf-approval > strong");
+    if (english && element.closest(".agent-chat-message")) {
+      if (isAgentChatChrome(element, field)) translated = translateAgentChat(element, field, english, node);
+    } else if (english && (candidates || splitMessage || english === "(" || /[A-Za-z]/.test(english))) {
+      translated = translateAgentSettings(element, field, english, node);
+      if (translated === void 0) translated = translateAgentChat(element, field, english, node);
+      if (translated === void 0) translated = translateEditorConnection(element, field, english, node);
       if (translated === void 0) translated = translateGeometryMenu(element, field, english);
       if (translated === void 0) translated = translateMediaDetails(element, field, english, node);
       if (translated === void 0) translated = translateWorkspaceDetails(element, field, english);
@@ -4376,7 +5046,7 @@ function localize(doc, dictionary2, readCanvas) {
       const modelName = element.querySelector(':scope > [data-testid="provider-icon"]');
       const tabAction = isTabCloseAttribute(element, field) && english?.startsWith("Close ") || field === "title" && element.matches(".merlin-canvas-tab > span") && english?.endsWith(" — Double-click to rename");
       const emptyTextInputHint = field === "text" && english === "Double-click to edit" && translated === "双击编辑" && element.matches(".text-input-rich[data-merlin-text-surface] > span:only-child") && !element.closest("[contenteditable]");
-      if (english === packageName || modelName || element.matches('[data-testid="provider-icon"]') || element.closest(protectedContent) && !emptyTextInputHint || element.closest(".merlin-canvas-tab") && !tabAction || field === "text" && element.closest(editableContent + ',option[value="custom"]')) translated = void 0;
+      if (english === packageName || modelName || element.matches('[data-testid="provider-icon"]') || element.closest(".agent-model-name") && !(field === "text" && english && translateAgentModelPlaceholder(element, english)) || element.closest(protectedContent) && !emptyTextInputHint || element.closest(".merlin-canvas-tab") && !tabAction || field === "text" && element.closest(editableContent + ',option[value="custom"]')) translated = void 0;
     }
     if (translated && original && english) {
       const start = original.indexOf(english);
@@ -4419,8 +5089,9 @@ function localize(doc, dictionary2, readCanvas) {
         for (const added of record.addedNodes) roots.add(added);
       } else if (record.type === "characterData") roots.add(record.target);
       else if (record.attributeName && doc.contains(record.target)) {
-        if (scopeAttributes.includes(record.attributeName)) roots.add(record.target);
-        else translate(record.target, record.target, record.attributeName);
+        const element = record.target;
+        if (scopeAttributes.includes(record.attributeName) || record.attributeName === "title" && element.matches('.agent-model-list [role="menuitemradio"]')) roots.add(element);
+        else translate(element, element, record.attributeName);
       }
     }
     for (const root of roots) {
@@ -4461,8 +5132,8 @@ function translateDynamic(element, field, english) {
     }
   }
   if (element.matches(".merlin-panel-count,.merlin-panel-count-pill,.merlin-panel-chip-count")) {
-    const tools = /^(\d+) tools?$/.exec(english);
-    if (tools) return tools[1] + " 个工具";
+    const tools2 = /^(\d+) tools?$/.exec(english);
+    if (tools2) return tools2[1] + " 个工具";
     const items = /^(\d+) items?$/.exec(english);
     if (items) return items[1] + " 项";
   }
@@ -10122,14 +10793,208 @@ var panel_details_default = [
   }
 ];
 
+// src/locales/agent-session.json
+var agent_session_default = [
+  {
+    selector: ".agent-welcome-actions > button.agent-welcome-primary",
+    fields: [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Start a chat": "开始对话"
+    }
+  },
+  {
+    selector: ".agent-welcome-actions > button:not(.agent-welcome-primary), p.agent-welcome-start",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Manage connections": "管理连接",
+      "#35:e5fd313c1ab70ced": "选择「开始对话」以发送第一条消息。"
+    }
+  },
+  {
+    selector: ".agent-detail-header > .agent-detail-actions > button",
+    fields: [
+      "text"
+    ],
+    entries: {
+      Reconnect: "重新连接"
+    }
+  },
+  {
+    selector: ".agent-squad-roster, .agent-squad-roster > header, .agent-squad-move-help, .agent-squad-launcher, .agent-squad-collapse, .agent-squad-resize, .agent-squad-current > span, .agent-squad-tasks",
+    fields: [
+      "text",
+      "aria-label"
+    ],
+    entries: {
+      Team: "团队",
+      "Expand team": "展开团队",
+      "Collapse team": "收起团队",
+      "Move team": "移动团队面板",
+      "#60:e62a6a4d22664481": "拖动或用方向键移动。按住 Shift 可加大步长。",
+      "Resize chat from top edge": "从上边缘调整聊天窗口大小",
+      "Resize chat from bottom edge": "从下边缘调整聊天窗口大小",
+      "Working with:": "正在协作的智能体：",
+      "Team tasks ↗": "团队任务 ↗"
+    }
+  },
+  {
+    selector: ".agent-squad-current > strong:not([title])",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Choose an agent": "选择智能体"
+    }
+  },
+  {
+    selector: ".agent-squad-current > strong[title]",
+    fields: [
+      "title"
+    ],
+    entries: {
+      "Double-click to rename": "双击重命名"
+    }
+  },
+  {
+    selector: ".agent-shelf-reopen, .agent-history-popover, .shelf-collaborator-menu:has(.agent-history-list), :is(.agent-history-popover,.shelf-collaborator-menu) > strong, :is(.agent-history-popover,.shelf-collaborator-menu) input, .agent-history-list > p, .agent-history-list > .generation-shelf-model-label, .agent-history-list ~ small[role=status]",
+    fields: [
+      "text",
+      "aria-label",
+      "placeholder",
+      "title"
+    ],
+    entries: {
+      "Reopen agent": "重新打开智能体",
+      "Search agents": "搜索智能体",
+      "Search by name or task…": "按名称或任务搜索…",
+      "Saved local agents": "本地保存的智能体",
+      "#19:04ec60928555dc35": "没有找到智能体。",
+      "#55:9d8f1c8be872c116": "关闭的智能体会列在这里。",
+      "Opening agent…": "正在打开智能体…",
+      "Looking for saved local agents…": "正在查找本地保存的智能体…"
+    }
+  },
+  {
+    selector: ".agent-retry-status, .agent-retry-status > div > span",
+    fields: [
+      "text",
+      "aria-label"
+    ],
+    entries: {
+      "Automatic retries": "自动重试",
+      "Agent response": "智能体回复",
+      "Saving checking progress": "保存检查进度",
+      "Agent connection": "智能体连接",
+      "App server access": "应用服务器访问",
+      Retry: "重试",
+      of: "/",
+      "in progress…": "正在重试…",
+      "starting…": "即将重试…"
+    }
+  },
+  {
+    selector: ".agent-chat-open-messages",
+    fields: [
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "Open Messages": "打开消息"
+    }
+  },
+  {
+    selector: ".agent-provider-setup-request, .agent-provider-setup-request > button",
+    fields: [
+      "text",
+      "aria-label"
+    ],
+    entries: {
+      "Provider setup invitation": "服务商配置邀请",
+      "Set up provider": "配置服务商",
+      "Not now": "暂不配置"
+    }
+  },
+  {
+    selector: ".generation-shelf-approval, .generation-shelf-approval > [role=status] > strong, .generation-shelf-approval > details > summary, .generation-shelf-approval > details > p:nth-of-type(2), .generation-shelf-approval-actions > :is(button,small)",
+    fields: [
+      "text",
+      "aria-label",
+      "title"
+    ],
+    entries: {
+      "Organization approval request": "整理画布的授权请求",
+      "Agent approval request": "智能体授权请求",
+      "Generation approval needed": "生成内容需要授权",
+      "Approval needed": "需要授权",
+      "Scope and action": "操作和授权范围",
+      "#75:fff68172246838d1": "本次授权覆盖这个画布后续的同类整理。",
+      "#37:18174f098877c9e7": "仅允许这一次。",
+      "Tool arguments": "工具参数",
+      "Not now": "暂不允许",
+      Deny: "拒绝",
+      "Approve once": "仅允许这一次",
+      "Allow this session": "本次会话内允许",
+      "Don’t ask again": "以后生成时不再询问",
+      "#101:12e537dc4f77e7e9": "允许这次请求，后续消息可直接生成内容。",
+      "#65:67162f06dd80d6e8": "等待你的选择。停止智能体即可取消请求。",
+      "#61:088e711a9d8a47a5": "本次请求有效期为 45 秒，过期后可重试。"
+    }
+  },
+  {
+    selector: ".agent-team-proposal-request, .agent-team-proposal-request > [role=status], .agent-team-proposal-request > [role=status] > strong, .agent-team-proposal > ul > li > small, .agent-team-proposal > small, .agent-team-proposal-actions > button",
+    fields: [
+      "text",
+      "aria-label"
+    ],
+    entries: {
+      "Team proposal": "组队提议",
+      "· Waiting for your decision": "· 等待你决定",
+      "Brief helper": "临时帮手",
+      "Task teammate": "任务队友",
+      "Ongoing collaborator": "长期协作者",
+      "#215:7aae66cf81405172": "组队会启动所列队友，由当前智能体管理成员。单独继续会由它独立完成，两种选择均遵循已有工具权限。",
+      "Continue solo": "单独继续",
+      "Accept team": "接受组队"
+    }
+  },
+  {
+    selector: ".agent-mcp-servers, .agent-mcp-servers-header > :is(strong,button), .agent-mcp-servers > p:not([role=alert]), .agent-mcp-servers > button, .agent-mcp-servers-status, .agent-mcp-servers li > button",
+    fields: [
+      "text",
+      "aria-label"
+    ],
+    entries: {
+      "MCP servers": "MCP 服务器",
+      Refresh: "刷新",
+      Close: "关闭",
+      "Checking this chat's MCP servers…": "正在检查本次对话的 MCP 服务器…",
+      "#29:3287d8b4db8d62a2": "当前对话尚未连接 MCP 服务器。",
+      Connected: "已连接",
+      "Needs sign-in": "需要登录",
+      "Couldn't connect": "连接失败",
+      Connecting: "正在连接",
+      "Turned off": "已关闭",
+      "Signing in…": "正在登录…",
+      "Sign in": "登录",
+      "Open the sign-in page": "打开登录页面"
+    }
+  }
+];
+
 // src/dictionary.ts
-var dictionary = [...editor_connection_default, ...panel_details_default, ...media_details_default, ...canvas_actions_022_default, ...panel_actions_022_default, ...settings_preview2_default, ...settings_actions_022_default, ...shelf_actions_default, ...generation_extra_default, ...editors_extra_default, ...script_authoring_extra_default, ...viewers_extra_default, ...menus_extra_default, ...panels_extra_default, ...settings_extra_default, ...zh_CN_default];
+var dictionary = [...agent_session_default, ...editor_connection_default, ...panel_details_default, ...media_details_default, ...canvas_actions_022_default, ...panel_actions_022_default, ...settings_preview2_default, ...settings_actions_022_default, ...shelf_actions_default, ...generation_extra_default, ...editors_extra_default, ...script_authoring_extra_default, ...viewers_extra_default, ...menus_extra_default, ...panels_extra_default, ...settings_extra_default, ...zh_CN_default];
 
 // manifest.json
 var manifest_default = {
   id: "unreal-canvas-zh-cn",
   name: "Unreal Canvas 简体中文",
-  version: "0.2.5",
+  version: "0.2.6",
   apiVersion: 1,
   namespaces: [
     "canvaszh"

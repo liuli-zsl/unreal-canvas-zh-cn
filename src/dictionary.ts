@@ -14,5 +14,6 @@ import settingsPreview2 from './locales/settings-preview2.json';
 import mediaDetails from './locales/media-details.json';
 import editorConnection from './locales/editor-connection.json';
 import panelDetails from './locales/panel-details.json';
+import agentSession from './locales/agent-session.json';
 
-export const dictionary = [...editorConnection, ...panelDetails, ...mediaDetails, ...canvasActions, ...panelActions, ...settingsPreview2, ...settingsActions, ...shelfActions, ...generation, ...editors, ...scriptAuthoring, ...viewers, ...menus, ...panels, ...settings, ...base];
+export const dictionary = [...agentSession, ...editorConnection, ...panelDetails, ...mediaDetails, ...canvasActions, ...panelActions, ...settingsPreview2, ...settingsActions, ...shelfActions, ...generation, ...editors, ...scriptAuthoring, ...viewers, ...menus, ...panels, ...settings, ...base];

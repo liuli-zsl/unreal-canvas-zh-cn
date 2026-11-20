@@ -1,0 +1,192 @@
+[
+  {
+    "selector": ".agent-welcome-actions > button.agent-welcome-primary",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Start a chat": "开始对话"
+    }
+  },
+  {
+    "selector": ".agent-welcome-actions > button:not(.agent-welcome-primary), p.agent-welcome-start",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Manage connections": "管理连接",
+      "#35:e5fd313c1ab70ced": "选择「开始对话」以发送第一条消息。"
+    }
+  },
+  {
+    "selector": ".agent-detail-header > .agent-detail-actions > button",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Reconnect": "重新连接"
+    }
+  },
+  {
+    "selector": ".agent-squad-roster, .agent-squad-roster > header, .agent-squad-move-help, .agent-squad-launcher, .agent-squad-collapse, .agent-squad-resize, .agent-squad-current > span, .agent-squad-tasks",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Team": "团队",
+      "Expand team": "展开团队",
+      "Collapse team": "收起团队",
+      "Move team": "移动团队面板",
+      "#60:e62a6a4d22664481": "拖动或用方向键移动。按住 Shift 可加大步长。",
+      "Resize chat from top edge": "从上边缘调整聊天窗口大小",
+      "Resize chat from bottom edge": "从下边缘调整聊天窗口大小",
+      "Working with:": "正在协作的智能体：",
+      "Team tasks ↗": "团队任务 ↗"
+    }
+  },
+  {
+    "selector": ".agent-squad-current > strong:not([title])",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Choose an agent": "选择智能体"
+    }
+  },
+  {
+    "selector": ".agent-squad-current > strong[title]",
+    "fields": [
+      "title"
+    ],
+    "entries": {
+      "Double-click to rename": "双击重命名"
+    }
+  },
+  {
+    "selector": ".agent-shelf-reopen, .agent-history-popover, .shelf-collaborator-menu:has(.agent-history-list), :is(.agent-history-popover,.shelf-collaborator-menu) > strong, :is(.agent-history-popover,.shelf-collaborator-menu) input, .agent-history-list > p, .agent-history-list > .generation-shelf-model-label, .agent-history-list ~ small[role=status]",
+    "fields": [
+      "text",
+      "aria-label",
+      "placeholder",
+      "title"
+    ],
+    "entries": {
+      "Reopen agent": "重新打开智能体",
+      "Search agents": "搜索智能体",
+      "Search by name or task…": "按名称或任务搜索…",
+      "Saved local agents": "本地保存的智能体",
+      "#19:04ec60928555dc35": "没有找到智能体。",
+      "#55:9d8f1c8be872c116": "关闭的智能体会列在这里。",
+      "Opening agent…": "正在打开智能体…",
+      "Looking for saved local agents…": "正在查找本地保存的智能体…"
+    }
+  },
+  {
+    "selector": ".agent-retry-status, .agent-retry-status > div > span",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Automatic retries": "自动重试",
+      "Agent response": "智能体回复",
+      "Saving checking progress": "保存检查进度",
+      "Agent connection": "智能体连接",
+      "App server access": "应用服务器访问",
+      "Retry": "重试",
+      "of": "/",
+      "in progress…": "正在重试…",
+      "starting…": "即将重试…"
+    }
+  },
+  {
+    "selector": ".agent-chat-open-messages",
+    "fields": [
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "Open Messages": "打开消息"
+    }
+  },
+  {
+    "selector": ".agent-provider-setup-request, .agent-provider-setup-request > button",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Provider setup invitation": "服务商配置邀请",
+      "Set up provider": "配置服务商",
+      "Not now": "暂不配置"
+    }
+  },
+  {
+    "selector": ".generation-shelf-approval, .generation-shelf-approval > [role=status] > strong, .generation-shelf-approval > details > summary, .generation-shelf-approval > details > p:nth-of-type(2), .generation-shelf-approval-actions > :is(button,small)",
+    "fields": [
+      "text",
+      "aria-label",
+      "title"
+    ],
+    "entries": {
+      "Organization approval request": "整理画布的授权请求",
+      "Agent approval request": "智能体授权请求",
+      "Generation approval needed": "生成内容需要授权",
+      "Approval needed": "需要授权",
+      "Scope and action": "操作和授权范围",
+      "#75:fff68172246838d1": "本次授权覆盖这个画布后续的同类整理。",
+      "#37:18174f098877c9e7": "仅允许这一次。",
+      "Tool arguments": "工具参数",
+      "Not now": "暂不允许",
+      "Deny": "拒绝",
+      "Approve once": "仅允许这一次",
+      "Allow this session": "本次会话内允许",
+      "Don’t ask again": "以后生成时不再询问",
+      "#101:12e537dc4f77e7e9": "允许这次请求，后续消息可直接生成内容。",
+      "#65:67162f06dd80d6e8": "等待你的选择。停止智能体即可取消请求。",
+      "#61:088e711a9d8a47a5": "本次请求有效期为 45 秒，过期后可重试。"
+    }
+  },
+  {
+    "selector": ".agent-team-proposal-request, .agent-team-proposal-request > [role=status], .agent-team-proposal-request > [role=status] > strong, .agent-team-proposal > ul > li > small, .agent-team-proposal > small, .agent-team-proposal-actions > button",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "Team proposal": "组队提议",
+      "· Waiting for your decision": "· 等待你决定",
+      "Brief helper": "临时帮手",
+      "Task teammate": "任务队友",
+      "Ongoing collaborator": "长期协作者",
+      "#215:7aae66cf81405172": "组队会启动所列队友，由当前智能体管理成员。单独继续会由它独立完成，两种选择均遵循已有工具权限。",
+      "Continue solo": "单独继续",
+      "Accept team": "接受组队"
+    }
+  },
+  {
+    "selector": ".agent-mcp-servers, .agent-mcp-servers-header > :is(strong,button), .agent-mcp-servers > p:not([role=alert]), .agent-mcp-servers > button, .agent-mcp-servers-status, .agent-mcp-servers li > button",
+    "fields": [
+      "text",
+      "aria-label"
+    ],
+    "entries": {
+      "MCP servers": "MCP 服务器",
+      "Refresh": "刷新",
+      "Close": "关闭",
+      "Checking this chat's MCP servers…": "正在检查本次对话的 MCP 服务器…",
+      "#29:3287d8b4db8d62a2": "当前对话尚未连接 MCP 服务器。",
+      "Connected": "已连接",
+      "Needs sign-in": "需要登录",
+      "Couldn't connect": "连接失败",
+      "Connecting": "正在连接",
+      "Turned off": "已关闭",
+      "Signing in…": "正在登录…",
+      "Sign in": "登录",
+      "Open the sign-in page": "打开登录页面"
+    }
+  }
+]

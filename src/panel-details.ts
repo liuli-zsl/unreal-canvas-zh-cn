@@ -15,8 +15,34 @@ function skillStatus(english: string): string | undefined {
   }
 }
 
-export function translatePanelDetails(element: Element, field: string, english: string, node?: Node): string | undefined {
+export function translatePanelDetails(element: Element, field: string, english: string, node?: Node): string | null | undefined {
   if (field === 'text') {
+    if (element.matches('.agent-retry-status > div > span')) {
+      const recovering = /^(\d+) requests recovering\. (Active retry|Next retry)$/.exec(english);
+      if (recovering) return recovering[1] + ' 个请求正在恢复。' + (recovering[2] === 'Next retry' ? '下次重试' : '正在重试');
+      const delay = /^in (\d+)s…$/.exec(english);
+      if (delay) return delay[1] + ' 秒后重试…';
+    }
+    if (element.matches('.generation-shelf-approval > strong') && element.childNodes.length === 3) {
+      if (node === element.firstChild && english === 'Allow organization on') return '是否允许整理画布';
+      if (node === element.lastChild && english === '?') return '？';
+      return null; // The middle text node is the user's canvas name.
+    }
+    if (element.matches('.generation-shelf-approval > small')) {
+      if (english === 'Local CLI action on the server computer') return '在服务器所在电脑上执行的本地命令行操作';
+      if (english.startsWith('Canvas: ')) return '画布：' + english.slice(8);
+    }
+    if (element.matches('.agent-history-list > button[data-follower] > span > strong + small') && node === element.firstChild) {
+      if (english === 'Closed') return '已关闭';
+      if (english === 'Open') return '已打开';
+    }
+    if (element.matches('.agent-mcp-servers > p[role=status]') && element.childNodes.length === 3) {
+      if (node === element.firstChild && english === 'Finish signing in to') return '请在浏览器中完成登录：';
+      if (node === element.lastChild && copyId(english) === '7fb86d60be24c1c7') return '。连接成功后，即可在本次对话中使用其工具。';
+      return null;
+    }
+    if (element.matches('.agent-mcp-servers li > small') && node === element.firstChild && element.childNodes.length === 2 &&
+        english === 'The sign-in did not finish:') return '登录未完成：';
     if (element.matches('.agent-process-session > p:first-of-type') && node === element.firstChild) {
       if (english === 'No active turn') return '没有正在进行的交互';
       if (english === 'Agent turn active') return '智能体正在处理请求';
@@ -52,6 +78,20 @@ export function translatePanelDetails(element: Element, field: string, english: 
     if (mode && mode[0] === english) return mode[1];
   }
   if (field === 'aria-label') {
+    if (english.startsWith('Working with ') && element.classList.contains('agent-squad-select')) {
+      if (english === 'Working with Choose an agent' && !element.querySelector('.agent-squad-current > strong[title]')) return '选择协作的智能体';
+      return '正在与 ' + english.slice(13) + ' 协作';
+    }
+    if (english.startsWith('Reopen ') && element.matches('.agent-history-list > button')) return '重新打开 ' + english.slice(7);
+    if (element.matches('.agent-nav-team-toggle')) {
+      if (english.startsWith('Expand team under ')) return '展开团队：' + english.slice(18);
+      if (english.startsWith('Collapse team under ')) return '收起团队：' + english.slice(20);
+    }
+    if (english.startsWith('Following ') && element.matches('.agent-message-switcher ul')) return '跟随 ' + english.slice(10);
+    if (element.matches('.agent-mcp-servers li > button')) {
+      if (english.startsWith('Signing in to ')) return '正在登录 ' + english.slice(14);
+      if (english.startsWith('Sign in to ')) return '登录 ' + english.slice(11);
+    }
     if (element.matches('.agent-detail-shell') && english.endsWith(' details')) return english.slice(0,-8) + '的详情';
     if (element.matches('.agent-action-menu') && english.startsWith('Manage ')) return '管理 ' + english.slice(7);
     if (element.matches('.merlin-skill-attach-remove') && english.startsWith('Detach ')) return '解除挂接：' + english.slice(7);
@@ -68,4 +108,5 @@ export function translatePanelDetails(element: Element, field: string, english: 
   if (field === 'title' && element.matches('.agent-task-owner-input .agent-assignee-picker') && english.startsWith('Assign to: ')) {
     return '分派给：' + english.slice(11);
   }
+  if (field === 'title' && english.startsWith('Following ') && element.matches('.agent-history-list > button')) return '跟随 ' + english.slice(10);
 }
