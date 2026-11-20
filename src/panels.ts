@@ -39,6 +39,28 @@ export function translatePanelsDynamic(element: Element, field: string, english:
     }
   }
   if (field === 'text') {
+    if (element.closest(':is(.agent-onboarding-select[role=combobox],[role=listbox]):is([aria-label="Model for your first chat"],[aria-label="首次对话使用的模型"])')) return null;
+    if (element.matches('.agent-onboarding-content > p')) {
+      // React supplies the provider and model labels as separate text nodes.
+      const parts = element.childNodes;
+      if (parts.length > 1) {
+        if (parts.length === 2 && node === parts[1] && copyId(english) === 'dbd98086296d67df') {
+          return '已就绪。发送测试消息即可检查所选模型。';
+        }
+        if (parts.length === 4 && node === parts[1] && english === 'replied successfully. Your first chat will use') return '已回复。首次对话将使用';
+        if (parts.length === 4 && node === parts[3] && english === '.') return '。';
+        if (parts.length === 3 && node === parts[0] && english === 'Set up previously:') return '此前已配置：';
+        if (parts.length === 3 && node === parts[2] && copyId(english) === '62970e1b3528296c') return '。选择一项即可检查或更改连接。';
+        if (parts.length !== 3 && node === parts[0] && english === 'API connection') return 'API 连接';
+        return null;
+      }
+      if (element.getAttribute('role') === 'status') {
+        const connecting = /^Connecting to (.+) and loading its models…$/.exec(english);
+        if (connecting) return '正在连接 ' + (connecting[1] === 'API connection' ? 'API 连接' : connecting[1]) + ' 并加载模型列表…';
+        const testing = /^(.+) is responding to the connection test…$/.exec(english);
+        if (testing) return (testing[1] === 'API connection' ? 'API 连接' : testing[1]) + ' 正在响应连接测试…';
+      }
+    }
     // Canvas renders the exact search query as a separate Text node, even when it names a UI action.
     if (classes.contains('merlin-graphs-empty') && element.childNodes.length === 3) {
       const first = element.firstChild;

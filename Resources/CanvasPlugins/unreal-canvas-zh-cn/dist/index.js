@@ -258,6 +258,27 @@ function translatePanelsDynamic(element, field, english, node) {
     }
   }
   if (field === "text") {
+    if (element.closest(':is(.agent-onboarding-select[role=combobox],[role=listbox]):is([aria-label="Model for your first chat"],[aria-label="首次对话使用的模型"])')) return null;
+    if (element.matches(".agent-onboarding-content > p")) {
+      const parts = element.childNodes;
+      if (parts.length > 1) {
+        if (parts.length === 2 && node === parts[1] && copyId(english) === "dbd98086296d67df") {
+          return "已就绪。发送测试消息即可检查所选模型。";
+        }
+        if (parts.length === 4 && node === parts[1] && english === "replied successfully. Your first chat will use") return "已回复。首次对话将使用";
+        if (parts.length === 4 && node === parts[3] && english === ".") return "。";
+        if (parts.length === 3 && node === parts[0] && english === "Set up previously:") return "此前已配置：";
+        if (parts.length === 3 && node === parts[2] && copyId(english) === "62970e1b3528296c") return "。选择一项即可检查或更改连接。";
+        if (parts.length !== 3 && node === parts[0] && english === "API connection") return "API 连接";
+        return null;
+      }
+      if (element.getAttribute("role") === "status") {
+        const connecting = /^Connecting to (.+) and loading its models…$/.exec(english);
+        if (connecting) return "正在连接 " + (connecting[1] === "API connection" ? "API 连接" : connecting[1]) + " 并加载模型列表…";
+        const testing = /^(.+) is responding to the connection test…$/.exec(english);
+        if (testing) return (testing[1] === "API connection" ? "API 连接" : testing[1]) + " 正在响应连接测试…";
+      }
+    }
     if (classes.contains("merlin-graphs-empty") && element.childNodes.length === 3) {
       const first = element.firstChild;
       const last = element.lastChild;
@@ -4324,7 +4345,7 @@ function localize(doc, dictionary2, readCanvas) {
     const english = original?.trim();
     let translated;
     const candidates = english ? rules.get(field + "\n" + english) ?? (helpLengths2.has(english.length) ? rules.get(field + "\n" + copyKey(english)) : void 0) : void 0;
-    const splitMessage = element.classList.contains("ue-menu-note") || element.classList.contains("merlin-graphs-empty");
+    const splitMessage = element.classList.contains("ue-menu-note") || element.classList.contains("merlin-graphs-empty") || english === "." && element.matches(".agent-onboarding-content > p");
     if (english && (candidates || splitMessage || english === "(" || /[A-Za-z]/.test(english))) {
       translated = translateEditorConnection(element, field, english, node);
       if (translated === void 0) translated = translateGeometryMenu(element, field, english);
@@ -7111,7 +7132,7 @@ var panels_extra_default = [
     }
   },
   {
-    selector: ".agent-onboarding h2,.agent-onboarding-content > p,.agent-onboarding details p,.agent-onboarding summary,.agent-onboarding button,.agent-onboarding button > span,.agent-onboarding-choice small,.agent-onboarding-choice .onboarding-choice-copy > strong,.agent-onboarding-notice,.agent-onboarding-card > small,.agent-onboarding-card > span,.agent-onboarding label,.agent-onboarding li,.agent-onboarding option,.agent-onboarding,.agent-welcome,.agent-welcome-examples",
+    selector: ".agent-onboarding h2,.agent-onboarding-content > p,.agent-onboarding details p,.agent-onboarding summary,.agent-onboarding button,.agent-onboarding button > span,.agent-onboarding-choice small,.agent-onboarding-choice .onboarding-choice-copy > strong,.agent-onboarding-notice,.agent-onboarding-card > small,.agent-onboarding-card > span,.agent-onboarding-card > p,.agent-onboarding label,.agent-onboarding li,.agent-onboarding option,.agent-onboarding,.agent-welcome,.agent-welcome-examples",
     fields: [
       "text",
       "aria-label",
@@ -7154,6 +7175,7 @@ var panels_extra_default = [
       "Model for your first chat": "首次对话使用的模型",
       "Provider configuration loaded": "已加载提供商配置",
       "Local runtime connected": "已连接本地运行环境",
+      "Models available": "模型可用",
       "#33:3d0a30aad6252f0a": "账号响应尚待验证",
       "Send test message": "发送测试消息",
       "#99:e738fa2cb1363f93": "测试使用你的提供商账户，可能产生正常请求费用。测试仅验证连接。",
@@ -7161,6 +7183,7 @@ var panels_extra_default = [
       "#17:18fb99c4ce3a319d": "连接成功。",
       "#116:02ce1ffd17a1b0bc": "可开始对话。现有提供商设置已保留，模型、权限和推理强度可在对话中更改。",
       "Return to provider setup": "返回提供商设置",
+      "Start chatting →": "开始对话 →",
       Done: "完成",
       "Set up another provider": "设置其他提供商",
       "Welcome to your canvas agent": "欢迎使用画布智能体",
@@ -8754,6 +8777,15 @@ var shelf_actions_default = [
 // src/locales/panel-actions-022.json
 var panel_actions_022_default = [
   {
+    selector: "[role=listbox]:is([aria-label='Model for your first chat'],[aria-label='首次对话使用的模型'])",
+    fields: [
+      "aria-label"
+    ],
+    entries: {
+      "Model for your first chat": "首次对话使用的模型"
+    }
+  },
+  {
     selector: ".agent-onboarding-card p,.agent-onboarding-content > p,.agent-onboarding-content details > p,.agent-onboarding-guidance > p,.agent-onboarding-guidance button",
     fields: [
       "text"
@@ -10097,7 +10129,7 @@ var dictionary = [...editor_connection_default, ...panel_details_default, ...med
 var manifest_default = {
   id: "unreal-canvas-zh-cn",
   name: "Unreal Canvas 简体中文",
-  version: "0.2.4",
+  version: "0.2.5",
   apiVersion: 1,
   namespaces: [
     "canvaszh"

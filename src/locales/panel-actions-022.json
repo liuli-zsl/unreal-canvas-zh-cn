@@ -1,5 +1,14 @@
 [
   {
+    "selector": "[role=listbox]:is([aria-label='Model for your first chat'],[aria-label='首次对话使用的模型'])",
+    "fields": [
+      "aria-label"
+    ],
+    "entries": {
+      "Model for your first chat": "首次对话使用的模型"
+    }
+  },
+  {
     "selector": ".agent-onboarding-card p,.agent-onboarding-content > p,.agent-onboarding-content details > p,.agent-onboarding-guidance > p,.agent-onboarding-guidance button",
     "fields": [
       "text"

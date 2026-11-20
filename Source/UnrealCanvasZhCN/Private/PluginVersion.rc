@@ -1,8 +1,8 @@
 #include <winver.h>
 
 1 VERSIONINFO
-FILEVERSION 0,2,4,0
-PRODUCTVERSION 0,2,4,0
+FILEVERSION 0,2,5,0
+PRODUCTVERSION 0,2,5,0
 FILEOS VOS_NT_WINDOWS32
 FILETYPE VFT_DLL
 BEGIN
@@ -12,7 +12,7 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "liuli-zsl"
             VALUE "FileDescription", "Chinese localization for Unreal Canvas"
-            VALUE "FileVersion", "0.2.4"
+            VALUE "FileVersion", "0.2.5"
             VALUE "ProductName", "Unreal Canvas zh-CN"
             VALUE "OriginalFilename", "UnrealEditor-UnrealCanvasZhCN.dll"
         END

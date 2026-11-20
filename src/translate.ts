@@ -66,7 +66,8 @@ export function localize(doc: Document, dictionary: Group[], readCanvas?: () => 
     let translated: string | null | undefined;
     const candidates = english ? (rules.get(field + '\n' + english)
       ?? (helpLengths.has(english.length) ? rules.get(field + '\n' + copyKey(english)) : undefined)) : undefined;
-    const splitMessage = element.classList.contains('ue-menu-note') || element.classList.contains('merlin-graphs-empty');
+    const splitMessage = element.classList.contains('ue-menu-note') || element.classList.contains('merlin-graphs-empty')
+      || (english === '.' && element.matches('.agent-onboarding-content > p'));
     if (english && (candidates || splitMessage || english === '(' || /[A-Za-z]/.test(english))) {
       translated = translateEditorConnection(element, field, english, node);
       if (translated === undefined) translated = translateGeometryMenu(element, field, english);
