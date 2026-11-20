@@ -1,0 +1,206 @@
+{
+  "UnrealCanvasSceneReview": {
+    "ActorsNoLongerAvailable": [
+      "dea6a71f",
+      "目标已失效，请重新提交审核。"
+    ],
+    "ActorsUnavailable": [
+      "78be8b4a",
+      "当前场景中没有这些 Actor。"
+    ],
+    "ApproveAndSend": [
+      "d0c1920d",
+      "批准并发送"
+    ],
+    "ApproveDecision": [
+      "e0de175b",
+      "批准"
+    ],
+    "AssetAgentTooltip": [
+      "eeda81a8",
+      "{0}：{1}"
+    ],
+    "AssetFeedbackTitle": [
+      "dc633a91",
+      "Unreal Canvas 反馈"
+    ],
+    "AssetLabel": [
+      "bd62281b",
+      "虚幻编辑器 - 资产"
+    ],
+    "AssetUnavailable": [
+      "3e2924a2",
+      "资产打开失败，请核对资产位置。"
+    ],
+    "Cancel": [
+      "38947156",
+      "取消"
+    ],
+    "ClearValue": [
+      "170c2b41",
+      "清除值"
+    ],
+    "CloseAndSave": [
+      "28e754bc",
+      "关闭并保存，以便稍后处理"
+    ],
+    "DeliveryUnconfirmed": [
+      "e84d02e2",
+      "反馈状态未知。请先查看对话，再决定是否重发。"
+    ],
+    "DismissRequest": [
+      "564f27b3",
+      "忽略请求"
+    ],
+    "GameViewEnabled": [
+      "d5e682e1",
+      "请按 G 离开游戏视图，再打开审核。"
+    ],
+    "InspectCandidate": [
+      "25633834",
+      "在虚幻编辑器中打开 {0}"
+    ],
+    "NeedsInput": [
+      "90a84c1e",
+      "等待你的反馈"
+    ],
+    "NoCandidatePreview": [
+      "3e1fbd15",
+      "请到编辑器查看预览"
+    ],
+    "NoteHint": [
+      "863f389b",
+      "填写保留项和修改意见"
+    ],
+    "OutlineColorsInUse": [
+      "5cc03aa4",
+      "没有空闲的轮廓颜色。可使用审核标记定位对象。"
+    ],
+    "RatingLabel": [
+      "b4129cc8",
+      "评分"
+    ],
+    "RecoverFeedback": [
+      "abcc0fa1",
+      "采用已有反馈"
+    ],
+    "RefocusTargetTooltip": [
+      "44e95002",
+      "定位审核对象"
+    ],
+    "RejectAndSend": [
+      "e19871a6",
+      "拒绝并发送"
+    ],
+    "RejectDecision": [
+      "e0f91f85",
+      "拒绝"
+    ],
+    "ReplyHint": [
+      "1a7f2065",
+      "补充回复（选填）"
+    ],
+    "RequestChangesDecision": [
+      "45979e43",
+      "要求修改"
+    ],
+    "RetryDraftStorage": [
+      "02eceafe",
+      "重新保存草稿"
+    ],
+    "ReviewUnavailable": [
+      "86555202",
+      "编辑器暂时无法处理这项审核。"
+    ],
+    "SavedForLater": [
+      "e87967b4",
+      "已保存，可稍后处理"
+    ],
+    "SceneLabel": [
+      "27a7af9c",
+      "虚幻编辑器 - 场景"
+    ],
+    "SendFeedback": [
+      "1acea498",
+      "发送反馈"
+    ],
+    "Sending": [
+      "4911206c",
+      "正在发送…"
+    ],
+    "StaleAssetReview": [
+      "7f5996fa",
+      "此审核请求已变更。"
+    ],
+    "StarRatingTooltip": [
+      "7bce447e",
+      "打 {0} 星，再点一次撤销。最高五星。"
+    ]
+  },
+  "UnrealCanvasViewportCameraTools": {
+    "MoveViewportCamera": [
+      "c965d8f2",
+      "移动视口摄像机"
+    ],
+    "SetCameraFieldOfView": [
+      "d96fb0ae",
+      "设置摄像机视野角度"
+    ]
+  },
+  "UnrealCanvasHolePunch": {
+    "CameraSpeedLabel": [
+      "1fe4c684",
+      "摄像机速度"
+    ],
+    "CameraSpeedSubMenu": [
+      "1fe4c684",
+      "摄像机速度"
+    ],
+    "MeshOpacity": [
+      "92f4842b",
+      "不透明度"
+    ],
+    "ShowMesh": [
+      "a733ad71",
+      "网格体"
+    ],
+    "ShowMeshTooltip": [
+      "7e5773f9",
+      "切换模型表面显示"
+    ],
+    "ShowSkeleton": [
+      "96e5690c",
+      "骨架"
+    ],
+    "ShowSkeletonTooltip": [
+      "ca6da1c2",
+      "叠加显示可穿透表面的骨骼"
+    ],
+    "SkeletonLabel": [
+      "96e5690c",
+      "骨架"
+    ],
+    "SkeletonSubMenu": [
+      "96e5690c",
+      "骨架"
+    ],
+    "SkeletonSubMenuTooltip": [
+      "b68c746d",
+      "骨骼显示选项"
+    ],
+    "TrianglesToggle": [
+      "da63d637",
+      "三角形"
+    ],
+    "TrianglesToggleTooltip": [
+      "096ec308",
+      "显示三角面线框"
+    ]
+  },
+  "UnrealCanvasImport": {
+    "ReplacePriorImport": [
+      "d1c8b17e",
+      "在 {0} 中替换 {1}？原有资产可能被覆盖或删除。"
+    ]
+  }
+}

@@ -256,7 +256,7 @@
     }
   },
   {
-    "selector": ".pill-menu-item,.pill-menu-item .ue-menu-label,.pill-menu-item .feature-hint-menu-label",
+    "selector": ".pill-menu-item,.pill-menu-item .ue-menu-label,.pill-menu-item .feature-hint-menu-label,[role=menu]:is([aria-label=\"Canvas actions\"],[aria-label=\"画布操作\"]) .feature-hint-menu-label,body:has([role=menu]:is([aria-label=\"Canvas actions\"],[aria-label=\"画布操作\"])) > .ue-submenu > button,body:has([role=menu]:is([aria-label=\"Canvas actions\"],[aria-label=\"画布操作\"])) > .ue-submenu > button > :is(.ue-menu-label,.feature-hint-menu-label)",
     "fields": [
       "text",
       "title",
@@ -264,6 +264,11 @@
     ],
     "entries": {
       "Deck": "卡组",
+      "Add comment": "添加评论",
+      "Retarget Animation": "重定向动画",
+      "Bring forward": "上移一层",
+      "Send backward": "下移一层",
+      "#69:c8ec072e046393f1": "复制所选卡片到新节点图，同时保留原卡片。",
       "Graph (Copy to)": "复制到新节点图",
       "Graph (Move to)": "移入新节点图",
       "Subcanvas": "子画布",

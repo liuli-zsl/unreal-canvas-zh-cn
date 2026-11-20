@@ -46,9 +46,11 @@ try {
   await chip.click();
   const menu = page.locator('.unreal-editor-menu');
   const name = report.connected.label;
-  const status = chinese ? name + ' 已启用 Unreal Canvas Bridge，所有 Unreal 节点均可使用。'
-    : name + ' has Unreal Canvas Bridge: every Unreal node works.';
-  await menu.getByText(status, {exact: true}).waitFor({timeout: 20000});
+  const statusTitle = menu.locator('.unreal-editor-menu-status-title');
+  const expected = chinese ? ['节点', '卡片'].map(term => `${name} 已启用 Unreal Canvas Bridge，所有 Unreal ${term}均可使用。`)
+    : ['node', 'card'].map(term => `${name} has Unreal Canvas Bridge: every Unreal ${term} works.`);
+  await page.waitForFunction(expected => expected.includes(document.querySelector('.unreal-editor-menu-status-title')?.textContent), expected, {timeout: 20000});
+  const status = await statusTitle.innerText();
   await menu.getByRole('menuitemradio', {checked: true}).getByText(name, {exact: true}).waitFor();
   if (report.connected.level) {
     await menu.getByRole('menuitemradio', {checked: true}).getByText(report.connected.level.split('/').pop(), {exact: true}).waitFor();

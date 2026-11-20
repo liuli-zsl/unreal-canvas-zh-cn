@@ -244,14 +244,6 @@
       "c73c3c89",
       "正在下载构建"
     ],
-    "PendingUpdateLaterTip": [
-      "2fe68024",
-      "继续使用当前构建，下次启动编辑器时应用更新"
-    ],
-    "PendingUpdateLater": [
-      "00436625",
-      "稍后"
-    ],
     "PendingUpdateRestartNowTip": [
       "d257c99a",
       "立即重启并应用更新"
@@ -283,6 +275,14 @@
     "PinOnLocalPath": [
       "e0c3a355",
       "已固定本地版本 {0}（{1}）。当前改用远程来源，请检查是否继续使用 {0}。"
+    ],
+    "PendingUpdateDismiss": [
+      "de348f3f",
+      "忽略此次提醒"
+    ],
+    "PendingUpdateDismissTip": [
+      "2fe68024",
+      "推迟到下次启动编辑器"
     ]
   },
   "UObjectDisplayNames": {
@@ -377,6 +377,10 @@
     "EUnrealCanvasBuildSource.LocalPaths": [
       "62529d6b",
       "本地路径（构建搜索路径）"
+    ],
+    "UnrealCanvasProjectSettings:ExtensionCatalog": [
+      "e847668f",
+      "扩展目录"
     ]
   },
   "UObjectToolTips": {
@@ -455,6 +459,10 @@
     "UnrealCanvasBridgeSettings:BuildSource": [
       "a44da433",
       "指定从本机目录还是从远程构建仓库获取版本。"
+    ],
+    "UnrealCanvasProjectSettings:ExtensionCatalog": [
+      "58c98160",
+      "可信扩展目录，可指定含 index.json 的文件夹或地址。请先确认该来源可信。"
     ]
   }
 }

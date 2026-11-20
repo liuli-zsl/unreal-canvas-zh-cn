@@ -51,8 +51,11 @@ try {
     await page.waitForTimeout(450);
     const ids = await page.evaluate(async () => {
       const src = performance.getEntriesByType('resource').find(e => /\/assets\/canvasStore-[\w-]+\.js/.test(e.name)).name;
-      // These exports are the fixture API in the supported Canvas 0.21 frontend.
-      const {u: store, aW: makeNode} = await import(src);
+      // The minified name of the node factory differs between the 0.21 and 0.24 fixtures.
+      const chunk = await import(src);
+      const store = chunk.u;
+      const makeNode = [chunk.aW, chunk.aN].find(fn => fn?.toString().includes('applyUserDefaults'));
+      if (!makeNode) throw new Error('Unsupported Canvas node factory');
       const state = store.getState(), id = state.activeCanvasId;
       const canvas = {...structuredClone(state.canvases[id]), name: 'Canvas QA · 图像', nodes: [], edges: [], frames: [], textNotes: [], flowchartConnectors: []};
       store.setState({canvases: {[id]: canvas}, canvasStack: [id], openTabIds: [id], activeCanvasId: id});
@@ -82,13 +85,13 @@ try {
   }
   const cards = await reset();
   await cards[1].click({button: 'right', force: true});
-  await page.locator('.pill-menu-item:visible').filter({hasText: /^创建$/}).first().click();
-  await page.locator('.pill-menu-item:visible').filter({hasText: /^复制到新节点图$/}).first().click();
+  await page.getByText('创建', {exact: true}).first().click();
+  await page.getByText('复制到新节点图', {exact: true}).first().click();
   const graph = page.locator('.react-flow__node').filter({has: page.locator('.canvas-card-header', {hasText: /^Graph$/})}).first();
   await graph.locator('.canvas-card-body').dblclick({position: {x: 25, y: 30}, force: true});
   await page.locator('.graph-node-header-title').first().waitFor();
   await rightClickEmpty();
-  const library = page.locator('.pill-menu:has(.merlin-panel-search)').last();
+  const library = page.locator(':is(.pill-menu,.ue-menu):has(.merlin-panel-search)').last();
   const input=library.locator('input');
   await input.waitFor();
   const geometry=library.getByText('几何',{exact:true});
@@ -104,14 +107,14 @@ try {
   async function walk(experimental) {
     const operations = liveOps.filter(op=>experimental || !op.sidecarOnly);
     const byLibrary = Map.groupBy(operations,op=>op.library);
-    const tree = library.locator('.pill-submenu').first();
+    const tree = library.locator(':is(.pill-submenu,.ue-submenu)').first();
     const menus = tree.locator(':scope > div > button[aria-haspopup="menu"] .ue-menu-label');
     assert.equal(await menus.count(),byLibrary.size);
     for (const [name,ops] of byLibrary) {
       const label=expected(name,catalog.categories);
       const row=menus.filter({hasText:new RegExp('^'+label+'$')});
       await row.hover();
-      const child=row.locator('../..').locator(':scope > .pill-submenu');
+      const child=row.locator('../..').locator(':scope > :is(.pill-submenu,.ue-submenu)');
       await child.waitFor();
       const wanted=ops.map(op=>expected(op.label,catalog.operations)).sort();
       if (!translated) {
@@ -129,7 +132,10 @@ try {
     // Update only the transient store, without invoking the application's persistence action.
     await page.evaluate(async value=>{
       const url=performance.getEntriesByType('resource').find(e=>/\/assets\/valueTypes-[\w-]+\.js/.test(e.name)).name;
-      (await import(url)).x.setState({showExperimentalMeshOps:value});
+      const preferences = Object.values(await import(url)).find(value =>
+        typeof value?.getState === 'function' && 'showExperimentalMeshOps' in value.getState());
+      if (!preferences) throw new Error('Unsupported Canvas preferences store');
+      preferences.setState({showExperimentalMeshOps:value});
     },value);
   }
   await setExperimental(false);

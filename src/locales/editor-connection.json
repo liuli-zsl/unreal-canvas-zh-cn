@@ -1,5 +1,14 @@
 [
   {
+    "selector": "button.unreal-editor-chip > .unreal-editor-chip-label",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Connect": "连接"
+    }
+  },
+  {
     "selector": ".unreal-editor-menu",
     "fields": [
       "aria-label"
@@ -30,6 +39,8 @@
       "#58:305e82aae6604507": "待编辑器载入后，这里会自动刷新。",
       "#105:99c682275e71013d": "等待编辑器的 MCP 服务启动，Canvas 会自动连接。",
       "#87:09de7f859d02eb44": "请检查编辑器的 MCP 服务，必要时重启编辑器。",
+      "#72:cabb734cb8099ac6": "正在加载或编译着色器，请待编辑器空闲后重试。",
+      "#29:9afd6ae3ef0ccf7d": "此编辑器不支持执行 Unreal 卡片。",
       "#29:2eec99eba00799a3": "此编辑器不支持执行 Unreal 节点。",
       "#90:eac2052656246ce9": "请在「编辑 → 插件」启用 Unreal Canvas Bridge 并重启 UE。",
       "#145:30855131def92714": "请启用 Model Context Protocol。如已安装 Unreal Canvas Bridge，也请启用。重启 UE 后生效。"

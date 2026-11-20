@@ -226,6 +226,9 @@ test('editor picker distinguishes connection actions from project names, level n
   const recent = d.querySelector('.unreal-editor-menu-row button');
   const action = d.querySelector('[role=menuitem]');
   assert.equal(title.textContent, 'Save 已启用 Unreal Canvas Bridge，所有 Unreal 节点均可使用。');
+  title.firstChild.nodeValue = 'Save has Unreal Canvas Bridge: every Unreal card works.';
+  await tick();
+  assert.equal(title.textContent, 'Save 已启用 Unreal Canvas Bridge，所有 Unreal 卡片均可使用。');
   assert.equal(selected.firstChild.textContent, 'Disconnect');
   assert.equal(selected.lastChild.textContent, 'Back');
   assert.equal(recent.firstChild.textContent, 'Start in the background');

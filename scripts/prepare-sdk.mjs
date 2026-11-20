@@ -11,7 +11,7 @@ const filename = 'unreal-canvas-plugin-api-' + sdk.version + '.tgz';
 const destination = join(root, 'vendor', filename);
 const supplied = process.argv[2];
 const local = process.env.LOCALAPPDATA;
-const source = supplied ? resolve(supplied) : local && join(local, 'UnrealCanvas', 'Builds', 'v0.21.0', 'plugin-sdk', filename);
+const source = supplied ? resolve(supplied) : local && join(local, 'UnrealCanvas', 'Builds', 'v0.24.0', 'plugin-sdk', filename);
 
 function matchesLock(bytes) {
   return 'sha512-' + createHash('sha512').update(bytes).digest('base64') === sdk.integrity;
@@ -31,7 +31,7 @@ if (!supplied && existing && matchesLock(existing)) {
 } else {
   const bytes = source && await readIfPresent(source);
   if (!bytes || !matchesLock(bytes)) {
-    throw new Error('请先从 UE 启动 Canvas 0.21.0，或运行 node scripts/prepare-sdk.mjs "<官方 ' + filename + ' 的路径>"。SDK 必须与锁文件中的版本和校验值一致。');
+    throw new Error('请先从 UE 启动 Canvas 0.24.0，或运行 node scripts/prepare-sdk.mjs "<官方 ' + filename + ' 的路径>"。SDK 必须与锁文件中的版本和校验值一致。');
   }
   await mkdir(dirname(destination), { recursive: true });
   const pending = destination + '.' + process.pid + '.tmp';

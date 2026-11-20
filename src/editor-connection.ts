@@ -4,20 +4,23 @@ const chipPrefix = 'Unreal Editor: ';
 type Messages = ReadonlyArray<readonly [RegExp, string]>;
 const chipStates: Messages = [
   [/^connected to (.+), which is still loading\.$/, '已连接到 $1，编辑器仍在加载。'],
-  [/^connected to (.+), without Unreal Canvas Bridge\. Some Unreal nodes won't work; open this menu for details\.$/, '已连接到 $1。该编辑器没有 Unreal Canvas Bridge，部分 Unreal 节点不可用。打开菜单可查看详情。'],
-  [/^connected to (.+), but it isn't answering\. Open this menu for details\.$/, '已连接到 $1，但编辑器没有响应。打开菜单可查看详情。'],
-  [/^connected to (.+), but Unreal nodes can't run in it\. Open this menu for details\.$/, '已连接到 $1，但该编辑器无法运行 Unreal 节点。打开菜单可查看详情。'],
-  [/^connected to (.+)\. Renders, imports and the viewport go there\.$/, '已连接到 $1。渲染、导入和视口操作将发送到该编辑器。'],
-  [/^not connected\. One editor is running; pick it to send renders, imports and the viewport to it\.$/, '尚未连接。有一个编辑器正在运行，选择后即可向它发送渲染、导入和视口操作。'],
-  [/^not connected\. (\d+) editors are running; pick the one renders, imports and the viewport go to\.$/, '尚未连接。有 $1 个编辑器正在运行，请选择接收渲染、导入和视口操作的编辑器。'],
-  [/^not connected\. (.+) (?:is|are) running without an MCP server; open this menu for details\.$/, '尚未连接。$1 正在运行，但未启动 MCP 服务。打开菜单可查看详情。'],
-  [/^not connected\. Renders, imports and the viewport need an Unreal Editor with your project open\.$/, '尚未连接。请在虚幻编辑器中打开工程，以便渲染、导入和使用视口。'],
-  [/^(.+) is running but has no MCP server, so it can't connect\. Open this menu for details\.$/, '$1 正在运行，但没有 MCP 服务，无法连接。打开菜单可查看详情。'],
+  [/^connected to (.+), without Unreal Canvas Bridge\..*\bnodes\b.*$/, '已连接到 $1。该编辑器没有 Unreal Canvas Bridge，部分 Unreal 节点不可用。打开菜单可查看详情。'],
+  [/^connected to (.+), without Unreal Canvas Bridge\..*\bcards\b.*$/, '已连接到 $1。该编辑器没有 Unreal Canvas Bridge，部分 Unreal 卡片不可用。打开菜单可查看详情。'],
+  [/^connected to (.+), but it isn't answering\..*$/, '已连接到 $1，但编辑器没有响应。打开菜单可查看详情。'],
+  [/^connected to (.+), but Unreal nodes can't run in it\..*$/, '已连接到 $1，但该编辑器无法运行 Unreal 节点。打开菜单可查看详情。'],
+  [/^connected to (.+), but Unreal cards can't run in it\..*$/, '已连接到 $1，但该编辑器无法运行 Unreal 卡片。打开菜单可查看详情。'],
+  [/^connected to (.+)\. Renders, imports\b.*$/, '已连接到 $1。渲染、导入和视口操作将发送到该编辑器。'],
+  [/^not connected\. One editor is running;.*$/, '尚未连接。有一个编辑器正在运行，选择后即可向它发送渲染、导入和视口操作。'],
+  [/^not connected\. (\d+) editors are running;.*$/, '尚未连接。有 $1 个编辑器正在运行，请选择接收渲染、导入和视口操作的编辑器。'],
+  [/^not connected\. (.+) (?:is|are) running without an MCP server;.*$/, '尚未连接。$1 正在运行，但未启动 MCP 服务。打开菜单可查看详情。'],
+  [/^not connected\. Renders, imports\b.*$/, '尚未连接。请在虚幻编辑器中打开工程，以便渲染、导入和使用视口。'],
+  [/^(.+) is running but has no MCP server\b.*$/, '$1 正在运行，但没有 MCP 服务，无法连接。打开菜单可查看详情。'],
   [/^starting (.+)\. It connects once it has loaded\.$/, '正在启动 $1。加载完成后将自动连接。'],
   [/^(.+) is opening (.+)\.$/, '$1 正在打开 $2。'],
 ];
 const capability: Messages = [
   [/^(.+) has Unreal Canvas Bridge: every Unreal node works\.$/, '$1 已启用 Unreal Canvas Bridge，所有 Unreal 节点均可使用。'],
+  [/^(.+) has Unreal Canvas Bridge: every Unreal card works\.$/, '$1 已启用 Unreal Canvas Bridge，所有 Unreal 卡片均可使用。'],
   [/^(.+) has Unreal Canvas Bridge, but can't run Python for Unreal Canvas\.$/, '$1 已启用 Unreal Canvas Bridge，但无法为 Unreal Canvas 运行 Python。'],
   [/^(.+) is still loading\.$/, '$1 仍在加载。'],
   [/^(.+) isn't answering\.$/, '$1 没有响应。'],
@@ -52,10 +55,12 @@ function describeRow(value: string) {
 
 const detailStates: Messages = [
   [/^These won't work: (.+)\.$/, '以下节点不可用：$1。'],
-  [/^Its MCP server didn't respond \(([\s\S]+)\)\. A busy editor \(loading, compiling shaders\) answers again once it's idle\.$/, 'MCP 服务没有响应（$1）。编辑器正在加载或编译着色器时可能繁忙，空闲后会恢复响应。'],
-  [/^Renders, imports and spawns run through engine Python instead\. These won't work: (.+)\.$/, '渲染、导入和生成对象将通过引擎 Python 执行。以下节点不可用：$1。'],
-  [/^Renders, imports and spawns run through engine Python instead\.$/, '渲染、导入和生成对象将通过引擎 Python 执行。'],
+  [/^Its MCP server didn't respond \(([\s\S]+)\)\. A busy editor\b.*$/, 'MCP 服务没有响应（$1）。编辑器正在加载或编译着色器时可能繁忙，空闲后会恢复响应。'],
+  [/^If it stays\b.*? Details: ([\s\S]+)$/, '如果一直没有响应，请重启编辑器。详细信息：$1'],
+  [/^Renders, imports\b.*?\bPython instead\. These won't work: (.+)\.$/, '渲染、导入和生成对象将通过引擎 Python 执行。以下节点不可用：$1。'],
+  [/^Renders, imports\b.*?\bPython instead\.$/, '渲染、导入和生成对象将通过引擎 Python 执行。'],
   [/^Unreal nodes can't run in it: (.+)\.$/, '以下 Unreal 节点无法在此编辑器中运行：$1。'],
+  [/^Unreal cards can't run in it: (.+)\.$/, '以下 Unreal 卡片无法在此编辑器中运行：$1。'],
 ];
 
 const pythonHelp = '检查 Bridge 的蓝图执行设置，或启用 EditorToolset 和 Python 后重启。';
@@ -69,6 +74,10 @@ export function translateEditorConnection(el: Element, field: string, value: str
   if (el.classList.contains('unreal-editor-chip') && field === 'aria-label' && value.startsWith(chipPrefix)) {
     const status = matchMessage(value.slice(chipPrefix.length), chipStates);
     if (status) return '虚幻编辑器：' + status;
+  }
+  if (field === 'title' && copyId(value) === 'b697adbe21e20ffc' &&
+      el.matches(':is(.pill-menu,.ue-menu):has(.merlin-panel-search) button,.ue-submenu > button')) {
+    return '需要在虚幻编辑器中运行 Python。' + pythonHelp;
   }
   const tip = el.closest('[role="tooltip"]');
   if (tip?.id && field === 'text') {

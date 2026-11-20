@@ -1,0 +1,199 @@
+[
+  {
+    "selector": ".settings-nav button, .settings-nav button span, .settings-pane-header h2, .settings-window-body button, .settings-window-body strong",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "External paths": "外部路径",
+      "Model providers": "模型服务商",
+      "Model catalog": "模型目录",
+      "Model schemas": "模型定义",
+      "Default models": "默认模型",
+      "Browse models…": "浏览模型…"
+    }
+  },
+  {
+    "selector": ".settings-pane-header p, .settings-group > p",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#197:58cd4e828deb672f": "指定 Canvas 使用的外部程序和 Python 工作进程。数据目录请在“存储”设置，工作流目录请在“偏好设置”中设置。",
+      "#113:10bbcfe5b9451366": "配置模型服务商、登录和密钥。多条连接可共用同一凭据。",
+      "#205:2c75ebc3d934fbcc": "查看模型的路由及状态。可用星标设为默认、固定到选择器、设置审批或删除自己添加的模型。",
+      "#172:3a7140ef32669e8b": "在此为各类能力选默认模型，影响新建生成卡片与助手的首选项。也可在模型目录点击星标。",
+      "#308:af7d8dc112180b3d": "管理本机扩展、插件和自建草稿。扩展可提供面板、命令、工具、脚本或技能。运行遵循授权设置，自建草稿内以插件加载的卡片类型与模型定义也需首次授权。"
+    }
+  },
+  {
+    "selector": ".settings-row label, .settings-row label > span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Card header colors": "卡片标题栏颜色",
+      "Zoom speed": "缩放速度",
+      "Confirm before clearing annotations": "清除批注前要求确认",
+      "Auto lock on wired outputs": "连接输出后自动锁定",
+      "Graph in C2PA manifests": "在 C2PA 清单中附带节点图",
+      "Graph & code script directories": "节点图与代码脚本目录",
+      "Enable floating agent chat": "启用浮动智能体对话",
+      "#34:d8e815b67f463421": "查看智能体任务及近期活动",
+      "ComfyUI server URL": "ComfyUI 服务地址",
+      "Local servers on this computer": "本机服务器",
+      "New local server": "新建本地服务器",
+      "Kind": "类型",
+      "Address": "地址",
+      "Program": "启动程序",
+      "Arguments": "启动参数",
+      "Folder": "工作目录",
+      "AI models root": "AI 模型根目录",
+      "Depth estimation": "深度估计"
+    }
+  },
+  {
+    "selector": ".settings-row .custom-select:is([data-value=\"gradient\"],[data-value=\"solid\"],[data-value=\"neutral\"],[data-value=\"on\"],[data-value=\"off\"],[data-value=\"always\"],[data-value=\"comfyui\"],[data-value=\"model-server\"]) span, .ue-menu-item[role=option]:is([data-value=\"gradient\"],[data-value=\"solid\"],[data-value=\"neutral\"],[data-value=\"on\"],[data-value=\"off\"],[data-value=\"always\"],[data-value=\"comfyui\"],[data-value=\"model-server\"]), .ue-menu-item[role=option]:is([data-value=\"gradient\"],[data-value=\"solid\"],[data-value=\"neutral\"],[data-value=\"on\"],[data-value=\"off\"],[data-value=\"always\"],[data-value=\"comfyui\"],[data-value=\"model-server\"]) span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Color gradient": "渐变色",
+      "Solid color": "纯色",
+      "Neutral": "中性色",
+      "Always": "始终",
+      "Model server": "模型服务器"
+    }
+  },
+  {
+    "selector": ".settings-row input",
+    "fields": [
+      "placeholder"
+    ],
+    "entries": {
+      "#6:8c36545f724b9460": "（未设置）",
+      "#26:b2b319ac35b331a7": "（启动器所在目录）"
+    }
+  },
+  {
+    "selector": ".settings-window-body main:has(kbd) :is(p,div,span)",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#62:7ca11db0c86e387f": "用相应快捷键切换工具，Esc 返回选择模式。",
+      "#43:7455667ab9b3c1db": "使用滚轮缩放画布或应用窗口内容",
+      "#208:8f18ddd837d65e22": "按住此键滚动。指针在画布上时以指针为中心缩放；Windows 或 Linux 下，在顶栏或侧面板滚动可改变整个界面的缩放。",
+      "Show or hide history lines": "显示或隐藏来源连线",
+      "#96:a4b0f72822149dba": "显示选中卡片与所有上游来源卡片的连线。",
+      "#102:296d1ad718b8fceb": "将整幅画布缩放到视野内。",
+      "#80:ab14eca32e1af1ea": "还原侧面板，退出查看器、卡组或当前层级",
+      "#196:b68b66c22cb5e464": "先收回占满画布的查看器，再退出工具或对比并关闭查看器，然后从内向外收起卡组，最后返回父画布。",
+      "#78:349d9fbf73e8552c": "退出全屏，或切换查看器占用范围",
+      "#157:629de348a86b9537": "退出从缩放菜单开启的全屏。在普通窗口内，可将卡片查看器在侧栏与整幅画布之间切换。",
+      "#64:673eff08104674ef": "切换选中卡片或资源库项目的查看器",
+      "#164:96b599b8d5ac4b84": "沿用上次使用的查看模式，首次为网格。网格展示全部选择，单项模式逐张浏览，划像和分屏可同时比较两项。",
+      "#118:a58bd7c1c3cf0513": "逗号退一帧，句号进一帧。USD 或三维模型的动画同样支持逐帧浏览。",
+      "Frame the model": "使模型完整显示",
+      "#77:55f84e5ba61c19ad": "优先让查看器中的网格、泼溅或 USD 场景适应窗口，再处理画布的 F 键。",
+      "#182:e6a1646bfb81fed6": "带着当前选区打开提问框并开始输入。首次使用智能体时会保留草稿并提供配置入口。各平台使用 Ctrl。",
+      "#44:19acc65f9067381a": "拖入画布媒体以加入时间线",
+      "#143:853bfbb04d5822b5": "对轨道、区段或关键帧点右键查看操作。方向键选择，Enter 确认，Esc 关闭。",
+      "#69:067a617f382b732c": "只剩一个筛选结果时可按 Enter 选用。"
+    }
+  },
+  {
+    "selector": ".settings-row :is(div,span), .settings-group [role=status], .settings-group button",
+    "fields": [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    "entries": {
+      "#151:600ba0be8f169c09": "选择一个在该地址提供模型服务的启动程序。Canvas 按模型服务启动它，不检查可执行文件类型。",
+      "#39:a606ed8e93c128a1": "选择启动程序提供的服务类型。",
+      "#88:23860648c6002315": "填写完整工作目录路径。留空则使用启动程序所在目录。",
+      "Put back what is saved": "恢复已保存的值",
+      "Open its folder": "打开所在文件夹",
+      "Show what is saved": "显示已保存的值",
+      "#141:dcb0613aaa2565d5": "选择在该地址启动 ComfyUI 服务的程序。Canvas 将按 ComfyUI 服务调用它，不检查程序类型。"
+    }
+  },
+  {
+    "selector": ":is(.canvas-card-preview,.graph-node-body) div:has(> svg[data-icon=\"file-download\"]):has(> button.nodrag) > span, :is(.canvas-card-preview,.graph-node-body) div:has(> svg[data-icon=\"file-download\"]):has(> button.nodrag) > button",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Drop ComfyUI workflow": "将 ComfyUI 工作流拖到这里",
+      "API-format .json or ComfyUI PNG": "支持 API 格式的 JSON 文件或包含工作流的 ComfyUI PNG",
+      "#34:a3e4774898b19a26": "配置输入后即可运行。拖入新文件可切换工作流。",
+      "Replace…": "替换…",
+      "Browse…": "浏览…"
+    }
+  },
+  {
+    "selector": "div:has(> div > textarea[placeholder*=\"ComfyUI\"]) > div, div:has(> div > textarea[placeholder*=\"ComfyUI\"]) > div > :is(div,button,textarea,label,span), div:has(> div > textarea[placeholder*=\"ComfyUI\"]) :is(input,button,[role=combobox])",
+    "fields": [
+      "text",
+      "title",
+      "placeholder",
+      "aria-label"
+    ],
+    "entries": {
+      "COMFYUI SERVER": "ComfyUI 服务器",
+      "Server URL": "服务器地址",
+      "WORKFLOW (API FORMAT)": "工作流（API 格式）",
+      "Load .json or PNG…": "载入 JSON 或 PNG…",
+      "#66:c4573265925d95f6": "粘贴从 ComfyUI 导出的 API 工作流 JSON（含节点 ID 和 class_type）。",
+      "#56:6ad67af66015ed3b": "格式无法识别，请从 ComfyUI 导出 API 格式的 JSON。",
+      "No workflow loaded": "尚未载入工作流",
+      "INPUTS": "输入",
+      "OUTPUTS": "输出",
+      "+ Add input": "+ 添加输入",
+      "+ Add output": "+ 添加输出",
+      "pin name": "引脚名称",
+      "Unreal Canvas input pin name": "Unreal Canvas 输入引脚名称",
+      "Unreal Canvas output pin name": "Unreal Canvas 输出引脚名称",
+      "Remove input": "移除输入",
+      "Remove output": "移除输出",
+      "Workflow node": "工作流节点",
+      "Field to inject": "要写入的字段",
+      "Pin type": "引脚类型",
+      "#46:45e9cf6d4fffafb5": "选择输出节点，例如 SaveImage 或 VHS_VideoCombine。"
+    }
+  },
+  {
+    "selector": ".settings-row button, .settings-row button span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "Add server…": "添加服务器…",
+      "Start server": "启动服务器",
+      "Stop server": "停止服务器",
+      "Set default": "设为默认",
+      "+ Add folder": "+ 添加文件夹",
+      "Save again": "重新保存",
+      "Make default": "设为默认",
+      "Keep server": "保留服务器",
+      "Remove server": "移除服务器"
+    }
+  },
+  {
+    "selector": ".settings-row-value span, .settings-row label span",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#19:8fcd5b80ed205806": "服务器列表为空。",
+      "#38:924339ce6b2bb35a": "请为服务器指定启动程序。",
+      "#125:17d96a14c341b59d": "工作流或内置助手请求服务器时，如目标地址尚无响应，应用将启动所配程序。",
+      "Reading the saved servers…": "正在读取已保存的服务器…",
+      "Will not start": "无法启动",
+      "Not checked": "尚未检查",
+      "Unsaved changes": "有未保存的更改",
+      "#44:9410be555898dd9c": "自动锁定按节点图分别设置。"
+    }
+  }
+]

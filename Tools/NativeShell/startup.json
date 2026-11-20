@@ -47,8 +47,8 @@
   },
   "UnrealCanvasBridge": {
     "InstallingPerforceBuild": [
-      "ba3bfd6d",
-      "正在从 Perforce 工作区安装 Unreal Canvas。"
+      "a944ba89",
+      "正在安装随引擎提供的服务"
     ],
     "InstallRequiredReason": [
       "d46515b7",
@@ -67,8 +67,8 @@
       "服务版本不匹配"
     ],
     "VersionMismatchBody": [
-      "d7f3be9a",
-      "当前 Unreal Canvas 插件支持服务端 v{0}，而所选构建\n  {1}\n附带的服务端版本为 v{2}。\n\n请运行 `p4 sync`。如果使用开发工作区，还需重新构建插件。然后重启虚幻编辑器。"
+      "f37b6826",
+      "需要 v{0}。当前构建位置和版本请核对：{1}，{2}。"
     ],
     "LaunchFailedReason": [
       "4ce5f0e8",
@@ -89,6 +89,10 @@
     "BindFailedReason": [
       "02acfd12",
       "端口 {0} 无法使用。{1}"
+    ],
+    "UpdatingPerforceBuild": [
+      "e2617f52",
+      "正在安装随插件提供的服务更新"
     ]
   },
   "UnrealCanvasPanel": {
@@ -121,24 +125,24 @@
       "安装 Unreal Canvas"
     ],
     "UnrealCanvasInstallTooltip": [
-      "b0add953",
-      "将 Perforce 提供的 Unreal Canvas 服务程序解压到当前用户目录"
+      "4a2b096f",
+      "将内置服务安装到当前用户目录"
     ],
     "UnrealCanvasInstalling": [
       "969ae8fb",
       "正在安装 Unreal Canvas"
     ],
     "UnrealCanvasUpdateAvailable": [
-      "bb1c1edf",
-      "Perforce 工作区中有 Unreal Canvas {0}。更新后将重启并使用该版本。"
+      "08a9bce4",
+      "可更新到 {0}，更新时服务会重启。"
     ],
     "UnrealCanvasUpdate": [
       "a7f296d4",
       "更新"
     ],
     "UnrealCanvasUpdateTooltip": [
-      "798c74dc",
-      "将 Perforce 提供的新版服务程序解压到用户目录，并重启 Unreal Canvas 以使用新版"
+      "528dcb03",
+      "安装新版服务并切换"
     ],
     "UnrealCanvasUpdateDismiss": [
       "de348f3f",
@@ -200,21 +204,13 @@
       "36d78ffb",
       "本次打开期间隐藏提示"
     ],
-    "UnrealCanvasAssetConsentBody": [
-      "4f0a57a4",
-      "要下载 Unreal Canvas 的可选组件吗？\n\n{0}\n下载总量：{1}\n\n安装位置：\n{2}\n这些组件将从上方列出的网络地址下载，并逐项与 Perforce 工作区中指定的校验和核对。Unreal Canvas 服务程序的安装来源与这些组件不同。\n\n你可以跳过下载并继续使用 Unreal Canvas。依赖这些组件的节点将不可用。"
-    ],
-    "UnrealCanvasAssetConsentTitle": [
-      "9cb76283",
-      "下载 Unreal Canvas 附加组件"
-    ],
     "UnrealCanvasAssetInstallStarted": [
       "8b91fd17",
       "组件正在后台下载。画布可继续使用。"
     ],
     "UnrealCanvasInstallPrompt": [
-      "4a6d1541",
-      "Perforce 工作区中有可用的 Unreal Canvas 服务端构建。安装后即可开始使用画布。"
+      "35584814",
+      "安装随插件提供的服务后即可进入画布。"
     ],
     "FullscreenPlaceholder": [
       "e9b36801",
@@ -271,16 +267,16 @@
       "未提供 {0} 平台的构建。"
     ],
     "ServerVersionOutOfStep": [
-      "6d5bb0e6",
-      "Unreal Canvas 插件支持服务端 v{0}，Perforce 提供的构建为 v{1}。\n\n请对插件运行 p4 sync，再重启虚幻编辑器。"
+      "934e77b6",
+      "需要服务 v{0}，随附版本为 v{1}。"
     ],
     "NoAsset": [
       "2d697304",
       "未找到适配本机的安装文件。"
     ],
     "ZipMissing": [
-      "1464b22c",
-      "工作区中找不到 Unreal Canvas 服务端安装包：\n\n{0}\n\n请运行以下命令同步：\n  p4 sync .../UnrealCanvasBridge/Binaries/...\n\n如果没有同步到文件，请检查客户端视图或流过滤器是否排除了此目录。"
+      "c9f30222",
+      "安装文件缺失。请检查 {0}。"
     ],
     "RemoteNoAsset": [
       "f4106248",
@@ -295,8 +291,8 @@
       "下载尚未开始。"
     ],
     "BootstrapMissing": [
-      "416bb7e9",
-      "缺少 Unreal Canvas 安装引导程序。请对插件的 Binaries 目录运行 p4 sync。"
+      "b86caa34",
+      "未找到随插件提供的引导程序。"
     ],
     "LockHeld": [
       "cea6a331",
@@ -323,8 +319,8 @@
       "下载文件校验失败，请刷新并重试。"
     ],
     "DigestMismatch": [
-      "49616016",
-      "Unreal Canvas 服务端安装包未通过完整性校验。请对插件的 Binaries 目录运行 p4 sync 完成同步后重试。"
+      "fd3c9ce3",
+      "本地安装包校验失败，请核对引擎安装。"
     ],
     "ZipVanished": [
       "4619e4c4",
@@ -369,6 +365,64 @@
     "DownloadingLore": [
       "c37e1d71",
       "正在下载 Lore 库"
+    ]
+  },
+  "UnrealCanvasComponentsDialog": {
+    "Title": [
+      "9cb76283",
+      "下载附加组件"
+    ],
+    "Intro": [
+      "ad4b1066",
+      "勾选所需组件。暂时跳过时，依赖这些组件的节点将无法使用。"
+    ],
+    "ComponentColumn": [
+      "041e17b7",
+      "组件"
+    ],
+    "SizeColumn": [
+      "89b9eb33",
+      "大小"
+    ],
+    "SourceColumn": [
+      "76423d62",
+      "下载来源"
+    ],
+    "LicenseColumn": [
+      "41a4b271",
+      "许可证"
+    ],
+    "InfoColumn": [
+      "bb80f37f",
+      "说明"
+    ],
+    "Destinations": [
+      "2760fc38",
+      "安装位置：{0}"
+    ],
+    "Download": [
+      "83a691c0",
+      "下载"
+    ],
+    "LearnMore": [
+      "742b0c65",
+      "了解详情"
+    ],
+    "LicenseLink": [
+      "41a4b271",
+      "许可证"
+    ],
+    "NetworkNote": [
+      "a8e34bcc",
+      "将从列表中的服务器下载，并对照清单验证文件。"
+    ],
+    "NotNow": [
+      "6e625cc9",
+      "暂不下载"
+    ],
+    "SelectionSummary": [
+      "c43029ad",
+      "已选 {0}/{1} 项，预计下载 {2}。"
     ]
   }
 }

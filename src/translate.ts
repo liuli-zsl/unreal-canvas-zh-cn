@@ -7,6 +7,7 @@ import { translateViewerDynamic } from './viewers';
 import { translateCanvasAction } from './canvas-actions-022';
 import { translatePanelActions } from './panel-actions-022';
 import { translateSettingsActions } from './settings-actions-022';
+import { translateSettingsPreview2 } from './settings-preview2';
 import { translateShelfAction } from './shelf-actions';
 import type { ReadonlyCanvasState } from '@merlin/plugin-api';
 import { createWorkspaceTranslator } from './workspace-details';
@@ -75,6 +76,7 @@ export function localize(doc: Document, dictionary: Group[], readCanvas?: () => 
       if (translated === undefined) translated = translatePanelsDynamic(element, field, english, node);
       if (translated === undefined) translated = translateCanvasAction(element, field, english);
       if (translated === undefined) translated = translatePanelActions(element, field, english);
+      if (translated === undefined) translated = translateSettingsPreview2(element, field, english);
       if (translated === undefined) translated = translateSettingsActions(element, field, english);
       if (translated === undefined) translated = translateShelfAction(element, field, english);
       if (translated === undefined) translated = translateGeneration(element, field, english, node);

@@ -722,6 +722,76 @@ function translateSettingsActions(element, field, english) {
   }
 }
 
+// src/settings-preview2.ts
+var sections = {
+  "Canvas & interaction": "画布与交互",
+  "Grid & alignment": "网格与对齐",
+  "Toolbox library paths": "工具箱资源库路径",
+  "Custom fields": "自定义字段",
+  "Editors & tools": "编辑器与工具",
+  "Local servers": "本地服务器",
+  "Webcam capture server": "摄像头采集服务器",
+  "Media providers": "媒体服务商",
+  "Model approval": "模型审批",
+  "By capability": "按能力"
+};
+var categories = {
+  "External paths": "外部路径",
+  "Model providers": "模型服务商",
+  "Model catalog": "模型目录",
+  "Model schemas": "模型定义",
+  "Default models": "默认模型"
+};
+var pinTypes = new Map(Object.entries({
+  text: "文本",
+  int: "整数",
+  float: "浮点数",
+  image: "图像",
+  video: "视频",
+  audio: "音频"
+}));
+var comfyPinPicker = 'div:has(> div > textarea[placeholder*="ComfyUI"]) [role=combobox]:is([title="Pin type"],[title="引脚类型"],[data-title-tip="Pin type"],[data-title-tip="引脚类型"])';
+function translateSettingsPreview2(element, field, english) {
+  if (field === "text" && pinTypes.has(english)) {
+    if (element.closest(comfyPinPicker)) return pinTypes.get(english);
+    const menu = element.closest("[role=option]")?.closest("[role=listbox]");
+    if (menu?.id && Array.from(element.ownerDocument.querySelectorAll(comfyPinPicker + "[aria-controls]")).some((picker) => picker.getAttribute("aria-controls") === menu.id)) return pinTypes.get(english);
+  }
+  if (field === "text" && english.startsWith("Model '") && element.matches(".generation-shelf-status > span")) {
+    const missing = /^Model '(.+)' has no confirmed credentials\. .*?(?:its key \("(.+)"\)|the Claude API key).*$/.exec(english);
+    if (missing) return "模型“" + missing[1] + "”尚无已确认的凭据。请在“设置 → 模型服务商”中登录或添加" + (missing[2] ? "密钥“" + missing[2] + "”" : " Claude API 密钥") + "，然后重试。";
+  }
+  if (field === "text" && english.startsWith("Workflow loaded") && element.matches(':is(.canvas-card-preview,.graph-node-body) div:has(> svg[data-icon="file-download"]) > span')) {
+    const loaded = /^Workflow loaded · (\d+) nodes?$/.exec(english);
+    if (loaded) return "已载入工作流（" + loaded[1] + " 个节点）";
+  }
+  if (field === "text" && /^\d+ nodes parsed$/.test(english) && element.matches('div:has(> textarea[placeholder*="ComfyUI"]) > div')) {
+    return "已解析 " + english.split(" ")[0] + " 个节点";
+  }
+  if (!element.closest(".settings-window-body")) return;
+  if (element.matches(".settings-group-header h3, .settings-group-header h3 span") && field === "text") return sections[english];
+  if (element.matches(".settings-group-header button[aria-expanded]") && (field === "title" || field === "aria-label")) {
+    const toggle = /^(Expand|Collapse) (.+)$/.exec(english);
+    if (toggle && sections[toggle[2]]) return (toggle[1] === "Expand" ? "展开" : "折叠") + "“" + sections[toggle[2]] + "”";
+  }
+  if (element.matches('.settings-pane-header input[type="search"]') && (field === "aria-label" || field === "placeholder")) {
+    const search = /^Search (.+?)(?: settings|…)$/.exec(english);
+    if (search && categories[search[1]]) return "搜索" + categories[search[1]] + (field === "placeholder" ? "…" : "设置");
+  }
+  if (field === "text" && element.matches('.settings-window-body [role="region"] button > div > div')) {
+    const missing = /^no credential for (.+?);.*? to run "(.+)"$/.exec(english);
+    if (missing) return "缺少 " + missing[1] + " 的凭据。请在“设置 → 模型服务商”中登录或添加密钥，以运行“" + missing[2] + "”。";
+    const disabled = /^no provider is allowed to run "(.+)"$/.exec(english);
+    if (disabled) return "没有获准运行“" + disabled[1] + "”的服务商。";
+  }
+  if (field === "text" && element.matches(".settings-row-value div[id], .settings-row-value span")) {
+    const noServer = /^No ComfyUI server is saved for (.+?),.*$/.exec(english);
+    if (noServer) return "尚未为 " + noServer[1] + " 保存 ComfyUI 服务器，Unreal Canvas 不会在该地址启动服务。";
+    const args = /^(\d+) arguments?$/.exec(english);
+    if (args) return args[1] + " 个参数";
+  }
+}
+
 // src/shelf-actions.ts
 var counts = { "Batch slot": "批量插槽", Batch: "批量输入" };
 var voiceInstructions = {
@@ -3978,20 +4048,23 @@ function translateMediaDetails(element, field, english, node) {
 var chipPrefix = "Unreal Editor: ";
 var chipStates = [
   [/^connected to (.+), which is still loading\.$/, "已连接到 $1，编辑器仍在加载。"],
-  [/^connected to (.+), without Unreal Canvas Bridge\. Some Unreal nodes won't work; open this menu for details\.$/, "已连接到 $1。该编辑器没有 Unreal Canvas Bridge，部分 Unreal 节点不可用。打开菜单可查看详情。"],
-  [/^connected to (.+), but it isn't answering\. Open this menu for details\.$/, "已连接到 $1，但编辑器没有响应。打开菜单可查看详情。"],
-  [/^connected to (.+), but Unreal nodes can't run in it\. Open this menu for details\.$/, "已连接到 $1，但该编辑器无法运行 Unreal 节点。打开菜单可查看详情。"],
-  [/^connected to (.+)\. Renders, imports and the viewport go there\.$/, "已连接到 $1。渲染、导入和视口操作将发送到该编辑器。"],
-  [/^not connected\. One editor is running; pick it to send renders, imports and the viewport to it\.$/, "尚未连接。有一个编辑器正在运行，选择后即可向它发送渲染、导入和视口操作。"],
-  [/^not connected\. (\d+) editors are running; pick the one renders, imports and the viewport go to\.$/, "尚未连接。有 $1 个编辑器正在运行，请选择接收渲染、导入和视口操作的编辑器。"],
-  [/^not connected\. (.+) (?:is|are) running without an MCP server; open this menu for details\.$/, "尚未连接。$1 正在运行，但未启动 MCP 服务。打开菜单可查看详情。"],
-  [/^not connected\. Renders, imports and the viewport need an Unreal Editor with your project open\.$/, "尚未连接。请在虚幻编辑器中打开工程，以便渲染、导入和使用视口。"],
-  [/^(.+) is running but has no MCP server, so it can't connect\. Open this menu for details\.$/, "$1 正在运行，但没有 MCP 服务，无法连接。打开菜单可查看详情。"],
+  [/^connected to (.+), without Unreal Canvas Bridge\..*\bnodes\b.*$/, "已连接到 $1。该编辑器没有 Unreal Canvas Bridge，部分 Unreal 节点不可用。打开菜单可查看详情。"],
+  [/^connected to (.+), without Unreal Canvas Bridge\..*\bcards\b.*$/, "已连接到 $1。该编辑器没有 Unreal Canvas Bridge，部分 Unreal 卡片不可用。打开菜单可查看详情。"],
+  [/^connected to (.+), but it isn't answering\..*$/, "已连接到 $1，但编辑器没有响应。打开菜单可查看详情。"],
+  [/^connected to (.+), but Unreal nodes can't run in it\..*$/, "已连接到 $1，但该编辑器无法运行 Unreal 节点。打开菜单可查看详情。"],
+  [/^connected to (.+), but Unreal cards can't run in it\..*$/, "已连接到 $1，但该编辑器无法运行 Unreal 卡片。打开菜单可查看详情。"],
+  [/^connected to (.+)\. Renders, imports\b.*$/, "已连接到 $1。渲染、导入和视口操作将发送到该编辑器。"],
+  [/^not connected\. One editor is running;.*$/, "尚未连接。有一个编辑器正在运行，选择后即可向它发送渲染、导入和视口操作。"],
+  [/^not connected\. (\d+) editors are running;.*$/, "尚未连接。有 $1 个编辑器正在运行，请选择接收渲染、导入和视口操作的编辑器。"],
+  [/^not connected\. (.+) (?:is|are) running without an MCP server;.*$/, "尚未连接。$1 正在运行，但未启动 MCP 服务。打开菜单可查看详情。"],
+  [/^not connected\. Renders, imports\b.*$/, "尚未连接。请在虚幻编辑器中打开工程，以便渲染、导入和使用视口。"],
+  [/^(.+) is running but has no MCP server\b.*$/, "$1 正在运行，但没有 MCP 服务，无法连接。打开菜单可查看详情。"],
   [/^starting (.+)\. It connects once it has loaded\.$/, "正在启动 $1。加载完成后将自动连接。"],
   [/^(.+) is opening (.+)\.$/, "$1 正在打开 $2。"]
 ];
 var capability = [
   [/^(.+) has Unreal Canvas Bridge: every Unreal node works\.$/, "$1 已启用 Unreal Canvas Bridge，所有 Unreal 节点均可使用。"],
+  [/^(.+) has Unreal Canvas Bridge: every Unreal card works\.$/, "$1 已启用 Unreal Canvas Bridge，所有 Unreal 卡片均可使用。"],
   [/^(.+) has Unreal Canvas Bridge, but can't run Python for Unreal Canvas\.$/, "$1 已启用 Unreal Canvas Bridge，但无法为 Unreal Canvas 运行 Python。"],
   [/^(.+) is still loading\.$/, "$1 仍在加载。"],
   [/^(.+) isn't answering\.$/, "$1 没有响应。"],
@@ -4022,10 +4095,12 @@ function describeRow(value) {
 }
 var detailStates = [
   [/^These won't work: (.+)\.$/, "以下节点不可用：$1。"],
-  [/^Its MCP server didn't respond \(([\s\S]+)\)\. A busy editor \(loading, compiling shaders\) answers again once it's idle\.$/, "MCP 服务没有响应（$1）。编辑器正在加载或编译着色器时可能繁忙，空闲后会恢复响应。"],
-  [/^Renders, imports and spawns run through engine Python instead\. These won't work: (.+)\.$/, "渲染、导入和生成对象将通过引擎 Python 执行。以下节点不可用：$1。"],
-  [/^Renders, imports and spawns run through engine Python instead\.$/, "渲染、导入和生成对象将通过引擎 Python 执行。"],
-  [/^Unreal nodes can't run in it: (.+)\.$/, "以下 Unreal 节点无法在此编辑器中运行：$1。"]
+  [/^Its MCP server didn't respond \(([\s\S]+)\)\. A busy editor\b.*$/, "MCP 服务没有响应（$1）。编辑器正在加载或编译着色器时可能繁忙，空闲后会恢复响应。"],
+  [/^If it stays\b.*? Details: ([\s\S]+)$/, "如果一直没有响应，请重启编辑器。详细信息：$1"],
+  [/^Renders, imports\b.*?\bPython instead\. These won't work: (.+)\.$/, "渲染、导入和生成对象将通过引擎 Python 执行。以下节点不可用：$1。"],
+  [/^Renders, imports\b.*?\bPython instead\.$/, "渲染、导入和生成对象将通过引擎 Python 执行。"],
+  [/^Unreal nodes can't run in it: (.+)\.$/, "以下 Unreal 节点无法在此编辑器中运行：$1。"],
+  [/^Unreal cards can't run in it: (.+)\.$/, "以下 Unreal 卡片无法在此编辑器中运行：$1。"]
 ];
 var pythonHelp = "检查 Bridge 的蓝图执行设置，或启用 EditorToolset 和 Python 后重启。";
 function changeAction(value) {
@@ -4037,6 +4112,9 @@ function translateEditorConnection(el, field, value, node) {
   if (el.classList.contains("unreal-editor-chip") && field === "aria-label" && value.startsWith(chipPrefix)) {
     const status = matchMessage(value.slice(chipPrefix.length), chipStates);
     if (status) return "虚幻编辑器：" + status;
+  }
+  if (field === "title" && copyId(value) === "b697adbe21e20ffc" && el.matches(":is(.pill-menu,.ue-menu):has(.merlin-panel-search) button,.ue-submenu > button")) {
+    return "需要在虚幻编辑器中运行 Python。" + pythonHelp;
   }
   const tip = el.closest('[role="tooltip"]');
   if (tip?.id && field === "text") {
@@ -4114,12 +4192,12 @@ function translateEditorConnection(el, field, value, node) {
 }
 
 // src/geometry-menu.ts
-var categories = new Map(Object.entries(geometry_menu_default.categories));
+var categories2 = new Map(Object.entries(geometry_menu_default.categories));
 var operations = new Map(Object.entries(geometry_menu_default.operations));
 var nodePicker = '.pill-menu:has(.merlin-panel-search),.ue-menu:has(input:is([aria-label="Search nodes"],[aria-label="搜索节点"]))';
 function translateGeometryMenu(element, field, english) {
   if (field !== "text") return;
-  const category = categories.get(english);
+  const category = categories2.get(english);
   const operation = operations.get(english);
   if (!category && !operation) return;
   const isLabel = element.classList.contains("ue-menu-label");
@@ -4256,6 +4334,7 @@ function localize(doc, dictionary2, readCanvas) {
       if (translated === void 0) translated = translatePanelsDynamic(element, field, english, node);
       if (translated === void 0) translated = translateCanvasAction(element, field, english);
       if (translated === void 0) translated = translatePanelActions(element, field, english);
+      if (translated === void 0) translated = translateSettingsPreview2(element, field, english);
       if (translated === void 0) translated = translateSettingsActions(element, field, english);
       if (translated === void 0) translated = translateShelfAction(element, field, english);
       if (translated === void 0) translated = translateGeneration(element, field, english, node);
@@ -6657,7 +6736,7 @@ var menus_extra_default = [
     }
   },
   {
-    selector: ".pill-menu-item,.pill-menu-item .ue-menu-label,.pill-menu-item .feature-hint-menu-label",
+    selector: '.pill-menu-item,.pill-menu-item .ue-menu-label,.pill-menu-item .feature-hint-menu-label,[role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"]) .feature-hint-menu-label,body:has([role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"])) > .ue-submenu > button,body:has([role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"])) > .ue-submenu > button > :is(.ue-menu-label,.feature-hint-menu-label)',
     fields: [
       "text",
       "title",
@@ -6665,6 +6744,11 @@ var menus_extra_default = [
     ],
     entries: {
       Deck: "卡组",
+      "Add comment": "添加评论",
+      "Retarget Animation": "重定向动画",
+      "Bring forward": "上移一层",
+      "Send backward": "下移一层",
+      "#69:c8ec072e046393f1": "复制所选卡片到新节点图，同时保留原卡片。",
       "Graph (Copy to)": "复制到新节点图",
       "Graph (Move to)": "移入新节点图",
       Subcanvas: "子画布",
@@ -8248,6 +8332,8 @@ var canvas_actions_022_default = [
     ],
     entries: {
       "Search nodes": "搜索节点",
+      "Search nodes…": "输入英文节点名，如 image…",
+      Animation: "动画",
       "Search nodes...": "输入英文节点名，如 image…",
       "No match": "没有匹配的节点。可输入英文名，或清空后按分类浏览。",
       Input: "输入",
@@ -8389,6 +8475,12 @@ var canvas_actions_022_default = [
       Simplify: "简化网格",
       "Recompute Normals": "重算法线",
       "Fill Holes": "填补孔洞",
+      "UV unwrap": "UV 展开",
+      "Recompute normals": "重算法线",
+      "Fill holes": "填补孔洞",
+      "Weld edges": "焊接边",
+      Deck: "卡组",
+      "Retarget Animation": "重定向动画",
       "Weld Edges": "焊接边",
       Solidify: "实体化",
       "Console Log": "控制台日志",
@@ -9157,6 +9249,207 @@ var settings_actions_022_default = [
   }
 ];
 
+// src/locales/settings-preview2.json
+var settings_preview2_default = [
+  {
+    selector: ".settings-nav button, .settings-nav button span, .settings-pane-header h2, .settings-window-body button, .settings-window-body strong",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "External paths": "外部路径",
+      "Model providers": "模型服务商",
+      "Model catalog": "模型目录",
+      "Model schemas": "模型定义",
+      "Default models": "默认模型",
+      "Browse models…": "浏览模型…"
+    }
+  },
+  {
+    selector: ".settings-pane-header p, .settings-group > p",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#197:58cd4e828deb672f": "指定 Canvas 使用的外部程序和 Python 工作进程。数据目录请在“存储”设置，工作流目录请在“偏好设置”中设置。",
+      "#113:10bbcfe5b9451366": "配置模型服务商、登录和密钥。多条连接可共用同一凭据。",
+      "#205:2c75ebc3d934fbcc": "查看模型的路由及状态。可用星标设为默认、固定到选择器、设置审批或删除自己添加的模型。",
+      "#172:3a7140ef32669e8b": "在此为各类能力选默认模型，影响新建生成卡片与助手的首选项。也可在模型目录点击星标。",
+      "#308:af7d8dc112180b3d": "管理本机扩展、插件和自建草稿。扩展可提供面板、命令、工具、脚本或技能。运行遵循授权设置，自建草稿内以插件加载的卡片类型与模型定义也需首次授权。"
+    }
+  },
+  {
+    selector: ".settings-row label, .settings-row label > span",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Card header colors": "卡片标题栏颜色",
+      "Zoom speed": "缩放速度",
+      "Confirm before clearing annotations": "清除批注前要求确认",
+      "Auto lock on wired outputs": "连接输出后自动锁定",
+      "Graph in C2PA manifests": "在 C2PA 清单中附带节点图",
+      "Graph & code script directories": "节点图与代码脚本目录",
+      "Enable floating agent chat": "启用浮动智能体对话",
+      "#34:d8e815b67f463421": "查看智能体任务及近期活动",
+      "ComfyUI server URL": "ComfyUI 服务地址",
+      "Local servers on this computer": "本机服务器",
+      "New local server": "新建本地服务器",
+      Kind: "类型",
+      Address: "地址",
+      Program: "启动程序",
+      Arguments: "启动参数",
+      Folder: "工作目录",
+      "AI models root": "AI 模型根目录",
+      "Depth estimation": "深度估计"
+    }
+  },
+  {
+    selector: '.settings-row .custom-select:is([data-value="gradient"],[data-value="solid"],[data-value="neutral"],[data-value="on"],[data-value="off"],[data-value="always"],[data-value="comfyui"],[data-value="model-server"]) span, .ue-menu-item[role=option]:is([data-value="gradient"],[data-value="solid"],[data-value="neutral"],[data-value="on"],[data-value="off"],[data-value="always"],[data-value="comfyui"],[data-value="model-server"]), .ue-menu-item[role=option]:is([data-value="gradient"],[data-value="solid"],[data-value="neutral"],[data-value="on"],[data-value="off"],[data-value="always"],[data-value="comfyui"],[data-value="model-server"]) span',
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Color gradient": "渐变色",
+      "Solid color": "纯色",
+      Neutral: "中性色",
+      Always: "始终",
+      "Model server": "模型服务器"
+    }
+  },
+  {
+    selector: ".settings-row input",
+    fields: [
+      "placeholder"
+    ],
+    entries: {
+      "#6:8c36545f724b9460": "（未设置）",
+      "#26:b2b319ac35b331a7": "（启动器所在目录）"
+    }
+  },
+  {
+    selector: ".settings-window-body main:has(kbd) :is(p,div,span)",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#62:7ca11db0c86e387f": "用相应快捷键切换工具，Esc 返回选择模式。",
+      "#43:7455667ab9b3c1db": "使用滚轮缩放画布或应用窗口内容",
+      "#208:8f18ddd837d65e22": "按住此键滚动。指针在画布上时以指针为中心缩放；Windows 或 Linux 下，在顶栏或侧面板滚动可改变整个界面的缩放。",
+      "Show or hide history lines": "显示或隐藏来源连线",
+      "#96:a4b0f72822149dba": "显示选中卡片与所有上游来源卡片的连线。",
+      "#102:296d1ad718b8fceb": "将整幅画布缩放到视野内。",
+      "#80:ab14eca32e1af1ea": "还原侧面板，退出查看器、卡组或当前层级",
+      "#196:b68b66c22cb5e464": "先收回占满画布的查看器，再退出工具或对比并关闭查看器，然后从内向外收起卡组，最后返回父画布。",
+      "#78:349d9fbf73e8552c": "退出全屏，或切换查看器占用范围",
+      "#157:629de348a86b9537": "退出从缩放菜单开启的全屏。在普通窗口内，可将卡片查看器在侧栏与整幅画布之间切换。",
+      "#64:673eff08104674ef": "切换选中卡片或资源库项目的查看器",
+      "#164:96b599b8d5ac4b84": "沿用上次使用的查看模式，首次为网格。网格展示全部选择，单项模式逐张浏览，划像和分屏可同时比较两项。",
+      "#118:a58bd7c1c3cf0513": "逗号退一帧，句号进一帧。USD 或三维模型的动画同样支持逐帧浏览。",
+      "Frame the model": "使模型完整显示",
+      "#77:55f84e5ba61c19ad": "优先让查看器中的网格、泼溅或 USD 场景适应窗口，再处理画布的 F 键。",
+      "#182:e6a1646bfb81fed6": "带着当前选区打开提问框并开始输入。首次使用智能体时会保留草稿并提供配置入口。各平台使用 Ctrl。",
+      "#44:19acc65f9067381a": "拖入画布媒体以加入时间线",
+      "#143:853bfbb04d5822b5": "对轨道、区段或关键帧点右键查看操作。方向键选择，Enter 确认，Esc 关闭。",
+      "#69:067a617f382b732c": "只剩一个筛选结果时可按 Enter 选用。"
+    }
+  },
+  {
+    selector: ".settings-row :is(div,span), .settings-group [role=status], .settings-group button",
+    fields: [
+      "text",
+      "title",
+      "aria-label"
+    ],
+    entries: {
+      "#151:600ba0be8f169c09": "选择一个在该地址提供模型服务的启动程序。Canvas 按模型服务启动它，不检查可执行文件类型。",
+      "#39:a606ed8e93c128a1": "选择启动程序提供的服务类型。",
+      "#88:23860648c6002315": "填写完整工作目录路径。留空则使用启动程序所在目录。",
+      "Put back what is saved": "恢复已保存的值",
+      "Open its folder": "打开所在文件夹",
+      "Show what is saved": "显示已保存的值",
+      "#141:dcb0613aaa2565d5": "选择在该地址启动 ComfyUI 服务的程序。Canvas 将按 ComfyUI 服务调用它，不检查程序类型。"
+    }
+  },
+  {
+    selector: ':is(.canvas-card-preview,.graph-node-body) div:has(> svg[data-icon="file-download"]):has(> button.nodrag) > span, :is(.canvas-card-preview,.graph-node-body) div:has(> svg[data-icon="file-download"]):has(> button.nodrag) > button',
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Drop ComfyUI workflow": "将 ComfyUI 工作流拖到这里",
+      "API-format .json or ComfyUI PNG": "支持 API 格式的 JSON 文件或包含工作流的 ComfyUI PNG",
+      "#34:a3e4774898b19a26": "配置输入后即可运行。拖入新文件可切换工作流。",
+      "Replace…": "替换…",
+      "Browse…": "浏览…"
+    }
+  },
+  {
+    selector: 'div:has(> div > textarea[placeholder*="ComfyUI"]) > div, div:has(> div > textarea[placeholder*="ComfyUI"]) > div > :is(div,button,textarea,label,span), div:has(> div > textarea[placeholder*="ComfyUI"]) :is(input,button,[role=combobox])',
+    fields: [
+      "text",
+      "title",
+      "placeholder",
+      "aria-label"
+    ],
+    entries: {
+      "COMFYUI SERVER": "ComfyUI 服务器",
+      "Server URL": "服务器地址",
+      "WORKFLOW (API FORMAT)": "工作流（API 格式）",
+      "Load .json or PNG…": "载入 JSON 或 PNG…",
+      "#66:c4573265925d95f6": "粘贴从 ComfyUI 导出的 API 工作流 JSON（含节点 ID 和 class_type）。",
+      "#56:6ad67af66015ed3b": "格式无法识别，请从 ComfyUI 导出 API 格式的 JSON。",
+      "No workflow loaded": "尚未载入工作流",
+      INPUTS: "输入",
+      OUTPUTS: "输出",
+      "+ Add input": "+ 添加输入",
+      "+ Add output": "+ 添加输出",
+      "pin name": "引脚名称",
+      "Unreal Canvas input pin name": "Unreal Canvas 输入引脚名称",
+      "Unreal Canvas output pin name": "Unreal Canvas 输出引脚名称",
+      "Remove input": "移除输入",
+      "Remove output": "移除输出",
+      "Workflow node": "工作流节点",
+      "Field to inject": "要写入的字段",
+      "Pin type": "引脚类型",
+      "#46:45e9cf6d4fffafb5": "选择输出节点，例如 SaveImage 或 VHS_VideoCombine。"
+    }
+  },
+  {
+    selector: ".settings-row button, .settings-row button span",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "Add server…": "添加服务器…",
+      "Start server": "启动服务器",
+      "Stop server": "停止服务器",
+      "Set default": "设为默认",
+      "+ Add folder": "+ 添加文件夹",
+      "Save again": "重新保存",
+      "Make default": "设为默认",
+      "Keep server": "保留服务器",
+      "Remove server": "移除服务器"
+    }
+  },
+  {
+    selector: ".settings-row-value span, .settings-row label span",
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#19:8fcd5b80ed205806": "服务器列表为空。",
+      "#38:924339ce6b2bb35a": "请为服务器指定启动程序。",
+      "#125:17d96a14c341b59d": "工作流或内置助手请求服务器时，如目标地址尚无响应，应用将启动所配程序。",
+      "Reading the saved servers…": "正在读取已保存的服务器…",
+      "Will not start": "无法启动",
+      "Not checked": "尚未检查",
+      "Unsaved changes": "有未保存的更改",
+      "#44:9410be555898dd9c": "自动锁定按节点图分别设置。"
+    }
+  }
+];
+
 // src/locales/media-details.json
 var media_details_default = [
   {
@@ -9335,6 +9628,15 @@ var media_details_default = [
 // src/locales/editor-connection.json
 var editor_connection_default = [
   {
+    selector: "button.unreal-editor-chip > .unreal-editor-chip-label",
+    fields: [
+      "text"
+    ],
+    entries: {
+      Connect: "连接"
+    }
+  },
+  {
     selector: ".unreal-editor-menu",
     fields: [
       "aria-label"
@@ -9365,6 +9667,8 @@ var editor_connection_default = [
       "#58:305e82aae6604507": "待编辑器载入后，这里会自动刷新。",
       "#105:99c682275e71013d": "等待编辑器的 MCP 服务启动，Canvas 会自动连接。",
       "#87:09de7f859d02eb44": "请检查编辑器的 MCP 服务，必要时重启编辑器。",
+      "#72:cabb734cb8099ac6": "正在加载或编译着色器，请待编辑器空闲后重试。",
+      "#29:9afd6ae3ef0ccf7d": "此编辑器不支持执行 Unreal 卡片。",
       "#29:2eec99eba00799a3": "此编辑器不支持执行 Unreal 节点。",
       "#90:eac2052656246ce9": "请在「编辑 → 插件」启用 Unreal Canvas Bridge 并重启 UE。",
       "#145:30855131def92714": "请启用 Model Context Protocol。如已安装 Unreal Canvas Bridge，也请启用。重启 UE 后生效。"
@@ -9787,13 +10091,13 @@ var panel_details_default = [
 ];
 
 // src/dictionary.ts
-var dictionary = [...editor_connection_default, ...panel_details_default, ...media_details_default, ...canvas_actions_022_default, ...panel_actions_022_default, ...settings_actions_022_default, ...shelf_actions_default, ...generation_extra_default, ...editors_extra_default, ...script_authoring_extra_default, ...viewers_extra_default, ...menus_extra_default, ...panels_extra_default, ...settings_extra_default, ...zh_CN_default];
+var dictionary = [...editor_connection_default, ...panel_details_default, ...media_details_default, ...canvas_actions_022_default, ...panel_actions_022_default, ...settings_preview2_default, ...settings_actions_022_default, ...shelf_actions_default, ...generation_extra_default, ...editors_extra_default, ...script_authoring_extra_default, ...viewers_extra_default, ...menus_extra_default, ...panels_extra_default, ...settings_extra_default, ...zh_CN_default];
 
 // manifest.json
 var manifest_default = {
   id: "unreal-canvas-zh-cn",
   name: "Unreal Canvas 简体中文",
-  version: "0.2.3",
+  version: "0.2.4",
   apiVersion: 1,
   namespaces: [
     "canvaszh"
