@@ -10994,7 +10994,7 @@ var dictionary = [...agent_session_default, ...editor_connection_default, ...pan
 var manifest_default = {
   id: "unreal-canvas-zh-cn",
   name: "Unreal Canvas 简体中文",
-  version: "0.2.6",
+  version: "0.2.7",
   apiVersion: 1,
   namespaces: [
     "canvaszh"

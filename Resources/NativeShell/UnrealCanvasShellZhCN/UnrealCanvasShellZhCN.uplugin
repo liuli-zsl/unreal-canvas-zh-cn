@@ -1,23 +1,15 @@
 {
   "FileVersion": 3,
-  "Version": 8,
-  "VersionName": "0.2.6",
+  "Version": 1,
+  "VersionName": "1",
   "FriendlyName": "Unreal Canvas App 简体中文菜单资源",
   "Description": "为独立 Unreal Canvas App 的原生菜单提供简体中文文本。",
   "Category": "Localization",
   "EnabledByDefault": true,
   "CanContainContent": false,
   "Hidden": true,
-  "SupportedTargetPlatforms": [
-    "Win64"
-  ],
+  "SupportedTargetPlatforms": ["Win64"],
   "Plugins": [
-    {
-      "Name": "UnrealCanvasZhCN",
-      "Enabled": true,
-      "TargetAllowList": [
-        "Editor"
-      ]
-    }
+    { "Name": "UnrealCanvasZhCN", "Enabled": true, "TargetAllowList": ["Editor"] }
   ]
 }

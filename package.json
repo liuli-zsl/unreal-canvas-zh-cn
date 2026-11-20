@@ -1,14 +1,14 @@
 {
   "name": "unreal-canvas-zh-cn",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "private": true,
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
+    "setup:sdk": "node scripts/prepare-sdk.mjs",
     "build": "tsc --noEmit && node scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
-    "package": "npm run build && python scripts/package.py",
-    "setup:sdk": "node scripts/prepare-sdk.mjs"
+    "package": "npm run build && python scripts/package.py"
   },
   "devDependencies": {
     "@merlin/plugin-api": "file:vendor/unreal-canvas-plugin-api-1.67.0.tgz",
