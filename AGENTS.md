@@ -7,7 +7,7 @@
 1. 从 `UnrealCanvasZhCN.uplugin`、`Source/UnrealCanvasZhCN/UnrealCanvasZhCN.Build.cs` 和模块的 `Private/UnrealCanvasZhCNModule.cpp` 检查支持的平台、加载阶段和依赖。Bridge 在引擎初始化结束时启动服务，独立 App 继承启动它的编辑器进程环境。
 2. 前端工作目录为 `Tools/Frontend/`。从该目录的 `manifest.json`、`src/index.ts`、`src/dictionary.ts` 到 `src/locales/` 跟踪前端加载。动态文案规则与保护逻辑从 `src/translate.ts` 进入。`@merlin/plugin-api` 由宿主供应。
 3. 前端的 `scripts/build.mjs` 将 JS 直接写入随包资源目录。从仓库根目录的 `Tools/Packaging/package.py` 检查发布文件清单和原生模块凭据。用户数据目录里的手动安装版与工程里的 UE 插件有独立生命周期。
-4. 原生菜单及设置键在 `Tools/NativeShell/*.json`。修改后运行 `python Tools/NativeShell/compile.py` 和 `python Tools/NativeShell/verify-native-settings.py --engine <引擎目录>`。独立 App 通过随包描述文件启用主模块，使用同一份编译结果。
+4. 原生菜单及设置键在 `Tools/NativeShell/*.json`。修改后运行 `python Tools/NativeShell/compile.py` 和 `python Tools/NativeShell/verify-native-settings.py --engine <引擎目录>`。两个宿主从主插件的 `Content/Localization/UnrealCanvasShellZhCN/` 读取同一份 `.locres`。独立 App 通过 `Resources/NativeShell/` 中的随包描述文件启用主模块。
 
 ## 修改与版本同步
 

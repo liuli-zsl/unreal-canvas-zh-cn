@@ -4,6 +4,14 @@
 
 历史记录中的路径对应当时的检出。当前版本从 `Tools/Frontend/` 运行前端验证脚本。本机历史截图在 `Tools/Artifacts/Verification/Screenshots/`，原始记录在 `Tools/Artifacts/Verification/Runs/`。
 
+## 0.2.11 · 2026-11-23
+
+在已安装官方 Canvas 0.24.0 的 Win64、UE 5.9 Preview 2（编辑器 BuildId `60738873`）上，从干净检出完成构建。33 项前端测试通过，279 条原生译文的原文哈希、占位符和编译结果通过校验。
+
+- 安装包只有一个顶层目录 `UnrealCanvasZhCN/`，只含一份 `.locres`。迁移前后的资源 SHA-256 相同。分别将 ZIP 解压到中文和英文空白蓝图工程的 `Plugins/`，启用插件，以独立的 Canvas 用户数据目录启动。两次安装的 DLL 在运行前后的哈希和修改时间均一致。
+- 简体中文编辑器的项目设置中可见“扩展目录”。从“工具 → 启动 Unreal Canvas 独立应用”启动 App，编辑菜单显示“Unreal Canvas 设置…”。英文编辑器的同一字段显示为 “Extension Catalog”，独立 App 显示 “Unreal Canvas Settings...”。
+- 两种语言下，编辑器和独立 App 均从主插件的 `Content/Localization/UnrealCanvasShellZhCN/zh-Hans/` 注册 279 条译文。四个工作区首次打开时均加载随包的 0.2.11 扩展，点击齿轮可打开中文设置面板。
+
 ## 0.2.10 · 2026-11-23
 
 TypeScript 检查、前端构建和 33 项自动化测试通过。本机 Canvas 0.24.0 提供的前端脚本与工程随包脚本逐字节一致。

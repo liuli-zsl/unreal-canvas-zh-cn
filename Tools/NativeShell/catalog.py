@@ -6,7 +6,7 @@ from struct import unpack
 
 ROOT = Path(__file__).resolve().parents[2]
 TARGET = "UnrealCanvasShellZhCN"
-OUTPUT = ROOT / "Resources/NativeShell" / TARGET / "Content/Localization" / TARGET / "zh-Hans" / (TARGET + ".locres")
+OUTPUT = ROOT / "Content/Localization" / TARGET / "zh-Hans" / (TARGET + ".locres")
 
 
 def load_catalog():

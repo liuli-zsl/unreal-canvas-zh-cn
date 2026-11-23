@@ -47,9 +47,9 @@ public:
     }
 };
 
-void RegisterNativeText(const FString& ShellDir)
+void RegisterNativeText(const FString& ContentDir)
 {
-    const FString File = ShellDir / TEXT("Content/Localization") / ShellId / TEXT("zh-Hans") /
+    const FString File = ContentDir / TEXT("Localization") / ShellId / TEXT("zh-Hans") /
         (FString(ShellId) + TEXT(".locres"));
     const TSharedRef<FCanvasChineseSource> Source = MakeShared<FCanvasChineseSource>();
     if (Source->Resource.LoadFromFile(File, 0))
@@ -79,7 +79,7 @@ public:
 
         const FString PluginDir = FPaths::ConvertRelativePathToFull(Plugin->GetBaseDir());
         const FString ShellDir = PluginDir / TEXT("Resources/NativeShell") / ShellId;
-        RegisterNativeText(ShellDir);
+        RegisterNativeText(FPaths::ConvertRelativePathToFull(Plugin->GetContentDir()));
 
         const FString Executable(FPlatformProcess::ExecutableName());
         if (Executable == TEXT("UnrealCanvasApp") || Executable.StartsWith(TEXT("UnrealCanvasApp-")))

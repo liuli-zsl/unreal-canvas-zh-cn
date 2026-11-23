@@ -20,7 +20,7 @@ MODULES = "Binaries/Win64/UnrealEditor.modules"
 RUNTIME = Path("Resources/CanvasPlugins/unreal-canvas-zh-cn")
 SHELL_NAME = "UnrealCanvasShellZhCN"
 SHELL = Path("Resources/NativeShell") / SHELL_NAME
-SHELL_TARGET = SHELL / "Content/Localization" / SHELL_NAME
+SHELL_TARGET = Path("Content/Localization") / SHELL_NAME
 SHELL_RESOURCES = [
     SHELL / (SHELL_NAME + ".uplugin"), SHELL_TARGET / "zh-Hans" / (SHELL_NAME + ".locres"),
 ]

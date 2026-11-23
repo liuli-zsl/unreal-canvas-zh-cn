@@ -4,13 +4,17 @@
 
 **[下载最新正式版](https://github.com/liuli-zsl/unreal-canvas-zh-cn/releases/latest)** · [各版本与更新记录](Tools/Docs/CHANGELOG.md)
 
-本源码版本 **0.2.10** 适用于 Win64、UE 5.9 Preview 2（编辑器 BuildId `60738873`）和 Unreal Canvas 0.24.0。请通过 Epic 安装 Canvas 本体。
+本源码版本 **0.2.11** 适用于 Win64、UE 5.9 Preview 2（编辑器 BuildId `60738873`）和 Unreal Canvas 0.24.0。请通过 Epic 安装 Canvas 本体。
 
 ## 安装
 
-1. 在 Release 页面按插件版本、UE 版本、编辑器 BuildId 和 Canvas 版本选择对应的 Win64 预编译 ZIP。解压后把直接含有 `UnrealCanvasZhCN.uplugin` 的整个目录放进工程的 `Plugins`。历史版本 `v0.2.9` 提供源码包，使用该版源码或直接克隆仓库时，首次编译需要 UE 的 C++ 工具链。
-2. 打开或重启工程。匹配的预编译包会直接加载；如果 UE 提示重新编译，请先核对下载的附件和引擎 BuildId。UE 会一同加载 Unreal Canvas Bridge。如果你曾在该工程中手动停用汉化，可在 **编辑 → 插件** 中重新勾选 **Unreal Canvas 简体中文**。
-3. 选择 **工具 → Unreal Canvas** 或 **工具 → 启动 Unreal Canvas 独立应用**（英文界面为 **Launch Unreal Canvas App**）。打开工作区后，齿轮的提示和设置面板会显示中文。已经打开的独立 App 需要先保存工作、退出，再从这个工程启动。
+1. 选择与插件版本、UE 版本、编辑器 BuildId 和 Canvas 版本匹配的 Win64 预编译 ZIP。本版文件名为 `UnrealCanvasZhCN-0.2.11-UE5.9-Win64.zip`。
+2. 将 ZIP 直接解压到工程的 `Plugins/`。解压后应能找到 `Plugins/UnrealCanvasZhCN/UnrealCanvasZhCN.uplugin`。
+3. 打开工程，在 **编辑 → 插件** 确认已启用 **Unreal Canvas 简体中文**，按 UE 提示重启。UE 会一同加载 Unreal Canvas Bridge，前端扩展也会自动启用。
+
+用 **工具 → Unreal Canvas** 打开编辑器内的工作区，或选择 **工具 → 启动 Unreal Canvas 独立应用**（英文界面为 **Launch Unreal Canvas App**）。两处的齿轮都能打开中文设置。已经打开的独立 App 需要先保存工作、退出，再从这个工程启动。
+
+历史正式版 `v0.2.9` 提供源码包。使用该版源码或直接克隆仓库时，首次编译需要 UE 的 C++ 工具链。使用预编译 ZIP 时如果 UE 提示重新编译，请先核对附件和编辑器 BuildId。
 
 ## 停用、升级与旧版迁移
 
@@ -61,7 +65,8 @@ git archive --format=zip --prefix=UnrealCanvasZhCN/ --output="$zip" "refs/tags/$
 | `Source/UnrealCanvasZhCN/Private/UnrealCanvasZhCNModule.cpp` | 在 Bridge 启动 Server 前，把包内专用资源目录加入本编辑器进程的 Canvas 随包扩展搜索路径。 |
 | `Tools/Frontend/src/` | 汉化入口、翻译逻辑与分类词库。测试、npm 清单和构建脚本都在 `Tools/Frontend/`。 |
 | `Resources/CanvasPlugins/unreal-canvas-zh-cn/` | 两个宿主加载的前端包。构建时向这里直接写入 JS，并同步前端清单。 |
-| `Tools/NativeShell/`、`Resources/NativeShell/` | 原生界面的匹配键、中文文案、生成工具，以及两个宿主共用的中文资源。安装时保留其目录结构。 |
+| `Content/Localization/UnrealCanvasShellZhCN/` | 编辑器与独立 App 共用的原生简体中文资源。 |
+| `Tools/NativeShell/`、`Resources/NativeShell/` | 前者维护原生词条并生成资源，后者提供独立 App 发现主插件所需的描述文件。 |
 | `Tools/Packaging/package.py` | 用显式文件清单生成 Windows UE 插件压缩包。 |
 | `Tools/Artifacts/` | 本机安装包和验收资料，Git 忽略此目录。历史包、截图、原始记录分别放在 `Packages/`、`Verification/Screenshots/` 和 `Verification/Runs/`。 |
 

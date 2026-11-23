@@ -1,5 +1,10 @@
 # Unreal Canvas 简体中文变更记录
 
+## 0.2.11 · 2026-11-23 · 未发布
+
+- 原生简体中文资源移入主插件的 `Content/Localization/`。编辑器和从编辑器启动的独立 Canvas App 共用这份译文，语言继续跟随宿主。Win64 预编译包可直接解压到工程 `Plugins/`。
+- 在中文和英文空白蓝图工程实测了预编译包。编辑器和独立 App 均可直接打开中文工作区，原生菜单按宿主语言显示。[验收记录](VERIFICATION.md)
+
 ## 0.2.10 · 2026-11-23 · 未发布
 
 - 将更新记录、验收记录和第三方说明集中到 `Tools/Docs/`。从源码构建和手动安装前端的入口分别为 `Tools/Packaging/Build-Plugin.ps1`、`Tools/Frontend/install.ps1`。Win64 安装包继续在插件根目录提供文档。
