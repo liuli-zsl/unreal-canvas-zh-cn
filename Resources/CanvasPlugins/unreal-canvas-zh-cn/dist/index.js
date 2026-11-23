@@ -55,6 +55,52 @@ var runStates = new Map(Object.entries({
   Pending: "等待中",
   Error: "错误"
 }));
+var viewportScripts = /* @__PURE__ */ new Map([
+  ["Modify Viewport (Spatial)", { id: "b88aa71e-c1eb-4302-a9f1-d370fa1fc9b1", label: "修改视口（空间）" }],
+  ["Viewport Render", { id: "b7f96a53-c341-4f12-a3de-a8801e610c7c", label: "视口渲染" }],
+  ["Viewport Snapshot", { id: "a104f84a-29f0-44e6-9c20-c75c25a1d69c", label: "视口快照" }],
+  ["Sequence Render", { id: "0100c861-07be-4c12-b12e-a97271962ee5", label: "序列渲染" }]
+]);
+function renderedFiber(element) {
+  const property = Object.keys(element).find((key) => key.startsWith("__reactFiber$"));
+  return property ? Object.getOwnPropertyDescriptor(element, property)?.value : void 0;
+}
+function shelfScriptLists(fiber) {
+  for (let owner = fiber; owner; owner = owner.return ?? void 0) {
+    const scripts = owner.memoizedProps?.scripts;
+    if (!Array.isArray(scripts)) continue;
+    const alternate = owner.alternate?.memoizedProps?.scripts;
+    return Array.isArray(alternate) && alternate !== scripts ? [scripts, alternate] : [scripts];
+  }
+  return [];
+}
+function isBuiltinViewportScript(script) {
+  return script?.params?.builtinGraph === true && viewportScripts.get(script.name)?.id === script.id;
+}
+function translateViewportScript(element, field, value) {
+  const entry = viewportScripts.get(value);
+  if (entry && field === "text" && element.matches('button[role="menuitemradio"] > .ue-menu-label') && element.parentElement) {
+    const fiber2 = renderedFiber(element.parentElement);
+    if (fiber2?.key !== entry.id) return;
+    const lists2 = shelfScriptLists(fiber2);
+    if (lists2.length && lists2.every((scripts) => scripts.some((script) => script?.name === value && isBuiltinViewportScript(script)))) return entry.label;
+  }
+  if (value !== "Viewport") return;
+  const folder = field === "aria-label" && element.matches(".generation-shelf-workflow-folder") ? element : field === "text" && element.matches(".generation-shelf-workflow-folder-name > .ue-menu-label") ? element.closest(".generation-shelf-workflow-folder") : null;
+  if (!folder) return;
+  const fiber = renderedFiber(folder);
+  if (fiber?.key !== "folder:Viewport") return;
+  const lists = shelfScriptLists(fiber);
+  const onlyBuiltin = lists.length > 0 && lists.every((scripts) => {
+    const group = scripts.filter((script) => {
+      const category = script?.params?.category;
+      const path = typeof category === "string" ? category.split("/").map((segment) => segment.trim()).filter(Boolean) : [];
+      return path[0] === "Viewport";
+    });
+    return group.length > 0 && group.every(isBuiltinViewportScript);
+  });
+  if (onlyBuiltin) return "视口";
+}
 function footer(element, field, value) {
   const id = element.getAttribute("data-field");
   if (id === "rating" && field === "title" && value === "Rating") return "评分";
@@ -92,6 +138,12 @@ function translateGeneration(element, field, value, node) {
   if (element.classList.contains("generation-shelf-script") && element.querySelector(".generation-shelf-script-name")) return null;
   if (element.closest(".generation-shelf-script-name")) return null;
   if (element.closest(".generation-shelf-workflow-menu")) {
+    if (field === "text" && element.matches('.generation-shelf-workflow-menu-tools .merlin-panel-settings > [role="menu"] > button[role="menuitem"] > .ue-menu-label')) {
+      if (value === "Collapse all folders") return "折叠所有文件夹";
+      if (value === "Expand all folders") return "展开所有文件夹";
+    }
+    const viewportLabel = translateViewportScript(element, field, value);
+    if (viewportLabel) return viewportLabel;
     if (element.classList.contains("ue-menu-label")) {
       const menu = element.closest(".generation-shelf-workflow-menu");
       const query = menu.querySelector("input")?.value.trim();
@@ -866,6 +918,10 @@ function tooltip(element, value) {
 }
 function translateShelfAction(element, field, value) {
   if (field === "text" && element.matches(namedAgentLabel)) return value;
+  if (field === "text" && value === "Browse models…" && element.matches('.ue-menu [role="listbox"] .ue-menu-item[role="option"][data-value] > span:last-child')) {
+    const option = element.parentElement?.getAttribute("data-value");
+    if (option?.startsWith("\0footer-action-")) return "浏览模型…";
+  }
   const cls = element.classList;
   if (cls.contains("label") && element.matches("#splash .loading-status .label")) return progress(element, field, value);
   if (element.localName === "button" && element.hasAttribute("title") && element.matches(".merlin-generation-host > div > div > div > button")) {
@@ -881,7 +937,7 @@ function translateShelfAction(element, field, value) {
     if (stars) return "评为 " + stars[1] + " 星";
     if (value === "Clear your rating") return "清除我的评分";
   }
-  if (cls.contains("pill-menu-item") && field === "text" && element.closest(".pill-menu[data-add-reference-popover]")) {
+  if (field === "text" && element.matches("[data-add-reference-popover] > div:last-child > button:is(.pill-menu-item,.ue-menu-item)")) {
     const selected = /^Use selected \((\d+)\)$/.exec(value);
     if (selected) return "使用所选内容（" + selected[1] + " 项）";
   }
@@ -5089,6 +5145,9 @@ function localize(doc, dictionary2, readCanvas) {
       if (record.type === "childList") {
         for (const removed of record.removedNodes) if (!doc.contains(removed)) walk(removed, restore);
         for (const added of record.addedNodes) roots.add(added);
+        if (record.target instanceof doc.defaultView.Element && record.target.classList.contains("generation-shelf-workflow-folder")) {
+          roots.add(record.target);
+        }
       } else if (record.type === "characterData") roots.add(record.target);
       else if (record.attributeName && doc.contains(record.target)) {
         const element = record.target;
@@ -9398,19 +9457,24 @@ var shelf_actions_default = [
     }
   },
   {
-    selector: ".pill-menu[data-add-reference-popover] input,.pill-menu[data-add-reference-popover] > div,.pill-menu[data-add-reference-popover] > div:last-child > button.pill-menu-item",
+    selector: "[data-add-reference-popover] > div:first-child :is(input,button),[data-add-reference-popover] > div:nth-child(2):not(:has(*)),[data-add-reference-popover] > div:last-child > button:is(.pill-menu-item,.ue-menu-item)",
     fields: [
       "text",
       "aria-label",
+      "title",
       "placeholder"
     ],
     entries: {
       "Search canvas": "搜索画布",
       "Search canvas...": "搜索画布…",
+      "Search canvas…": "搜索画布…",
+      Close: "关闭",
       "No matching canvas elements": "没有匹配的画布元素",
       "From file...": "从文件选择…",
+      "From file…": "从文件选择…",
       "Use selected": "使用所选内容",
-      "Paste copied node": "粘贴已复制的节点"
+      "Paste copied node": "粘贴已复制的节点",
+      "Paste copied card": "粘贴已复制的卡片"
     }
   },
   {
@@ -11065,7 +11129,7 @@ var dictionary = [...agent_session_default, ...editor_connection_default, ...pan
 var manifest_default = {
   id: "unreal-canvas-zh-cn",
   name: "Unreal Canvas 简体中文",
-  version: "0.2.8",
+  version: "0.2.9",
   apiVersion: 1,
   namespaces: [
     "canvaszh"

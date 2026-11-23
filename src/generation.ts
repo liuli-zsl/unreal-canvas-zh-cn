@@ -12,6 +12,71 @@ const runStates = new Map(Object.entries({
   Done: '完成', Completed: '已完成', Cancelled: '已取消', Pending: '等待中', Error: '错误',
 }));
 
+const viewportScripts = new Map([
+  ['Modify Viewport (Spatial)', { id: 'b88aa71e-c1eb-4302-a9f1-d370fa1fc9b1', label: '修改视口（空间）' }],
+  ['Viewport Render', { id: 'b7f96a53-c341-4f12-a3de-a8801e610c7c', label: '视口渲染' }],
+  ['Viewport Snapshot', { id: 'a104f84a-29f0-44e6-9c20-c75c25a1d69c', label: '视口快照' }],
+  ['Sequence Render', { id: '0100c861-07be-4c12-b12e-a97271962ee5', label: '序列渲染' }],
+]);
+type ShelfScript = { id: string; name: string; params?: { category?: string; builtinGraph?: boolean } };
+type HostFiber = {
+  key: string | null;
+  return?: HostFiber | null;
+  alternate?: HostFiber | null;
+  memoizedProps?: { scripts?: ShelfScript[] };
+};
+
+function renderedFiber(element: Element) {
+  // Canvas 0.24 gives script rows their script IDs as React keys. The extension API
+  // and the DOM expose no row ID. Preserve the source label if the host shape changes.
+  const property = Object.keys(element).find(key => key.startsWith('__reactFiber$'));
+  return property ? Object.getOwnPropertyDescriptor(element, property)?.value as HostFiber | undefined : undefined;
+}
+
+function shelfScriptLists(fiber: HostFiber | undefined) {
+  for (let owner = fiber; owner; owner = owner.return ?? undefined) {
+    const scripts = owner.memoizedProps?.scripts;
+    if (!Array.isArray(scripts)) continue;
+    const alternate = owner.alternate?.memoizedProps?.scripts;
+    return Array.isArray(alternate) && alternate !== scripts ? [scripts, alternate] : [scripts];
+  }
+  return [];
+}
+
+function isBuiltinViewportScript(script: ShelfScript) {
+  return script?.params?.builtinGraph === true && viewportScripts.get(script.name)?.id === script.id;
+}
+
+function translateViewportScript(element: Element, field: string, value: string) {
+  const entry = viewportScripts.get(value);
+  if (entry && field === 'text' && element.matches('button[role="menuitemradio"] > .ue-menu-label') && element.parentElement) {
+    const fiber = renderedFiber(element.parentElement);
+    if (fiber?.key !== entry.id) return;
+    const lists = shelfScriptLists(fiber);
+    if (lists.length && lists.every(scripts => scripts.some(script =>
+      script?.name === value && isBuiltinViewportScript(script)))) return entry.label;
+  }
+  if (value !== 'Viewport') return;
+  const folder = field === 'aria-label' && element.matches('.generation-shelf-workflow-folder')
+    ? element
+    : field === 'text' && element.matches('.generation-shelf-workflow-folder-name > .ue-menu-label')
+      ? element.closest('.generation-shelf-workflow-folder')
+      : null;
+  if (!folder) return;
+  const fiber = renderedFiber(folder);
+  if (fiber?.key !== 'folder:Viewport') return;
+  const lists = shelfScriptLists(fiber);
+  const onlyBuiltin = lists.length > 0 && lists.every(scripts => {
+    const group = scripts.filter(script => {
+      const category = script?.params?.category;
+      const path = typeof category === 'string' ? category.split('/').map(segment => segment.trim()).filter(Boolean) : [];
+      return path[0] === 'Viewport';
+    });
+    return group.length > 0 && group.every(isBuiltinViewportScript);
+  });
+  if (onlyBuiltin) return '视口';
+}
+
 function footer(element: Element, field: string, value: string) {
   const id = element.getAttribute('data-field');
   if (id === 'rating' && field === 'title' && value === 'Rating') return '评分';
@@ -51,6 +116,12 @@ export function translateGeneration(element: Element, field: string, value: stri
   if (element.classList.contains('generation-shelf-script') && element.querySelector('.generation-shelf-script-name')) return null;
   if (element.closest('.generation-shelf-script-name')) return null;
   if (element.closest('.generation-shelf-workflow-menu')) {
+    if (field === 'text' && element.matches('.generation-shelf-workflow-menu-tools .merlin-panel-settings > [role="menu"] > button[role="menuitem"] > .ue-menu-label')) {
+      if (value === 'Collapse all folders') return '折叠所有文件夹';
+      if (value === 'Expand all folders') return '展开所有文件夹';
+    }
+    const viewportLabel = translateViewportScript(element, field, value);
+    if (viewportLabel) return viewportLabel;
     if (element.classList.contains('ue-menu-label')) {
       // The unfiltered first direct radio row is supplied by Canvas. Other rows are named by their authors.
       const menu = element.closest('.generation-shelf-workflow-menu')!;

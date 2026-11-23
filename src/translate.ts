@@ -154,6 +154,9 @@ export function localize(doc: Document, dictionary: Group[], readCanvas?: () => 
       if (record.type === 'childList') {
         for (const removed of record.removedNodes) if (!doc.contains(removed)) walk(removed, restore);
         for (const added of record.addedNodes) roots.add(added);
+        if (record.target instanceof doc.defaultView!.Element && record.target.classList.contains('generation-shelf-workflow-folder')) {
+          roots.add(record.target);
+        }
       } else if (record.type === 'characterData') roots.add(record.target);
       else if (record.attributeName && doc.contains(record.target)) {
         const element = record.target as Element;

@@ -1,7 +1,7 @@
 {
   "FileVersion": 3,
-  "Version": 10,
-  "VersionName": "0.2.8",
+  "Version": 11,
+  "VersionName": "0.2.9",
   "FriendlyName": "Unreal Canvas 简体中文",
   "Description": "为编辑器内的 Unreal Canvas 和从编辑器启动的 Unreal Canvas App 提供离线简体中文界面。",
   "Category": "Editor",

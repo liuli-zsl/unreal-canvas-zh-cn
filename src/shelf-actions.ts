@@ -57,6 +57,12 @@ function tooltip(element: Element, value: string) {
 export function translateShelfAction(element: Element, field: string, value: string): string | undefined {
   // The collaborator's name can coincide with a built-in label in another shelf menu.
   if (field === 'text' && element.matches(namedAgentLabel)) return value;
+  if (field === 'text' && value === 'Browse models…' &&
+      element.matches('.ue-menu [role="listbox"] .ue-menu-item[role="option"][data-value] > span:last-child')) {
+    // CustomSelect reserves these values for actions such as opening the model catalog.
+    const option = element.parentElement?.getAttribute('data-value');
+    if (option?.startsWith('\0footer-action-')) return '浏览模型…';
+  }
   const cls = element.classList;
   if (cls.contains('label') && element.matches('#splash .loading-status .label')) return progress(element, field, value);
   if (element.localName === 'button' && element.hasAttribute('title') && element.matches('.merlin-generation-host > div > div > div > button')) {
@@ -72,7 +78,7 @@ export function translateShelfAction(element: Element, field: string, value: str
     if (stars) return '评为 ' + stars[1] + ' 星';
     if (value === 'Clear your rating') return '清除我的评分';
   }
-  if (cls.contains('pill-menu-item') && field === 'text' && element.closest('.pill-menu[data-add-reference-popover]')) {
+  if (field === 'text' && element.matches('[data-add-reference-popover] > div:last-child > button:is(.pill-menu-item,.ue-menu-item)')) {
     const selected = /^Use selected \((\d+)\)$/.exec(value);
     if (selected) return '使用所选内容（' + selected[1] + ' 项）';
   }

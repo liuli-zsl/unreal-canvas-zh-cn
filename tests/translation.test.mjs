@@ -95,6 +95,65 @@ test('stop does not overwrite changed text; moved nodes and repeated loads recov
  for(let i=0;i<3;i++){const end=localize(d,dictionary);assert.equal(btn.textContent,'保存');end();assert.equal(btn.textContent,'Save');}
  const end=localize(d,dictionary);btn.firstChild.nodeValue='User new name';end();assert.equal(btn.textContent,'User new name');dom.window.close();
 });
+
+test('viewport script labels require verified built-in identities, including in collapsed folders', async () => {
+  const dom = new JSDOM(`
+    <div class="generation-shelf-workflow-menu">
+      <div class="generation-shelf-workflow-folder" role="group" aria-label="Viewport">
+        <button class="generation-shelf-workflow-folder-name" aria-expanded="false"><span class="ue-menu-label">Viewport</span></button>
+      </div>
+    </div>`);
+  const d = dom.window.document;
+  const group = d.querySelector('[role="group"]');
+  const builtin = {
+    id: 'a104f84a-29f0-44e6-9c20-c75c25a1d69c',
+    name: 'Viewport Snapshot',
+    params: {category:'Viewport', builtinGraph:true},
+  };
+  const custom = {...builtin, id:'user-script', params:{category:'Viewport'}};
+  const owner = {memoizedProps:{scripts:[builtin]}};
+  const property = '__reactFiber$viewportTest';
+  group[property] = {key:'folder:Viewport', return:owner};
+  const stop = localize(d, dictionary);
+  assert.equal(group.getAttribute('aria-label'), '视口');
+  assert.equal(group.querySelector('span').textContent, '视口');
+  const createRow = script => {
+    const row = d.createElement('button');
+    row.setAttribute('role', 'menuitemradio');
+    row.innerHTML = '<span class="ue-menu-label">Viewport Snapshot</span>';
+    if (script) row[property] = {key:script.id, return:owner};
+    group.append(row);
+    return row;
+  };
+  owner.memoizedProps.scripts = [builtin, custom];
+  const builtinRow = createRow(builtin);
+  const customRow = createRow(custom);
+  const unknownRow = createRow();
+  await tick();
+  assert.equal(group.getAttribute('aria-label'), 'Viewport');
+  assert.equal(group.querySelector('span').textContent, 'Viewport');
+  assert.equal(builtinRow.textContent, '视口快照');
+  assert.equal(customRow.textContent, 'Viewport Snapshot');
+  assert.equal(unknownRow.textContent, 'Viewport Snapshot');
+  stop();
+  assert.equal(builtinRow.textContent, 'Viewport Snapshot');
+  dom.window.close();
+});
+
+test('model picker translates the browse action and retains a matching model name', () => {
+  const dom = new JSDOM('<div class="ue-menu"><div role="listbox"><div class="ue-menu-item" role="option"><span>Browse models…</span></div><div class="ue-menu-item" role="option" data-value="test-model"><span>Browse models…</span></div></div></div>');
+  const d = dom.window.document;
+  const [action, model] = d.querySelectorAll('[role="option"]');
+  const actionValue = String.fromCharCode(0) + 'footer-action-0';
+  action.setAttribute('data-value', actionValue);
+  const stop = localize(d, dictionary);
+  assert.equal(action.textContent, '浏览模型…');
+  assert.equal(action.getAttribute('data-value'), actionValue);
+  assert.equal(model.textContent, 'Browse models…');
+  stop();
+  assert.equal(action.textContent, 'Browse models…');
+  dom.window.close();
+});
 test('credential status translates template while preserving provider and model IDs',()=>{
  const {dom,d,stop}=setup('<div class="merlin-generation-shelf"><span>Model \'Example\' has no confirmed credentials. Sign in or configure example-key in Settings, then retry.</span></div>');
  assert.match(d.querySelector('span').textContent,/模型“Example”.*example-key/);stop();assert.match(d.querySelector('span').textContent,/^Model/);dom.window.close();

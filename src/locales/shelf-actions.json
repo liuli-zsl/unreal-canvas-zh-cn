@@ -45,19 +45,24 @@
     }
   },
   {
-    "selector": ".pill-menu[data-add-reference-popover] input,.pill-menu[data-add-reference-popover] > div,.pill-menu[data-add-reference-popover] > div:last-child > button.pill-menu-item",
+    "selector": "[data-add-reference-popover] > div:first-child :is(input,button),[data-add-reference-popover] > div:nth-child(2):not(:has(*)),[data-add-reference-popover] > div:last-child > button:is(.pill-menu-item,.ue-menu-item)",
     "fields": [
       "text",
       "aria-label",
+      "title",
       "placeholder"
     ],
     "entries": {
       "Search canvas": "搜索画布",
       "Search canvas...": "搜索画布…",
+      "Search canvas…": "搜索画布…",
+      "Close": "关闭",
       "No matching canvas elements": "没有匹配的画布元素",
       "From file...": "从文件选择…",
+      "From file…": "从文件选择…",
       "Use selected": "使用所选内容",
-      "Paste copied node": "粘贴已复制的节点"
+      "Paste copied node": "粘贴已复制的节点",
+      "Paste copied card": "粘贴已复制的卡片"
     }
   },
   {
