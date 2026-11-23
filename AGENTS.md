@@ -11,8 +11,8 @@
 
 ## 修改与版本同步
 
-- 在 `main` 提交日常修改。正式版本从核实过的 `main` 提交打 `vX.Y.Z` 标签，GitHub Release 选择同一标签。发布页注明引擎兼容性，按已确认的分发范围附加安装包。
-- 维护者用 `Build-Plugin.ps1` 或 `npm run setup:sdk` 校验本机官方 SDK。提交可运行的前端 JS、清单和简体中文资源，使 `main`、Tag 和 Release 的源码都可直接放进 `Plugins`，由 UE 按需编译。SDK、Win64 二进制、维护者打出的 ZIP 与验收截图留在本地。许可证、署名与第三方说明同时进入安装包和网页扩展的手动安装目录。
+- 日常补词和小修在 `main` 提交。适配新版 Canvas、修改加载机制或接收外部贡献时，使用临时分支，验证后合回。旧版 UE 仍需持续修复且实现已分化时，从最后兼容的标签建立维护分支。正式版本从核实过的 `main` 提交打 `vX.Y.Z` 标签，GitHub Release 选择同一标签。发布说明汇总自上个公开正式版以来的用户可见变化，中间开发版本可以合并交付。注明引擎和 Canvas 兼容性，从同一标签生成公开源码附件。
+- 维护者用 `Build-Plugin.ps1` 或 `npm run setup:sdk` 校验本机官方 SDK。提交可运行的前端 JS、清单和简体中文资源，使 `main`、Tag 和 Release 的源码都可直接放进 `Plugins`，由 UE 按需编译。SDK、Win64 二进制、含 DLL 的验收 ZIP 与实机截图留在本地。许可证、署名与第三方说明同时进入安装包和网页扩展的手动安装目录。
 
 - 每项可独立交付的插件变更递增一次 `.uplugin` 的 `Version`，按变更影响更新 `VersionName`。同步前端清单、npm 清单和锁文件的版本，运行前端构建同步嵌入资源。`FileVersion` 和 Canvas 的 `apiVersion` 各自跟随对应格式。
 - 更新 README 中受影响的安装、功能、版本和兼容范围，在 CHANGELOG 顶部记录日期、实际变更和已执行的验证。同一版本补记验证结果，保留历史记录。
@@ -24,7 +24,7 @@
 
 ## 验证与交付
 
-- 前端运行 `npm test` 和 `npm run build`。原生模块发布使用 README 中带 `--engine` 的打包命令，核对模块凭据的 BuildId 和引擎一致。
+- 前端运行 `npm test` 和 `npm run build`。本地 Win64 验收使用 `Build-Plugin.ps1 -EngineRoot <引擎目录>`，核对模块清单的 BuildId。公开源码包使用 README 中的 `git archive` 命令。
 - UE 预览版升级时，从该引擎随附的 Canvas Server 核对服务版本和 `plugin-sdk` 类型包。用该引擎的本地化资源重新核对英文原文和键，并在 README 中同步安装包与 BuildId 的对应关系。
 - 在干净的测试工程和 Canvas 数据目录验证发布包，检查加载源为随包扩展。手动安装的同 ID 副本会优先加载。修改 Win64 版本时同步 `Source/UnrealCanvasZhCN/Private/PluginVersion.rc`。
 - 分别记录编辑器和独立 App 的版本、可见译文、点击、输入、停用和重载。明确区分 DOM 测试、普通浏览器、真实嵌入式窗口及系统输入法组字。

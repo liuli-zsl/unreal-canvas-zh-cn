@@ -1,0 +1,42 @@
+name: 漏译反馈
+description: 报告 Unreal Canvas 界面中仍然显示英文的控件
+title: "[漏译] "
+body:
+  - type: input
+    id: plugin
+    attributes:
+      label: 汉化插件版本
+      placeholder: 例如 0.2.9
+    validations:
+      required: true
+  - type: input
+    id: host
+    attributes:
+      label: UE 和 Unreal Canvas 版本
+      placeholder: 例如 UE 5.9 Preview 2，Canvas 0.24.0
+    validations:
+      required: true
+  - type: dropdown
+    id: window
+    attributes:
+      label: 出现漏译的窗口
+      options:
+        - UE 编辑器里的 Unreal Canvas 标签页
+        - 从编辑器启动的独立 Unreal Canvas App
+        - 两个窗口都有
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 如何打开这个控件
+      placeholder: 例如打开画布 → 点击生成工具架 → 展开模型列表
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: 可见英文或局部截图
+      description: 可直接粘贴控件文字，或附上只包含该控件的截图。
+    validations:
+      required: true
