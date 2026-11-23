@@ -386,6 +386,29 @@
     }
   },
   {
+    "selector": "[role=menu]:is([aria-label=\"Canvas actions\"],[aria-label=\"画布操作\"]) > .ue-menu-item > .feature-hint-menu-label",
+    "fields": ["text"],
+    "entries": {
+      "Import file…": "导入文件…",
+      "Canvas settings": "画布设置",
+      "Unpack Subcanvas": "解散子画布",
+      "Unpack Deck": "解散卡组",
+      "Open Timeline": "打开时间线"
+    }
+  },
+  {
+    "selector": "body:has([role=menu]:is([aria-label=\"Canvas actions\"],[aria-label=\"画布操作\"]) > button[aria-expanded=true]) > .ue-submenu > button.ue-menu-item > .ue-menu-label",
+    "fields": ["text"],
+    "entries": {
+      "Text card": "文本卡片",
+      "Duplicate graph": "创建节点图副本",
+      "Fit to aspect ratio": "适配宽高比",
+      "Reset card size": "重置卡片大小",
+      "Fit to text": "适应文本",
+      "Export as workspace file…": "导出为工作区文件…"
+    }
+  },
+  {
     "selector": "[role=\"dialog\"]:is([aria-label=\"Open canvas\"],[aria-label=\"打开画布\"]) section > div,[role=\"dialog\"]:is([aria-label=\"Open canvas\"],[aria-label=\"打开画布\"]) button",
     "fields": [
       "text",

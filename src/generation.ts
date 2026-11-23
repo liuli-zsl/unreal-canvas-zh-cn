@@ -1,3 +1,5 @@
+import { renderedFiber, type HostFiber } from './host-fiber';
+
 const media = new Map(Object.entries({
   Image: '图像', Video: '视频', Audio: '音频', Text: '文本', Mesh: '网格模型',
   Splat: '高斯泼溅', Other: '其他', Graph: '节点图', Script: '脚本', Number: '数值',
@@ -19,21 +21,9 @@ const viewportScripts = new Map([
   ['Sequence Render', { id: '0100c861-07be-4c12-b12e-a97271962ee5', label: '序列渲染' }],
 ]);
 type ShelfScript = { id: string; name: string; params?: { category?: string; builtinGraph?: boolean } };
-type HostFiber = {
-  key: string | null;
-  return?: HostFiber | null;
-  alternate?: HostFiber | null;
-  memoizedProps?: { scripts?: ShelfScript[] };
-};
+type ShelfProps = { scripts?: ShelfScript[] };
 
-function renderedFiber(element: Element) {
-  // Canvas 0.24 gives script rows their script IDs as React keys. The extension API
-  // and the DOM expose no row ID. Preserve the source label if the host shape changes.
-  const property = Object.keys(element).find(key => key.startsWith('__reactFiber$'));
-  return property ? Object.getOwnPropertyDescriptor(element, property)?.value as HostFiber | undefined : undefined;
-}
-
-function shelfScriptLists(fiber: HostFiber | undefined) {
+function shelfScriptLists(fiber: HostFiber<ShelfProps> | undefined) {
   for (let owner = fiber; owner; owner = owner.return ?? undefined) {
     const scripts = owner.memoizedProps?.scripts;
     if (!Array.isArray(scripts)) continue;
@@ -50,7 +40,7 @@ function isBuiltinViewportScript(script: ShelfScript) {
 function translateViewportScript(element: Element, field: string, value: string) {
   const entry = viewportScripts.get(value);
   if (entry && field === 'text' && element.matches('button[role="menuitemradio"] > .ue-menu-label') && element.parentElement) {
-    const fiber = renderedFiber(element.parentElement);
+    const fiber = renderedFiber<ShelfProps>(element.parentElement);
     if (fiber?.key !== entry.id) return;
     const lists = shelfScriptLists(fiber);
     if (lists.length && lists.every(scripts => scripts.some(script =>
@@ -63,7 +53,7 @@ function translateViewportScript(element: Element, field: string, value: string)
       ? element.closest('.generation-shelf-workflow-folder')
       : null;
   if (!folder) return;
-  const fiber = renderedFiber(folder);
+  const fiber = renderedFiber<ShelfProps>(folder);
   if (fiber?.key !== 'folder:Viewport') return;
   const lists = shelfScriptLists(fiber);
   const onlyBuiltin = lists.length > 0 && lists.every(scripts => {

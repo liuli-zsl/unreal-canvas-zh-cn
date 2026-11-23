@@ -86,7 +86,7 @@ export function localize(doc: Document, dictionary: Group[], readCanvas?: () => 
       if (translated === undefined) translated = translatePanelsDynamic(element, field, english, node);
       if (translated === undefined) translated = translateCanvasAction(element, field, english);
       if (translated === undefined) translated = translatePanelActions(element, field, english);
-      if (translated === undefined) translated = translateSettingsPreview2(element, field, english);
+      if (translated === undefined) translated = translateSettingsPreview2(element, field, english, node);
       if (translated === undefined) translated = translateSettingsActions(element, field, english);
       if (translated === undefined) translated = translateShelfAction(element, field, english);
       if (translated === undefined) translated = translateGeneration(element, field, english, node);

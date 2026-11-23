@@ -15,7 +15,67 @@ const pinTypes = new Map(Object.entries({
 const comfyPinPicker = 'div:has(> div > textarea[placeholder*="ComfyUI"]) [role=combobox]:is(' +
   '[title="Pin type"],[title="引脚类型"],[data-title-tip="Pin type"],[data-title-tip="引脚类型"])';
 
-export function translateSettingsPreview2(element: Element, field: string, english: string): string | undefined {
+const catalogDialog = '[role="dialog"][aria-modal="true"]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search)';
+const catalogCategories = new Map(Object.entries({
+  'image generation': '图像生成', 'image upscaling': '图像放大', 'video generation': '视频生成',
+  'video upscaling': '视频放大', 'audio generation': '音频生成', 'text generation (llm)': '文本生成（LLM）',
+  'mesh generation': '网格生成', 'splat generation': '高斯泼溅生成', 'rigging (auto-rig)': '自动绑定',
+  'depth estimation': '深度估计',
+}));
+
+function catalogText(element: Element, field: string, english: string, node: Node): string | null | undefined {
+  if (field === 'text' && element.closest('[role=option]')) {
+    const list = element.closest('[role=listbox]');
+    if (list?.id && Array.from(element.ownerDocument.querySelectorAll(catalogDialog + ' [role=combobox][aria-controls]'))
+      .some(source => source.getAttribute('aria-controls') === list.id)) return null;
+  }
+  const dialog = element.closest(catalogDialog);
+  if (!dialog) return;
+  if ((field === 'aria-label' && element === dialog) ||
+      (field === 'text' && dialog.querySelector(':scope > div:first-child > span') === element)) {
+    if (english === 'Browse models') return '浏览模型';
+    const title = /^Browse (.+) models$/.exec(english);
+    if (title) return '浏览' + (catalogCategories.get(title[1]) ?? title[1]) + '模型';
+  }
+  const body = dialog.lastElementChild;
+  if (field === 'text' && element.getAttribute('role') === 'tab') return catalogCategories.get(english.toLowerCase());
+  if (field === 'text' && element.closest('[role=combobox]')) return null; // Provider labels.
+  // A single provider is rendered as "From " and the provider name in adjacent text nodes.
+  if (field === 'text' && element.matches('span:first-child') && element.parentElement?.nextElementSibling?.classList.contains('merlin-panel-search')) {
+    return node === element.firstChild && english === 'From' ? '来源：' : null;
+  }
+  if (element.parentElement?.parentElement === body && field === 'text') {
+    if (element.tagName === 'BUTTON' && /^Set up /.test(english)) return '配置 ' + english.slice(7);
+    if (element.tagName === 'SPAN') {
+      if (element.parentElement?.firstElementChild?.tagName === 'DIV') return null; // Error returned for one model.
+      // The provider label and server-supplied error are independent React text nodes.
+      if (element.parentElement?.getAttribute('role') === 'alert') {
+        return node === element.firstChild ? undefined : null;
+      }
+      if (element.nextElementSibling?.tagName === 'BUTTON') {
+        const parts = element.childNodes;
+        if (parts.length === 2 && node === parts[0]) return null;
+        if (parts.length === 5 && (node === parts[1] || node === parts[3])) return null;
+      }
+    }
+  }
+  if (element.parentElement === body && field === 'text') {
+    const empty = /^No catalog here offers (.+) models\.$/.exec(english);
+    if (empty) return '此处没有提供' + (catalogCategories.get(empty[1]) ?? empty[1]) + '模型的目录。';
+    if (element.childNodes.length === 4) {
+      if (english === 'more match' && node === element.childNodes[1]) return '个其他';
+      if (english === 'es' && node === element.childNodes[2]) return '匹配项';
+    }
+  }
+  // A model row has metadata in its first column and action buttons in the second.
+  const column = element.parentElement;
+  if (column?.parentElement?.parentElement === body && column === column.parentElement.firstElementChild &&
+      column.nextElementSibling?.tagName === 'DIV') return null;
+}
+
+export function translateSettingsPreview2(element: Element, field: string, english: string, node: Node): string | null | undefined {
+  const catalog = catalogText(element, field, english, node);
+  if (catalog !== undefined) return catalog;
   if (field === 'text' && pinTypes.has(english)) {
     if (element.closest(comfyPinPicker)) return pinTypes.get(english);
     const menu = element.closest('[role=option]')?.closest('[role=listbox]');

@@ -17,6 +17,12 @@ function keyLength(value) {
   return match ? Number(match[1]) : void 0;
 }
 
+// src/host-fiber.ts
+function renderedFiber(element) {
+  const property = Object.keys(element).find((key) => key.startsWith("__reactFiber$"));
+  return property ? Object.getOwnPropertyDescriptor(element, property)?.value : void 0;
+}
+
 // src/generation.ts
 var media = new Map(Object.entries({
   Image: "图像",
@@ -61,10 +67,6 @@ var viewportScripts = /* @__PURE__ */ new Map([
   ["Viewport Snapshot", { id: "a104f84a-29f0-44e6-9c20-c75c25a1d69c", label: "视口快照" }],
   ["Sequence Render", { id: "0100c861-07be-4c12-b12e-a97271962ee5", label: "序列渲染" }]
 ]);
-function renderedFiber(element) {
-  const property = Object.keys(element).find((key) => key.startsWith("__reactFiber$"));
-  return property ? Object.getOwnPropertyDescriptor(element, property)?.value : void 0;
-}
 function shelfScriptLists(fiber) {
   for (let owner = fiber; owner; owner = owner.return ?? void 0) {
     const scripts = owner.memoizedProps?.scripts;
@@ -189,7 +191,38 @@ function translateGeneration(element, field, value, node) {
 // src/menu-dynamic.ts
 var browserScope = '[role="dialog"]:is([aria-label="Open canvas"],[aria-label="打开画布"])';
 var elapsedUnits = { s: "秒", m: "分钟", h: "小时", d: "天" };
+var customNodeCommands = /* @__PURE__ */ new Map([
+  ["Custom Node", "自定义节点"],
+  ["Update from Library", "从资源库更新"],
+  ["Publish to Library…", "发布到资源库…"],
+  ["Export as file…", "导出为文件…"]
+]);
+var nestedTrigger = 'body > .ue-submenu > div > button[aria-haspopup="menu"]';
+var nestedCommand = "body > .ue-submenu > div > .ue-submenu > button.ue-menu-item";
+function isCustomNodeMenu(element) {
+  const activeGroup = element.ownerDocument.querySelector(
+    '[role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"]) > button[aria-expanded=true] > .feature-hint-menu-label'
+  )?.textContent;
+  if (activeGroup !== "Inspect" && activeGroup !== "检查") return false;
+  const row = element.closest("button");
+  if (row?.matches(nestedTrigger)) return true;
+  if (!row?.matches(nestedCommand)) return false;
+  const submenu = row.parentElement?.previousElementSibling?.querySelector(".feature-hint-menu-label")?.textContent;
+  return submenu === "Custom Node" || submenu === "自定义节点";
+}
 function translateMenuDynamic(element, field, english) {
+  const command = field === "text" && customNodeCommands.get(english);
+  if (command && element.matches(".feature-hint-menu-label,.ue-menu-label") && isCustomNodeMenu(element)) return command;
+  if (field === "title" && element.matches(nestedCommand) && isCustomNodeMenu(element)) {
+    const key = copyKey(english);
+    if (key === "#51:e2f6181aece37205") return "将此卡片保存到自定义节点库，供以后复用。";
+    if (key === "#56:c45701dd2f709202") return "将此卡片的定义导出为 .customnode JSON 文件。";
+    const start = english.indexOf('"');
+    const end = english.lastIndexOf('"');
+    if (start >= 0 && end > start && copyKey(english.slice(0, start + 1) + english.slice(end)) === "#142:998c292fdfcf2cb8") {
+      return "将资源库中“" + english.slice(start + 1, end) + "”的新版定义应用到此卡片。保留仍然存在的引脚连线和你的设置值。此操作可撤销。";
+    }
+  }
   if (field === "text" && element.matches('[role="dialog"]:is([aria-label="About Unreal Canvas"],[aria-label="关于 Unreal Canvas"]) p')) {
     const native = /^\+ (\d+) native$/.exec(english);
     if (native) return "+ " + native[1] + " 个原生依赖";
@@ -533,12 +566,38 @@ function translateViewerDynamic(element, field, english) {
 
 // src/canvas-actions-022.ts
 var closeGraphButton = '[data-merlin-canvas-surface] > [data-merlin-punch-cover] > span > button:has(> svg[data-icon="close"])';
+var toolbarButton = ".canvas-tool-palette button[data-app-tooltip]";
+var toolbarTooltipLine = '[role="tooltip"][data-portal-popup] > div:only-child > div:only-child > div:not(:has(*))';
+var toolbarTools = [
+  { title: "Select", label: "选择", key: "#27:5324499e7f3fb863", detail: "选择、移动卡片并调整大小" },
+  { title: "Annotate", label: "批注", key: "#47:ad5834405fadb661", detail: "在画布和卡片上绘制形状与标记" },
+  { title: "Connector", label: "连接线", key: "#40:cf3d70940b3e5fb2", detail: "在画布对象之间绘制连接线" },
+  { title: "Frame", label: "框架", key: "#43:24ed411515102f59", detail: "拖出框架以组织和排列卡片" },
+  { title: "Comment", label: "评论", key: "#26:a227813f159a07f2", detail: "给卡片添加评论" },
+  { title: "Insert", label: "插入", key: "#51:a154afaea67fdcc6", detail: "添加文本便笺、卡片、节点图、容器和文件" }
+];
+function translateToolbar(element, field, english) {
+  const button = (field === "aria-label" || field === "aria-description") && element.matches(toolbarButton);
+  const line = field === "text" && element.matches(toolbarTooltipLine);
+  if (!button && !line) return;
+  const nextLine = element.nextElementSibling;
+  const title = button ? field === "aria-label" ? english : element.getAttribute("aria-label") : nextLine ? english : element.previousElementSibling?.textContent;
+  const detail = button ? field === "aria-description" ? english : element.getAttribute("aria-description") : nextLine ? nextLine.textContent : english;
+  if (!title || !detail) return;
+  const shortcut = / \(.+\)$/.exec(title)?.[0] ?? "";
+  const name = title.slice(0, title.length - shortcut.length);
+  const tool = toolbarTools.find((tool2) => tool2.title === name || tool2.label === name);
+  if (!tool || detail !== tool.detail && copyKey(detail) !== tool.key) return;
+  return (button ? field === "aria-label" : !!nextLine) ? tool.label + shortcut : tool.detail;
+}
 function currentGraphName(button) {
   const surface = button.closest("[data-merlin-canvas-surface]");
   const crumbs = surface?.querySelector(':scope > div > [data-merlin-punch-cover]:has(> svg[data-icon="chevron-right"])');
   return crumbs?.lastElementChild?.lastElementChild?.textContent;
 }
 function translateCanvasAction(element, field, english) {
+  const toolbar = translateToolbar(element, field, english);
+  if (toolbar !== void 0) return toolbar;
   if (field === "text" && element.closest("button[data-result-index]")) {
     if (element.closest("button[data-result-index] > span:first-child > span:nth-child(2),button[data-result-index] > span:nth-child(n+2)")) {
       return english;
@@ -824,7 +883,65 @@ var pinTypes = new Map(Object.entries({
   audio: "音频"
 }));
 var comfyPinPicker = 'div:has(> div > textarea[placeholder*="ComfyUI"]) [role=combobox]:is([title="Pin type"],[title="引脚类型"],[data-title-tip="Pin type"],[data-title-tip="引脚类型"])';
-function translateSettingsPreview2(element, field, english) {
+var catalogDialog = '[role="dialog"][aria-modal="true"]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search)';
+var catalogCategories = new Map(Object.entries({
+  "image generation": "图像生成",
+  "image upscaling": "图像放大",
+  "video generation": "视频生成",
+  "video upscaling": "视频放大",
+  "audio generation": "音频生成",
+  "text generation (llm)": "文本生成（LLM）",
+  "mesh generation": "网格生成",
+  "splat generation": "高斯泼溅生成",
+  "rigging (auto-rig)": "自动绑定",
+  "depth estimation": "深度估计"
+}));
+function catalogText(element, field, english, node) {
+  if (field === "text" && element.closest("[role=option]")) {
+    const list = element.closest("[role=listbox]");
+    if (list?.id && Array.from(element.ownerDocument.querySelectorAll(catalogDialog + " [role=combobox][aria-controls]")).some((source) => source.getAttribute("aria-controls") === list.id)) return null;
+  }
+  const dialog = element.closest(catalogDialog);
+  if (!dialog) return;
+  if (field === "aria-label" && element === dialog || field === "text" && dialog.querySelector(":scope > div:first-child > span") === element) {
+    if (english === "Browse models") return "浏览模型";
+    const title = /^Browse (.+) models$/.exec(english);
+    if (title) return "浏览" + (catalogCategories.get(title[1]) ?? title[1]) + "模型";
+  }
+  const body = dialog.lastElementChild;
+  if (field === "text" && element.getAttribute("role") === "tab") return catalogCategories.get(english.toLowerCase());
+  if (field === "text" && element.closest("[role=combobox]")) return null;
+  if (field === "text" && element.matches("span:first-child") && element.parentElement?.nextElementSibling?.classList.contains("merlin-panel-search")) {
+    return node === element.firstChild && english === "From" ? "来源：" : null;
+  }
+  if (element.parentElement?.parentElement === body && field === "text") {
+    if (element.tagName === "BUTTON" && /^Set up /.test(english)) return "配置 " + english.slice(7);
+    if (element.tagName === "SPAN") {
+      if (element.parentElement?.firstElementChild?.tagName === "DIV") return null;
+      if (element.parentElement?.getAttribute("role") === "alert") {
+        return node === element.firstChild ? void 0 : null;
+      }
+      if (element.nextElementSibling?.tagName === "BUTTON") {
+        const parts = element.childNodes;
+        if (parts.length === 2 && node === parts[0]) return null;
+        if (parts.length === 5 && (node === parts[1] || node === parts[3])) return null;
+      }
+    }
+  }
+  if (element.parentElement === body && field === "text") {
+    const empty = /^No catalog here offers (.+) models\.$/.exec(english);
+    if (empty) return "此处没有提供" + (catalogCategories.get(empty[1]) ?? empty[1]) + "模型的目录。";
+    if (element.childNodes.length === 4) {
+      if (english === "more match" && node === element.childNodes[1]) return "个其他";
+      if (english === "es" && node === element.childNodes[2]) return "匹配项";
+    }
+  }
+  const column = element.parentElement;
+  if (column?.parentElement?.parentElement === body && column === column.parentElement.firstElementChild && column.nextElementSibling?.tagName === "DIV") return null;
+}
+function translateSettingsPreview2(element, field, english, node) {
+  const catalog = catalogText(element, field, english, node);
+  if (catalog !== void 0) return catalog;
   if (field === "text" && pinTypes.has(english)) {
     if (element.closest(comfyPinPicker)) return pinTypes.get(english);
     const menu = element.closest("[role=option]")?.closest("[role=listbox]");
@@ -4274,8 +4391,27 @@ function translateEditorConnection(el, field, value, node) {
 var categories2 = new Map(Object.entries(geometry_menu_default.categories));
 var operations = new Map(Object.entries(geometry_menu_default.operations));
 var nodePicker = '.pill-menu:has(.merlin-panel-search),.ue-menu:has(input:is([aria-label="Search nodes"],[aria-label="搜索节点"]))';
+var logicNodes = /* @__PURE__ */ new Map([
+  ["Format String", { kind: "formatString", label: "格式化字符串" }],
+  ["Text Extract", { kind: "textExtract", label: "提取文本" }]
+]);
+function isBuiltinLogicRow(element, english, kind) {
+  const button = element.parentElement;
+  if (!button?.matches(".ue-submenu button.ue-menu-item") || !element.classList.contains("ue-menu-label") || !button.closest(nodePicker)) return false;
+  const row = renderedFiber(button)?.return;
+  if (row?.key !== kind || row.memoizedProps?.label !== english) return false;
+  for (let group = row.return; group; group = group.return) {
+    const entries = group.memoizedProps?.entries;
+    if (!Array.isArray(entries)) continue;
+    const matching = entries.filter((entry) => entry?.label === english && (entry.source?.key ?? entry.customNodeId ?? entry.kind) === kind);
+    return matching.length === 1 && matching[0].kind === kind && matching[0].category === "Logic" && !matching[0].customNodeId && !matching[0].source;
+  }
+  return false;
+}
 function translateGeometryMenu(element, field, english) {
   if (field !== "text") return;
+  const logic = logicNodes.get(english);
+  if (logic) return isBuiltinLogicRow(element, english, logic.kind) ? logic.label : void 0;
   const category = categories2.get(english);
   const operation = operations.get(english);
   if (!category && !operation) return;
@@ -5083,7 +5219,7 @@ function localize(doc, dictionary2, readCanvas) {
       if (translated === void 0) translated = translatePanelsDynamic(element, field, english, node);
       if (translated === void 0) translated = translateCanvasAction(element, field, english);
       if (translated === void 0) translated = translatePanelActions(element, field, english);
-      if (translated === void 0) translated = translateSettingsPreview2(element, field, english);
+      if (translated === void 0) translated = translateSettingsPreview2(element, field, english, node);
       if (translated === void 0) translated = translateSettingsActions(element, field, english);
       if (translated === void 0) translated = translateShelfAction(element, field, english);
       if (translated === void 0) translated = translateGeneration(element, field, english, node);
@@ -7619,6 +7755,29 @@ var menus_extra_default = [
     }
   },
   {
+    selector: '[role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"]) > .ue-menu-item > .feature-hint-menu-label',
+    fields: ["text"],
+    entries: {
+      "Import file…": "导入文件…",
+      "Canvas settings": "画布设置",
+      "Unpack Subcanvas": "解散子画布",
+      "Unpack Deck": "解散卡组",
+      "Open Timeline": "打开时间线"
+    }
+  },
+  {
+    selector: 'body:has([role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"]) > button[aria-expanded=true]) > .ue-submenu > button.ue-menu-item > .ue-menu-label',
+    fields: ["text"],
+    entries: {
+      "Text card": "文本卡片",
+      "Duplicate graph": "创建节点图副本",
+      "Fit to aspect ratio": "适配宽高比",
+      "Reset card size": "重置卡片大小",
+      "Fit to text": "适应文本",
+      "Export as workspace file…": "导出为工作区文件…"
+    }
+  },
+  {
     selector: '[role="dialog"]:is([aria-label="Open canvas"],[aria-label="打开画布"]) section > div,[role="dialog"]:is([aria-label="Open canvas"],[aria-label="打开画布"]) button',
     fields: [
       "text",
@@ -9290,7 +9449,6 @@ var canvas_actions_022_default = [
       "Console Log": "控制台日志",
       Convert: "转换",
       "Create Static Mesh Asset": "创建静态网格体资产",
-      "Format String": "格式化字符串",
       "ICP Align": "ICP 对齐",
       "MCP Tool": "MCP 工具",
       "Point Correspondence Pose Fit": "通过对应点拟合姿态",
@@ -9300,7 +9458,6 @@ var canvas_actions_022_default = [
       "Spawn Cutout At": "在指定位置生成剪影",
       "Spawn Mesh At": "在指定位置生成网格",
       Tasks: "任务",
-      "Text Extract": "提取文本",
       Choice: "选项",
       Select: "选择",
       Switch: "切换",
@@ -10285,6 +10442,70 @@ var settings_preview2_default = [
       "Unsaved changes": "有未保存的更改",
       "#44:9410be555898dd9c": "自动锁定按节点图分别设置。"
     }
+  },
+  {
+    selector: '[role=dialog][aria-modal=true]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search) > .merlin-panel-search input, [role=dialog][aria-modal=true]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search) > div:nth-child(2) [role=combobox], [role=dialog][aria-modal=true]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search) [role=tablist]',
+    fields: [
+      "aria-label",
+      "placeholder"
+    ],
+    entries: {
+      "Search models": "搜索模型",
+      "Search models…": "搜索模型…",
+      Source: "来源",
+      "Model types": "模型类型"
+    }
+  },
+  {
+    selector: '[role=dialog][aria-modal=true]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search) > div:last-child > div > span:first-child, [role=dialog][aria-modal=true]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search) > div:last-child > .ui-empty-state, [role=dialog][aria-modal=true]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search) > div:last-child > div:not(:has(> *))',
+    fields: [
+      "text"
+    ],
+    entries: {
+      "#73:03acb70159cafd6c": "仅对已登录的账号开放模型目录。请配置凭据后再浏览。",
+      "Models you add from": "通过",
+      "run on your": "添加的模型会使用你的",
+      "key, which is not set up yet.": "密钥。请先配置密钥。",
+      "Couldn't load the models.": "模型加载失败。",
+      "Could not list model catalogs:": "无法读取模型目录：",
+      "No model catalogs are available.": "暂无可用的模型目录。",
+      "Loading…": "正在加载…",
+      "Loading more…": "正在加载更多模型…",
+      "No models match.": "没有匹配的模型。",
+      "#37:2e4314080ed5a6b8": "已读取的模型中暂无匹配项。",
+      "more match": "个其他匹配项",
+      "#40:80a77f7b19c4cf44": "，可细化搜索条件来缩小范围。"
+    }
+  },
+  {
+    selector: '[role=dialog][aria-modal=true]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search) > div:last-child .ui-btn, [role=dialog][aria-modal=true]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search) > div:last-child .ui-badge, [role=dialog][aria-modal=true]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search) > div:last-child [role=group], [role=dialog][aria-modal=true]:is([aria-label^="Browse "],[aria-label^="浏览"]):has(> .merlin-panel-search) > div:last-child [role=group] > span:first-child',
+    fields: [
+      "text",
+      "aria-label",
+      "title",
+      "data-title-tip"
+    ],
+    entries: {
+      "Try again": "重试",
+      Add: "添加",
+      "adding…": "正在添加…",
+      "removing…": "正在移除…",
+      Remove: "移除",
+      "re-add": "重新添加",
+      Cancel: "取消",
+      "Show more": "显示更多",
+      "added ✓": "已添加 ✓",
+      "Already in your models": "已在你的模型中",
+      "Remove this model and its route": "移除此模型及其路由",
+      "#83:09fb94950b21869e": "根据当前目录重新生成模型定义，以获取新增功能。",
+      preferred: "首选",
+      Approved: "已批准",
+      "Limited Use": "限用",
+      Unreviewed: "未审核",
+      "Near objects are shown": "近处物体的显示方式",
+      "Brighter (most depth maps)": "更亮（多数深度图）",
+      Darker: "更暗"
+    }
   }
 ];
 
@@ -11129,7 +11350,7 @@ var dictionary = [...agent_session_default, ...editor_connection_default, ...pan
 var manifest_default = {
   id: "unreal-canvas-zh-cn",
   name: "Unreal Canvas 简体中文",
-  version: "0.2.9",
+  version: "0.2.10",
   apiVersion: 1,
   namespaces: [
     "canvaszh"

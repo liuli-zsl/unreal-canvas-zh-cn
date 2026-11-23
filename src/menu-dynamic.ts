@@ -1,7 +1,41 @@
+import { copyKey } from './copy-id';
+
 const browserScope = '[role="dialog"]:is([aria-label="Open canvas"],[aria-label="打开画布"])';
 const elapsedUnits: Record<string, string> = { s: '秒', m: '分钟', h: '小时', d: '天' };
+const customNodeCommands = new Map([
+  ['Custom Node', '自定义节点'],
+  ['Update from Library', '从资源库更新'],
+  ['Publish to Library…', '发布到资源库…'],
+  ['Export as file…', '导出为文件…'],
+]);
+const nestedTrigger = 'body > .ue-submenu > div > button[aria-haspopup="menu"]';
+const nestedCommand = 'body > .ue-submenu > div > .ue-submenu > button.ue-menu-item';
+
+function isCustomNodeMenu(element: Element): boolean {
+  const activeGroup = element.ownerDocument.querySelector(
+    '[role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"]) > button[aria-expanded=true] > .feature-hint-menu-label',
+  )?.textContent;
+  if (activeGroup !== 'Inspect' && activeGroup !== '检查') return false;
+  const row = element.closest('button');
+  if (row?.matches(nestedTrigger)) return true;
+  if (!row?.matches(nestedCommand)) return false;
+  const submenu = row.parentElement?.previousElementSibling?.querySelector('.feature-hint-menu-label')?.textContent;
+  return submenu === 'Custom Node' || submenu === '自定义节点';
+}
 
 export function translateMenuDynamic(element: Element, field: string, english: string): string | undefined {
+  const command = field === 'text' && customNodeCommands.get(english);
+  if (command && element.matches('.feature-hint-menu-label,.ue-menu-label') && isCustomNodeMenu(element)) return command;
+  if (field === 'title' && element.matches(nestedCommand) && isCustomNodeMenu(element)) {
+    const key = copyKey(english);
+    if (key === '#51:e2f6181aece37205') return '将此卡片保存到自定义节点库，供以后复用。';
+    if (key === '#56:c45701dd2f709202') return '将此卡片的定义导出为 .customnode JSON 文件。';
+    const start = english.indexOf('"');
+    const end = english.lastIndexOf('"');
+    if (start >= 0 && end > start && copyKey(english.slice(0, start + 1) + english.slice(end)) === '#142:998c292fdfcf2cb8') {
+      return '将资源库中“' + english.slice(start + 1, end) + '”的新版定义应用到此卡片。保留仍然存在的引脚连线和你的设置值。此操作可撤销。';
+    }
+  }
   if (field === 'text' && element.matches('[role="dialog"]:is([aria-label="About Unreal Canvas"],[aria-label="关于 Unreal Canvas"]) p')) {
     const native = /^\+ (\d+) native$/.exec(english);
     if (native) return '+ ' + native[1] + ' 个原生依赖';

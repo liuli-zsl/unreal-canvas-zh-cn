@@ -195,5 +195,69 @@
       "Unsaved changes": "有未保存的更改",
       "#44:9410be555898dd9c": "自动锁定按节点图分别设置。"
     }
+  },
+  {
+    "selector": "[role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > .merlin-panel-search input, [role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > div:nth-child(2) [role=combobox], [role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) [role=tablist]",
+    "fields": [
+      "aria-label",
+      "placeholder"
+    ],
+    "entries": {
+      "Search models": "搜索模型",
+      "Search models…": "搜索模型…",
+      "Source": "来源",
+      "Model types": "模型类型"
+    }
+  },
+  {
+    "selector": "[role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > div:last-child > div > span:first-child, [role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > div:last-child > .ui-empty-state, [role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > div:last-child > div:not(:has(> *))",
+    "fields": [
+      "text"
+    ],
+    "entries": {
+      "#73:03acb70159cafd6c": "仅对已登录的账号开放模型目录。请配置凭据后再浏览。",
+      "Models you add from": "通过",
+      "run on your": "添加的模型会使用你的",
+      "key, which is not set up yet.": "密钥。请先配置密钥。",
+      "Couldn't load the models.": "模型加载失败。",
+      "Could not list model catalogs:": "无法读取模型目录：",
+      "No model catalogs are available.": "暂无可用的模型目录。",
+      "Loading…": "正在加载…",
+      "Loading more…": "正在加载更多模型…",
+      "No models match.": "没有匹配的模型。",
+      "#37:2e4314080ed5a6b8": "已读取的模型中暂无匹配项。",
+      "more match": "个其他匹配项",
+      "#40:80a77f7b19c4cf44": "，可细化搜索条件来缩小范围。"
+    }
+  },
+  {
+    "selector": "[role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > div:last-child .ui-btn, [role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > div:last-child .ui-badge, [role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > div:last-child [role=group], [role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > div:last-child [role=group] > span:first-child",
+    "fields": [
+      "text",
+      "aria-label",
+      "title",
+      "data-title-tip"
+    ],
+    "entries": {
+      "Try again": "重试",
+      "Add": "添加",
+      "adding…": "正在添加…",
+      "removing…": "正在移除…",
+      "Remove": "移除",
+      "re-add": "重新添加",
+      "Cancel": "取消",
+      "Show more": "显示更多",
+      "added ✓": "已添加 ✓",
+      "Already in your models": "已在你的模型中",
+      "Remove this model and its route": "移除此模型及其路由",
+      "#83:09fb94950b21869e": "根据当前目录重新生成模型定义，以获取新增功能。",
+      "preferred": "首选",
+      "Approved": "已批准",
+      "Limited Use": "限用",
+      "Unreviewed": "未审核",
+      "Near objects are shown": "近处物体的显示方式",
+      "Brighter (most depth maps)": "更亮（多数深度图）",
+      "Darker": "更暗"
+    }
   }
 ]

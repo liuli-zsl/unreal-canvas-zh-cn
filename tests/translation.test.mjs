@@ -39,6 +39,28 @@ test('portal menus, delayed labels, React re-render, restored attributes',async(
  btn.removeAttribute('title');await tick();assert.equal(btn.hasAttribute('title'),false);
  stop();assert.equal(menu.textContent,'Paste');assert.equal(btn.textContent,'Cancel');dom.window.close();
 });
+test('canvas toolbar hover descriptions translate and rebound shortcuts are preserved', async () => {
+  const description = 'Draw shapes and marks over the canvas and cards';
+  const { dom, d, stop } = setup(`
+    <div class="canvas-tool-palette"><button data-app-tooltip aria-label="Annotate" aria-description="${description}"></button></div>
+    <div role="tooltip" data-portal-popup><div><div><div id="title">Annotate (Ctrl+D)</div><div id="detail">${description}</div></div></div></div>
+    <div role="tooltip" data-portal-popup><div><div><div id="other">Annotate (Ctrl+D)</div><div>Custom operation</div></div></div></div>`);
+  const button = d.querySelector('button');
+  const title = d.getElementById('title');
+  const detail = d.getElementById('detail');
+  assert.equal(title.textContent, '批注 (Ctrl+D)');
+  assert.equal(detail.textContent, '在画布和卡片上绘制形状与标记');
+  assert.equal(button.getAttribute('aria-description'), detail.textContent);
+  assert.equal(d.getElementById('other').textContent, 'Annotate (Ctrl+D)');
+  title.firstChild.nodeValue = 'Annotate (Shift+D)';
+  await tick();
+  assert.equal(title.textContent, '批注 (Shift+D)');
+  stop();
+  assert.equal(title.textContent, 'Annotate (Shift+D)');
+  assert.equal(button.getAttribute('aria-description'), description);
+  assert.equal(detail.textContent, description);
+  dom.window.close();
+});
 test('shelf collaborator menu translates its actions and preserves matching agent names', () => {
   const {dom, d, stop} = setup(`
     <div class="generation-shelf-menu" role="menu" aria-label="Agent">
