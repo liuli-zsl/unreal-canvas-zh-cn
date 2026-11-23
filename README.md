@@ -4,12 +4,12 @@
 
 **[下载最新正式版](https://github.com/liuli-zsl/unreal-canvas-zh-cn/releases/latest)** · [各版本与更新记录](CHANGELOG.md)
 
-本源码版本 **0.2.10** 适用于 Win64、UE 5.9 Preview 2（编辑器 BuildId `60738873`）和 Unreal Canvas 0.24.0。请通过 Epic 安装 Canvas 本体，并准备 UE 的 C++ 工具链，用于首次编译插件模块。
+本源码版本 **0.2.10** 适用于 Win64、UE 5.9 Preview 2（编辑器 BuildId `60738873`）和 Unreal Canvas 0.24.0。请通过 Epic 安装 Canvas 本体。
 
 ## 安装
 
-1. 在正式版页面下载源码安装 ZIP 或 **Source code (zip)**，解压后把直接含有 `UnrealCanvasZhCN.uplugin` 的整个目录放进工程的 `Plugins`。保留解压目录名即可。从 `main` 克隆到 `Plugins` 可体验开发版。
-2. 打开或重启工程。首次放入工程的插件默认启用，UE 会一同加载 Unreal Canvas Bridge。如果 UE 提示重新编译，点「是」即可（需已安装 UE 的 C++ 工具链）。如果你曾在该工程中手动停用汉化，可在 **编辑 → 插件** 中重新勾选 **Unreal Canvas 简体中文**。
+1. 在 Release 页面按插件版本、UE 版本、编辑器 BuildId 和 Canvas 版本选择对应的 Win64 预编译 ZIP。解压后把直接含有 `UnrealCanvasZhCN.uplugin` 的整个目录放进工程的 `Plugins`。历史版本 `v0.2.9` 提供源码包，使用该版源码或直接克隆仓库时，首次编译需要 UE 的 C++ 工具链。
+2. 打开或重启工程。匹配的预编译包会直接加载；如果 UE 提示重新编译，请先核对下载的附件和引擎 BuildId。UE 会一同加载 Unreal Canvas Bridge。如果你曾在该工程中手动停用汉化，可在 **编辑 → 插件** 中重新勾选 **Unreal Canvas 简体中文**。
 3. 选择 **工具 → Unreal Canvas** 或 **工具 → 启动 Unreal Canvas 独立应用**（英文界面为 **Launch Unreal Canvas App**）。打开工作区后，齿轮的提示和设置面板会显示中文。已经打开的独立 App 需要先保存工作、退出，再从这个工程启动。
 
 ## 停用、升级与旧版迁移
@@ -40,13 +40,16 @@
 
 ## 维护者生成公开源码包
 
-GitHub 根据发布 Tag 自动提供 **Source code (zip)**。如需同版的命名附件，从已审核的标签归档。下面以 `v0.2.7` 为例，发版时将标签换成目标版本。
+GitHub 根据发布 Tag 自动提供 **Source code (zip)**。如需同版的命名源码附件，在已核实并打好标签的发布提交上运行：
 
 ```powershell
-$tag = 'v0.2.7'
-$version = $tag.TrimStart('v')
-New-Item -ItemType Directory -Force -Path output | Out-Null
-git archive --format=zip --prefix=UnrealCanvasZhCN/ --output="output/UnrealCanvasZhCN-$version-Source.zip" "refs/tags/$tag"
+$version = (Get-Content -Raw UnrealCanvasZhCN.uplugin | ConvertFrom-Json).VersionName
+$tag = "v$version"
+$out = "Artifacts/Packages/Builds/Source/$tag"
+New-Item -ItemType Directory -Force -Path $out | Out-Null
+$zip = "$out/UnrealCanvasZhCN-$version-Source.zip"
+if (Test-Path -LiteralPath $zip) { throw "此标签的源码包已存在：$zip" }
+git archive --format=zip --prefix=UnrealCanvasZhCN/ --output="$zip" "refs/tags/$tag"
 ```
 
 上传前核对源码包里的插件版本、前端 JS、简体中文资源和许可文件。Release 选择同一标签，写明自上个正式版以来的改动、宿主兼容范围和实际验收结果。
@@ -56,11 +59,11 @@ git archive --format=zip --prefix=UnrealCanvasZhCN/ --output="output/UnrealCanva
 | 入口 | 用途 |
 | --- | --- |
 | `Source/UnrealCanvasZhCN/Private/UnrealCanvasZhCNModule.cpp` | 在 Bridge 启动 Server 前，把包内专用资源目录加入本编辑器进程的 Canvas 随包扩展搜索路径。 |
-| `src/locales/`、`src/dictionary.ts` | 按设置、菜单、面板、生成、编辑和查看器组织的离线词库，由统一入口加载。 |
-| `src/translate.ts`、`src/index.ts` | 原位处理显示文本、动态菜单和属性，通过宿主的 `loadSignal` 清理并恢复原文。 |
-| `Resources/CanvasPlugins/unreal-canvas-zh-cn/` | 两个宿主加载的前端包。构建脚本会同步根目录的清单和打包后的 JS。 |
+| `Tools/Frontend/src/` | 汉化入口、翻译逻辑与分类词库。测试、npm 清单和构建脚本都在 `Tools/Frontend/`。 |
+| `Resources/CanvasPlugins/unreal-canvas-zh-cn/` | 两个宿主加载的前端包。构建时向这里直接写入 JS，并同步前端清单。 |
 | `Tools/NativeShell/`、`Resources/NativeShell/` | 原生界面的匹配键、中文文案、生成工具，以及两个宿主共用的中文资源。安装时保留其目录结构。 |
-| `scripts/package.py` | 用显式文件清单生成 Windows UE 插件压缩包。 |
+| `Tools/Packaging/package.py` | 用显式文件清单生成 Windows UE 插件压缩包。 |
+| `Artifacts/` | 本机安装包和验收资料，Git 忽略此目录。历史包、截图、原始记录分别放在 `Packages/`、`Verification/Screenshots/` 和 `Verification/Runs/`。 |
 
 维护者修改前端、重生成词库或制作预编译附件时，另需 Node.js 24（含 npm）和 Python 3.10 或以上版本。先从 UE 启动一次官方 Canvas 0.24.0，再在源码根目录运行下面的命令，把示例引擎路径改为本机安装目录。
 
@@ -68,9 +71,12 @@ git archive --format=zip --prefix=UnrealCanvasZhCN/ --output="output/UnrealCanva
 .\Build-Plugin.ps1 -EngineRoot 'C:\Program Files\Epic Games\UE_5.9'
 ```
 
-脚本读取本机官方 Canvas 提供的 `unreal-canvas-plugin-api-1.67.0.tgz`，校验锁文件中的 SHA-512，再安装依赖、运行测试、编译和打包。SDK 位于自定义目录时可追加 `-SdkArchive '完整的 SDK 归档路径'`。本机验收使用 `output/UnrealCanvasZhCN-<版本>-UE5.9-Win64.zip`，其中含按该编辑器 BuildId 编译的 DLL。GitHub 公开附件使用上一节生成的 `-Source.zip`。前端开发可单独运行以下命令。
+脚本读取本机官方 Canvas 提供的 `unreal-canvas-plugin-api-1.67.0.tgz`，校验锁文件中的 SHA-512，再安装依赖、运行测试、编译和打包。SDK 位于自定义目录时可追加 `-SdkArchive '完整的 SDK 归档路径'`。新 Win64 包保存在 `Artifacts/Packages/Builds/<ZIP 的 SHA-256>/`，脚本结束时显示完整路径。同版本的不同包各自保留。正式 Release 上传该标签验证过的免编译包，列明插件、UE、Canvas 版本、平台和编辑器 BuildId。源码附件可一同提供。
+
+从仓库根目录进入前端工程后，可单独安装依赖、运行测试和构建。
 
 ```powershell
+Set-Location Tools/Frontend
 npm.cmd run setup:sdk
 npm.cmd ci
 npm.cmd test

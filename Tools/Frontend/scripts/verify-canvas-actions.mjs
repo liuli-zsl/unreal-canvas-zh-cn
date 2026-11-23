@@ -177,7 +177,7 @@ try {
   await library.getByText(emptyNodeSearch, {exact: true}).waitFor();
   checks.push('graph category, node search, value preservation, custom-name collision and empty state');
 
-  const out = path.join('verification', 'canvas-actions-022-' + mode + '-' + host.port + '.json');
+  const out = path.join(import.meta.dirname, '../../../Artifacts/Verification/Current', 'canvas-actions-022-' + mode + '-' + host.port + '.json');
   await fs.mkdir(path.dirname(out), {recursive: true});
   await fs.writeFile(out, JSON.stringify({host:host.origin, mode, checks, blocked:[...blocked]}, null, 2));
   console.log(mode, checks.length, 'checks passed');

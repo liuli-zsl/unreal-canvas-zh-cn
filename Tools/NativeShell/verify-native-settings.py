@@ -3,10 +3,8 @@ import argparse
 from collections import Counter
 from pathlib import Path
 import re
-import sys
 from zlib import crc32
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "Tools/NativeShell"))
 from catalog import OUTPUT, load_catalog, read_locres
 
 

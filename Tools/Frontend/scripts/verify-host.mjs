@@ -6,7 +6,7 @@ import path from 'node:path';
 
 const url = new URL(process.argv[2]);
 assert.ok(['localhost', '127.0.0.1'].includes(url.hostname));
-const output = path.resolve(process.argv[3] ?? 'verification/browser');
+const output = path.resolve(process.argv[3] ?? path.join(import.meta.dirname, '../../../Artifacts/Verification/Current/browser'));
 await fs.mkdir(output, {recursive:true});
 const browser = await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
 const report = {url:url.origin,started:new Date().toISOString(),checks:[],pages:{},errors:[]};

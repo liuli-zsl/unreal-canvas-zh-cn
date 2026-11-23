@@ -10,7 +10,7 @@ function Invoke-NpmStep {
     & npm.cmd @args
     if ($LASTEXITCODE -ne 0) { throw "npm failed with exit code $LASTEXITCODE" }
 }
-Push-Location -LiteralPath $PSScriptRoot
+Push-Location -LiteralPath (Join-Path $PSScriptRoot 'Tools/Frontend')
 try {
     if ($sdkFile) {
         & node scripts/prepare-sdk.mjs $sdkFile
@@ -20,7 +20,7 @@ try {
     Invoke-NpmStep ci --no-audit --no-fund
     Invoke-NpmStep test
     Invoke-NpmStep run build
-    & python scripts/package.py --engine $engineDir
+    & python ../Packaging/package.py --engine $engineDir
     if ($LASTEXITCODE -ne 0) { throw "Plugin packaging failed with exit code $LASTEXITCODE" }
 } finally {
     Pop-Location

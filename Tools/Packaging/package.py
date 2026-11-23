@@ -11,7 +11,8 @@ import tempfile
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
+FRONTEND = ROOT / "Tools/Frontend"
 NAME = "UnrealCanvasZhCN"
 DESCRIPTOR = f"{NAME}.uplugin"
 DLL = f"Binaries/Win64/UnrealEditor-{NAME}.dll"
@@ -102,17 +103,16 @@ def main():
     args = parser.parse_args()
     descriptor = read_json(ROOT / DESCRIPTOR)
     version = descriptor["VersionName"]
-    manifest = read_json(ROOT / "manifest.json")
+    manifest = read_json(ROOT / RUNTIME / "manifest.json")
     if manifest["id"] != RUNTIME.name or any(v != version for v in
-            (manifest["version"], read_json(ROOT / "package.json")["version"],
-             read_json(ROOT / "package-lock.json")["version"])):
+            (manifest["version"], read_json(FRONTEND / "package.json")["version"],
+             read_json(FRONTEND / "package-lock.json")["version"])):
         raise SystemExit("Plugin IDs or release versions are out of sync.")
-    for relative in ("manifest.json", "dist/index.js"):
-        if (ROOT / relative).read_bytes() != (ROOT / RUNTIME / relative).read_bytes():
-            raise SystemExit("Embedded runtime is stale. Run npm run build.")
+    if (FRONTEND / "manifest.json").read_bytes() != (ROOT / RUNTIME / "manifest.json").read_bytes():
+        raise SystemExit("Embedded manifest is stale. Run npm run build in Tools/Frontend.")
     subprocess.run([sys.executable, str(ROOT / "Tools/NativeShell/compile.py")], check=True)
     if args.engine:
-        subprocess.run([sys.executable, str(ROOT / "scripts/verify-native-settings.py"),
+        subprocess.run([sys.executable, str(ROOT / "Tools/NativeShell/verify-native-settings.py"),
                         "--engine", str(args.engine.resolve())], check=True)
         build_native(args.engine)
     if not (ROOT / MODULES).is_file() or not (ROOT / DLL).is_file():
@@ -125,9 +125,8 @@ def main():
                "VERIFICATION.md",
                "Tools/Skills/ue-plugin-docs/SKILL.md", "Tools/Skills/ue-plugin-docs/agents/openai.yaml",
                "LICENSE", "NOTICE", "THIRD_PARTY.md"]
-    output = ROOT / "output"
-    output.mkdir(exist_ok=True)
-    archive = output / f"{NAME}-{version}-UE5.9-Win64.zip"
+    output = ROOT / "Artifacts/Packages/Builds"
+    output.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(dir=output, suffix=".tmp", delete=False) as file:
         pending = Path(file.name)
     try:
@@ -141,10 +140,17 @@ def main():
         with ZipFile(pending) as package:
             if package.testzip() is not None:
                 raise SystemExit("ZIP integrity check failed.")
-        os.replace(pending, archive)
+        digest = hashlib.sha256(pending.read_bytes()).hexdigest()
+        build_dir = output / digest
+        build_dir.mkdir(exist_ok=True)
+        archive = build_dir / f"{NAME}-{version}-UE5.9-Win64.zip"
+        if not archive.exists():
+            os.replace(pending, archive)
+        elif hashlib.sha256(archive.read_bytes()).hexdigest() != digest:
+            raise SystemExit(f"Existing ZIP does not match its archive directory: {archive}")
     finally:
         pending.unlink(missing_ok=True)
-    print(f"{archive}\nEditor BuildId {receipt['BuildId']}\nSHA256 {hashlib.sha256(archive.read_bytes()).hexdigest()}")
+    print(f"{archive}\nEditor BuildId {receipt['BuildId']}\nSHA256 {digest}")
 
 
 if __name__ == "__main__":

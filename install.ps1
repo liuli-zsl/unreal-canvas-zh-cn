@@ -7,7 +7,11 @@ param(
 $ErrorActionPreference = 'Stop'
 $pluginId = 'unreal-canvas-zh-cn'
 $sourceRoot = $PSScriptRoot
-$manifest = Get-Content -LiteralPath (Join-Path $sourceRoot 'manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+$payloadRoot = $sourceRoot
+if (Test-Path -LiteralPath (Join-Path $sourceRoot 'UnrealCanvasZhCN.uplugin') -PathType Leaf) {
+    $payloadRoot = Join-Path $sourceRoot "Resources/CanvasPlugins/$pluginId"
+}
+$manifest = Get-Content -LiteralPath (Join-Path $payloadRoot 'manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($manifest.id -ne $pluginId -or $manifest.apiVersion -ne 1) {
     throw 'Unexpected plugin manifest.'
 }
@@ -30,9 +34,15 @@ if ([IO.Path]::GetDirectoryName($target) -ne $InstallRoot.TrimEnd('\', '/')) {
 if ($target.TrimEnd('\') -eq $sourceRoot.TrimEnd('\')) {
     throw 'The source folder is already the installation folder.'
 }
-$releaseFiles = @('manifest.json', 'dist/index.js', 'README.md', 'install.ps1', 'VERIFICATION.md', 'LICENSE', 'NOTICE', 'THIRD_PARTY.md')
-foreach ($name in $releaseFiles) {
-    if (-not (Test-Path -LiteralPath (Join-Path $sourceRoot $name) -PathType Leaf)) {
+$releaseFiles = [ordered]@{
+    'manifest.json' = Join-Path $payloadRoot 'manifest.json'
+    'dist/index.js' = Join-Path $payloadRoot 'dist/index.js'
+}
+foreach ($name in 'README.md', 'install.ps1', 'VERIFICATION.md', 'LICENSE', 'NOTICE', 'THIRD_PARTY.md') {
+    $releaseFiles[$name] = Join-Path $sourceRoot $name
+}
+foreach ($name in $releaseFiles.Keys) {
+    if (-not (Test-Path -LiteralPath $releaseFiles[$name] -PathType Leaf)) {
         throw "Missing release file: $name"
     }
 }
@@ -43,10 +53,10 @@ $stage = Join-Path $installParent ('canvas-zh-install-' + [Guid]::NewGuid().ToSt
 $backup = $null
 try {
     New-Item -ItemType Directory -Path (Join-Path $stage 'dist') -Force | Out-Null
-    foreach ($name in $releaseFiles) {
-        Copy-Item -LiteralPath (Join-Path $sourceRoot $name) -Destination (Join-Path $stage $name)
+    foreach ($name in $releaseFiles.Keys) {
+        Copy-Item -LiteralPath $releaseFiles[$name] -Destination (Join-Path $stage $name)
     }
-    $expected = (Get-FileHash -LiteralPath (Join-Path $sourceRoot 'dist/index.js') -Algorithm SHA256).Hash
+    $expected = (Get-FileHash -LiteralPath $releaseFiles['dist/index.js'] -Algorithm SHA256).Hash
     if ((Get-FileHash -LiteralPath (Join-Path $stage 'dist/index.js') -Algorithm SHA256).Hash -ne $expected) {
         throw 'Staged file hash does not match the release.'
     }

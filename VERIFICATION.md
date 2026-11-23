@@ -2,6 +2,8 @@
 
 以下记录为各功能版本在开发时的实测。公开源码的检查与重新编译另见本版本的 GitHub Release。
 
+历史记录中的路径对应当时的检出。当前版本从 `Tools/Frontend/` 运行前端验证脚本。本机历史截图在 `Artifacts/Verification/Screenshots/`，原始记录在 `Artifacts/Verification/Runs/`。
+
 ## 0.2.10 · 2026-11-23
 
 TypeScript 检查、前端构建和 33 项自动化测试通过。本机 Canvas 0.24.0 提供的前端脚本与工程随包脚本逐字节一致。
