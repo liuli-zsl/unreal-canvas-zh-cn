@@ -10,7 +10,7 @@ function Invoke-NpmStep {
     & npm.cmd @args
     if ($LASTEXITCODE -ne 0) { throw "npm failed with exit code $LASTEXITCODE" }
 }
-Push-Location -LiteralPath (Join-Path $PSScriptRoot 'Tools/Frontend')
+Push-Location -LiteralPath (Join-Path $PSScriptRoot '../Frontend')
 try {
     if ($sdkFile) {
         & node scripts/prepare-sdk.mjs $sdkFile

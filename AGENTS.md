@@ -1,6 +1,6 @@
 # Unreal Canvas 简体中文协作说明
 
-本文件适用于插件仓库。用户安装和迁移步骤见 [README.md](README.md)，已验证的发布历史见 [CHANGELOG.md](CHANGELOG.md)。
+本文件适用于插件仓库。用户安装和迁移步骤见 [README.md](README.md)，已验证的发布历史见 [CHANGELOG.md](Tools/Docs/CHANGELOG.md)。
 
 ## 阅读顺序与边界
 
@@ -12,7 +12,7 @@
 ## 修改与版本同步
 
 - 日常补词和小修在 `main` 提交。适配新版 Canvas、修改加载机制或接收外部贡献时，使用临时分支，验证后合回。旧版 UE 仍需持续修复且实现已分化时，从最后兼容的标签建立维护分支。正式版本从核实过的 `main` 提交打 `vX.Y.Z` 标签，GitHub Release 选择同一标签。发布说明汇总自上个公开正式版以来的用户可见变化，中间开发版本可以合并交付。注明引擎和 Canvas 兼容性，从同一标签生成公开源码附件。
-- 维护者用根目录的 `Build-Plugin.ps1` 或前端目录的 `npm run setup:sdk` 校验本机官方 SDK。提交可运行的前端 JS、清单和简体中文资源，使源码可直接放进 `Plugins`，由 UE 按需编译。SDK、编译产物和实机证据由 Git 忽略。正式 Release 附上从同一标签构建并验证的免编译 ZIP，标明插件、UE、Canvas 版本、平台和编辑器 BuildId。许可证、署名与第三方说明同时进入安装包和网页扩展的手动安装目录。
+- 维护者用 `Tools/Packaging/Build-Plugin.ps1` 或前端目录的 `npm run setup:sdk` 校验本机官方 SDK。提交可运行的前端 JS、清单和简体中文资源，使源码可直接放进 `Plugins`，由 UE 按需编译。SDK、编译产物和实机证据由 Git 忽略。正式 Release 附上从同一标签构建并验证的免编译 ZIP，标明插件、UE、Canvas 版本、平台和编辑器 BuildId。许可证、署名与第三方说明同时进入安装包和网页扩展的手动安装目录。
 
 - 每项可独立交付的插件变更递增一次 `.uplugin` 的 `Version`，按变更影响更新 `VersionName`。同步前端清单、npm 清单和锁文件的版本，运行前端构建同步嵌入资源。`FileVersion` 和 Canvas 的 `apiVersion` 各自跟随对应格式。
 - 更新 README 中受影响的安装、功能、版本和兼容范围，在 CHANGELOG 顶部记录日期、实际变更和已执行的验证。同一版本补记验证结果，保留历史记录。
@@ -24,12 +24,12 @@
 
 ## 验证与交付
 
-- 在 `Tools/Frontend/` 执行所有 npm 和 `node scripts/...` 命令。本地 Win64 验收从仓库根目录运行 `Build-Plugin.ps1 -EngineRoot <引擎目录>`，核对模块清单的 BuildId。新包和新验证输出分别进入 `Artifacts/Packages/Builds/` 和 `Artifacts/Verification/Current/`。公开源码包使用 README 中的 `git archive` 命令。
+- 在 `Tools/Frontend/` 执行所有 npm 和 `node scripts/...` 命令。本地 Win64 验收从仓库根目录运行 `.\Tools\Packaging\Build-Plugin.ps1 -EngineRoot <引擎目录>`，核对模块清单的 BuildId。新包和新验证输出分别进入 `Artifacts/Packages/Builds/` 和 `Artifacts/Verification/Current/`。公开源码包使用 README 中的 `git archive` 命令。
 - UE 预览版升级时，从该引擎随附的 Canvas Server 核对服务版本和 `plugin-sdk` 类型包。用该引擎的本地化资源重新核对英文原文和键，并在 README 中同步安装包与 BuildId 的对应关系。
 - 在干净的测试工程和 Canvas 数据目录验证发布包，检查加载源为随包扩展。手动安装的同 ID 副本会优先加载。修改 Win64 版本时同步 `Source/UnrealCanvasZhCN/Private/PluginVersion.rc`。
 - 分别记录编辑器和独立 App 的版本、可见译文、点击、输入、停用和重载。明确区分 DOM 测试、普通浏览器、真实嵌入式窗口及系统输入法组字。
 - 在已运行的本地 Canvas 服务上，`node scripts/verify-host.mjs <服务地址> <输出目录>` 复验工作区及启停。卡片测试使用名为“汉化插件回归验证”的专用画布，`verify-card.mjs` 的 `--save` 参数会保存并重新打开这张画布。
-- 已执行的验收见 [VERIFICATION.md](VERIFICATION.md)。实机截图和日志留在本地测试目录。发行包按脚本中的清单生成。
+- 已执行的验收见 [VERIFICATION.md](Tools/Docs/VERIFICATION.md)。实机截图和日志留在本地测试目录。发行包按脚本中的清单生成。
 - 在新插件上复用三份文档的编写流程时，调用 `$ue-plugin-docs` 并给出插件目录。[技能源文件](Tools/Skills/ue-plugin-docs/SKILL.md)
 
 较长的宿主说明以 UTF-16 长度及 FNV-1a 指纹匹配。用 `node scripts/copy-id.mjs "本机看到的完整提示"` 计算词库键。保留选择器、字段及节点类型限制，为显示内容编写独立的中文说明。智能体设置的专用词库用同一命令加 `--id` 获取短标识。

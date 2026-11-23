@@ -8,8 +8,14 @@ $ErrorActionPreference = 'Stop'
 $pluginId = 'unreal-canvas-zh-cn'
 $sourceRoot = $PSScriptRoot
 $payloadRoot = $sourceRoot
-if (Test-Path -LiteralPath (Join-Path $sourceRoot 'UnrealCanvasZhCN.uplugin') -PathType Leaf) {
+$docsRoot = $sourceRoot
+$repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
+$fromRepository = (Split-Path -Leaf $PSScriptRoot) -eq 'Frontend' -and
+    (Test-Path -LiteralPath (Join-Path $repoRoot 'UnrealCanvasZhCN.uplugin') -PathType Leaf)
+if ($fromRepository) {
+    $sourceRoot = $repoRoot
     $payloadRoot = Join-Path $sourceRoot "Resources/CanvasPlugins/$pluginId"
+    $docsRoot = Join-Path $sourceRoot 'Tools/Docs'
 }
 $manifest = Get-Content -LiteralPath (Join-Path $payloadRoot 'manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($manifest.id -ne $pluginId -or $manifest.apiVersion -ne 1) {
@@ -37,9 +43,17 @@ if ($target.TrimEnd('\') -eq $sourceRoot.TrimEnd('\')) {
 $releaseFiles = [ordered]@{
     'manifest.json' = Join-Path $payloadRoot 'manifest.json'
     'dist/index.js' = Join-Path $payloadRoot 'dist/index.js'
+    'install.ps1' = $PSCommandPath
 }
-foreach ($name in 'README.md', 'install.ps1', 'VERIFICATION.md', 'LICENSE', 'NOTICE', 'THIRD_PARTY.md') {
+foreach ($name in 'README.md', 'LICENSE', 'NOTICE') {
     $releaseFiles[$name] = Join-Path $sourceRoot $name
+}
+foreach ($name in 'VERIFICATION.md', 'THIRD_PARTY.md') {
+    $releaseFiles[$name] = Join-Path $docsRoot $name
+}
+# Older standalone installations shipped without the changelog.
+if ($fromRepository -or (Test-Path -LiteralPath (Join-Path $docsRoot 'CHANGELOG.md') -PathType Leaf)) {
+    $releaseFiles['CHANGELOG.md'] = Join-Path $docsRoot 'CHANGELOG.md'
 }
 foreach ($name in $releaseFiles.Keys) {
     if (-not (Test-Path -LiteralPath $releaseFiles[$name] -PathType Leaf)) {
@@ -55,6 +69,16 @@ try {
     New-Item -ItemType Directory -Path (Join-Path $stage 'dist') -Force | Out-Null
     foreach ($name in $releaseFiles.Keys) {
         Copy-Item -LiteralPath $releaseFiles[$name] -Destination (Join-Path $stage $name)
+    }
+    if ($fromRepository) {
+        # The standalone frontend includes flat user docs. Its maintainer guide lives online.
+        $readmePath = Join-Path $stage 'README.md'
+        $readme = [IO.File]::ReadAllText($readmePath).Replace('](Tools/Docs/', '](')
+        $readme = $readme.Replace('](AGENTS.md)', '](https://github.com/liuli-zsl/unreal-canvas-zh-cn/blob/main/AGENTS.md)')
+        [IO.File]::WriteAllText($readmePath, $readme)
+        $verificationPath = Join-Path $stage 'VERIFICATION.md'
+        $verification = [IO.File]::ReadAllText($verificationPath).Replace('](../../README.md)', '](README.md)')
+        [IO.File]::WriteAllText($verificationPath, $verification)
     }
     $expected = (Get-FileHash -LiteralPath $releaseFiles['dist/index.js'] -Algorithm SHA256).Hash
     if ((Get-FileHash -LiteralPath (Join-Path $stage 'dist/index.js') -Algorithm SHA256).Hash -ne $expected) {

@@ -2,7 +2,7 @@
 
 由 liuli-zsl 独立维护的社区插件，为 UE 编辑器中的 Unreal Canvas 和从该编辑器启动的独立 App 提供离线简体中文。
 
-**[下载最新正式版](https://github.com/liuli-zsl/unreal-canvas-zh-cn/releases/latest)** · [各版本与更新记录](CHANGELOG.md)
+**[下载最新正式版](https://github.com/liuli-zsl/unreal-canvas-zh-cn/releases/latest)** · [各版本与更新记录](Tools/Docs/CHANGELOG.md)
 
 本源码版本 **0.2.10** 适用于 Win64、UE 5.9 Preview 2（编辑器 BuildId `60738873`）和 Unreal Canvas 0.24.0。请通过 Epic 安装 Canvas 本体。
 
@@ -18,13 +18,13 @@
 - 要停用整个 UE 插件，在 UE 插件面板取消勾选并重启。独立 App 也要退出，再从该编辑器启动。通过桌面直接启动的独立 App 使用它自己的扩展配置。
 - 升级前保存工作并关闭编辑器和独立 App，再替换工程中的插件文件夹。
 - 升级后重新打开工程，再从该编辑器启动独立 App。Canvas 的实时日志会显示当前插件版本号。
-- 如果以前运行过 `install.ps1`，Canvas 会优先加载用户目录里的同 ID 副本。迁移时关闭两个宿主，将旧的 `%APPDATA%/com.epicgames.unrealcanvas/plugins/unreal-canvas-zh-cn` 移到 `plugins` 目录之外作为备份，再从 UE 启动。自定义数据目录以该服务 `GET /api/plugins/installed` 的 `installRoot` 为准。
+- 如果以前用 `install.ps1` 手动安装过前端（当前源码入口为 `Tools/Frontend/install.ps1`），Canvas 会优先加载用户目录里的同 ID 副本。迁移时关闭两个宿主，将旧的 `%APPDATA%/com.epicgames.unrealcanvas/plugins/unreal-canvas-zh-cn` 移到 `plugins` 目录之外作为备份，再从 UE 启动。自定义数据目录以该服务 `GET /api/plugins/installed` 的 `installRoot` 为准。
 
 ## 汉化范围
 
 - **画布与节点**覆盖顶栏、设置、卡片菜单、生成工具架、模型列表、视口脚本、参考素材及几何节点分类与操作。
 - **智能体与媒体**覆盖连接向导、权限选项、聊天状态、资源库、时间线与媒体查看器。
-- **原生界面**覆盖UE 工程中的 Bridge 设置，以及独立 App 的编辑、窗口和帮助菜单。覆盖范围与已知限制随宿主版本变化。[逐版改动](CHANGELOG.md)
+- **原生界面**覆盖UE 工程中的 Bridge 设置，以及独立 App 的编辑、窗口和帮助菜单。覆盖范围与已知限制随宿主版本变化。[逐版改动](Tools/Docs/CHANGELOG.md)
 
 节点库可以按中文分类浏览。要用关键词查找内置节点，请输入英文名（如 `image`）。画布查找支持直接输入卡片的中文或英文原名。
 
@@ -68,7 +68,7 @@ git archive --format=zip --prefix=UnrealCanvasZhCN/ --output="$zip" "refs/tags/$
 维护者修改前端、重生成词库或制作预编译附件时，另需 Node.js 24（含 npm）和 Python 3.10 或以上版本。先从 UE 启动一次官方 Canvas 0.24.0，再在源码根目录运行下面的命令，把示例引擎路径改为本机安装目录。
 
 ```powershell
-.\Build-Plugin.ps1 -EngineRoot 'C:\Program Files\Epic Games\UE_5.9'
+.\Tools\Packaging\Build-Plugin.ps1 -EngineRoot 'C:\Program Files\Epic Games\UE_5.9'
 ```
 
 脚本读取本机官方 Canvas 提供的 `unreal-canvas-plugin-api-1.67.0.tgz`，校验锁文件中的 SHA-512，再安装依赖、运行测试、编译和打包。SDK 位于自定义目录时可追加 `-SdkArchive '完整的 SDK 归档路径'`。新 Win64 包保存在 `Artifacts/Packages/Builds/<ZIP 的 SHA-256>/`，脚本结束时显示完整路径。同版本的不同包各自保留。正式 Release 上传该标签验证过的免编译包，列明插件、UE、Canvas 版本、平台和编辑器 BuildId。源码附件可一同提供。
@@ -83,8 +83,8 @@ npm.cmd test
 npm.cmd run build
 ```
 
-各版本已有的编辑器与独立 App 实机验收见项目记录。[验收记录](VERIFICATION.md) · [更新记录](CHANGELOG.md) · [协作说明](AGENTS.md)
+各版本已有的编辑器与独立 App 实机验收见项目记录。[验收记录](Tools/Docs/VERIFICATION.md) · [更新记录](Tools/Docs/CHANGELOG.md) · [协作说明](AGENTS.md)
 
 ## 许可与署名
 
-作者有权授权的内容采用 Apache License 2.0，可免费使用、修改和商用。再分发时请随附许可证，保留适用的版权和署名声明，并在已修改的文件中注明改动。可以在随包说明中写「基于 liuli-zsl 的 Unreal Canvas 简体中文修改」并附上原项目地址，无需通知作者。[许可证](LICENSE) · [原项目署名](NOTICE) · [第三方材料](THIRD_PARTY.md)
+作者有权授权的内容采用 Apache License 2.0，可免费使用、修改和商用。再分发时请随附许可证，保留适用的版权和署名声明，并在已修改的文件中注明改动。可以在随包说明中写「基于 liuli-zsl 的 Unreal Canvas 简体中文修改」并附上原项目地址，无需通知作者。[许可证](LICENSE) · [原项目署名](NOTICE) · [第三方材料](Tools/Docs/THIRD_PARTY.md)

@@ -35,6 +35,16 @@ def read_json(path):
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
+def package_bytes(relative):
+    # These documents sit next to the README in the installed Win64 plugin.
+    if relative in ("CHANGELOG.md", "VERIFICATION.md", "THIRD_PARTY.md"):
+        return (ROOT / "Tools/Docs" / relative).read_bytes().replace(b"](../../README.md)", b"](README.md)")
+    data = (ROOT / relative).read_bytes()
+    if relative in ("README.md", "AGENTS.md"):
+        return data.replace(b"](Tools/Docs/", b"](")
+    return data
+
+
 def install_binary(source, destination):
     destination.parent.mkdir(parents=True, exist_ok=True)
     if destination.is_file() and destination.read_bytes() == source.read_bytes():
@@ -136,7 +146,7 @@ def main():
                 entry = ZipInfo((Path(NAME) / relative).as_posix())
                 entry.create_system = 3
                 entry.external_attr = 0o100644 << 16
-                package.writestr(entry, (ROOT / relative).read_bytes(), compress_type=ZIP_DEFLATED)
+                package.writestr(entry, package_bytes(relative), compress_type=ZIP_DEFLATED)
         with ZipFile(pending) as package:
             if package.testzip() is not None:
                 raise SystemExit("ZIP integrity check failed.")
