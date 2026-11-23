@@ -135,7 +135,7 @@ def main():
                "VERIFICATION.md",
                "Tools/Skills/ue-plugin-docs/SKILL.md", "Tools/Skills/ue-plugin-docs/agents/openai.yaml",
                "LICENSE", "NOTICE", "THIRD_PARTY.md"]
-    output = ROOT / "Artifacts/Packages/Builds"
+    output = ROOT / "Tools/Artifacts/Packages/Builds"
     output.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(dir=output, suffix=".tmp", delete=False) as file:
         pending = Path(file.name)

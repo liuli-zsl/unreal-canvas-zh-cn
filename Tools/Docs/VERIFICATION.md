@@ -2,7 +2,7 @@
 
 以下记录为各功能版本在开发时的实测。公开源码的检查与重新编译另见本版本的 GitHub Release。
 
-历史记录中的路径对应当时的检出。当前版本从 `Tools/Frontend/` 运行前端验证脚本。本机历史截图在 `Artifacts/Verification/Screenshots/`，原始记录在 `Artifacts/Verification/Runs/`。
+历史记录中的路径对应当时的检出。当前版本从 `Tools/Frontend/` 运行前端验证脚本。本机历史截图在 `Tools/Artifacts/Verification/Screenshots/`，原始记录在 `Tools/Artifacts/Verification/Runs/`。
 
 ## 0.2.10 · 2026-11-23
 

@@ -6,7 +6,7 @@ import path from 'node:path';
 const url=new URL(process.argv[2] ?? 'http://localhost:4332');
 assert.ok(['localhost','127.0.0.1'].includes(url.hostname));
 const args = process.argv.slice(3);
-const output = path.resolve(args.find(arg => !arg.startsWith('--')) ?? path.join(import.meta.dirname, '../../../Artifacts/Verification/Current/card'));
+const output = path.resolve(args.find(arg => !arg.startsWith('--')) ?? path.join(import.meta.dirname, '../../Artifacts/Verification/Current/card'));
 const save = args.includes('--save');
 const fixtureName = '汉化插件回归验证';
 const fixtureText = 'Generate 中文测试 Settings Save';

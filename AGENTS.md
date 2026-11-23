@@ -24,7 +24,7 @@
 
 ## 验证与交付
 
-- 在 `Tools/Frontend/` 执行所有 npm 和 `node scripts/...` 命令。本地 Win64 验收从仓库根目录运行 `.\Tools\Packaging\Build-Plugin.ps1 -EngineRoot <引擎目录>`，核对模块清单的 BuildId。新包和新验证输出分别进入 `Artifacts/Packages/Builds/` 和 `Artifacts/Verification/Current/`。公开源码包使用 README 中的 `git archive` 命令。
+- 在 `Tools/Frontend/` 执行所有 npm 和 `node scripts/...` 命令。本地 Win64 验收从仓库根目录运行 `.\Tools\Packaging\Build-Plugin.ps1 -EngineRoot <引擎目录>`，核对模块清单的 BuildId。新包和新验证输出分别进入 `Tools/Artifacts/Packages/Builds/` 和 `Tools/Artifacts/Verification/Current/`。公开源码包使用 README 中的 `git archive` 命令。
 - UE 预览版升级时，从该引擎随附的 Canvas Server 核对服务版本和 `plugin-sdk` 类型包。用该引擎的本地化资源重新核对英文原文和键，并在 README 中同步安装包与 BuildId 的对应关系。
 - 在干净的测试工程和 Canvas 数据目录验证发布包，检查加载源为随包扩展。手动安装的同 ID 副本会优先加载。修改 Win64 版本时同步 `Source/UnrealCanvasZhCN/Private/PluginVersion.rc`。
 - 分别记录编辑器和独立 App 的版本、可见译文、点击、输入、停用和重载。明确区分 DOM 测试、普通浏览器、真实嵌入式窗口及系统输入法组字。

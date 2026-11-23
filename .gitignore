@@ -2,9 +2,10 @@ node_modules/
 .test-build/
 Intermediate/
 Saved/
-/Artifacts/
+/Tools/Artifacts/
 /Tools/Frontend/vendor/
 # Older checkouts can still contain local packages, SDKs and verification evidence.
+/Artifacts/
 /output/
 /vendor/
 /Docs/Verification/

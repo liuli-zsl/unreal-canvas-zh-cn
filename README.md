@@ -45,7 +45,7 @@ GitHub 根据发布 Tag 自动提供 **Source code (zip)**。如需同版的命�
 ```powershell
 $version = (Get-Content -Raw UnrealCanvasZhCN.uplugin | ConvertFrom-Json).VersionName
 $tag = "v$version"
-$out = "Artifacts/Packages/Builds/Source/$tag"
+$out = "Tools/Artifacts/Packages/Builds/Source/$tag"
 New-Item -ItemType Directory -Force -Path $out | Out-Null
 $zip = "$out/UnrealCanvasZhCN-$version-Source.zip"
 if (Test-Path -LiteralPath $zip) { throw "此标签的源码包已存在：$zip" }
@@ -63,7 +63,7 @@ git archive --format=zip --prefix=UnrealCanvasZhCN/ --output="$zip" "refs/tags/$
 | `Resources/CanvasPlugins/unreal-canvas-zh-cn/` | 两个宿主加载的前端包。构建时向这里直接写入 JS，并同步前端清单。 |
 | `Tools/NativeShell/`、`Resources/NativeShell/` | 原生界面的匹配键、中文文案、生成工具，以及两个宿主共用的中文资源。安装时保留其目录结构。 |
 | `Tools/Packaging/package.py` | 用显式文件清单生成 Windows UE 插件压缩包。 |
-| `Artifacts/` | 本机安装包和验收资料，Git 忽略此目录。历史包、截图、原始记录分别放在 `Packages/`、`Verification/Screenshots/` 和 `Verification/Runs/`。 |
+| `Tools/Artifacts/` | 本机安装包和验收资料，Git 忽略此目录。历史包、截图、原始记录分别放在 `Packages/`、`Verification/Screenshots/` 和 `Verification/Runs/`。 |
 
 维护者修改前端、重生成词库或制作预编译附件时，另需 Node.js 24（含 npm）和 Python 3.10 或以上版本。先从 UE 启动一次官方 Canvas 0.24.0，再在源码根目录运行下面的命令，把示例引擎路径改为本机安装目录。
 
@@ -71,7 +71,7 @@ git archive --format=zip --prefix=UnrealCanvasZhCN/ --output="$zip" "refs/tags/$
 .\Tools\Packaging\Build-Plugin.ps1 -EngineRoot 'C:\Program Files\Epic Games\UE_5.9'
 ```
 
-脚本读取本机官方 Canvas 提供的 `unreal-canvas-plugin-api-1.67.0.tgz`，校验锁文件中的 SHA-512，再安装依赖、运行测试、编译和打包。SDK 位于自定义目录时可追加 `-SdkArchive '完整的 SDK 归档路径'`。新 Win64 包保存在 `Artifacts/Packages/Builds/<ZIP 的 SHA-256>/`，脚本结束时显示完整路径。同版本的不同包各自保留。正式 Release 上传该标签验证过的免编译包，列明插件、UE、Canvas 版本、平台和编辑器 BuildId。源码附件可一同提供。
+脚本读取本机官方 Canvas 提供的 `unreal-canvas-plugin-api-1.67.0.tgz`，校验锁文件中的 SHA-512，再安装依赖、运行测试、编译和打包。SDK 位于自定义目录时可追加 `-SdkArchive '完整的 SDK 归档路径'`。新 Win64 包保存在 `Tools/Artifacts/Packages/Builds/<ZIP 的 SHA-256>/`，脚本结束时显示完整路径。同版本的不同包各自保留。正式 Release 上传该标签验证过的免编译包，列明插件、UE、Canvas 版本、平台和编辑器 BuildId。源码附件可一同提供。
 
 从仓库根目录进入前端工程后，可单独安装依赖、运行测试和构建。
 
