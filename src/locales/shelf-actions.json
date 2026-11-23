@@ -77,6 +77,26 @@
     }
   },
   {
+    "selector": ".generation-shelf-menu[role=\"menu\"]:is([aria-label=\"Agent\"],[aria-label=\"智能体\"]) .generation-shelf-menu-row > button[role=\"menuitemradio\"]:is([aria-label=\"Work on my own\"],[aria-label=\"独立工作\"],[aria-label=\"Choose agent\"],[aria-label=\"选择智能体\"]) > .generation-shelf-menu-copy > span,.generation-shelf-menu[role=\"menu\"]:is([aria-label=\"Agent\"],[aria-label=\"智能体\"]) .generation-shelf-menu[role=\"menu\"] button[role=\"menuitem\"] > .generation-shelf-menu-copy > span",
+    "fields": ["text"],
+    "entries": {
+      "Work on my own": "独立工作",
+      "Work with an agent": "与智能体协作",
+      "+ New agent": "+ 新建智能体",
+      "Reopen agent…": "重新打开智能体…"
+    }
+  },
+  {
+    "selector": ".generation-shelf-menu[role=\"menu\"]:is([aria-label=\"Agent\"],[aria-label=\"智能体\"]) button.generation-shelf-menu-option",
+    "fields": ["aria-label"],
+    "entries": {
+      "Work on my own": "独立工作",
+      "Choose agent": "选择智能体",
+      "New agent": "新建智能体",
+      "Reopen agent": "重新打开智能体"
+    }
+  },
+  {
     "selector": "[role=\"tooltip\"] > div > div,.generation-shelf-menu .ue-menu-label,.generation-shelf-menu .ue-menu-detail,.shelf-collaborator-menu .ue-menu-detail",
     "fields": [
       "text"

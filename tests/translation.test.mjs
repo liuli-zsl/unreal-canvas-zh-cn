@@ -39,6 +39,54 @@ test('portal menus, delayed labels, React re-render, restored attributes',async(
  btn.removeAttribute('title');await tick();assert.equal(btn.hasAttribute('title'),false);
  stop();assert.equal(menu.textContent,'Paste');assert.equal(btn.textContent,'Cancel');dom.window.close();
 });
+test('shelf collaborator menu translates its actions and preserves matching agent names', () => {
+  const {dom, d, stop} = setup(`
+    <div class="generation-shelf-menu" role="menu" aria-label="Agent">
+      <div style="display: contents">
+        <div class="generation-shelf-menu-row">
+          <button class="generation-shelf-menu-option" role="menuitemradio" aria-label="Work on my own">
+            <span class="ue-menu-label generation-shelf-menu-copy"><span id="alone">Work on my own</span></span>
+          </button>
+        </div>
+      </div>
+      <div class="generation-shelf-menu-row">
+        <button class="generation-shelf-menu-option" role="menuitemradio" aria-label="Working with Image">
+          <span class="ue-menu-label generation-shelf-menu-copy"><span id="current">Image</span></span>
+        </button>
+        <div class="generation-shelf-menu" role="menu" aria-label="Image">
+          <div class="generation-shelf-menu-row">
+            <button class="generation-shelf-menu-option" role="menuitemradio" aria-label="Work with Work on my own">
+              <span class="ue-menu-label generation-shelf-menu-copy"><span id="named-agent">Work on my own</span></span>
+            </button>
+          </div>
+          <div class="generation-shelf-menu-row">
+            <button class="generation-shelf-menu-option" role="menuitem" aria-label="New agent">
+              <span class="ue-menu-label generation-shelf-menu-copy"><span id="new-agent">+ New agent</span></span>
+            </button>
+          </div>
+          <div class="generation-shelf-menu-row">
+            <button class="generation-shelf-menu-option" role="menuitem" aria-label="Reopen agent">
+              <span class="ue-menu-label generation-shelf-menu-copy"><span id="reopen">Reopen agent…</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>`);
+  const label = id => d.getElementById(id).textContent;
+  assert.equal(label('alone'), '独立工作');
+  assert.equal(label('current'), 'Image');
+  assert.equal(label('named-agent'), 'Work on my own');
+  assert.equal(label('new-agent'), '+ 新建智能体');
+  assert.equal(label('reopen'), '重新打开智能体…');
+  const reopen = d.getElementById('reopen').closest('button');
+  assert.equal(reopen.getAttribute('aria-label'), '重新打开智能体');
+  stop();
+  assert.equal(label('alone'), 'Work on my own');
+  assert.equal(label('new-agent'), '+ New agent');
+  assert.equal(label('reopen'), 'Reopen agent…');
+  assert.equal(reopen.getAttribute('aria-label'), 'Reopen agent');
+  dom.window.close();
+});
 test('stop does not overwrite changed text; moved nodes and repeated loads recover',async()=>{
  const {dom,d,stop}=setup('<div class="settings-window-body"><button>Save</button></div>');
  const btn=d.querySelector('button');d.body.append(btn);await tick();assert.equal(btn.textContent,'Save');

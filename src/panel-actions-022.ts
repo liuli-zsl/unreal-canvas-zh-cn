@@ -25,7 +25,7 @@ const requirements = new Map(Object.entries({
   'Required by the model this input feeds':'使用此输入的模型要求必填',
 }));
 
-const filterDialog = '[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"])';
+const filterDialog = '[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"])';
 const filterFields = new Map(Object.entries({
   name:['Name','名称'],notes:['Notes','备注'],status:['Status','状态'],team:['Team','团队'],
   person:['Person','人员'],tags:['Tags','标签'],votes:['Votes','投票'],rating:['Rating','评分'],

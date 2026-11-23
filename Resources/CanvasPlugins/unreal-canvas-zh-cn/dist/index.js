@@ -592,7 +592,7 @@ var requirements = new Map(Object.entries({
   "Optional — click to make required": "可选，点击改为必填",
   "Required by the model this input feeds": "使用此输入的模型要求必填"
 }));
-var filterDialog = '[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"])';
+var filterDialog = '[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"])';
 var filterFields = new Map(Object.entries({
   name: ["Name", "名称"],
   notes: ["Notes", "备注"],
@@ -815,6 +815,7 @@ function translateSettingsPreview2(element, field, english) {
 
 // src/shelf-actions.ts
 var counts = { "Batch slot": "批量插槽", Batch: "批量输入" };
+var namedAgentLabel = '.generation-shelf-menu:is([aria-label="Agent"],[aria-label="智能体"]) button.generation-shelf-menu-option[role="menuitemradio"]:is([aria-label^="Work with "],[aria-label^="Working with "]) > .generation-shelf-menu-copy > span';
 var voiceInstructions = {
   "Keep Ctrl held while speaking.": "说话时请按住 Ctrl 键。",
   "Press again to stop.": "再按一次即可停止。"
@@ -864,6 +865,7 @@ function tooltip(element, value) {
   if (runs && element === parent.firstElementChild) return "批量 · " + runs[1] + " 次运行";
 }
 function translateShelfAction(element, field, value) {
+  if (field === "text" && element.matches(namedAgentLabel)) return value;
   const cls = element.classList;
   if (cls.contains("label") && element.matches("#splash .loading-status .label")) return progress(element, field, value);
   if (element.localName === "button" && element.hasAttribute("title") && element.matches(".merlin-generation-host > div > div > div > button")) {
@@ -7275,6 +7277,22 @@ var menus_extra_default = [
     }
   },
   {
+    selector: '.merlin-app-menus .merlin-file-menu > .ue-menu :is(.ue-menu-label,.ue-menu-heading,[role="group"]),.merlin-app-bar .merlin-new-canvas-tab + .ue-menu[popover] > .ue-menu-item > .ue-menu-label',
+    fields: ["text", "aria-label"],
+    entries: {
+      "New / Open": "新建 / 打开",
+      "Current canvas": "当前画布",
+      "Open canvas file…": "打开画布文件…",
+      "Open file…": "打开文件…",
+      "Rename canvas…": "重命名画布…",
+      "Collaborate…": "协作…",
+      "Close canvas": "关闭画布",
+      "Save canvas": "保存画布",
+      "Duplicate canvas": "复制画布",
+      "Package canvas…": "打包画布…"
+    }
+  },
+  {
     selector: ".connect-agent-header h2,.connect-agent-header button,.connect-agent-intro,.connect-agent-note,.connect-agent-label,.connect-agent-row button",
     fields: [
       "text",
@@ -7304,12 +7322,23 @@ var menus_extra_default = [
     entries: {
       "About Unreal Canvas": "关于 Unreal Canvas",
       "Third-Party Software": "第三方软件",
+      "Third-party software": "第三方软件",
       "Transitive Notices": "间接依赖声明",
+      "Transitive notices": "间接依赖声明",
       "#64:3ded3b59abfd4956": "用节点图组织 AI 素材生成步骤。",
       "Frontend version": "前端版本",
       "Server version": "服务器版本",
       "Server build ID": "服务器构建标识",
       "AI Models root": "AI 模型根目录"
+    }
+  },
+  {
+    selector: '[role="dialog"]:is([aria-label="About Unreal Canvas"],[aria-label="关于 Unreal Canvas"]) nav + div > div > div:has(> div:nth-child(6)) > div:nth-child(odd)',
+    fields: ["text"],
+    entries: {
+      Version: "版本",
+      Build: "构建版本",
+      "AI models root": "AI 模型根目录"
     }
   },
   {
@@ -7378,6 +7407,7 @@ var menus_extra_default = [
       Age: "时间",
       Votes: "投票",
       "Custom Filter…": "自定义筛选…",
+      "Custom filter…": "自定义筛选…",
       Saved: "已保存",
       "#60:449f6e30e468f5e2": "切换手动关系线的可见性。",
       "Show relationship connectors": "显示关系连线",
@@ -7385,6 +7415,26 @@ var menus_extra_default = [
       "#42:64d6d5fcff42ff4c": "只能选择符合筛选条件的卡片。",
       "Lock to selection": "锁定到筛选结果",
       "Clear all": "全部清除"
+    }
+  },
+  {
+    selector: '.merlin-toolbar-control-box button:has(> svg[data-icon="source-link"]),.merlin-toolbar-control-box [role="menu"]:is([aria-label="History lines"],[aria-label="历史连线"]),.merlin-toolbar-control-box [role="menu"]:is([aria-label="History lines"],[aria-label="历史连线"]) :is(button,.ue-menu-label,[role="group"])',
+    fields: ["text", "title", "aria-label"],
+    entries: {
+      "History lines": "历史连线",
+      "Show selected": "显示所选",
+      "Show all": "显示全部",
+      "Show none": "全部隐藏",
+      "Fade other cards": "淡化其他卡片",
+      "Fade the cards outside the lines": "淡化连线以外的卡片",
+      "Show ancestor numbers": "显示上游序号",
+      "Number each line by its step back": "按回溯层级为连线编号",
+      "Curved lines": "曲线连线",
+      "Draw the lines as free-flowing curves": "以曲线绘制连线",
+      "Line style": "线型",
+      "Animated dashes": "动态虚线",
+      "Static dashes": "静态虚线",
+      "Solid lines": "实线"
     }
   },
   {
@@ -7578,7 +7628,7 @@ var menus_extra_default = [
     }
   },
   {
-    selector: '[role="dialog"][aria-modal="true"],[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"]) > div,[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"]) > div:first-child > span:first-child,[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"]) input,[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"]) > div:last-child > button,[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"]) button.custom-select,[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"]) select option[value=""],[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"]) button.custom-select > span,[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"]) [role="group"] > button,[role="dialog"]:is([aria-label="Custom Filter"],[aria-label="自定义筛选"]) [role="group"] [role="group"] button',
+    selector: '[role="dialog"][aria-modal="true"],[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"]) > div,[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"]) > div:first-child > span:first-child,[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"]) input,[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"]) > div:last-child > button,[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"]) button.custom-select,[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"]) select option[value=""],[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"]) button.custom-select > span,[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"]) [role="group"] > button,[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"]) [role="group"] [role="group"] button',
     fields: [
       "text",
       "title",
@@ -7587,6 +7637,7 @@ var menus_extra_default = [
     ],
     entries: {
       "Custom Filter": "自定义筛选",
+      "Custom filter": "自定义筛选",
       "#302:e96bb70aef520d84": "先添加字段，再填写条件或选取值。文本忽略大小写，可用「不等于」排除，多行可重复使用同一字段。「且」优先于「或」，编辑立即生效。",
       "+ Add field…": "+ 添加字段…",
       "Saved filter name": "筛选条件名称",
@@ -9379,6 +9430,26 @@ var shelf_actions_default = [
     }
   },
   {
+    selector: '.generation-shelf-menu[role="menu"]:is([aria-label="Agent"],[aria-label="智能体"]) .generation-shelf-menu-row > button[role="menuitemradio"]:is([aria-label="Work on my own"],[aria-label="独立工作"],[aria-label="Choose agent"],[aria-label="选择智能体"]) > .generation-shelf-menu-copy > span,.generation-shelf-menu[role="menu"]:is([aria-label="Agent"],[aria-label="智能体"]) .generation-shelf-menu[role="menu"] button[role="menuitem"] > .generation-shelf-menu-copy > span',
+    fields: ["text"],
+    entries: {
+      "Work on my own": "独立工作",
+      "Work with an agent": "与智能体协作",
+      "+ New agent": "+ 新建智能体",
+      "Reopen agent…": "重新打开智能体…"
+    }
+  },
+  {
+    selector: '.generation-shelf-menu[role="menu"]:is([aria-label="Agent"],[aria-label="智能体"]) button.generation-shelf-menu-option',
+    fields: ["aria-label"],
+    entries: {
+      "Work on my own": "独立工作",
+      "Choose agent": "选择智能体",
+      "New agent": "新建智能体",
+      "Reopen agent": "重新打开智能体"
+    }
+  },
+  {
     selector: '[role="tooltip"] > div > div,.generation-shelf-menu .ue-menu-label,.generation-shelf-menu .ue-menu-detail,.shelf-collaborator-menu .ue-menu-detail',
     fields: [
       "text"
@@ -9556,7 +9627,7 @@ var panel_actions_022_default = [
     }
   },
   {
-    selector: "[role=dialog]:is([aria-label='Custom Filter'],[aria-label='自定义筛选']) input,.media-library-filter-trigger,.merlin-scripts-section .merlin-panel-chip",
+    selector: "[role=dialog]:is([aria-label='Custom Filter' i],[aria-label='自定义筛选']) input,.media-library-filter-trigger,.merlin-scripts-section .merlin-panel-chip",
     fields: [
       "title",
       "placeholder",
@@ -10994,7 +11065,7 @@ var dictionary = [...agent_session_default, ...editor_connection_default, ...pan
 var manifest_default = {
   id: "unreal-canvas-zh-cn",
   name: "Unreal Canvas 简体中文",
-  version: "0.2.7",
+  version: "0.2.8",
   apiVersion: 1,
   namespaces: [
     "canvaszh"

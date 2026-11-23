@@ -108,7 +108,7 @@
     }
   },
   {
-    "selector": "[role=dialog]:is([aria-label='Custom Filter'],[aria-label='自定义筛选']) input,.media-library-filter-trigger,.merlin-scripts-section .merlin-panel-chip",
+    "selector": "[role=dialog]:is([aria-label='Custom Filter' i],[aria-label='自定义筛选']) input,.media-library-filter-trigger,.merlin-scripts-section .merlin-panel-chip",
     "fields": [
       "title",
       "placeholder",

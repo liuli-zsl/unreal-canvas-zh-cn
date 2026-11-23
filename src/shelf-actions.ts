@@ -1,5 +1,6 @@
 import { copyId } from './copy-id';
 const counts: Record<string, string> = { 'Batch slot': '批量插槽', Batch: '批量输入' };
+const namedAgentLabel = '.generation-shelf-menu:is([aria-label="Agent"],[aria-label="智能体"]) button.generation-shelf-menu-option[role="menuitemradio"]:is([aria-label^="Work with "],[aria-label^="Working with "]) > .generation-shelf-menu-copy > span';
 const voiceInstructions: Record<string, string> = {
   'Keep Ctrl held while speaking.': '说话时请按住 Ctrl 键。',
   'Press again to stop.': '再按一次即可停止。',
@@ -54,6 +55,8 @@ function tooltip(element: Element, value: string) {
 }
 
 export function translateShelfAction(element: Element, field: string, value: string): string | undefined {
+  // The collaborator's name can coincide with a built-in label in another shelf menu.
+  if (field === 'text' && element.matches(namedAgentLabel)) return value;
   const cls = element.classList;
   if (cls.contains('label') && element.matches('#splash .loading-status .label')) return progress(element, field, value);
   if (element.localName === 'button' && element.hasAttribute('title') && element.matches('.merlin-generation-host > div > div > div > button')) {

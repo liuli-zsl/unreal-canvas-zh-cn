@@ -1,6 +1,6 @@
 # Unreal Canvas 简体中文
 
-UE 插件 **0.2.7** 为编辑器标签页和从该编辑器启动的独立 Unreal Canvas App 提供离线简体中文。本版面向 Windows 64 位、UE 5.9 Preview 2（编辑器 BuildId `60738873`）和 Unreal Canvas 0.24.0。
+UE 插件为编辑器标签页和从该编辑器启动的独立 Unreal Canvas App 提供离线简体中文。当前开发版 **0.2.8** 面向 Windows 64 位、UE 5.9 Preview 2（编辑器 BuildId `60738873`）和 Unreal Canvas 0.24.0。
 
 ## 安装
 
@@ -8,7 +8,7 @@ UE 插件 **0.2.7** 为编辑器标签页和从该编辑器启动的独立 Unrea
 2. 打开或重启工程。首次放入工程的插件默认启用，UE 会一同加载 Unreal Canvas Bridge。如果 UE 提示重新编译，点「是」即可（需已安装 UE 的 C++ 工具链）。如果你曾在该工程中手动停用汉化，可在 **编辑 → 插件** 中重新勾选 **Unreal Canvas 简体中文**。
 3. 选择 **工具 → Unreal Canvas** 或 **工具 → 启动 Unreal Canvas 独立应用**（英文界面为 **Launch Unreal Canvas App**）。打开工作区后，齿轮的提示和设置面板会显示中文。已经打开的独立 App 需要先保存工作、退出，再从这个工程启动。
 
-首次使用 Unreal Canvas 时请按 Epic 的提示安装 Canvas 本体。公开下载提供源码安装包，内含前端 JavaScript 和编译好的中文词库。首次安装只需 UE 编译 C++ 模块，编辑器和独立 App 共用编译结果。[下载 v0.2.7](https://github.com/liuli-zsl/unreal-canvas-zh-cn/releases/tag/v0.2.7)
+首次使用 Unreal Canvas 时请按 Epic 的提示安装 Canvas 本体。公开下载提供源码安装包，内含前端 JavaScript 和编译好的中文词库。首次安装只需 UE 编译 C++ 模块，编辑器和独立 App 共用编译结果。[下载正式版 v0.2.7](https://github.com/liuli-zsl/unreal-canvas-zh-cn/releases/tag/v0.2.7)
 
 ## Main、Tag 和 GitHub Release
 
@@ -29,6 +29,8 @@ UE 插件 **0.2.7** 为编辑器标签页和从该编辑器启动的独立 Unrea
 - 如果以前运行过 `install.ps1`，Canvas 会优先加载用户目录里的同 ID 副本。迁移时关闭两个宿主，将旧的 `%APPDATA%/com.epicgames.unrealcanvas/plugins/unreal-canvas-zh-cn` 移到 `plugins` 目录之外作为备份，再从 UE 启动。自定义数据目录以该服务 `GET /api/plugins/installed` 的 `installRoot` 为准。
 
 ## 汉化范围
+
+0.2.8 补译了画布顶栏的新建、打开、保存及打包菜单，“关于 Unreal Canvas”的栏目和版本字段，卡片筛选与关系连线菜单，以及生成工具架中的智能体选择菜单。
 
 连接智能体后，点对话输入框底部的模型与权限摘要，打开 **智能体设置 → 自定义**。0.2.6 补译了权限、推理强度、行为、记忆和工具等选项，也补译了聊天中的工作状态、发言人标签和本条消息的技能说明。模型名和对话名称按原名显示。
 
