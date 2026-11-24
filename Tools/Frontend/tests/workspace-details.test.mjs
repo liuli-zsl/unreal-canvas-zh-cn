@@ -94,3 +94,31 @@ test('render fields, pass controls and resolution hints preserve user variable n
     dom.window.close();
   }
 });
+
+test('a saved render uses legacy canonical output pins when the pass list is empty', () => {
+  const dom = new JSDOM(`
+    <div class="react-flow__node" data-id="render">
+      <div class="graph-node-body">
+        <div class="nodrag">
+          <button aria-pressed="true" title="beauty">beauty</button>
+          <button aria-pressed="false" title="normal">normal</button>
+        </div>
+      </div>
+    </div>`);
+  try {
+    const render = {id:'render',kind:'unrealRender',params:{mrgPassNames:[]},pins:[
+      {id:'beauty',name:'beauty',direction:'output',dataType:'image'},
+      {id:'user-output',name:'normal',direction:'output',dataType:'image'},
+    ]};
+    const state = {activeCanvasId:'c',canvases:{c:{nodes:[render]}}};
+    const stop = localize(dom.window.document, [], () => state);
+    const [beauty, normal] = dom.window.document.querySelectorAll('button');
+    assert.equal(beauty.textContent,'最终合成');
+    assert.equal(beauty.title,'最终合成');
+    assert.equal(normal.textContent,'normal');
+    stop();
+    assert.equal(beauty.textContent,'beauty');
+  } finally {
+    dom.window.close();
+  }
+});

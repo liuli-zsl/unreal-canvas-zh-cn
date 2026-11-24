@@ -1,0 +1,248 @@
+{
+  "UObjectCategory": {
+    "3D Annotations": [
+      "3e79affa",
+      "3D 标注"
+    ]
+  },
+  "UObjectDisplayNames": {
+    "UnrealCanvasSpatialAnnotationActor": [
+      "b4c22ed0",
+      "Unreal Canvas 空间标注 Actor"
+    ],
+    "UnrealCanvasSpatialAnnotationActor:Annotation": [
+      "efd2a2c5",
+      "标注"
+    ],
+    "UnrealCanvasSpatialAnnotationActor:ProxyMesh": [
+      "beebbe22",
+      "代理网格"
+    ],
+    "UnrealCanvasSpatialAnnotationComponent": [
+      "6f0b4f04",
+      "Unreal Canvas 空间标注组件"
+    ],
+    "UnrealCanvasSpatialAnnotationComponent:Color": [
+      "c78a6765",
+      "颜色"
+    ],
+    "UnrealCanvasSpatialAnnotationComponent:DepthMode": [
+      "fab1f916",
+      "深度模式"
+    ],
+    "UnrealCanvasSpatialAnnotationComponent:FillOpacity": [
+      "cba747eb",
+      "填充不透明度"
+    ],
+    "UnrealCanvasSpatialAnnotationComponent:Group": [
+      "56e6c763",
+      "组"
+    ],
+    "UnrealCanvasSpatialAnnotationComponent:Id": [
+      "e7b466fb",
+      "标识符"
+    ],
+    "UnrealCanvasSpatialAnnotationComponent:ObjectId": [
+      "7623e7a5",
+      "对象 ID"
+    ],
+    "UnrealCanvasSpatialAnnotationComponent:Prompt": [
+      "b621431c",
+      "提示词"
+    ],
+    "UnrealCanvasSpatialAnnotationComponent:bShowLabel": [
+      "fa1e962e",
+      "显示标签"
+    ],
+    "UnrealCanvasSpatialAnnotationsSettings": [
+      "3ab0266a",
+      "Unreal Canvas 空间标注"
+    ],
+    "UnrealCanvasSpatialAnnotationsSettings:CaptureStage": [
+      "9cb37ed1",
+      "捕获阶段"
+    ],
+    "UnrealCanvasSpatialAnnotationsSettings:bAnnotatedAlwaysOnTop": [
+      "b1cdf8ae",
+      "标注对象始终置顶"
+    ],
+    "UnrealCanvasSpatialAnnotationsSettings:bPersistNewAnnotationsToLevel": [
+      "001aec01",
+      "将新标注写入关卡"
+    ]
+  },
+  "UObjectToolTips": {
+    "UnrealCanvasSpatialAnnotationComponent:DepthMode": [
+      "2365d581",
+      "启用深度测试时，标注会被前方物体遮挡。选择「始终置顶」后，标注及其遮罩会忽略遮挡并覆盖前方物体。"
+    ],
+    "UnrealCanvasSpatialAnnotationsSettings:bAnnotatedAlwaysOnTop": [
+      "de863841",
+      "穿透遮挡物显示已标注的对象。遮罩也会忽略遮挡，将已标注的几何体绘制在前方物体之上。"
+    ],
+    "UnrealCanvasSpatialAnnotationsSettings:bPersistNewAnnotationsToLevel": [
+      "7cf0b6e9",
+      "默认随关卡保存新标注。关闭后，新建代理体、Actor 上的标注组件和模板状态均不会保存，放置标注也不会将关卡标记为已修改。此设置仅影响之后添加的标注。要保存已有的临时标注，请使用「写入关卡」。"
+    ]
+  },
+  "UnrealCanvasSpatialAnnotation": {
+    "AnnotateLabel": [
+      "d1da5bd2",
+      "3D 标注"
+    ],
+    "AnnotateSelected": [
+      "78867ce9",
+      "为选中的 Actor 添加标注"
+    ],
+    "AnnotateSelectedTip": [
+      "ff4b78ee",
+      "为选中的场景 Actor 添加标注。标注加入当前组，包含提示词、彩色叠加层和遮罩。可在细节面板中编辑提示词。"
+    ],
+    "AnnotateTip": [
+      "87c652f6",
+      "在此视口显示 3D 标注放置面板"
+    ],
+    "ClearAllTip": [
+      "5bec1e5d",
+      "移除场景中的所有 3D 标注。此操作会销毁代理立方体，并移除已标注 Actor 上的标注组件。"
+    ],
+    "ClearAnnotations": [
+      "d92d1f67",
+      "清除 Unreal Canvas 标注"
+    ],
+    "GroupPickLabel": [
+      "56e6c763",
+      "组"
+    ],
+    "GroupPickTip": [
+      "310182cc",
+      "激活组 {0}。新标注将加入此组。"
+    ],
+    "GroupVisLabel": [
+      "b34a6798",
+      "可见"
+    ],
+    "GroupVisTip": [
+      "93226088",
+      "在标注叠加层和遮罩中显示或隐藏组 {0}。"
+    ],
+    "HideInViewportTip": [
+      "06daed0f",
+      "隐藏视口叠加层（当前可见）。叠加层仅在活动的透视视口中显示，捕获的场景颜色不受影响。无需向 Unreal Canvas 推流。"
+    ],
+    "HideLabelsTip": [
+      "fc7764eb",
+      "隐藏标签（当前可见）。控制视口中所有标注的提示词标签。"
+    ],
+    "PanelTitle": [
+      "d1da5bd2",
+      "3D 标注"
+    ],
+    "PersistAnnotations": [
+      "c34d6af2",
+      "持久化 Unreal Canvas 标注"
+    ],
+    "PersistTip": [
+      "a839eeb6",
+      "将临时标注写入关卡。临时代理立方体会成为关卡中的永久 Actor，选中对象上的标注组件会成为可保存的实例组件。关卡会标记为已修改，请保存关卡以保留标注。没有临时标注时，此按钮会隐藏。默认情况下，新标注会直接写入关卡。"
+    ],
+    "PlaceAnnotation": [
+      "36fe20e3",
+      "放置 Unreal Canvas 标注"
+    ],
+    "PlaceAnnotationTx": [
+      "36fe20e3",
+      "放置 Unreal Canvas 标注"
+    ],
+    "PlaceTip": [
+      "40512aca",
+      "在摄像机前方生成所选形状的标注代理并选中它。可在细节面板中编辑提示词和更换网格。关闭编辑器偏好设置中的「将新标注写入关卡」后，新标注将保持临时状态。"
+    ],
+    "PromptFieldTip": [
+      "ad18ad80",
+      "编辑选中标注对象的提示词，视口也会将它显示为标签。按 Enter 将提示词应用到所有选中的 Actor，并为尚未标注的对象添加标注。点击别处时仅应用已有修改，按 Esc 取消。"
+    ],
+    "PromptHintAnnotate": [
+      "724d3d72",
+      "输入标注提示词…"
+    ],
+    "PromptHintEmpty": [
+      "5adeb1fa",
+      "提示词…"
+    ],
+    "PromptHintNone": [
+      "c9953961",
+      "请选择对象…"
+    ],
+    "PromptHintVarious": [
+      "db48008f",
+      "（多个值）"
+    ],
+    "PromptLabel": [
+      "dc66bd55",
+      "提示词 / 标签"
+    ],
+    "RemoveActorAnnotations": [
+      "87a93fe9",
+      "移除 Actor 上的 Unreal Canvas 标注"
+    ],
+    "RemoveAnnotationTx": [
+      "ab407cc7",
+      "移除 Unreal Canvas 标注"
+    ],
+    "RemoveSelectedAnnotations": [
+      "19cb1378",
+      "移除选中项上的 Unreal Canvas 标注"
+    ],
+    "RemoveSelectedTip": [
+      "148f173f",
+      "移除选中 Actor 上的 3D 标注。选中的代理立方体会被销毁，其他 Actor 仅移除标注组件。要移除整个场景中的标注，请使用「清除全部」。"
+    ],
+    "SelectByLabel": [
+      "93183b20",
+      "按标签选择标注"
+    ],
+    "SetAnnotationPrompt": [
+      "3bff3f87",
+      "设置标注提示词"
+    ],
+    "SetAnnotationShapeTx": [
+      "3e873522",
+      "更改 Unreal Canvas 标注形状"
+    ],
+    "ShapePickTip": [
+      "281cd6d4",
+      "选择放置标注时生成的形状。可在细节面板中为每个标注更换网格。"
+    ],
+    "ShowInViewportTip": [
+      "92981695",
+      "显示视口叠加层（当前隐藏）。叠加层仅在活动的透视视口中显示，捕获的场景颜色不受影响。无需向 Unreal Canvas 推流。"
+    ],
+    "ShowLabelsTip": [
+      "64b25c3e",
+      "显示标签（当前隐藏）。控制视口中所有标注的提示词标签。"
+    ],
+    "TagSelected": [
+      "ff969469",
+      "为选中的 Actor 添加无标签标注"
+    ],
+    "TagSelectedTip": [
+      "e2754d02",
+      "为选中的场景 Actor 添加无标签标注并加入当前组。对象会显示在彩色叠加层中，也会纳入遮罩。"
+    ],
+    "UpdateAnnotationTx": [
+      "883af6d5",
+      "更新 Unreal Canvas 标注"
+    ]
+  },
+  "UnrealCanvasSpatialAnnotationEditorSubsystem": {
+    "AnnotateActor": [
+      "11b0ac63",
+      "为 Actor 添加标注"
+    ],
+    "RemoveAnnotation": [
+      "ab407cc7",
+      "移除 Unreal Canvas 标注"
+    ]
+  }
+}

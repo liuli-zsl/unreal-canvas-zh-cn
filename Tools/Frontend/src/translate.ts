@@ -1,6 +1,7 @@
 import { copyId, copyKey, keyLength } from './copy-id';
 import { toolboxScriptNameSelector, translateGeneration, translateToolboxScriptName } from './generation';
 import { translateMenuDynamic } from './menu-dynamic';
+import { translateGraphContext } from './graph-context';
 import { translatePanelsDynamic } from './panels';
 import { translateSettingsDynamic } from './settings';
 import { translateViewerDynamic } from './viewers';
@@ -97,6 +98,7 @@ export function localize(doc: Document, dictionary: Group[], readCanvas?: () => 
       if (translated === undefined) translated = translateGeneration(element, field, english, node);
       if (translated === undefined) translated = translateSettingsDynamic(element, field, english, node);
       if (translated === undefined) translated = translateMenuDynamic(element, field, english);
+      if (translated === undefined) translated = translateGraphContext(element, field, english);
       if (translated === undefined) translated = translateViewerDynamic(element, field, english);
       if (translated === undefined) {
         translated = candidates?.find(rule => element.matches(rule.selector))?.translation ?? translateDynamic(element, field, english);

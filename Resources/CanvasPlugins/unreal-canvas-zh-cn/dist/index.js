@@ -200,6 +200,7 @@ function translateGeneration(element, field, value, node) {
 
 // src/menu-dynamic.ts
 var browserScope = '[role="dialog"]:is([aria-label="Open canvas"],[aria-label="打开画布"])';
+var canvasMenu = '[role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"])';
 var extensionGraphDialogBody = `[role="dialog"]:is([aria-label="Graphs from extensions can't be edited"],[aria-label="扩展提供的节点图不可编辑"]) > [data-confirm-body]`;
 var elapsedUnits = { s: "秒", m: "分钟", h: "小时", d: "天" };
 var customNodeCommands = /* @__PURE__ */ new Map([
@@ -210,9 +211,92 @@ var customNodeCommands = /* @__PURE__ */ new Map([
 ]);
 var nestedTrigger = 'body > .ue-submenu > div > button[aria-haspopup="menu"]';
 var nestedCommand = "body > .ue-submenu > div > .ue-submenu > button.ue-menu-item";
+var canvasActionLabels = /* @__PURE__ */ new Map([
+  ["bake-text", ["Reference (Text)", "引用（文本）"]],
+  ["bake-audio", ["Reference (Audio)", "引用（音频）"]],
+  ["bake-video", ["Reference (Video)", "引用（视频）"]],
+  ["bake-video-frame", ["Reference (Current Frame)", "引用（当前帧）"]],
+  ["bake-multiple-images", ["References", "引用各输出"]],
+  ["bake-layered-image", ["Layered Reference", "分层引用"]],
+  ["dcc-edit-in", ["Send to", "发送到"]],
+  ["dcc-edit-in-imageEditor", ["Image editor", "图像编辑器"]],
+  ["dcc-finish", ["Finish editing", "完成编辑"]],
+  ["graph-add-to-library", ["Add to Library", "添加到资源库"]],
+  ["graph-export-file", ["Export as file…", "导出为文件…"]],
+  ["recreate-graph-from-artifact", ["Re-create graph as new canvas", "将节点图重建为新画布"]],
+  ["grab-into-console", ["Grab into Console", "载入控制台"]],
+  ["go-to-original", ["Go to source", "前往来源"]]
+]);
+var canvasActionTitles = /* @__PURE__ */ new Map([
+  ["#94:acd39b2f01c47aab", ["bake-image", "在旁边创建引用卡片，保留与原卡片输出的关联。"]],
+  ["#62:b171e5bd14d3f4d2", ["bake-text", "在旁边为文本结果创建引用卡片。"]],
+  ["#70:73a7aa983666461f", ["bake-audio", "在旁边为当前音频结果创建引用卡片。"]],
+  ["#70:1ef68d5dbcb72000", ["bake-video", "在旁边为当前视频结果创建引用卡片。"]],
+  ["#84:e2081b6b1b7c152b", ["bake-video-frame", "在旁边为当前显示的视频帧创建图像引用卡片。"]],
+  ["#76:5910dcf9f2851e40", ["bake-video-frame", "为所选视频各自显示的当前帧创建图像引用卡片。"]],
+  ["#49:d1a2cc24981e5eed", ["bake-multiple-images", "为卡片的每个输出创建一张引用卡片。"]],
+  ["#62:8ce60ae663cd6b67", ["bake-layered-image", "创建包含所有图层的引用卡片，并保留图层切换控件。"]],
+  ["#111:1499c939b221200d", ["dcc-edit-in-imageEditor", "未自动找到图像编辑器。请在「设置 → 外部路径 → 图像编辑器路径」中选择程序。"]],
+  ["#51:15209f0c50788792", ["graph-add-to-library", "将节点图副本保存到工具箱，供以后使用。"]],
+  ["#39:ff34a80c5efe8b04", ["graph-export-file", "将节点图导出为 .graph.json 文件。"]],
+  ["#60:d073ad792e80f49e", ["multi-create-subcanvas", "将所选卡片移入节点图，跨边界的连线会创建对应端口。"]],
+  ["#35:177176e9056b1e98", ["multi-collapse-subcanvas", "将所选卡片移入子画布。"]]
+]);
+function getRenderedMenuAction(button) {
+  for (let owner = renderedFiber(button); owner; owner = owner.return ?? void 0) {
+    const action = owner.memoizedProps?.action;
+    if (action?.id && (owner.key === action.id || owner.return?.key === action.id)) return action;
+  }
+}
+function translateEditorActionHint(action, english, key) {
+  const name = action.label;
+  if (!action.id.startsWith("dcc-edit-in-") || !name) return;
+  if (key === "#44:5c9dc21452fe59e9") return "请等待卡片运行完毕。";
+  const path = /^([\s\S]+)Settings ▸ External paths ▸ "([^"]+)"\.$/.exec(english);
+  if (!path) return;
+  const lead = path[1];
+  const location = "「设置 → 外部路径 → " + path[2] + "」";
+  if (lead.startsWith(name) && copyKey(lead.slice(name.length)) === "#51:20e20b5f91793c9c") {
+    return "未自动找到「" + name + "」。请在" + location + "中选择程序。";
+  }
+  const start = "Choose the program ";
+  if (lead.startsWith(start + name) && copyKey(start + lead.slice(start.length + name.length)) === "#29:1ac6ec9acf4ab05d") {
+    return "请在" + location + "中选择「" + name + "」使用的程序。";
+  }
+}
+function translateMenuActionCopy(action, field, english) {
+  if (field === "title" || field === "data-title-tip") {
+    if (action.title !== english) return;
+    const key = copyKey(english);
+    const copy2 = canvasActionTitles.get(key);
+    if (copy2 && (action.id === copy2[0] || action.id === "create-reference" && copy2[0].startsWith("bake-"))) return copy2[1];
+    return translateEditorActionHint(action, english, key);
+  }
+  if (field !== "text" || action.label !== english) return;
+  const copy = canvasActionLabels.get(action.id);
+  if (copy?.[0] === english) return copy[1];
+  if (action.id === "dcc-reimport" && english.startsWith("Reimport from ")) return "从" + english.slice(14) + "重新导入";
+  if (action.id === "bake-video-frame") {
+    const count = /^(\d+) References \(Current Frame\)$/.exec(english);
+    if (count) return "创建 " + count[1] + " 张引用卡片（当前帧）";
+  }
+  if (action.id === "grab-into-console") {
+    const count = /^Grab (\d+) into Console$/.exec(english);
+    if (count) return "载入 " + count[1] + " 项到控制台";
+  }
+}
+function translateCanvasAction(element, field, english) {
+  const label2 = field === "text" && element.matches(".ue-menu-label,.feature-hint-menu-label");
+  const hint = (field === "title" || field === "data-title-tip") && element.matches("button");
+  if (!label2 && !hint) return;
+  const button = element.closest("button.ue-menu-item");
+  if (!button?.closest(canvasMenu + ",body > .ue-submenu") || !element.ownerDocument.querySelector(canvasMenu)) return;
+  const action = getRenderedMenuAction(button);
+  return action && translateMenuActionCopy(action, field, english);
+}
 function isCustomNodeMenu(element) {
   const activeGroup = element.ownerDocument.querySelector(
-    '[role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"]) > button[aria-expanded=true] > .feature-hint-menu-label'
+    canvasMenu + " > button[aria-expanded=true] > .feature-hint-menu-label"
   )?.textContent;
   if (activeGroup !== "Inspect" && activeGroup !== "检查") return false;
   const row = element.closest("button");
@@ -222,6 +306,8 @@ function isCustomNodeMenu(element) {
   return submenu === "Custom Node" || submenu === "自定义节点";
 }
 function translateMenuDynamic(element, field, english) {
+  const canvasAction = translateCanvasAction(element, field, english);
+  if (canvasAction !== void 0) return canvasAction;
   if (field === "text" && english.startsWith("Comes with the ") && element.matches('[role="tooltip"][data-portal-popup][id]')) {
     const start = "Comes with the ".length;
     const end = english.lastIndexOf(" extension — locked.");
@@ -329,6 +415,129 @@ function translateMenuDynamic(element, field, english) {
   return void 0;
 }
 
+// src/graph-context.ts
+var graphMenu = '.ue-menu[data-merlin-punch-cover][popover="manual"]:not([role]):not(:has(.merlin-panel-search))';
+var graphSubmenu = '.ue-submenu[data-merlin-punch-cover][popover="manual"]';
+var labels = /* @__PURE__ */ new Map([
+  ["create-reference", { Reference: "引用" }],
+  ["create-deck", { Deck: "卡组" }],
+  ["copy-to-workflow-graph", { "Graph (Copy to)": "复制到新节点图" }],
+  ["multi-create-subcanvas", { "Graph (Move to)": "移入新节点图" }],
+  ["multi-collapse-subcanvas", { Subcanvas: "子画布" }],
+  ["clear-results", { "Clear results": "清除结果" }],
+  ["graph-input-toggle", { "Create input": "创建输入", "Remove input": "移除输入" }],
+  ["toggle-required-input", {
+    "Make input required": "设为必填输入",
+    "Make input optional": "设为可选输入",
+    "Required by model": "模型要求此输入"
+  }],
+  ["graph-settings-toggle", { "Show model settings": "显示模型设置", "Hide model settings": "隐藏模型设置" }],
+  ["restore-severed-wiring", { "Restore severed wiring": "恢复断开的连线" }],
+  ["remove-reroute", { "Remove reroute": "移除重定向连线" }],
+  ["inspect-menu", { Inspect: "检查" }],
+  ["forward", { "Bring forward": "上移一层", "Bring Forward": "上移一层" }],
+  ["backward", { "Send backward": "下移一层", "Send Backward": "下移一层" }],
+  ["fit-aspect", { "Fit to aspect ratio": "适配宽高比" }],
+  ["fit-text", { "Fit to text": "适应文本" }],
+  ["reset-card-size", { "Reset card size": "重置卡片大小" }],
+  ["keep-cached-result", { "Keep cached result": "保留缓存结果" }],
+  ["stop-keeping-cached-result", { "Stop keeping cached result": "停止保留缓存结果" }],
+  ["copy-with-annotations", { "Copy with annotations": "复制带批注的图像" }],
+  ["duplicate-graph", { "Duplicate graph": "创建节点图副本" }],
+  ["import-level-snapshot", { "Import Level Snapshot": "导入关卡快照" }],
+  ["custom-node-menu", { "Custom Node": "自定义节点" }],
+  ["custom-node-publish", { "Publish to Library…": "发布到资源库…" }],
+  ["custom-node-export", { "Export as file…": "导出为文件…" }]
+]);
+var hints = /* @__PURE__ */ new Map([
+  ["#46:f1f7191aaa25ea86", "请先停止所选节点，再清除结果。"],
+  ["#114:b1d46301269a188d", "清除所选节点的结果历史。输入、设置和连线会保留，可撤销以恢复结果。"],
+  ["#74:78405a7bfd57099e", "将选中项合为一个卡组。所选卡组也会合并到其中，避免嵌套。"],
+  ["#62:016d612c6e8c5126", "请选择至少两张卡片，或选择一张有多个版本的卡片。"],
+  ["#69:c8ec072e046393f1", "将所选节点复制到新的节点图，原项仍留在当前画布。"],
+  ["#80:b71ffd94360a43a0", "所选项包含跨边界的连线。子画布没有用于连接的引脚。"],
+  ["#81:b6cc82c81a81d40a", "打开控制台，并将此结果作为变量载入当前 Python 会话。"],
+  ["#63:664c02c9b129ea4e", "从节点图的输入列表移除此节点。节点仍留在图中。"],
+  ["#91:8d2562d7142456b6", "将此节点设为节点图输入。可在节点图检查器中查看、排序和设置类型。"],
+  ["#69:bf1cf820a560d979", "在节点图卡片和工具架中隐藏此节点的设置。"],
+  ["#116:0592a56b127948e3", "在节点图的输入旁显示所选模型的设置。切换模型后会同步调整。"],
+  ["#98:101d44fb45e40e88", "允许此输入留空。连接到它的节点将按引脚未连接的情况运行。"],
+  ["#58:6996db3f4772b739", "填写此输入后，工作流才能运行。"],
+  ["#77:b354f634faa5c02f", "参数或输入与当前结果不符时，允许重新运行此卡片。"],
+  ["#81:3c90e3b7e5a33a8a", "在结果更新前复用此卡片的缓存结果。"],
+  ["#72:a843d98f89810d8e", "将节点图复制到新卡片。副本暂无输出，可以编辑和生成。"],
+  ["#50:20044c2f09126c9c", "复制图像并将批注合成到图像中。"],
+  ["#96:ca5a9a10394f39b6", "将渲染采集的关卡快照保存到内容浏览器，便于查看或应用。"],
+  ["#51:e2f6181aece37205", "将此卡片保存到自定义节点库，供以后复用。"],
+  ["#56:c45701dd2f709202", "将此卡片的定义导出为 .customnode JSON 文件。"]
+]);
+var requiredModelSuffixes = [
+  [48, "#48:777c6e4234ffc95e"],
+  [47, "#47:782ce99a1d43a145"]
+];
+var inputBadge = '.graph-node-body div[style*="letter-spacing: 0.1em"]:has(> div > span[data-app-tooltip] > button)';
+var inputBadgeLabels = /* @__PURE__ */ new Map([
+  ["INPUT", "输入"],
+  ["INPUT · REQUIRED", "输入 · 必填"],
+  ["INPUT · REQUIRED (BY MODEL)", "输入 · 模型要求必填"]
+]);
+var inputToggleLines = /* @__PURE__ */ new Map([
+  ["#92:bd559d10f992ac1d", "工作流需要填写此输入。点击可设为可选。"],
+  ["#142:dcdb5e6c3d59dfc1", "此输入可留空。连接到它的节点将按引脚未连接的情况运行。点击可设为必填。"]
+]);
+var inputToggleModelLines = [
+  [61, "#61:1081d30149973964", "要求填写此输入。选用该模型时无法设为可选。"],
+  [72, "#72:bc3d001a95b448d6", "被选用时会要求填写此输入。点击可立即设为必填。"]
+];
+function translateInputBadge(element, field, english) {
+  if (field !== "text") return;
+  const badgeLabel = inputBadgeLabels.get(english);
+  if (badgeLabel && element.matches(inputBadge + " > span:first-child")) return badgeLabel;
+  if (!element.matches('[role="tooltip"][data-portal-popup][id]') || !/^(?:Optional input:|Required input:|Required by )/.test(english)) return;
+  const trigger = [...element.ownerDocument.querySelectorAll(inputBadge + " > div > span[data-app-tooltip][aria-describedby]")].find((wrapper) => wrapper.getAttribute("aria-describedby")?.split(/\s+/).includes(element.id));
+  if (!trigger) return;
+  const caption = inputToggleLines.get(copyKey(english));
+  if (caption) return caption;
+  const prefix = "Required by ";
+  if (!english.startsWith(prefix)) return;
+  for (const [length, key, message] of inputToggleModelLines) {
+    if (english.length > prefix.length + length && copyKey(english.slice(-length)) === key) {
+      const model = english.slice(prefix.length, -length);
+      return (model === "the selected model" ? "所选模型" : "「" + model + "」") + message;
+    }
+  }
+}
+function translateGraphContext(element, field, english) {
+  const input = translateInputBadge(element, field, english);
+  if (input !== void 0) return input;
+  const label2 = field === "text" && element.matches(".ue-menu-label,.feature-hint-menu-label");
+  const hint = (field === "title" || field === "data-title-tip") && element.matches("button");
+  if (!label2 && !hint) return;
+  const button = element.closest("button.ue-menu-item");
+  if (!button) return;
+  if (!button.closest(graphMenu) && !(button.closest(graphSubmenu) && element.ownerDocument.querySelector(graphMenu + ' > button[aria-expanded="true"]'))) return;
+  const action = getRenderedMenuAction(button);
+  if (!action) return;
+  const shared = translateMenuActionCopy(action, field, english);
+  if (shared !== void 0) return shared;
+  if (label2) return action.label === english ? labels.get(action.id)?.[english] : void 0;
+  if (action.title !== english) return;
+  const fixed = hints.get(copyKey(english));
+  if (fixed !== void 0) return fixed;
+  if (action.id === "toggle-required-input" && action.label === "Required by model") {
+    for (const [length, key] of requiredModelSuffixes) {
+      if (english.length > length && copyKey(english.slice(-length)) === key) {
+        const model = english.slice(0, -length);
+        return (model === "The selected model" ? "所选模型" : "「" + model + "」") + "要求填写此输入。";
+      }
+    }
+  }
+  if (action.id === "create-deck") {
+    const takes = /^Hold this card's (\d+) takes as a deck of cards$/.exec(english);
+    if (takes) return "将此卡片的 " + takes[1] + " 个版本汇集为卡组。";
+  }
+}
+
 // src/panels.ts
 var panelNames = {
   Agents: "智能体",
@@ -419,13 +628,13 @@ function translatePanelsDynamic(element, field, english, node) {
     return void 0;
   }
   if (field === "aria-label" && element.matches(".merlin-content-modes .merlin-rail-badge[role=status]")) {
-    const labels2 = english.split("; ").map((part) => {
+    const labels3 = english.split("; ").map((part) => {
       const waiting = /^(\d+) agents? needs? your input$/.exec(part);
       if (waiting) return `${waiting[1]} 个智能体等待你输入`;
       const updates = /^(\d+) agents? (?:has|have) updates$/.exec(part);
       if (updates) return `${updates[1]} 个智能体有更新`;
     });
-    if (labels2.every(Boolean)) return labels2.join("，");
+    if (labels3.every(Boolean)) return labels3.join("，");
   }
   if (field !== "aria-label" && field !== "title") return void 0;
   if (element.matches(".media-library-size,.media-library .merlin-panel-slider-button > button.merlin-panel-icon-button")) {
@@ -651,7 +860,7 @@ function currentGraphName(button) {
   const crumbs = surface?.querySelector(':scope > div > [data-merlin-punch-cover]:has(> svg[data-icon="chevron-right"])');
   return crumbs?.lastElementChild?.lastElementChild?.textContent;
 }
-function translateCanvasAction(element, field, english) {
+function translateCanvasAction2(element, field, english) {
   const toolbar = translateToolbar(element, field, english);
   if (toolbar !== void 0) return toolbar;
   if (field === "text" && element.closest("button[data-result-index]")) {
@@ -760,6 +969,26 @@ var requirements = new Map(Object.entries({
   "Required by the model this input feeds": "使用此输入的模型要求必填"
 }));
 var filterDialog = '[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"])';
+var unsavedDialog = '[role="dialog"]:is([aria-label="Unsaved changes"],[aria-label="未保存的更改"])';
+var unsavedKinds = /* @__PURE__ */ new Map([
+  ["graph", "节点图"],
+  ["script", "脚本"],
+  ["Python script", "Python 脚本"],
+  ["Subscript script", "子脚本"],
+  ["skill", "技能"]
+]);
+function unsavedChangesMessage(english) {
+  const match = /^This (.+) has changes\. Discard them(, or save them as a copy(?: or save them)?|, or save them)?\?$/.exec(english);
+  if (!match) return;
+  const kind = unsavedKinds.get(match[1]);
+  if (!kind) return;
+  if (!match[2]) return "要放弃此" + kind + "未保存的更改吗？";
+  const copy = match[2].includes("as a copy");
+  const save = match[2].endsWith(" or save them");
+  const intro = "此" + kind + "有未保存的更改。";
+  if (copy && save) return intro + "你可以放弃更改、另存为副本或保存并关闭。";
+  return intro + "要放弃更改，还是" + (copy ? "另存为副本" : "保存并关闭") + "？";
+}
 var filterFields = new Map(Object.entries({
   name: ["Name", "名称"],
   notes: ["Notes", "备注"],
@@ -828,6 +1057,10 @@ function scriptOption(element, english) {
   return void 0;
 }
 function translatePanelActions(element, field, english) {
+  if (field === "text" && english.startsWith("This ") && element.closest(unsavedDialog + " [data-confirm-body]")) {
+    const message = unsavedChangesMessage(english);
+    if (message) return message;
+  }
   const selectLabel = element.localName === "span" && element.parentElement?.parentElement?.classList.contains("custom-select");
   const optionLabel = element.parentElement?.getAttribute("role") === "option";
   if (field === "text" && (selectLabel || optionLabel)) {
@@ -1056,6 +1289,71 @@ function translateSettingsPreview2(element, field, english, node) {
 // src/shelf-actions.ts
 var counts = { "Batch slot": "批量插槽", Batch: "批量输入" };
 var namedAgentLabel = '.generation-shelf-menu:is([aria-label="Agent"],[aria-label="智能体"]) button.generation-shelf-menu-option[role="menuitemradio"]:is([aria-label^="Work with "],[aria-label^="Working with "]) > .generation-shelf-menu-copy > span';
+var outputControl = ".generation-shelf-output > span button.generation-shelf-menu-trigger,.generation-shelf-output > button.generation-shelf-menu-trigger";
+var shelfMenu = '.generation-shelf-menu[role="menu"]';
+var outputRow = ".generation-shelf-menu-row > button.generation-shelf-menu-option";
+var outputRowLabel = outputRow + " > .generation-shelf-menu-copy > span:first-child";
+var outputRowHint = outputRow + " > .generation-shelf-menu-copy > .ue-menu-detail";
+var outputChoices = /* @__PURE__ */ new Map([
+  ["Create new card", "创建新卡片"],
+  ["Create new deck", "创建新卡组"],
+  ["Add to deck", "添加到卡组"],
+  ["Agent chooses", "由智能体选择"]
+]);
+function optionProps(button) {
+  if (!button) return;
+  for (let owner = renderedFiber(button); owner; owner = owner.return ?? void 0) {
+    if (owner.memoizedProps?.option) return owner.memoizedProps.option;
+  }
+}
+function selectedBatchOutput(button) {
+  const propKey = Object.keys(button).find((key) => key.startsWith("__reactProps$"));
+  const liveProps = propKey && Object.getOwnPropertyDescriptor(button, propKey)?.value;
+  const mounted = renderedFiber(button);
+  const committed = mounted?.memoizedProps === liveProps ? mounted : mounted?.alternate?.memoizedProps === liveProps ? mounted?.alternate : void 0;
+  for (let owner = committed; owner; owner = owner.return ?? void 0) {
+    const deck = owner.memoizedProps?.options?.find((option) => option.id === "same");
+    if (deck) return deck.children?.some((option) => option.id === "sources" && option.selected);
+  }
+}
+function outputSummary(value, button) {
+  if (value === "Create new card") return "输出到新卡片";
+  if (value === "Create new deck") return "输出到新卡组";
+  if (value === "Agent chooses") return "输出目标由智能体选择";
+  const deckPrefix = "Add to deck · ";
+  if (!value.startsWith(deckPrefix)) return;
+  const name = value.slice(deckPrefix.length);
+  return name === "From batch" && button && selectedBatchOutput(button) ? "输出到各批量输入所属的卡组" : "输出到卡组“" + name + "”";
+}
+function shelfOutput(element, field, value) {
+  if ((field === "aria-label" || field === "title" || field === "data-title-tip") && element.matches(outputControl)) {
+    if (value.startsWith("Output: ")) return outputSummary(value.slice("Output: ".length), element);
+    if (value === "Choose an available deck or Create new card to continue.") return "先选择可用的卡组，或创建新卡片以继续。";
+    if (value === "Choose an available deck or Create new deck to continue.") return "先选择可用的卡组，或创建新卡组以继续。";
+  }
+  if (field === "text" && element.matches(".generation-shelf-output-name")) {
+    return outputChoices.get(value) ?? outputSummary(value, element.closest(outputControl) ?? void 0);
+  }
+  const label2 = field === "text" && element.matches(outputRowLabel);
+  const description = field === "text" && element.matches(outputRowHint);
+  const aria = field === "aria-label" && element.matches(shelfMenu + "," + outputRow);
+  if (!label2 && !description && !aria) return;
+  const menu = element.closest(shelfMenu);
+  const root = menu?.parentElement?.closest(shelfMenu) ?? menu;
+  const trigger = root?.id && Array.from(element.ownerDocument.querySelectorAll(outputControl)).find((button) => button.getAttribute("aria-controls") === root.id);
+  if (!trigger) return;
+  if (aria && element === root && value.startsWith("Output: ")) return outputSummary(value.slice("Output: ".length), trigger);
+  if (aria && element === menu && value === "Add to deck") return "添加到卡组";
+  if (description) {
+    const pick = /^Click to use ([\s\S]+); hover to choose a deck$/.exec(value);
+    if (menu === root && pick) return "点击使用“" + pick[1] + "”，悬停可选择卡组。";
+    if (menu !== root && value === "This card was removed") return "此卡片已移除。";
+    return;
+  }
+  if (menu === root) return outputChoices.get(value);
+  if (optionProps(element.closest(outputRow))?.id === "sources" && value === "From batch") return "来自批量输入";
+  return value;
+}
 var voiceInstructions = {
   "Keep Ctrl held while speaking.": "说话时请按住 Ctrl 键。",
   "Press again to stop.": "再按一次即可停止。"
@@ -1089,10 +1387,23 @@ function batchPosition(label2) {
   const reference = /^Reference (\d+)$/.exec(label2);
   return reference ? "参考素材 " + reference[1] : label2;
 }
+function outputTooltipControl(popup) {
+  for (let owner = renderedFiber(popup); owner; owner = owner.return ?? void 0) {
+    const wrapper = owner.stateNode;
+    if (wrapper?.nodeType !== 1 || !wrapper.hasAttribute("data-tooltip-owner")) continue;
+    const button = wrapper.firstElementChild;
+    return button?.matches(outputControl) ? button : void 0;
+  }
+}
 function tooltip(element, value) {
   const parent = element.parentElement;
-  if (!parent?.parentElement?.matches('[role="tooltip"]')) return;
+  const popup = parent?.parentElement;
+  if (!parent || !popup?.matches('[role="tooltip"]')) return;
   const footer2 = parent.lastElementChild?.textContent?.trim();
+  if (["Choose where results land", "选择结果的输出位置"].includes(footer2 ?? "")) {
+    if (element === parent.firstElementChild && value === "Output") return "输出";
+    if (element !== parent.lastElementChild) return outputChoices.get(value) ?? outputSummary(value, outputTooltipControl(popup));
+  }
   if (element === parent.firstElementChild && value.startsWith("Settings · ") && ["Click to hide the settings", "Click to change them", "点击收起设置", "点击修改设置"].includes(footer2 ?? "")) {
     return "设置 · " + value.slice("Settings · ".length);
   }
@@ -1105,6 +1416,8 @@ function tooltip(element, value) {
   if (runs && element === parent.firstElementChild) return "批量 · " + runs[1] + " 次运行";
 }
 function translateShelfAction(element, field, value) {
+  const output = shelfOutput(element, field, value);
+  if (output !== void 0) return output;
   if (field === "text" && element.matches(namedAgentLabel)) return value;
   if (field === "text" && value === "Browse models…" && element.matches('.ue-menu [role="listbox"] .ue-menu-item[role="option"][data-value] > span:last-child')) {
     const option = element.parentElement?.getAttribute("data-value");
@@ -4198,6 +4511,28 @@ var standardRenderPasses = /* @__PURE__ */ new Map([["beauty", "Beauty"], ["dept
 var resolutionSources = /* @__PURE__ */ new Map([["viewport", "视口"], ["camera", "相机"]]);
 var missingCameraPrefix = "Unreal couldn't find ";
 var missingCameraSuffixLength = 61;
+var previewMessages = /* @__PURE__ */ new Map([["Generating…", "正在生成…"], ["Loading…", "正在加载…"]]);
+var workflowStatuses = /* @__PURE__ */ new Map([
+  ["error", ["Run failed", "运行失败"]],
+  ["notice", ["Nothing to do", "没有需要处理的内容"]],
+  ["running", ["Generating", "正在生成"]],
+  ["needs-input", ["Needs an input before it can run", "提供输入后才能运行"]],
+  ["ready", ["Ready to generate", "可以开始生成"]]
+]);
+var workflowStatusLabels = new Set([...workflowStatuses.values()].map(([name]) => name));
+function translateWorkflowPreview(element, field, value) {
+  const message = field === "text" && previewMessages.get(value);
+  if (message && element.matches(".canvas-card-body span")) {
+    const props2 = renderedFiber(element)?.return?.return?.memoizedProps;
+    if (props2?.message === value && typeof props2.hasPreview === "boolean") return message;
+  }
+  if (!workflowStatusLabels.has(value)) return;
+  const row = field === "title" || field === "data-title-tip" ? element : field === "text" ? element.parentElement : null;
+  if (!row?.matches(".canvas-card-body div:is([title],[data-title-tip])") || field === "text" && element !== row.lastElementChild) return;
+  const props = renderedFiber(row)?.return?.return?.memoizedProps;
+  const label2 = props?.status && typeof props.name === "string" ? workflowStatuses.get(props.status) : void 0;
+  if (label2?.[0] === value) return label2[1];
+}
 function isRenderVariableLabel(element) {
   return element.classList.contains("merlin-param-label") && !!element.closest(".merlin-param-row:not([data-param-key])")?.querySelector(":scope > " + pinToggle);
 }
@@ -4215,8 +4550,11 @@ function renderResolutionHint(element, value, text) {
 }
 function renderPassLabel(element, field, value, popupOwner, node) {
   const pass = standardRenderPasses.get(value);
+  if (!pass) return;
   const names = node.params?.mrgPassNames;
-  if (!pass || !Array.isArray(names) || !names.includes(pass)) return;
+  const dataType2 = node.kind === "sequenceRender" ? "video" : "image";
+  const standard = Array.isArray(names) && names.length ? names.includes(pass) || names.includes(value) : node.pins?.some((pin) => pin.direction === "output" && pin.dataType === dataType2 && pin.id === value && pin.name === value);
+  if (!standard) return;
   const label2 = words.get(pass);
   if (element.matches(".graph-node-body .nodrag > button[aria-pressed]:is([title],[data-title-tip])")) {
     const title = element.getAttribute("title") ?? element.getAttribute("data-title-tip");
@@ -4260,6 +4598,8 @@ function createWorkspaceTranslator(readCanvas) {
     return index.get(id);
   }
   return (element, field, value, text) => {
+    const preview = translateWorkflowPreview(element, field, value);
+    if (preview !== void 0) return preview;
     const header = element.matches(".graph-node-header-title span[title]");
     const rename = header && field === "title" && value.endsWith(englishRename);
     const dynamic = value.startsWith(bridgeRequirement) || isPlatformHelp(value) || value.startsWith("Could not fetch MCP tool list from ") || value.startsWith("Error — Could not fetch MCP tool list from ");
@@ -4917,7 +5257,7 @@ var node_hover_default = {
 // src/node-hover.ts
 var tooltip2 = '[role="tooltip"][data-portal-popup]';
 var lookup = new Map(Object.entries(node_hover_default));
-var defaultNames2 = new Map(Object.entries(workspace_details_default.defaults).map(([kind, labels2]) => [kind, new Map(Object.entries(labels2))]));
+var defaultNames2 = new Map(Object.entries(workspace_details_default.defaults).map(([kind, labels3]) => [kind, new Map(Object.entries(labels3))]));
 var extraNames = /* @__PURE__ */ new Map([
   ["appendBundles", ["Append Bundles", "追加数据束"]],
   ["blueprintCall", ["Blueprint Call", "调用蓝图"]],
@@ -5229,6 +5569,14 @@ var delivery = new Map(Object.entries({
   "Delivery unconfirmed": "送达状态未知",
   Delivered: "已送达"
 }));
+var nodeRequest = /* @__PURE__ */ new Map([
+  ["Ready to look at", "待查看"],
+  ["Feedback requested", "待反馈"],
+  ["Saved for later", "稍后处理"]
+]);
+var requestButton = ".node-agent-head[data-agent-preview-trigger]";
+var requestDescription = requestButton + " + span[hidden][id]";
+var requestLabel = requestButton + " > .node-agent-request-label";
 function isAgentChatChrome(element, field) {
   if (field === "aria-label") return element.matches(userContext);
   if (field === "title") return element.matches(restoreButton);
@@ -5236,6 +5584,19 @@ function isAgentChatChrome(element, field) {
 }
 function translateAgentChat(element, field, english, node) {
   const classes = element.classList;
+  if (field === "text" && element.matches(requestLabel)) {
+    return nodeRequest.get(english);
+  }
+  if (field === "text" && element.matches(requestDescription)) return english;
+  if (field === "aria-label" && element.matches(requestButton)) {
+    const description = element.nextElementSibling;
+    const name = description?.matches("span[hidden][id]") && description.firstChild?.nodeType === 3 ? description.firstChild.nodeValue : null;
+    if (!name) return;
+    if (english === "Check in with " + name) return "查看智能体“" + name + "”的状态";
+    const prefix = name + " · ";
+    const request = english.startsWith(prefix) && nodeRequest.get(english.slice(prefix.length));
+    if (request) return prefix + request;
+  }
   if (field === "text") {
     if (classes.contains("agent-status-text") && element.matches(".agent-chat-status > .agent-status > span")) {
       const base = english.replace(/(?:…|\.\.\.)$/, "");
@@ -5680,14 +6041,14 @@ var agent_setup_tools_default = {
 };
 
 // src/agent-settings.ts
-var labels = new Map(Object.entries(agent_setup_default.labels));
+var labels2 = new Map(Object.entries(agent_setup_default.labels));
 var extendedLabels = new Map(Object.entries(agent_setup_default.modelAndSetupLabels));
 var contexts = new Map(Object.entries(agent_setup_default.contextHints));
 var groupHelp = new Map(Object.entries(agent_setup_tool_groups_default.descriptions));
 function label(value) {
-  return labels.get(value) ?? extendedLabels.get(copyId(value));
+  return labels2.get(value) ?? extendedLabels.get(copyId(value));
 }
-var hints = new Map(Object.entries(agent_setup_default.hints));
+var hints2 = new Map(Object.entries(agent_setup_default.hints));
 var groups = new Map(Object.entries(agent_setup_tool_groups_default.labels));
 var tools = new Map(Object.entries(agent_setup_tools_default));
 var setupScope = ".agent-setup-strip,.agent-setup-popover";
@@ -5695,7 +6056,7 @@ function translateHint(source) {
   const parts = /^(.*?)( (?:Available when|The chat keeps|You can change) .*)?$/.exec(source);
   if (!parts) return;
   const id = copyId(parts[1]);
-  const hint = hints.get(id) ?? contexts.get(id);
+  const hint = hints2.get(id) ?? contexts.get(id);
   if (!hint || !parts[2]) return hint;
   switch (copyId(parts[2])) {
     case "e601b6e7c7c2e9c3":
@@ -5853,7 +6214,7 @@ function localize(doc, dictionary2, readCanvas) {
       if (translated === void 0) translated = translateWorkspaceDetails(element, field, english, node);
       if (translated === void 0) translated = translatePanelDetails(element, field, english, node);
       if (translated === void 0) translated = translatePanelsDynamic(element, field, english, node);
-      if (translated === void 0) translated = translateCanvasAction(element, field, english);
+      if (translated === void 0) translated = translateCanvasAction2(element, field, english);
       if (translated === void 0) translated = translatePanelActions(element, field, english);
       if (translated === void 0) translated = translateSettingsPreview2(element, field, english, node);
       if (translated === void 0) translated = translateSettingsActions(element, field, english);
@@ -5861,6 +6222,7 @@ function localize(doc, dictionary2, readCanvas) {
       if (translated === void 0) translated = translateGeneration(element, field, english, node);
       if (translated === void 0) translated = translateSettingsDynamic(element, field, english, node);
       if (translated === void 0) translated = translateMenuDynamic(element, field, english);
+      if (translated === void 0) translated = translateGraphContext(element, field, english);
       if (translated === void 0) translated = translateViewerDynamic(element, field, english);
       if (translated === void 0) {
         translated = candidates?.find((rule) => element.matches(rule.selector))?.translation ?? translateDynamic(element, field, english);
@@ -8335,6 +8697,7 @@ var menus_extra_default = [
     entries: {
       Deck: "卡组",
       "Add comment": "添加评论",
+      "Add to Timeline": "添加到时间线",
       "Retarget Animation": "重定向动画",
       "Bring forward": "上移一层",
       "Send backward": "下移一层",
@@ -10600,7 +10963,9 @@ var panel_actions_022_default = [
       "Unsaved changes": "未保存的更改",
       "#61:e33504c211954ec3": "节点图尚未保存。可另存副本或放弃此次修改。",
       Discard: "放弃更改",
-      "Save a Copy": "另存为副本"
+      "Save a Copy": "另存为副本",
+      "Save a copy": "另存为副本",
+      "Save and close": "保存并关闭"
     }
   },
   {
@@ -12141,7 +12506,7 @@ var dictionary = [...agent_session_default, ...editor_connection_default, ...pan
 var manifest_default = {
   id: "unreal-canvas-zh-cn",
   name: "Unreal Canvas 简体中文",
-  version: "0.2.12",
+  version: "0.2.13",
   apiVersion: 1,
   namespaces: [
     "canvaszh"

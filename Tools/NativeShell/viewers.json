@@ -1,0 +1,276 @@
+{
+  "SUnrealCanvasCompareWiper": {
+    "SeamTip": [
+      "33ef00d2",
+      "拖动分隔线，对比两个结果。"
+    ]
+  },
+  "SUnrealCanvasFaceDesignSlot": {
+    "RemoveTile": [
+      "0195341a",
+      "从卡片正面移除这个区块。"
+    ]
+  },
+  "SUnrealCanvasImagePreview": {
+    "NoDecoder": [
+      "90b4a78f",
+      "没有可解码此图像格式的解码器。"
+    ],
+    "ZoomFit": [
+      "8f725824",
+      "适应窗口"
+    ]
+  },
+  "SUnrealCanvasMediaPreview": {
+    "AudioFailed": [
+      "4bf58625",
+      "无法解码音频"
+    ],
+    "AudioMissing": [
+      "90633566",
+      "找不到音频文件"
+    ],
+    "AudioNoSlot": [
+      "8cd08ee1",
+      "音频已暂停（查看器上限为 {0} 个）"
+    ],
+    "AudioOpening": [
+      "f05ed0ca",
+      "正在打开音频…"
+    ],
+    "TmvEncoding": [
+      "a555ce35",
+      "TMV {0}%"
+    ],
+    "TmvEncodingTip": [
+      "85a4cee0",
+      "正在后台将此片段转码为 TMV。转码完成后，查看器会在当前播放位置切换到转码版本。"
+    ],
+    "TmvMake": [
+      "7775f037",
+      "转码为 TMV"
+    ],
+    "TmvMakeTip": [
+      "a132b8dd",
+      "在后台将此片段转码为 TMV，以加快逐帧浏览和拖动定位。转码后的文件会比源文件大得多。"
+    ],
+    "TmvPlaying": [
+      "1856205e",
+      "TMV"
+    ],
+    "TmvPlayingTip": [
+      "ceb8b868",
+      "正在播放此片段的 TMV 版本。每一帧都是关键帧，可以快速逐帧浏览和拖动定位。"
+    ],
+    "TmvRetry": [
+      "fdd7dedf",
+      "重试 TMV 转码"
+    ],
+    "VideoFailed": [
+      "5cdd738a",
+      "无法解码视频"
+    ],
+    "VideoMissing": [
+      "79a8bda7",
+      "找不到视频文件"
+    ],
+    "VideoNoSlot": [
+      "79118f0f",
+      "视频已暂停（查看器上限为 {0} 个）"
+    ],
+    "VideoOpening": [
+      "88d743cf",
+      "正在打开视频…"
+    ]
+  },
+  "SUnrealCanvasScenePreview": {
+    "SceneBones": [
+      "67aab911",
+      "骨骼"
+    ],
+    "SceneBonesTip": [
+      "f44d166a",
+      "在网格上叠加显示骨骼"
+    ],
+    "SceneConverting": [
+      "2170855e",
+      "正在导入…"
+    ],
+    "SceneFailed": [
+      "4e111f8d",
+      "无法导入"
+    ],
+    "SceneFramed": [
+      "8f725824",
+      "适应窗口"
+    ],
+    "SceneLightIntensity": [
+      "64e8b306",
+      "强度"
+    ],
+    "SceneLightIntensityTip": [
+      "7230a16d",
+      "主光的亮度。"
+    ],
+    "SceneLightPitch": [
+      "443b677d",
+      "仰角"
+    ],
+    "SceneLightPitchTip": [
+      "820237e9",
+      "主光相对于物体的仰角，以度为单位。"
+    ],
+    "SceneLightYaw": [
+      "a3f62e72",
+      "方位角"
+    ],
+    "SceneLightYawTip": [
+      "d3e394e8",
+      "主光围绕物体的水平方位，以度为单位。"
+    ],
+    "SceneMissing": [
+      "7d8b3192",
+      "文件缺失"
+    ],
+    "SceneNoHash": [
+      "0da73dce",
+      "缺少内容哈希"
+    ],
+    "SceneNoSlot": [
+      "40c5a587",
+      "3D 预览已暂停（查看器上限为 {0} 个）"
+    ],
+    "SceneRecenter": [
+      "f679eaf6",
+      "重新居中"
+    ],
+    "SceneRecenterTip": [
+      "1f94bbb7",
+      "将内容移到原点，使底部与地面齐平"
+    ],
+    "SceneSetThumbnail": [
+      "40bd80f2",
+      "设为缩略图"
+    ],
+    "SceneSetThumbnailTip": [
+      "1c92fd9a",
+      "将当前视图保存为节点此版本的缩略图。"
+    ],
+    "SceneSpeedScaling": [
+      "f9a2781c",
+      "按距离调整速度"
+    ],
+    "SceneSpeedScalingTip": [
+      "7f779768",
+      "飞行速度随摄像机与物体的距离调整，同一速度设置可用于查看小道具和大型场景。"
+    ],
+    "SceneSurface": [
+      "357b2f0d",
+      "表面"
+    ],
+    "SceneSurfaceTip": [
+      "60d7150f",
+      "切换显示网格表面，关闭时仅显示骨骼"
+    ]
+  },
+  "SUnrealCanvasTransportBar": {
+    "MuteTip": [
+      "53849149",
+      "静音"
+    ],
+    "PlayPauseTip": [
+      "d19365b1",
+      "播放或暂停"
+    ],
+    "SmoothnessTip": [
+      "9235375e",
+      "最近一秒显示 {0} 帧，新帧最长等待 {1} 毫秒，跳过 {2} 帧。"
+    ],
+    "StepBackTip": [
+      "57dfbe24",
+      "上一帧 (,)"
+    ],
+    "StepForwardTip": [
+      "e90c1190",
+      "下一帧 (.)"
+    ],
+    "StepKeysTip": [
+      "ed642f03",
+      "按逗号键退一帧，按句号键进一帧"
+    ],
+    "TransportFrameTime": [
+      "6d422812",
+      "第 {0} 帧 / 共 {1} 帧    {2}"
+    ],
+    "TransportTime": [
+      "d27a91ad",
+      "{0} / {1}"
+    ],
+    "UnmuteTip": [
+      "8ca9aecb",
+      "取消静音"
+    ]
+  },
+  "Unreal Canvas": {
+    "CaptureBadSize": [
+      "66966884",
+      "视口返回的图像无法使用。"
+    ],
+    "CaptureNoContent": [
+      "764112a6",
+      "屏幕上没有可捕获的内容。"
+    ],
+    "CaptureNoEntry": [
+      "ddf5cbba",
+      "此结果没有可保存缩略图的版本。"
+    ],
+    "CaptureNoRoot": [
+      "738ad5c7",
+      "请先配置 Unreal Canvas 存储根目录，以便保存缩略图。"
+    ],
+    "CaptureNoViewport": [
+      "55ccc19c",
+      "预览视口尚未就绪。"
+    ],
+    "CaptureReadFailed": [
+      "85abb71e",
+      "无法读取视口图像。"
+    ],
+    "CaptureWriteFailed": [
+      "4e0ea3ff",
+      "无法将缩略图写入 {0}。"
+    ]
+  },
+  "UnrealCanvasPreviewControls": {
+    "ResetToDefault": [
+      "5f6c5a92",
+      "恢复默认值"
+    ]
+  },
+  "UnrealCanvasResultPresentation": {
+    "InlineOnlyPreview": [
+      "bae57c09",
+      "预览内容为 {0}（引擎内没有对应的解码器）"
+    ],
+    "NoViewerForType": [
+      "7bd8c0ff",
+      "没有支持 .{0} 的查看器"
+    ],
+    "ResultNotOnDisk": [
+      "deb102ca",
+      "磁盘上找不到结果"
+    ],
+    "SnapshotBody": [
+      "23a293ec",
+      "子图结果"
+    ],
+    "SourceFileMissing": [
+      "7aa7c5d1",
+      "找不到源文件"
+    ],
+    "StorageUnresolved": [
+      "8b001813",
+      "正在查找存储位置…"
+    ]
+  }
+}

@@ -1,6 +1,84 @@
 import { copyId } from './copy-id';
+import { renderedFiber } from './host-fiber';
 const counts: Record<string, string> = { 'Batch slot': '批量插槽', Batch: '批量输入' };
 const namedAgentLabel = '.generation-shelf-menu:is([aria-label="Agent"],[aria-label="智能体"]) button.generation-shelf-menu-option[role="menuitemradio"]:is([aria-label^="Work with "],[aria-label^="Working with "]) > .generation-shelf-menu-copy > span';
+const outputControl = '.generation-shelf-output > span button.generation-shelf-menu-trigger,.generation-shelf-output > button.generation-shelf-menu-trigger';
+const shelfMenu = '.generation-shelf-menu[role="menu"]';
+const outputRow = '.generation-shelf-menu-row > button.generation-shelf-menu-option';
+const outputRowLabel = outputRow + ' > .generation-shelf-menu-copy > span:first-child';
+const outputRowHint = outputRow + ' > .generation-shelf-menu-copy > .ue-menu-detail';
+const outputChoices = new Map([
+  ['Create new card', '创建新卡片'],
+  ['Create new deck', '创建新卡组'],
+  ['Add to deck', '添加到卡组'],
+  ['Agent chooses', '由智能体选择'],
+]);
+
+type ShelfOutputOption = { id: string; label: string; selected?: boolean; children?: ShelfOutputOption[] };
+type ShelfOutputProps = { option?: ShelfOutputOption; options?: ShelfOutputOption[] };
+
+function optionProps(button: Element | null) {
+  if (!button) return;
+  for (let owner = renderedFiber<ShelfOutputProps>(button); owner; owner = owner.return ?? undefined) {
+    if (owner.memoizedProps?.option) return owner.memoizedProps.option;
+  }
+}
+
+function selectedBatchOutput(button: Element) {
+  const propKey = Object.keys(button).find(key => key.startsWith('__reactProps$'));
+  const liveProps = propKey && Object.getOwnPropertyDescriptor(button, propKey)?.value;
+  const mounted = renderedFiber<ShelfOutputProps>(button);
+  const committed = mounted?.memoizedProps === liveProps ? mounted :
+    mounted?.alternate?.memoizedProps === liveProps ? mounted?.alternate : undefined;
+  for (let owner = committed; owner; owner = owner.return ?? undefined) {
+    const deck = owner.memoizedProps?.options?.find(option => option.id === 'same');
+    if (deck) return deck.children?.some(option => option.id === 'sources' && option.selected);
+  }
+}
+
+function outputSummary(value: string, button?: Element) {
+  if (value === 'Create new card') return '输出到新卡片';
+  if (value === 'Create new deck') return '输出到新卡组';
+  if (value === 'Agent chooses') return '输出目标由智能体选择';
+  const deckPrefix = 'Add to deck · ';
+  if (!value.startsWith(deckPrefix)) return;
+  const name = value.slice(deckPrefix.length);
+  return name === 'From batch' && button && selectedBatchOutput(button)
+    ? '输出到各批量输入所属的卡组'
+    : '输出到卡组“' + name + '”';
+}
+
+function shelfOutput(element: Element, field: string, value: string) {
+  if ((field === 'aria-label' || field === 'title' || field === 'data-title-tip') && element.matches(outputControl)) {
+    if (value.startsWith('Output: ')) return outputSummary(value.slice('Output: '.length), element);
+    if (value === 'Choose an available deck or Create new card to continue.') return '先选择可用的卡组，或创建新卡片以继续。';
+    if (value === 'Choose an available deck or Create new deck to continue.') return '先选择可用的卡组，或创建新卡组以继续。';
+  }
+  if (field === 'text' && element.matches('.generation-shelf-output-name')) {
+    return outputChoices.get(value) ?? outputSummary(value, element.closest(outputControl) ?? undefined);
+  }
+  const label = field === 'text' && element.matches(outputRowLabel);
+  const description = field === 'text' && element.matches(outputRowHint);
+  const aria = field === 'aria-label' && element.matches(shelfMenu + ',' + outputRow);
+  if (!label && !description && !aria) return;
+  const menu = element.closest(shelfMenu);
+  const root = menu?.parentElement?.closest(shelfMenu) ?? menu;
+  const trigger = root?.id && Array.from(element.ownerDocument.querySelectorAll(outputControl))
+    .find(button => button.getAttribute('aria-controls') === root.id);
+  if (!trigger) return;
+  if (aria && element === root && value.startsWith('Output: ')) return outputSummary(value.slice('Output: '.length), trigger);
+  if (aria && element === menu && value === 'Add to deck') return '添加到卡组';
+  if (description) {
+    const pick = /^Click to use ([\s\S]+); hover to choose a deck$/.exec(value);
+    if (menu === root && pick) return '点击使用“' + pick[1] + '”，悬停可选择卡组。';
+    if (menu !== root && value === 'This card was removed') return '此卡片已移除。';
+    return;
+  }
+  if (menu === root) return outputChoices.get(value);
+  if (optionProps(element.closest(outputRow))?.id === 'sources' && value === 'From batch') return '来自批量输入';
+  // Rows under the add-to-deck submenu may use any user-defined name.
+  return value;
+}
 const voiceInstructions: Record<string, string> = {
   'Keep Ctrl held while speaking.': '说话时请按住 Ctrl 键。',
   'Press again to stop.': '再按一次即可停止。',
@@ -35,11 +113,26 @@ function batchPosition(label: string) {
   return reference ? '参考素材 ' + reference[1] : label;
 }
 
+function outputTooltipControl(popup: Element) {
+  // The portaled tooltip retains its owning trigger wrapper in the React tree.
+  for (let owner = renderedFiber(popup); owner; owner = owner.return ?? undefined) {
+    const wrapper = (owner as { stateNode?: Element }).stateNode;
+    if (wrapper?.nodeType !== 1 || !wrapper.hasAttribute('data-tooltip-owner')) continue;
+    const button = wrapper.firstElementChild;
+    return button?.matches(outputControl) ? button : undefined;
+  }
+}
+
 function tooltip(element: Element, value: string) {
   // The footer identifies the settings tooltip. Other tooltip headings may be arbitrary asset names.
   const parent = element.parentElement;
-  if (!parent?.parentElement?.matches('[role="tooltip"]')) return;
+  const popup = parent?.parentElement;
+  if (!parent || !popup?.matches('[role="tooltip"]')) return;
   const footer = parent.lastElementChild?.textContent?.trim();
+  if (['Choose where results land', '选择结果的输出位置'].includes(footer ?? '')) {
+    if (element === parent.firstElementChild && value === 'Output') return '输出';
+    if (element !== parent.lastElementChild) return outputChoices.get(value) ?? outputSummary(value, outputTooltipControl(popup));
+  }
   if (element === parent.firstElementChild && value.startsWith('Settings · ')
     && ['Click to hide the settings', 'Click to change them', '点击收起设置', '点击修改设置'].includes(footer ?? '')) {
     return '设置 · ' + value.slice('Settings · '.length);
@@ -55,6 +148,8 @@ function tooltip(element: Element, value: string) {
 }
 
 export function translateShelfAction(element: Element, field: string, value: string): string | undefined {
+  const output = shelfOutput(element, field, value);
+  if (output !== undefined) return output;
   // The collaborator's name can coincide with a built-in label in another shelf menu.
   if (field === 'text' && element.matches(namedAgentLabel)) return value;
   if (field === 'text' && value === 'Browse models…' &&

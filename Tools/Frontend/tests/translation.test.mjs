@@ -39,6 +39,23 @@ test('portal menus, delayed labels, React re-render, restored attributes',async(
  btn.removeAttribute('title');await tick();assert.equal(btn.hasAttribute('title'),false);
  stop();assert.equal(menu.textContent,'Paste');assert.equal(btn.textContent,'Cancel');dom.window.close();
 });
+test('the graph close dialog translates the available actions and restores its original content', () => {
+  const message = 'This graph has changes. Discard them, or save them as a copy or save them?';
+  const {dom, d, stop} = setup(`
+    <div role="dialog" aria-label="Unsaved changes">
+      <div data-confirm-body>${message}</div>
+      <div data-confirm-actions><button>Discard</button><button>Save a copy</button><button>Save and close</button></div>
+    </div>
+    <div class="canvas-card-header">Save and close</div>`);
+  assert.equal(d.querySelector('[role=dialog]').getAttribute('aria-label'), '未保存的更改');
+  assert.equal(d.querySelector('[data-confirm-body]').textContent, '此节点图有未保存的更改。你可以放弃更改、另存为副本或保存并关闭。');
+  assert.deepEqual([...d.querySelectorAll('[data-confirm-actions] button')].map(button => button.textContent), ['放弃更改', '另存为副本', '保存并关闭']);
+  assert.equal(d.querySelector('.canvas-card-header').textContent, 'Save and close');
+  stop();
+  assert.equal(d.querySelector('[data-confirm-body]').textContent, message);
+  assert.equal(d.querySelector('[data-confirm-actions] button:last-child').textContent, 'Save and close');
+  dom.window.close();
+});
 test('canvas toolbar hover descriptions translate and rebound shortcuts are preserved', async () => {
   const description = 'Draw shapes and marks over the canvas and cards';
   const { dom, d, stop } = setup(`

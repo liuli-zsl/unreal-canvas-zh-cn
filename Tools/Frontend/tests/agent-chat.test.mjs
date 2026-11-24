@@ -13,6 +13,32 @@ const compiled = await build({
 const { localize, dictionary } = await import('data:text/javascript;base64,' + Buffer.from(compiled.outputFiles[0].contents).toString('base64'));
 const tick = () => new Promise(resolve => setTimeout(resolve, 0));
 
+test('card request labels preserve agent names and summaries when they match a status', () => {
+  const dom = new JSDOM(`<div class="node-agent-head-position">
+    <button class="node-agent-head" data-agent-preview-trigger="qa"
+      aria-label="Check in with QA · Ready to look at" aria-describedby="qa-info"></button><span id="qa-info" hidden></span>
+  </div><div class="node-agent-head-position">
+    <button class="node-agent-head" data-agent-preview-trigger="codex"
+      aria-label="Check in with Codex · Ready to look at" aria-describedby="codex-info"><span class="node-agent-request-label">Ready to look at</span></button><span id="codex-info" hidden></span>
+  </div>`);
+  try {
+    const doc = dom.window.document;
+    doc.querySelector('#qa-info').append('QA · Ready to look at', ' ', 'Ready to look at');
+    doc.querySelector('#codex-info').append('Check in with Codex', ' ', 'Ready to look at');
+    const before = doc.body.innerHTML;
+    const stop = localize(doc, dictionary);
+    const [plain, request] = doc.querySelectorAll('button');
+    assert.equal(plain.getAttribute('aria-label'), '查看智能体“QA · Ready to look at”的状态');
+    assert.equal(request.getAttribute('aria-label'), 'Check in with Codex · 待查看');
+    assert.equal(request.textContent, '待查看');
+    assert.equal(doc.querySelector('#qa-info').textContent, 'QA · Ready to look at Ready to look at');
+    stop();
+    assert.equal(doc.body.innerHTML, before);
+  } finally {
+    dom.window.close();
+  }
+});
+
 test('the connected welcome panel and disconnected chat expose their actions in Chinese', () => {
   const dom = new JSDOM(`<section>
     <div class="agent-welcome-actions"><button class="agent-welcome-primary" title="Start a chat" aria-label="Start a chat"><span class="new-agent-glyph" aria-hidden="true"></span>Start a chat</button><button>Manage connections</button></div>

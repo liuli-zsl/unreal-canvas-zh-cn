@@ -1,4 +1,5 @@
 import { copyId, copyKey, keyLength } from './copy-id';
+import { renderedFiber } from './host-fiber';
 import type { ReadonlyCanvasState } from '@merlin/plugin-api';
 import catalog from './locales/workspace-details.json';
 import geometryCatalog from './locales/geometry-menu.json';
@@ -33,6 +34,30 @@ const standardRenderPasses = new Map([['beauty', 'Beauty'], ['depth', 'Depth'], 
 const resolutionSources = new Map([['viewport', '视口'], ['camera', '相机']]);
 const missingCameraPrefix = "Unreal couldn't find ";
 const missingCameraSuffixLength = 61;
+const previewMessages = new Map([['Generating…', '正在生成…'], ['Loading…', '正在加载…']]);
+const workflowStatuses = new Map([
+  ['error', ['Run failed', '运行失败']],
+  ['notice', ['Nothing to do', '没有需要处理的内容']],
+  ['running', ['Generating', '正在生成']],
+  ['needs-input', ['Needs an input before it can run', '提供输入后才能运行']],
+  ['ready', ['Ready to generate', '可以开始生成']],
+]);
+const workflowStatusLabels = new Set([...workflowStatuses.values()].map(([name]) => name));
+
+function translateWorkflowPreview(element: Element, field: string, value: string) {
+  const message = field === 'text' && previewMessages.get(value);
+  if (message && element.matches('.canvas-card-body span')) {
+    const props = renderedFiber<{message?: string; hasPreview?: boolean}>(element)?.return?.return?.memoizedProps;
+    if (props?.message === value && typeof props.hasPreview === 'boolean') return message;
+  }
+  if (!workflowStatusLabels.has(value)) return;
+  const row = field === 'title' || field === 'data-title-tip' ? element : field === 'text' ? element.parentElement : null;
+  if (!row?.matches('.canvas-card-body div:is([title],[data-title-tip])') ||
+      (field === 'text' && element !== row.lastElementChild)) return;
+  const props = renderedFiber<{status?: string; name?: string}>(row)?.return?.return?.memoizedProps;
+  const label = props?.status && typeof props.name === 'string' ? workflowStatuses.get(props.status) : undefined;
+  if (label?.[0] === value) return label[1];
+}
 
 function isRenderVariableLabel(element: Element) {
   return element.classList.contains('merlin-param-label') &&
@@ -55,8 +80,13 @@ function renderResolutionHint(element: Element, value: string, text: Node | unde
 
 function renderPassLabel(element: Element, field: string, value: string, popupOwner: Element | undefined, node: NodeData) {
   const pass = standardRenderPasses.get(value);
+  if (!pass) return;
   const names = node.params?.mrgPassNames;
-  if (!pass || !Array.isArray(names) || !names.includes(pass)) return;
+  const dataType = node.kind === 'sequenceRender' ? 'video' : 'image';
+  const standard = Array.isArray(names) && names.length
+    ? names.includes(pass) || names.includes(value)
+    : node.pins?.some(pin => pin.direction === 'output' && pin.dataType === dataType && pin.id === value && pin.name === value);
+  if (!standard) return;
   const label = words.get(pass);
   if (element.matches('.graph-node-body .nodrag > button[aria-pressed]:is([title],[data-title-tip])')) {
     const title = element.getAttribute('title') ?? element.getAttribute('data-title-tip');
@@ -106,6 +136,8 @@ export function createWorkspaceTranslator(readCanvas?: () => ReadonlyCanvasState
   }
 
   return (element: Element, field: string, value: string, text?: Node): string | null | undefined => {
+    const preview = translateWorkflowPreview(element, field, value);
+    if (preview !== undefined) return preview;
     const header = element.matches('.graph-node-header-title span[title]');
     const rename = header && field === 'title' && value.endsWith(englishRename);
     const dynamic = value.startsWith(bridgeRequirement) || isPlatformHelp(value) ||

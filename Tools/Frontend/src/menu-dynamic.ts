@@ -1,6 +1,8 @@
 import { copyKey } from './copy-id';
+import { renderedFiber } from './host-fiber';
 
 const browserScope = '[role="dialog"]:is([aria-label="Open canvas"],[aria-label="打开画布"])';
+const canvasMenu = '[role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"])';
 const extensionGraphDialogBody = '[role="dialog"]:is([aria-label="Graphs from extensions can\'t be edited"],[aria-label="扩展提供的节点图不可编辑"]) > [data-confirm-body]';
 const elapsedUnits: Record<string, string> = { s: '秒', m: '分钟', h: '小时', d: '天' };
 const customNodeCommands = new Map([
@@ -11,10 +13,101 @@ const customNodeCommands = new Map([
 ]);
 const nestedTrigger = 'body > .ue-submenu > div > button[aria-haspopup="menu"]';
 const nestedCommand = 'body > .ue-submenu > div > .ue-submenu > button.ue-menu-item';
+const canvasActionLabels = new Map<string, readonly [string, string]>([
+  ['bake-text', ['Reference (Text)', '引用（文本）']],
+  ['bake-audio', ['Reference (Audio)', '引用（音频）']],
+  ['bake-video', ['Reference (Video)', '引用（视频）']],
+  ['bake-video-frame', ['Reference (Current Frame)', '引用（当前帧）']],
+  ['bake-multiple-images', ['References', '引用各输出']],
+  ['bake-layered-image', ['Layered Reference', '分层引用']],
+  ['dcc-edit-in', ['Send to', '发送到']],
+  ['dcc-edit-in-imageEditor', ['Image editor', '图像编辑器']],
+  ['dcc-finish', ['Finish editing', '完成编辑']],
+  ['graph-add-to-library', ['Add to Library', '添加到资源库']],
+  ['graph-export-file', ['Export as file…', '导出为文件…']],
+  ['recreate-graph-from-artifact', ['Re-create graph as new canvas', '将节点图重建为新画布']],
+  ['grab-into-console', ['Grab into Console', '载入控制台']],
+  ['go-to-original', ['Go to source', '前往来源']],
+]);
+const canvasActionTitles = new Map<string, readonly [string, string]>([
+  ['#94:acd39b2f01c47aab', ['bake-image', '在旁边创建引用卡片，保留与原卡片输出的关联。']],
+  ['#62:b171e5bd14d3f4d2', ['bake-text', '在旁边为文本结果创建引用卡片。']],
+  ['#70:73a7aa983666461f', ['bake-audio', '在旁边为当前音频结果创建引用卡片。']],
+  ['#70:1ef68d5dbcb72000', ['bake-video', '在旁边为当前视频结果创建引用卡片。']],
+  ['#84:e2081b6b1b7c152b', ['bake-video-frame', '在旁边为当前显示的视频帧创建图像引用卡片。']],
+  ['#76:5910dcf9f2851e40', ['bake-video-frame', '为所选视频各自显示的当前帧创建图像引用卡片。']],
+  ['#49:d1a2cc24981e5eed', ['bake-multiple-images', '为卡片的每个输出创建一张引用卡片。']],
+  ['#62:8ce60ae663cd6b67', ['bake-layered-image', '创建包含所有图层的引用卡片，并保留图层切换控件。']],
+  ['#111:1499c939b221200d', ['dcc-edit-in-imageEditor', '未自动找到图像编辑器。请在「设置 → 外部路径 → 图像编辑器路径」中选择程序。']],
+  ['#51:15209f0c50788792', ['graph-add-to-library', '将节点图副本保存到工具箱，供以后使用。']],
+  ['#39:ff34a80c5efe8b04', ['graph-export-file', '将节点图导出为 .graph.json 文件。']],
+  ['#60:d073ad792e80f49e', ['multi-create-subcanvas', '将所选卡片移入节点图，跨边界的连线会创建对应端口。']],
+  ['#35:177176e9056b1e98', ['multi-collapse-subcanvas', '将所选卡片移入子画布。']],
+]);
+type MenuAction = { id: string; label?: string; title?: string };
+type MenuActionProps = { action?: MenuAction };
+
+export function getRenderedMenuAction(button: Element): MenuAction | undefined {
+  // The same action can render inside the menu or in a detached flyout.
+  // Verify the owning key so a similarly named item cannot supply its identity.
+  for (let owner = renderedFiber<MenuActionProps>(button); owner; owner = owner.return ?? undefined) {
+    const action = owner.memoizedProps?.action;
+    if (action?.id && (owner.key === action.id || owner.return?.key === action.id)) return action;
+  }
+}
+
+function translateEditorActionHint(action: MenuAction, english: string, key: string) {
+  const name = action.label;
+  if (!action.id.startsWith('dcc-edit-in-') || !name) return;
+  if (key === '#44:5c9dc21452fe59e9') return '请等待卡片运行完毕。';
+  const path = /^([\s\S]+)Settings ▸ External paths ▸ "([^"]+)"\.$/.exec(english);
+  if (!path) return;
+  const lead = path[1];
+  const location = '「设置 → 外部路径 → ' + path[2] + '」';
+  if (lead.startsWith(name) && copyKey(lead.slice(name.length)) === '#51:20e20b5f91793c9c') {
+    return '未自动找到「' + name + '」。请在' + location + '中选择程序。';
+  }
+  const start = 'Choose the program ';
+  if (lead.startsWith(start + name) && copyKey(start + lead.slice(start.length + name.length)) === '#29:1ac6ec9acf4ab05d') {
+    return '请在' + location + '中选择「' + name + '」使用的程序。';
+  }
+}
+
+export function translateMenuActionCopy(action: MenuAction, field: string, english: string) {
+  if (field === 'title' || field === 'data-title-tip') {
+    if (action.title !== english) return;
+    const key = copyKey(english);
+    const copy = canvasActionTitles.get(key);
+    if (copy && (action.id === copy[0] || (action.id === 'create-reference' && copy[0].startsWith('bake-')))) return copy[1];
+    return translateEditorActionHint(action, english, key);
+  }
+  if (field !== 'text' || action.label !== english) return;
+  const copy = canvasActionLabels.get(action.id);
+  if (copy?.[0] === english) return copy[1];
+  if (action.id === 'dcc-reimport' && english.startsWith('Reimport from ')) return '从' + english.slice(14) + '重新导入';
+  if (action.id === 'bake-video-frame') {
+    const count = /^(\d+) References \(Current Frame\)$/.exec(english);
+    if (count) return '创建 ' + count[1] + ' 张引用卡片（当前帧）';
+  }
+  if (action.id === 'grab-into-console') {
+    const count = /^Grab (\d+) into Console$/.exec(english);
+    if (count) return '载入 ' + count[1] + ' 项到控制台';
+  }
+}
+
+function translateCanvasAction(element: Element, field: string, english: string) {
+  const label = field === 'text' && element.matches('.ue-menu-label,.feature-hint-menu-label');
+  const hint = (field === 'title' || field === 'data-title-tip') && element.matches('button');
+  if (!label && !hint) return;
+  const button = element.closest('button.ue-menu-item');
+  if (!button?.closest(canvasMenu + ',body > .ue-submenu') || !element.ownerDocument.querySelector(canvasMenu)) return;
+  const action = getRenderedMenuAction(button);
+  return action && translateMenuActionCopy(action, field, english);
+}
 
 function isCustomNodeMenu(element: Element): boolean {
   const activeGroup = element.ownerDocument.querySelector(
-    '[role=menu]:is([aria-label="Canvas actions"],[aria-label="画布操作"]) > button[aria-expanded=true] > .feature-hint-menu-label',
+    canvasMenu + ' > button[aria-expanded=true] > .feature-hint-menu-label',
   )?.textContent;
   if (activeGroup !== 'Inspect' && activeGroup !== '检查') return false;
   const row = element.closest('button');
@@ -25,6 +118,8 @@ function isCustomNodeMenu(element: Element): boolean {
 }
 
 export function translateMenuDynamic(element: Element, field: string, english: string): string | undefined {
+  const canvasAction = translateCanvasAction(element, field, english);
+  if (canvasAction !== undefined) return canvasAction;
   if (field === 'text' && english.startsWith('Comes with the ') && element.matches('[role="tooltip"][data-portal-popup][id]')) {
     const start = 'Comes with the '.length;
     const end = english.lastIndexOf(' extension — locked.');

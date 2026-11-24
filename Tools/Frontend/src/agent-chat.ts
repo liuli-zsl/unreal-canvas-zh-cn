@@ -57,6 +57,12 @@ const restoreButton = '.agent-chat-message[data-role="user"] > .agent-chat-messa
 const delivery = new Map(Object.entries({
   Queued: '已排队', 'Not sent': '未发送', 'Delivery unconfirmed': '送达状态未知', Delivered: '已送达',
 }));
+const nodeRequest = new Map([
+  ['Ready to look at', '待查看'], ['Feedback requested', '待反馈'], ['Saved for later', '稍后处理'],
+]);
+const requestButton = '.node-agent-head[data-agent-preview-trigger]';
+const requestDescription = requestButton + ' + span[hidden][id]';
+const requestLabel = requestButton + ' > .node-agent-request-label';
 
 // Only the role label, context list heading and draft recovery button are host chrome.
 // The assistant's author label can be a user-chosen name, including "You".
@@ -68,6 +74,20 @@ export function isAgentChatChrome(element: Element, field: string): boolean {
 
 export function translateAgentChat(element: Element, field: string, english: string, node?: Node): string | undefined {
   const classes = element.classList;
+  if (field === 'text' && element.matches(requestLabel)) {
+    return nodeRequest.get(english);
+  }
+  if (field === 'text' && element.matches(requestDescription)) return english;
+  if (field === 'aria-label' && element.matches(requestButton)) {
+    const description = element.nextElementSibling;
+    const name = description?.matches('span[hidden][id]') && description.firstChild?.nodeType === 3
+      ? description.firstChild.nodeValue : null;
+    if (!name) return;
+    if (english === 'Check in with ' + name) return '查看智能体“' + name + '”的状态';
+    const prefix = name + ' · ';
+    const request = english.startsWith(prefix) && nodeRequest.get(english.slice(prefix.length));
+    if (request) return prefix + request;
+  }
   if (field === 'text') {
     // Activity entries mix arbitrary tool output with system updates in identical markup.
     if (classes.contains('agent-status-text') && element.matches('.agent-chat-status > .agent-status > span')) {

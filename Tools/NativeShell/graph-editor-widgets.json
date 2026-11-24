@@ -1,0 +1,734 @@
+{
+  "SUnrealCanvasBoardBrowser": {
+    "AllKnown": [
+      "662776b8",
+      "无"
+    ],
+    "Connecting": [
+      "9d90f07d",
+      "正在连接服务器…"
+    ],
+    "DanglingSuffix": [
+      "a1d9fa2e",
+      "，另有 {0} 条连线引用了缺失的引脚"
+    ],
+    "FaceCounts": [
+      "b13df7b9",
+      "{0} 个卡面，{1} 个图块，{2} 个输入预览，{3} 个子画布"
+    ],
+    "FilterHint": [
+      "69ccf6f9",
+      "筛选画布"
+    ],
+    "ListFiltered": [
+      "33efde51",
+      "{1} 个画布中，{0} 个匹配「{2}」。"
+    ],
+    "ListLoaded": [
+      "93ae7947",
+      "共 {0} 个画布。"
+    ],
+    "ListNoMatch": [
+      "06585b81",
+      "没有匹配「{0}」的画布。"
+    ],
+    "LoadingList": [
+      "2f85d7b7",
+      "正在加载画布…"
+    ],
+    "ManifestFailed": [
+      "894756ff",
+      "无法读取节点类型清单（{0}）。"
+    ],
+    "ManifestPending": [
+      "47f8b0db",
+      "节点类型清单尚未加载"
+    ],
+    "NoFaces": [
+      "662776b8",
+      "无"
+    ],
+    "Opened": [
+      "9afeca08",
+      "已打开「{0}」，包含 {1} 个节点和 {2} 条连线。"
+    ],
+    "Opening": [
+      "9209ce12",
+      "正在打开「{0}」…"
+    ],
+    "Refresh": [
+      "5a4f4dc1",
+      "刷新"
+    ],
+    "RefreshTip": [
+      "73a003bb",
+      "重新从服务器读取画布列表。"
+    ],
+    "RenderedCounts": [
+      "f3656300",
+      "{0} 个节点，{1} 条连线{2}"
+    ],
+    "RowPrivate": [
+      "de9da313",
+      "{0} · 私有"
+    ],
+    "ShowingChild": [
+      "ca8e6dc4",
+      "当前位于「{0}」（第 {1} 层），包含 {2} 个节点和 {3} 条连线。"
+    ],
+    "StorageResolving": [
+      "eb726919",
+      "正在解析…"
+    ],
+    "SumEdges": [
+      "419c0eae",
+      "连线"
+    ],
+    "SumFaces": [
+      "976aa50d",
+      "卡面"
+    ],
+    "SumId": [
+      "e7b466fb",
+      "ID"
+    ],
+    "SumKinds": [
+      "002d3d9f",
+      "类型"
+    ],
+    "SumName": [
+      "201fa289",
+      "画布"
+    ],
+    "SumNodes": [
+      "5eab6c9b",
+      "节点"
+    ],
+    "SumRendered": [
+      "69a49068",
+      "已渲染"
+    ],
+    "SumStorage": [
+      "54959b41",
+      "存储"
+    ],
+    "SumUnknown": [
+      "4178a598",
+      "未知类型"
+    ],
+    "UnknownTime": [
+      "5ea8da18",
+      "未知"
+    ]
+  },
+  "SUnrealCanvasDetailsPanel": {
+    "AltCurrent": [
+      "bd72ff4d",
+      "▸ 当前使用"
+    ],
+    "AltRecommended": [
+      "18c67e61",
+      "{0}，此节点类型的默认模型"
+    ],
+    "AlternativesLabel": [
+      "951c011a",
+      "备选模型"
+    ],
+    "AlternativesValue": [
+      "e5452878",
+      "「{1}」类别下有 {0} 个模型"
+    ],
+    "CategoryLabel": [
+      "53d0c594",
+      "分类"
+    ],
+    "ChildCanvasLabel": [
+      "08e09682",
+      "子画布"
+    ],
+    "ChildCanvasTip": [
+      "7bfe943f",
+      "双击节点可打开此画布。"
+    ],
+    "EditingLabel": [
+      "51e56a8d",
+      "编辑"
+    ],
+    "EditingParams": [
+      "d21affa3",
+      "修改会自动保存。切换模型后会重新生成节点输入引脚。新模型未声明的已连接引脚会保留。"
+    ],
+    "HiddenLabel": [
+      "057ea95a",
+      "已隐藏"
+    ],
+    "HiddenTip": [
+      "3fd8df70",
+      "参数的 `visibleIf` 条件未满足。可能是其他参数的值不符合条件，或相关引脚尚未连接。"
+    ],
+    "HiddenValue": [
+      "a428e85d",
+      "可见性规则隐藏了 {0} 个参数"
+    ],
+    "KindLabel": [
+      "5cc01256",
+      "类型"
+    ],
+    "KnownKindValue": [
+      "41b5c421",
+      "{0}（{1}）"
+    ],
+    "LifecycleActive": [
+      "a228203e",
+      "可用"
+    ],
+    "LifecycleDeprecated": [
+      "d44c5a43",
+      "已弃用"
+    ],
+    "LifecycleLabel": [
+      "742d9022",
+      "生命周期"
+    ],
+    "LifecycleReason": [
+      "41b5c421",
+      "{0}（{1}）"
+    ],
+    "LifecycleReplacement": [
+      "25106497",
+      "{0}，替代模型为 {1}"
+    ],
+    "LifecycleRetired": [
+      "7286a58c",
+      "已停用"
+    ],
+    "LifecycleRetiresAt": [
+      "89d58249",
+      "{0}，将于 {1} 停用"
+    ],
+    "ModelKnown": [
+      "41b5c421",
+      "{0}（{1}）"
+    ],
+    "ModelLabel": [
+      "f9786698",
+      "模型"
+    ],
+    "ModelLabel2": [
+      "f9786698",
+      "模型"
+    ],
+    "ModelPickerTip": [
+      "4fcbcc9d",
+      "切换模型后，会按新模型的定义重新生成输入引脚。新模型未声明的已连接引脚会保留，运行节点时会提示这些引脚未映射。"
+    ],
+    "ModelSection": [
+      "f9786698",
+      "模型"
+    ],
+    "ModelStatusLabel": [
+      "0e1860fa",
+      "状态"
+    ],
+    "ModelStatusLabel2": [
+      "0e1860fa",
+      "状态"
+    ],
+    "ModelUnknown": [
+      "6be59c63",
+      "服务器的注册表中没有 {0}"
+    ],
+    "ModelUnknown2": [
+      "50633127",
+      "服务器的注册表中没有「{0}」"
+    ],
+    "ModelUnset": [
+      "d3ebadcf",
+      "（未设置）"
+    ],
+    "ModelUnset2": [
+      "d3ebadcf",
+      "（未设置）"
+    ],
+    "MultiSelected": [
+      "1c9d80e0",
+      "已选中 {0} 个节点。详情面板每次显示一个节点的信息。"
+    ],
+    "NoParamsLabel": [
+      "694088f6",
+      "参数"
+    ],
+    "NoParamsValue": [
+      "662776b8",
+      "无"
+    ],
+    "NodeIdLabel": [
+      "e7b466fb",
+      "ID"
+    ],
+    "NodeSection": [
+      "e0d8110d",
+      "节点"
+    ],
+    "NodeTitleLabel": [
+      "16a6d938",
+      "名称"
+    ],
+    "NothingSelected": [
+      "04d01ae9",
+      "选择节点以查看详情。"
+    ],
+    "OtherEmpty": [
+      "8413563b",
+      "（空）"
+    ],
+    "OtherLabel": [
+      "3a86681a",
+      "其他"
+    ],
+    "OtherLabelNoSchema": [
+      "694088f6",
+      "参数"
+    ],
+    "OtherTip": [
+      "cf943ca8",
+      "没有任何参数定义声明 {0}。控件由参数值和此节点所连接的下游引脚共同决定。"
+    ],
+    "OtherValue": [
+      "213293ea",
+      "{0} 个参数未在定义中声明"
+    ],
+    "ParamCountLabel": [
+      "18ba247c",
+      "已显示"
+    ],
+    "ParamCountValue": [
+      "6e70a8d7",
+      "已显示 {0} 个参数，共 {1} 个"
+    ],
+    "ParamNoDefault": [
+      "662776b8",
+      "无"
+    ],
+    "ParamSection": [
+      "3ddc2cce",
+      "参数"
+    ],
+    "ParamTipDefault": [
+      "0cb4daa1",
+      "{0}\n\n当前未设置。运行时使用定义中的默认值（{1}），修改该项会将新值写入节点。"
+    ],
+    "ParamTransaction": [
+      "1bf7dc33",
+      "设置 {0}"
+    ],
+    "PinCountLabel": [
+      "bffaef4a",
+      "数量"
+    ],
+    "PinCountValue": [
+      "4994b6fd",
+      "共 {0} 个引脚，其中 {1} 个已连接"
+    ],
+    "PinSection": [
+      "2df26853",
+      "引脚"
+    ],
+    "PinTip": [
+      "f8225dab",
+      "引脚 ID {0}"
+    ],
+    "ProviderLabel": [
+      "d46f94e7",
+      "服务商"
+    ],
+    "ReadOnlyLossy": [
+      "7a1377b4",
+      "无法保存此画布（{0}）。\n当前无法编辑，运行结果也无法写回。"
+    ],
+    "ReadOnlyNoCommit": [
+      "24d44797",
+      "当前选中项无法写回文档，因此以只读方式显示。"
+    ],
+    "RegistryFailed": [
+      "940152ae",
+      "服务注册表不可用（{0}）"
+    ],
+    "RegistryLoading": [
+      "9aed9080",
+      "正在加载服务注册表…"
+    ],
+    "Runnable": [
+      "1b15a81b",
+      "可运行（{0}）"
+    ],
+    "StrictOff": [
+      "c4714c69",
+      "审批状态仅供参考。当前项目未启用 strictApproval。"
+    ],
+    "StrictOn": [
+      "5e3fba6a",
+      "当前项目要求遵守审批状态（strictApproval）。"
+    ],
+    "UnknownKindValue": [
+      "0551342f",
+      "当前版本的节点类型清单中没有 {0}"
+    ]
+  },
+  "SUnrealCanvasFaceDesigner": {
+    "CanvasCount": [
+      "06ca4190",
+      "共有 {0} 个画布。请先选画布，再选其中的工作流节点。"
+    ],
+    "CanvasLabel": [
+      "201fa289",
+      "画布"
+    ],
+    "Connecting": [
+      "9d90f07d",
+      "正在连接服务器…"
+    ],
+    "Dropped": [
+      "bb8e9e26",
+      "已将「{0}」{1}到 {3} 的 {2}。"
+    ],
+    "EmptyFace": [
+      "ca7bccca",
+      "卡面为空。请从组件面板拖入图块。"
+    ],
+    "FaceCount": [
+      "f1e87f8c",
+      "此画布包含 {0} 个卡面。"
+    ],
+    "FaceLabel": [
+      "703f5445",
+      "卡面"
+    ],
+    "Loading": [
+      "2edc508d",
+      "正在读取画布列表…"
+    ],
+    "Moved": [
+      "c6136d1f",
+      "移动"
+    ],
+    "NeedsMembership": [
+      "dc362054",
+      "此项缺少 gridPosition。正式设计器会在放置时写入该属性。当前原型只修改布局树。"
+    ],
+    "NoFaces": [
+      "80415c8c",
+      "此画布上没有带卡面的工作流节点。"
+    ],
+    "NoSave": [
+      "94c3fa3f",
+      "当前为布局原型。写回需要调用 PUT /api/canvas/{id}（R 阶段）。"
+    ],
+    "NodeGone": [
+      "12be6e10",
+      "该节点已从文档中移除。"
+    ],
+    "OpenFailed": [
+      "f27833ee",
+      "无法打开此画布。请查看日志。"
+    ],
+    "OpeningCanvas": [
+      "9209ce12",
+      "正在打开「{0}」…"
+    ],
+    "PaletteEmpty": [
+      "c2d6e894",
+      "此卡面的图块均已放置。"
+    ],
+    "PickCanvas": [
+      "5e4116bd",
+      "选择画布…"
+    ],
+    "PickFace": [
+      "33f3b918",
+      "选择工作流节点…"
+    ],
+    "Placed": [
+      "1c381041",
+      "放置"
+    ],
+    "Redo": [
+      "2457f45e",
+      "重做"
+    ],
+    "RedoTo": [
+      "ba4aaea4",
+      "重做到第 {0} 步，共 {1} 步。"
+    ],
+    "Refresh": [
+      "5a4f4dc1",
+      "刷新"
+    ],
+    "RefreshTip": [
+      "73a003bb",
+      "重新从服务器读取画布列表。"
+    ],
+    "Removed": [
+      "0cdc2a79",
+      "已从卡面移除 {0}。"
+    ],
+    "Resized": [
+      "3cf5f812",
+      "已移动分隔线。"
+    ],
+    "Revert": [
+      "11edc366",
+      "还原"
+    ],
+    "RevertTip": [
+      "90d5a290",
+      "还原为画布中保存的布局。"
+    ],
+    "Reverted": [
+      "78c9e3e3",
+      "已还原保存的布局。"
+    ],
+    "StageLabel": [
+      "55c63b25",
+      "节点边框"
+    ],
+    "StoredForm": [
+      "b372e3ef",
+      "保存的布局（params.faceLayout）"
+    ],
+    "SummaryEmpty": [
+      "e35dd5f3",
+      "0 个图块 · 0 条分隔线"
+    ],
+    "SummaryFmt": [
+      "bd441c1e",
+      "{0} 个图块 · {1} 条分隔线（{2} 条可拖动）"
+    ],
+    "TheFace": [
+      "cd0f80c1",
+      "卡面"
+    ],
+    "Undo": [
+      "a83ca825",
+      "撤销"
+    ],
+    "UndoTo": [
+      "e1fad513",
+      "撤销到第 {0} 步，共 {1} 步。"
+    ]
+  },
+  "SUnrealCanvasGraphView": {
+    "CanvasReadOnly": [
+      "e68a0c80",
+      "画布中有 UE 的 JSON 读取器无法区分的字段。保存会导致字段丢失，请在网页界面编辑。"
+    ],
+    "CompareTooFew": [
+      "093e3b1a",
+      "选择两个节点进行比较。"
+    ],
+    "CompareTooMany": [
+      "707e61c3",
+      "比较时只能选择两个节点。"
+    ],
+    "CopiedFmt": [
+      "1d7207fc",
+      "已复制 {0} 个节点和 {1} 条连线。"
+    ],
+    "CutNodesFmt": [
+      "fb369008",
+      "剪切 {0} 个节点"
+    ],
+    "DeleteNodesFmt": [
+      "5048339b",
+      "删除 {0} 个节点"
+    ],
+    "DuplicateNodes": [
+      "4dc9448a",
+      "创建节点副本"
+    ],
+    "MaximizeMultiSelection": [
+      "0a0f47b9",
+      "选择一个节点以最大化显示。"
+    ],
+    "MaximizeNoSelection": [
+      "cbe0dfa9",
+      "选择要最大化的节点。"
+    ],
+    "MaximizeTwoSelected": [
+      "bc841f54",
+      "已选中两个节点，按 W 比较。"
+    ],
+    "NavFailed": [
+      "30fe76e3",
+      "无法打开 {0}。"
+    ],
+    "NavOpening": [
+      "4580821b",
+      "正在打开 {0}…"
+    ],
+    "NavUp": [
+      "a7ff6a1e",
+      "↑ 返回上一级"
+    ],
+    "NavUpTip": [
+      "6d16bd40",
+      "返回上一级画布，也可按鼠标的后退键。"
+    ],
+    "NoCanvas": [
+      "f4f0f54b",
+      "选择要打开的画布。"
+    ],
+    "PasteNodes": [
+      "41aaed88",
+      "粘贴节点"
+    ],
+    "PastedFmt": [
+      "60f52f4d",
+      "已粘贴 {0} 个节点和 {1} 条连线。"
+    ],
+    "RunNoSelection": [
+      "2755d38c",
+      "选择要运行的节点。"
+    ],
+    "RunNotRunnableFmt": [
+      "2d479576",
+      "有 {0} 个节点无法从这里运行。"
+    ]
+  },
+  "SUnrealCanvasMaximizedView": {
+    "Close": [
+      "7c7490ae",
+      "✕ 关闭"
+    ],
+    "CloseTip": [
+      "bae9798d",
+      "关闭（Esc 或空格键）。"
+    ],
+    "CompareLoading": [
+      "d632666f",
+      "正在加载…"
+    ],
+    "CompareNothingToShow": [
+      "9eae0000",
+      "这一侧暂无内容。"
+    ],
+    "LoadingChildCanvas": [
+      "0c48a17f",
+      "正在加载此节点图的子画布…"
+    ],
+    "NoVersions": [
+      "2b2c6c5e",
+      "暂无版本"
+    ],
+    "NothingToShow": [
+      "96279209",
+      "此版本暂无可显示的结果。"
+    ],
+    "ResetView": [
+      "3efe3662",
+      "重置视图"
+    ],
+    "ResetViewTip": [
+      "796b4074",
+      "恢复默认视图。"
+    ],
+    "VersionPosition": [
+      "8717ef96",
+      "第 {0} 个版本，共 {1} 个"
+    ]
+  },
+  "SUnrealCanvasNode": {
+    "CopyErrorTip": [
+      "d0d77c3d",
+      "复制此消息"
+    ],
+    "DismissErrorTip": [
+      "de348f3f",
+      "关闭提示"
+    ],
+    "EmptyNodeName": [
+      "347cbc21",
+      "请为节点命名。"
+    ],
+    "NodeValueTransaction": [
+      "1bf7dc33",
+      "设置 {0}"
+    ],
+    "ProcessFailed": [
+      "4ebdba89",
+      "处理失败"
+    ],
+    "ResizeUnrealCanvasNode": [
+      "fc20810b",
+      "调整 Unreal Canvas 节点大小"
+    ]
+  },
+  "SUnrealCanvasParamControl": {
+    "AutoOption": [
+      "c51df09f",
+      "自动匹配输入（{0}）"
+    ],
+    "ReadOnlyNoOptions": [
+      "c3d0f4c4",
+      "{0}（未声明选项）"
+    ],
+    "ReadOnlyUnknownType": [
+      "349433fb",
+      "{0}（无法识别类型「{1}」）"
+    ],
+    "ReadOnlyUnset": [
+      "71a1647c",
+      "（未设置）"
+    ],
+    "SeedRandom": [
+      "9b3ef96e",
+      "随机"
+    ],
+    "SeedRandomTip": [
+      "5d861b61",
+      "保存为 -1，每次运行时都会重新生成随机种子。"
+    ],
+    "SelectUnset": [
+      "71a1647c",
+      "（未设置）"
+    ]
+  },
+  "SUnrealCanvasPassStrip": {
+    "PassTip": [
+      "3bb811fd",
+      "显示 {0} 通道。"
+    ]
+  },
+  "SUnrealCanvasSubcanvasGrid": {
+    "EmptySubcanvas": [
+      "85e0550f",
+      "空子画布"
+    ]
+  },
+  "UnrealCanvasFaceTileBuilder": {
+    "NoInputWired": [
+      "f9b9334b",
+      "当前未连接输入"
+    ],
+    "TriggerLabel": [
+      "f93f7570",
+      "生成"
+    ],
+    "TriggerNotHosted": [
+      "30b39562",
+      "当前正在编辑卡面布局。可在实际卡面中运行工作流。"
+    ],
+    "TriggerRunTip": [
+      "740c4a7c",
+      "运行此工作流"
+    ],
+    "TriggerStopLabel": [
+      "48929fc3",
+      "停止"
+    ],
+    "TriggerStopTip": [
+      "95bb7d54",
+      "停止运行此工作流"
+    ]
+  }
+}

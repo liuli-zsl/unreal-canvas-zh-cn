@@ -26,6 +26,24 @@ const requirements = new Map(Object.entries({
 }));
 
 const filterDialog = '[role="dialog"]:is([aria-label="Custom Filter" i],[aria-label="自定义筛选"])';
+const unsavedDialog = '[role="dialog"]:is([aria-label="Unsaved changes"],[aria-label="未保存的更改"])';
+const unsavedKinds = new Map([
+  ['graph', '节点图'], ['script', '脚本'], ['Python script', 'Python 脚本'],
+  ['Subscript script', '子脚本'], ['skill', '技能'],
+]);
+
+function unsavedChangesMessage(english: string) {
+  const match = /^This (.+) has changes\. Discard them(, or save them as a copy(?: or save them)?|, or save them)?\?$/.exec(english);
+  if (!match) return;
+  const kind = unsavedKinds.get(match[1]);
+  if (!kind) return;
+  if (!match[2]) return '要放弃此' + kind + '未保存的更改吗？';
+  const copy = match[2].includes('as a copy');
+  const save = match[2].endsWith(' or save them');
+  const intro = '此' + kind + '有未保存的更改。';
+  if (copy && save) return intro + '你可以放弃更改、另存为副本或保存并关闭。';
+  return intro + '要放弃更改，还是' + (copy ? '另存为副本' : '保存并关闭') + '？';
+}
 const filterFields = new Map(Object.entries({
   name:['Name','名称'],notes:['Notes','备注'],status:['Status','状态'],team:['Team','团队'],
   person:['Person','人员'],tags:['Tags','标签'],votes:['Votes','投票'],rating:['Rating','评分'],
@@ -86,6 +104,10 @@ function scriptOption(element: Element, english: string): string | null | undefi
 }
 
 export function translatePanelActions(element: Element, field: string, english: string): string | null | undefined {
+  if (field === 'text' && english.startsWith('This ') && element.closest(unsavedDialog + ' [data-confirm-body]')) {
+    const message = unsavedChangesMessage(english);
+    if (message) return message;
+  }
   const selectLabel = element.localName === 'span' && element.parentElement?.parentElement?.classList.contains('custom-select');
   const optionLabel = element.parentElement?.getAttribute('role') === 'option';
   if (field === 'text' && (selectLabel || optionLabel)) {

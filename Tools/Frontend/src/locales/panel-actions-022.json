@@ -104,7 +104,9 @@
       "Unsaved changes": "未保存的更改",
       "#61:e33504c211954ec3": "节点图尚未保存。可另存副本或放弃此次修改。",
       "Discard": "放弃更改",
-      "Save a Copy": "另存为副本"
+      "Save a Copy": "另存为副本",
+      "Save a copy": "另存为副本",
+      "Save and close": "保存并关闭"
     }
   },
   {

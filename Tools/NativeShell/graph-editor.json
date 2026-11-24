@@ -1,0 +1,196 @@
+{
+  "FUnrealCanvasGraphEditorModule": {
+    "CanvasTabTitle": [
+      "667a6db4",
+      "Unreal Canvas（原生）"
+    ],
+    "CanvasTabTooltip": [
+      "e91853eb",
+      "使用 Unreal Canvas 服务器的原生 Slate 画布编辑器。"
+    ],
+    "FaceDesignerTabTitle": [
+      "6b0fec38",
+      "Unreal Canvas 卡面设计器"
+    ],
+    "FaceDesignerTabTooltip": [
+      "8ab0bcd9",
+      "读取现有画布，调整工作流节点的卡面布局。当前版本尚无保存功能。"
+    ]
+  },
+  "UICommands.UnrealCanvasGraphCommands": {
+    "CancelSelection": [
+      "48929fc3",
+      "停止"
+    ],
+    "CancelSelection_ToolTip": [
+      "68c9e607",
+      "停止所选节点的运行。"
+    ],
+    "CompareSelection": [
+      "c387cc9a",
+      "比较"
+    ],
+    "CompareSelection_ToolTip": [
+      "bdb48e13",
+      "比较两个所选节点的结果。"
+    ],
+    "FrameAll": [
+      "0c48420a",
+      "适应全部节点"
+    ],
+    "FrameAll_ToolTip": [
+      "c5e8ab28",
+      "调整视图以显示整个节点图。"
+    ],
+    "FrameSelection": [
+      "daa8ddcb",
+      "适应所选节点"
+    ],
+    "FrameSelection_ToolTip": [
+      "2cca912b",
+      "调整视图以显示所选节点。未选择节点时显示整个节点图。"
+    ],
+    "RunSelection": [
+      "94dc1d38",
+      "运行"
+    ],
+    "RunSelection_ToolTip": [
+      "9bc3cfc8",
+      "运行所选节点。"
+    ],
+    "ToggleMaximize": [
+      "431295ab",
+      "最大化"
+    ],
+    "ToggleMaximize_ToolTip": [
+      "86eb3ef6",
+      "最大化所选节点的结果，或将其还原。"
+    ]
+  },
+  "UnrealCanvasBoardGraphNode": {
+    "ContainerTooltip": [
+      "a3a5355b",
+      "{0}\n类型：{1}\nID：{2}\n\n双击节点主体打开其画布。"
+    ],
+    "NodeTooltip": [
+      "37552fa6",
+      "{0}\n类型：{1}\nID：{2}"
+    ],
+    "RenameNodeTransaction": [
+      "e002e4ea",
+      "重命名节点"
+    ],
+    "UnknownKindTooltip": [
+      "5ac704a2",
+      "{0}\n当前版本的节点类型清单中没有「{1}」。"
+    ]
+  },
+  "UnrealCanvasBoardGraphSchema": {
+    "AddToBundle": [
+      "1fd44ccc",
+      "添加到数据束。"
+    ],
+    "BreakNodeLinks": [
+      "3d96b49e",
+      "断开节点的所有连线"
+    ],
+    "BreakPinLinks": [
+      "6dfa0061",
+      "断开引脚的所有连线"
+    ],
+    "BreakSinglePinLink": [
+      "e9761043",
+      "断开引脚连线"
+    ],
+    "CreateConnection": [
+      "2334262e",
+      "连接引脚"
+    ],
+    "NewNodeTooltipFmt": [
+      "6b87385d",
+      "添加一个 {0} 节点。"
+    ],
+    "NoPin": [
+      "ab3c4700",
+      "引脚无效。"
+    ],
+    "ReplaceInput": [
+      "67733c4c",
+      "替换现有输入。"
+    ],
+    "SameDirection": [
+      "d99b1930",
+      "请将输出引脚连接到输入引脚。"
+    ],
+    "SameNode": [
+      "156326fc",
+      "节点无法连接到自身。"
+    ],
+    "TypeMismatch": [
+      "41b479b8",
+      "无法将 {0} 连接到 {1}。"
+    ],
+    "UnrealCanvasNodeViewHeader": [
+      "fded30c3",
+      "Unreal Canvas"
+    ]
+  },
+  "UnrealCanvasBoardGraphSchemaActions": {
+    "AddNodeFmt": [
+      "622039db",
+      "添加 {0}"
+    ]
+  },
+  "UnrealCanvasGraphCommands": {
+    "UnrealCanvasGraphCommandsContext": [
+      "4dedaea3",
+      "Unreal Canvas 节点图"
+    ]
+  },
+  "UnrealCanvasNodeActions": {
+    "CbLabel": [
+      "f32d8ad1",
+      "导入"
+    ],
+    "CbTip": [
+      "fe7c95cd",
+      "导入到内容浏览器。"
+    ],
+    "DownloadLabel": [
+      "d81a8882",
+      "保存"
+    ],
+    "DownloadTipFmt": [
+      "ba43da46",
+      "将 {0} 保存到磁盘。"
+    ],
+    "MaximizeLabel": [
+      "67d35827",
+      "最大化"
+    ],
+    "MaximizeTip": [
+      "5cd8d1de",
+      "最大化此节点（空格键）。"
+    ],
+    "RunLabel": [
+      "94dc1d38",
+      "运行"
+    ],
+    "RunTip": [
+      "5cb04718",
+      "运行此节点（Ctrl+Enter）。"
+    ],
+    "SaveTitle": [
+      "e84ee1e5",
+      "保存结果"
+    ],
+    "StopLabel": [
+      "48929fc3",
+      "停止"
+    ],
+    "StopTip": [
+      "98522d09",
+      "停止此节点的运行（Ctrl+Shift+Enter）。"
+    ]
+  }
+}

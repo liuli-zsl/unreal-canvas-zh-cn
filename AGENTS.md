@@ -7,7 +7,7 @@
 1. 从 `UnrealCanvasZhCN.uplugin`、`Source/UnrealCanvasZhCN/UnrealCanvasZhCN.Build.cs` 和模块的 `Private/UnrealCanvasZhCNModule.cpp` 检查支持的平台、加载阶段和依赖。Bridge 在引擎初始化结束时启动服务，独立 App 继承启动它的编辑器进程环境。
 2. 前端工作目录为 `Tools/Frontend/`。从该目录的 `manifest.json`、`src/index.ts`、`src/dictionary.ts` 到 `src/locales/` 跟踪前端加载。动态文案规则与保护逻辑从 `src/translate.ts` 进入。`@merlin/plugin-api` 由宿主供应。
 3. 前端的 `scripts/build.mjs` 将 JS 直接写入随包资源目录。从仓库根目录的 `Tools/Packaging/package.py` 检查发布文件清单和原生模块凭据。用户数据目录里的手动安装版与工程里的 UE 插件有独立生命周期。
-4. 原生菜单及设置键在 `Tools/NativeShell/*.json`。修改后运行 `python Tools/NativeShell/compile.py` 和 `python Tools/NativeShell/verify-native-settings.py --engine <引擎目录>`。两个宿主从主插件的 `Content/Localization/UnrealCanvasShellZhCN/` 读取同一份 `.locres`。独立 App 通过 `Resources/NativeShell/` 中的随包描述文件启用主模块。
+4. 原生菜单、节点图、查看器、批注及设置的文本键在 `Tools/NativeShell/*.json`。修改后运行 `python Tools/NativeShell/compile.py` 和 `python Tools/NativeShell/verify-native-settings.py --engine <引擎目录>`。两个宿主从主插件的 `Content/Localization/UnrealCanvasShellZhCN/` 读取同一份 `.locres`。独立 App 通过 `Resources/NativeShell/` 中的随包描述文件启用主模块。
 
 ## 修改与版本同步
 
@@ -17,6 +17,7 @@
 - 每项可独立交付的插件变更递增一次 `.uplugin` 的 `Version`，按变更影响更新 `VersionName`。同步前端清单、npm 清单和锁文件的版本，运行前端构建同步嵌入资源。`FileVersion` 和 Canvas 的 `apiVersion` 各自跟随对应格式。
 - 更新 README 中受影响的安装、功能、版本和兼容范围，在 CHANGELOG 顶部记录日期、实际变更和已执行的验证。同一版本补记验证结果，保留历史记录。
 - 新词条先定位真实系统控件，再确定选择器和字段。保留提示词、用户命名和模型标识。新增动态句式时覆盖变量保留和停用恢复；避免全页无条件替换。
+- 画布与节点图的右键菜单会把下级菜单挂到独立浮层。补词时核对菜单层级、实际动作标识、启用与禁用时的提示，以及动态值是否来自用户数据。
 - 视口脚本菜单和工具箱通过宿主行的 React 键和内置脚本标记识别官方脚本。核对两项证据后才翻译可见标签。结构变化或目录中存在自建脚本时保留目录原名。
 - 节点插入菜单中的 `Format String` 和 `Text Extract` 通过宿主行组件的 React 键和「逻辑」分类的原始条目核对内置身份。
 - 节点悬停说明以宿主元数据字段、节点类型和文案指纹匹配。复验时将鼠标移到节点主体或引脚，核对实际提示，并用同名自定义节点检查原名保护。
