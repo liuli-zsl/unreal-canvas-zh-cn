@@ -197,6 +197,34 @@
     }
   },
   {
+    "selector": ".settings-window-body > main button.ui-icon-btn[aria-pressed]:has(> svg:is([data-icon=pin],[data-icon=unpin]))",
+    "fields": ["title", "aria-label"],
+    "entries": {
+      "Show in pickers": "在模型选择器中显示",
+      "#98:10e650423fdea006": "加入此能力的候选名单。设置名单后，模型选择器只显示名单里的模型。",
+      "#98:1cfceed1ec9d3a2d": "已加入候选名单。此能力的选择器只显示名单里的模型。点击可移除此模型。"
+    }
+  },
+  {
+    "selector": ".settings-window-body > main .credential-row-status",
+    "fields": ["text"],
+    "entries": {
+      "Set (keystore)": "已配置（密钥库）",
+      "#32:da024b975e4b1445": "已配置（你保存的密钥，仅供读取）",
+      "Set (.env)": "已配置（.env）",
+      "Set (--keys-file)": "已配置（--keys-file）",
+      "Set (built-in)": "已配置（内置）"
+    }
+  },
+  {
+    "selector": ".settings-window-body > main [data-media-id] > span,.settings-window-body > main [data-media-id] > div > div:nth-child(2)",
+    "fields": ["text"],
+    "entries": {
+      "User": "用户",
+      "accepts": "接受的输入："
+    }
+  },
+  {
     "selector": "[role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > .merlin-panel-search input, [role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) > div:nth-child(2) [role=combobox], [role=dialog][aria-modal=true]:is([aria-label^=\"Browse \"],[aria-label^=\"浏览\"]):has(> .merlin-panel-search) [role=tablist]",
     "fields": [
       "aria-label",

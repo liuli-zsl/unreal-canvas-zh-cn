@@ -1,8 +1,8 @@
 import { copyKey } from './copy-id';
 
 const closeGraphButton = '[data-merlin-canvas-surface] > [data-merlin-punch-cover] > span > button:has(> svg[data-icon="close"])';
-const toolbarButton = '.canvas-tool-palette button[data-app-tooltip]';
-const toolbarTooltipLine = '[role="tooltip"][data-portal-popup] > div:only-child > div:only-child > div:not(:has(*))';
+const toolbarButton = ':is(.canvas-tool-palette,.merlin-toolbar-control-box) button[data-app-tooltip]';
+const toolbarTooltipLine = '[role="tooltip"][data-portal-popup] > div:only-child > div:first-child > div:not(:has(*))';
 const toolbarTools = [
   { title: 'Select', label: '选择', key: '#27:5324499e7f3fb863', detail: '选择、移动卡片并调整大小' },
   { title: 'Annotate', label: '批注', key: '#47:ad5834405fadb661', detail: '在画布和卡片上绘制形状与标记' },
@@ -10,6 +10,12 @@ const toolbarTools = [
   { title: 'Frame', label: '框架', key: '#43:24ed411515102f59', detail: '拖出框架以组织和排列卡片' },
   { title: 'Comment', label: '评论', key: '#26:a227813f159a07f2', detail: '给卡片添加评论' },
   { title: 'Insert', label: '插入', key: '#51:a154afaea67fdcc6', detail: '添加文本便笺、卡片、节点图、容器和文件' },
+  { title: 'History lines', label: '历史连线', key: '#52:c697c64dca046c23', detail: '用连线显示各卡片的来源' },
+  { title: 'Filter cards', label: '筛选卡片', key: '#44:7cecf1636162963c', detail: '仅显示符合筛选条件的卡片' },
+  { title: 'Zoom out', label: '缩小', key: '#43:3db5504db72c4c10', detail: '缩小视图以查看更多画布内容' },
+  { title: 'Zoom level', label: '缩放比例', key: '#44:5642cf966f61773d', detail: '双击恢复到 100%' },
+  { title: 'Zoom in', label: '放大', key: '#34:ebd6b302151daf65', detail: '放大视图以查看细节' },
+  { title: 'Zoom and view options', label: '缩放与视图选项', key: '#50:c9fb293d7fc5f78e', detail: '适应视图、恢复 100%、小地图和全屏' },
 ];
 
 function translateToolbar(element: Element, field: string, english: string) {

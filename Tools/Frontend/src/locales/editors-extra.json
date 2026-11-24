@@ -262,7 +262,7 @@
     }
   },
   {
-    "selector": ".merlin-graph-inspector :is(.merlin-script-form-section,.merlin-script-form-section-head span,.merlin-script-form-prop,.merlin-script-form-prop-label span,.merlin-script-form-none:not([title]),.merlin-script-form-checkbox,.merlin-script-side-locked > span,.merlin-script-side-duplicate,input,textarea,.merlin-script-form-add,.merlin-script-form-dot.is-button,.merlin-script-form-remove,.merlin-skill-attach-add,.merlin-skill-attach-manage,.merlin-custom-category:first-child),.merlin-graph-inspector-subtype button,.merlin-graph-inspector .merlin-tags-field",
+    "selector": ".merlin-graph-inspector :is(.merlin-script-form-section,.merlin-script-form-section-head span,.merlin-script-form-prop,.merlin-script-form-prop-label span,.merlin-script-form-none:not([title]),.merlin-script-form-checkbox,.merlin-script-side-locked > span,.merlin-script-side-duplicate,input,textarea,button[role=\"switch\"],.merlin-script-form-add,.merlin-script-form-dot.is-button,.merlin-script-form-remove,.merlin-skill-attach-add,.merlin-skill-attach-manage,.merlin-custom-category:first-child),.merlin-graph-inspector-subtype button,.merlin-graph-inspector .merlin-tags-field",
     "fields": [
       "text",
       "title",
@@ -288,10 +288,17 @@
       "Delete input": "删除输入",
       "Delete output": "删除输出",
       "#115:28d307ef3e781e50": "右键节点选择「创建输入」，也可在这里添加输入后拖到图中。",
+      "#115:8e488f24a293ef70": "还没有输入。右键节点可选择「创建输入」，也可从这里添加后拖到图中。",
       "#107:e176399bd31cd521": "请将结果连到输出节点，卡片才能展示。",
       "Edit a Copy": "编辑副本",
+      "Edit a copy": "编辑副本",
       "#97:134ffde693927f62": "卡片已有结果，复制后可调整设置。",
       "#61:063dcf91c4f920cb": "请解锁画布后再编辑节点图。",
+      "Auto lock": "自动锁定",
+      "Locks once it has run and every output is filled": "运行并填充所有已连接的输出后锁定",
+      "Stays editable after it runs": "运行后仍可编辑",
+      "#48:8adc0149dd1d2760": "全局自动锁定已关闭，节点图不会自动锁定。",
+      "#97:a1f6281c0ef5dcdc": "全局自动锁定设为始终，所有节点图在运行后都会锁定。",
       "General": "常规",
       "Category": "分类",
       "Author": "作者",
@@ -318,8 +325,16 @@
     "entries": {
       "#233:3c6d91be7d6cd84c": "将节点所用模型的参数显示在输入旁。右键节点选择「显示模型设置」即可添加，更换模型时沿用可用参数。",
       "#479:48c32aeeae6a465b": "输入定义卡片的运行参数。右键节点或拖入新输入即可创建关联，多处可共享同一值。删除单个节点仍保留输入定义，点此处的 × 会一并删除全部关联节点。",
+      "#479:5fc485050d51d73b": "输入是节点图卡片运行前提供的值，例如常量、提示词或图片。智能体填写节点图时会读取这些名称。右键节点选择「创建输入」，也可从这里添加输入后拖到图中。重复拖入可放置多个共享同一值的关联节点。删除最后一个关联节点时会保留此处的输入定义。点击这里的 × 会删除输入及其所有关联节点。",
       "#142:30eb1ad134b1a62c": "将结果连到输出节点的引脚，卡片会展示标星的输出。",
       "#176:bf101b1a2478458a": "手动添加的技能供此画布及其嵌套画布中的智能体参考。工具权限继续沿用现有设置。"
+    }
+  },
+  {
+    "selector": ".merlin-graph-inspector button[role=\"switch\"],[role=\"tooltip\"][data-portal-popup][id],.merlin-graph-inspector .merlin-sr-only",
+    "fields": ["text", "title"],
+    "entries": {
+      "#408:a1314ce94736abb2": "开启时，节点图运行并填充所有已连接的输出后会锁定，使结果与生成流程对应。关闭时仍可编辑。在「设置 → 偏好设置 → 节点图」中，全局选项设为「开启」时采用各图的开关。设为「关闭」时全部保持可编辑，设为「始终」时所有节点图都在运行后锁定。"
     }
   }
 ]

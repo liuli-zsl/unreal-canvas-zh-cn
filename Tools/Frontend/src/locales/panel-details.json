@@ -1,5 +1,12 @@
 [
   {
+    "selector": ".merlin-inspector-summary span[style*=\"--field-label-size\"]",
+    "fields": ["text"],
+    "entries": {
+      "Source": "来源"
+    }
+  },
+  {
     "selector": ".merlin-skill-attach-list, .merlin-skill-attach-actions > button, .merlin-skill-picker, .merlin-skill-picker-list, .merlin-skill-picker-search input, .merlin-skill-picker-empty:not([role=\"alert\"]), .chat-skills-scope-editor button[aria-expanded], .chat-skills-scope-editor button[aria-expanded] > span, .chat-skills-scope-editor summary",
     "fields": [
       "text",

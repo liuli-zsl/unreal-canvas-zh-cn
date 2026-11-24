@@ -1,5 +1,15 @@
 [
   {
+    "selector": ".settings-window-body main [role=group] :is(span,button.ui-switch[role=switch])",
+    "fields": [
+      "title",
+      "data-title-tip"
+    ],
+    "entries": {
+      "#541:e74bd1158828b5f7": "可信目录中的更新可沿用现有授权，包括「运行前询问」设置允许的扩展。更新没有新增权限请求，且目录已审核该版本时，可自动更新。未审核的版本若不执行代码、不以插件方式加载模型定义，并且保留现有模型和登录状态，也可自动更新。其他更新会等待你的操作，并在运行前再次询问。会在应用内执行代码或以插件方式加载模型定义的扩展，需要手动点击「更新」。"
+    }
+  },
+  {
     "selector": ".settings-window-body main span",
     "fields": [
       "title"
@@ -223,6 +233,7 @@
       "Step one video frame": "视频逐帧步进",
       "#63:74cc3dfaf5e214c0": "逐帧浏览时用逗号退一帧，用句号进一帧。",
       "in a video viewer": "在视频查看器中",
+      "with the pointer over a 3D view": "鼠标位于三维视图上时",
       "Toggle draw mode": "切换绘制模式",
       "while an image is maximized": "图像已最大化时",
       "Show or hide the annotation": "显示或隐藏批注",
@@ -332,6 +343,13 @@
       "Header Right": "标题栏右侧",
       "Footer Left": "底栏左侧",
       "Footer Right": "底栏右侧"
+    }
+  },
+  {
+    "selector": ".settings-window-body .settings-group > p",
+    "fields": ["text"],
+    "entries": {
+      "#324:34421c3a34530313": "卡片底栏只显示一行。下方两组决定左右两侧字段的显示顺序，组名不会显示。左侧固定以带类型颜色的「卡片类型」开头，可以在其后添加字段。其他字段使用弱化颜色。"
     }
   },
   {

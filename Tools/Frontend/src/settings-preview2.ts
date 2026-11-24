@@ -23,6 +23,17 @@ const catalogCategories = new Map(Object.entries({
   'depth estimation': '深度估计',
 }));
 
+const modelCapabilityLabels = new Map(Object.entries({
+  'audio-generator': 'audio generation', 'depth-estimator': 'depth estimation',
+  'image-generator': 'image generation', 'image-upscaler': 'image upscaling',
+  'mesh-generator': 'mesh generation', 'rigging': 'rigging (auto-rig)',
+  'splat-generator': 'splat generation', 'text-generator': 'text generation (llm)',
+  'video-generator': 'video generation', 'video-upscaler': 'video upscaling',
+}).map(([id, label]) => [id, catalogCategories.get(label)]));
+const modelCapabilitySlot = '.settings-window-body > main [data-service-id] > div:first-child > div:nth-child(2),' +
+  '.settings-window-body > main [role="region"]:is([aria-label="Model catalog table"],[aria-label="模型目录表"]) ' +
+  'button > div:has(> div:first-child > [data-testid="provider-icon"]) > div:nth-child(2)';
+
 function catalogText(element: Element, field: string, english: string, node: Node): string | null | undefined {
   if (field === 'text' && element.closest('[role=option]')) {
     const list = element.closest('[role=listbox]');
@@ -74,6 +85,11 @@ function catalogText(element: Element, field: string, english: string, node: Nod
 }
 
 export function translateSettingsPreview2(element: Element, field: string, english: string, node: Node): string | null | undefined {
+  const capability = field === 'text' ? modelCapabilityLabels.get(english) : undefined;
+  // In both lists the rendered sequence is the ID, separator, then capability.
+  if (capability && node === element.childNodes[2] && node.previousSibling?.nodeValue === ' · ' &&
+      element.matches(modelCapabilitySlot)) return capability;
+
   const catalog = catalogText(element, field, english, node);
   if (catalog !== undefined) return catalog;
   if (field === 'text' && pinTypes.has(english)) {

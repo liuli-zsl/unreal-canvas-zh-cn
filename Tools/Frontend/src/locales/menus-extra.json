@@ -228,6 +228,7 @@
       "Hide minimap": "隐藏小地图",
       "Fullscreen": "全屏",
       "Exit fullscreen": "退出全屏",
+      "Exit Fullscreen": "退出全屏",
       "Filter by": "筛选条件",
       "Person": "人员",
       "Age": "时间",
@@ -533,6 +534,84 @@
     "entries": {
       "New name for \"": "画布“",
       "\":": "”的新名称"
+    }
+  },
+  {
+    "selector": "[role=\"tooltip\"][data-portal-popup][id]:not(:has(> *))",
+    "fields": ["text"],
+    "entries": {
+      "#203:3ae274ba26e125a3": "已锁定。此节点图已运行。仍可移动节点、用框架整理节点、排列输入和输出，以及添加、编辑或删除文本便笺和连接线。点击解锁，或复制一份再编辑。",
+      "#73:a6848abdbcf0a574": "已解锁。编辑会改变此结果的生成流程。点击可重新锁定。",
+      "#86:3a12456e3300330b": "可编辑。节点图已运行，但已在「设置 → 偏好设置 → 节点图」中关闭自动锁定。",
+      "#83:c6f42911d1a191a8": "此节点图已运行，仍可编辑。此图的自动锁定已在「脚本详情 → 常规」中关闭。",
+      "#126:c0b393609e3d4f3a": "可编辑。节点图尚未完成一次整图运行并填充所有已连接的输出。逐个运行卡片时仍可编辑。",
+      "#38:a5c6eb409431756d": "可编辑。此节点图尚未运行。",
+      "#63:a9dca4faa68ff5f1": "默认工作流已锁定。复制后即可编辑副本。",
+      "#445:1d6a2d1741c98afd": "运行画布上的节点图卡片、它的输出节点，或覆盖所有输出的触发器后，如果每个已连接的输出都有内容，节点图就会自动锁定，使结果与生成流程对应。逐个运行图内卡片时仍可编辑。可用图右上角关闭按钮旁的锁图标解锁或编辑副本。单个节点图的自动锁定开关位于该图的「脚本详情 → 常规」。"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"][aria-modal=\"true\"]:has(> [data-confirm-body]),[role=\"dialog\"][aria-modal=\"true\"]:has(> [data-confirm-body]) > div:first-child",
+    "fields": ["text", "aria-label"],
+    "entries": {
+      "Unlock this graph?": "解锁此节点图？",
+      "Built-in graphs can't be edited": "内置节点图不可编辑",
+      "Graphs from extensions can't be edited": "扩展提供的节点图不可编辑"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"]:is([aria-label=\"Unlock this graph?\"],[aria-label=\"解锁此节点图？\"],[aria-label=\"Built-in graphs can't be edited\"],[aria-label=\"内置节点图不可编辑\"],[aria-label=\"Graphs from extensions can't be edited\"],[aria-label=\"扩展提供的节点图不可编辑\"]) > [data-confirm-body]",
+    "fields": ["text", "aria-label"],
+    "entries": {
+      "Message": "说明",
+      "#407:e2911791849f4ce4": "此节点图已运行并生成结果。修改节点图会改变生成流程，卡片上的结果将与节点图不符。要保留当前结果，请编辑副本。「仅复制节点图」会新建一张没有输出的卡片。「连同输出一起复制」会复制整张卡片并以解锁状态打开，方便修改现有流程的部分节点。编辑完毕后，可以重新锁定。",
+      "#121:af126ab87eee29a3": "此节点图随应用提供。在工具箱中复制它，即可编辑副本。"
+    }
+  },
+  {
+    "selector": "[role=\"dialog\"]:is([aria-label=\"Unlock this graph?\"],[aria-label=\"解锁此节点图？\"],[aria-label=\"Built-in graphs can't be edited\"],[aria-label=\"内置节点图不可编辑\"],[aria-label=\"Graphs from extensions can't be edited\"],[aria-label=\"扩展提供的节点图不可编辑\"]) > [data-confirm-actions] > button",
+    "fields": ["text"],
+    "entries": {
+      "Cancel": "取消",
+      "Copy graph only": "仅复制节点图",
+      "Copy with outputs": "连同输出一起复制",
+      "Unlock": "解锁",
+      "OK": "确定"
+    }
+  },
+  {
+    "selector": ".merlin-toolbar-control-box",
+    "fields": ["aria-label"],
+    "entries": {
+      "View, filter and zoom": "视图、筛选与缩放"
+    }
+  },
+  {
+    "selector": ".settings-row-value span,.ue-menu-item[role=\"option\"]:is([data-value=\"off\"],[data-value=\"on\"],[data-value=\"always\"])",
+    "fields": ["text", "title"],
+    "entries": {
+      "Graphs never lock.": "节点图不会自动锁定。",
+      "#44:9410be555898dd9c": "自动锁定按节点图分别设置。",
+      "#64:093ed9443a829987": "所有节点图在运行后都会自动锁定。"
+    }
+  },
+  {
+    "selector": ".merlin-toolbar-control-box :is(button,.merlin-toolbar-zoom)[data-app-tooltip]",
+    "fields": ["aria-description"],
+    "entries": {
+      "#44:5642cf966f61773d": "双击恢复到 100%",
+      "#88:cda9bfa4c1fee200": "用连线显示各卡片的来源。当前显示所选卡片的历史连线。",
+      "#81:2582fa4b505e1409": "用连线显示各卡片的来源。当前显示所有卡片的历史连线。",
+      "#82:7a55791747ad0f17": "仅显示符合筛选条件的卡片。筛选已启用，部分卡片已隐藏。"
+    }
+  },
+  {
+    "selector": "[role=\"tooltip\"][data-portal-popup] > div:only-child > div:nth-child(2) > div:only-child",
+    "fields": ["text"],
+    "entries": {
+      "#35:8531a194dbeda074": "当前显示所选卡片的历史连线",
+      "#28:23115c7a39328c6d": "当前显示所有卡片的历史连线",
+      "#37:a8c7585ba64f3bc8": "筛选已启用，部分卡片已隐藏"
     }
   }
 ]

@@ -61,6 +61,20 @@ test('canvas toolbar hover descriptions translate and rebound shortcuts are pres
   assert.equal(detail.textContent, description);
   dom.window.close();
 });
+test('host tooltip data attributes translate after mount and restore their latest source text', async () => {
+  const dom = new JSDOM('<button id="scoped" data-title-tip="Save">x</button><button id="other" data-title-tip="Save">y</button>');
+  const {document} = dom.window;
+  const scoped = document.getElementById('scoped');
+  const stop = localize(document, [{selector:'#scoped', fields:['data-title-tip'], entries:{Save:'保存', Cancel:'取消'}}]);
+  assert.equal(scoped.getAttribute('data-title-tip'), '保存');
+  assert.equal(document.getElementById('other').getAttribute('data-title-tip'), 'Save');
+  scoped.setAttribute('data-title-tip','Cancel');
+  await tick();
+  assert.equal(scoped.getAttribute('data-title-tip'), '取消');
+  stop();
+  assert.equal(scoped.getAttribute('data-title-tip'), 'Cancel');
+  dom.window.close();
+});
 test('shelf collaborator menu translates its actions and preserves matching agent names', () => {
   const {dom, d, stop} = setup(`
     <div class="generation-shelf-menu" role="menu" aria-label="Agent">

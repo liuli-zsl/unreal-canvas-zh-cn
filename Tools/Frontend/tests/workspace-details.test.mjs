@@ -43,3 +43,54 @@ test('graph captions follow node kinds, leaving user titles, prompt bodies, cust
     dom.window.close();
   }
 });
+
+test('render fields, pass controls and resolution hints preserve user variable names and original values', () => {
+  const dom = new JSDOM(`
+    <div class="react-flow__node" data-id="render">
+      <div class="graph-node-body">
+        <div class="nodrag">
+          <button aria-pressed="true" title="beauty">beauty</button>
+          <button aria-pressed="false" title="Custom Pass">Custom Pass</button>
+        </div>
+        <button class="custom-select" role="combobox" aria-controls="passes" data-value="depth">
+          <span><span id="depth" aria-hidden="false">depth</span></span>
+        </button>
+        <div class="graph-node-params">
+          <div class="merlin-param-row"><span id="fixed" class="merlin-param-label" title="Show flags">Show flags</span></div>
+          <div class="merlin-param-row"><span id="variable" class="merlin-param-label" title="Show flags">Show flags</span>
+            <div class="merlin-param-control"><button title="Expose as input pin"></button></div>
+          </div>
+          <div id="resolution">→ 1920×1080 · matches viewport 1.78:1</div>
+          <div id="fallback"></div>
+        </div>
+      </div>
+    </div>
+    <div role="listbox" id="passes"><div role="option" data-value="depth"><span id="option">depth</span></div></div>`);
+  try {
+    const doc = dom.window.document;
+    const state = {activeCanvasId:'c',canvases:{c:{nodes:[{id:'render',kind:'unrealRender',params:{mrgPassNames:['Beauty','Depth']}}]}}};
+    const field = id => doc.getElementById(id);
+    field('resolution').replaceChildren(...['→ ', '1920×1080', ' · matches viewport 1.78:1'].map(text => doc.createTextNode(text)));
+    field('fallback').replaceChildren(...['→ ', '1920×1080', ' — ', 'viewport',
+      " couldn't be found, so this is the ", 'viewport', " aspect, not that camera's. Pick the camera again."
+    ].map(text => doc.createTextNode(text)));
+    const stop = localize(doc, [], () => state);
+    const beauty = doc.querySelector('button[aria-pressed="true"]');
+    assert.equal(beauty.textContent,'最终合成');
+    assert.equal(beauty.title,'最终合成');
+    assert.equal(doc.querySelector('button[aria-pressed="false"]').textContent,'Custom Pass');
+    assert.equal(field('depth').textContent,'深度');
+    assert.equal(field('option').textContent,'深度');
+    assert.equal(field('depth').closest('button').getAttribute('data-value'),'depth');
+    assert.equal(field('fixed').textContent,'显示标志');
+    assert.equal(field('variable').textContent,'Show flags');
+    assert.equal(field('variable').title,'Show flags');
+    assert.equal(field('resolution').textContent,'→ 1920×1080 · 匹配视口宽高比 1.78:1');
+    assert.equal(field('fallback').textContent,'→ 1920×1080 — viewport 未找到，当前显示的是 视口 的宽高比。请重新选择相机。');
+    stop();
+    assert.equal(beauty.title,'beauty');
+    assert.equal(field('resolution').textContent,'→ 1920×1080 · matches viewport 1.78:1');
+  } finally {
+    dom.window.close();
+  }
+});

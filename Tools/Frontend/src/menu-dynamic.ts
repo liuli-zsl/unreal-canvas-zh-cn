@@ -1,6 +1,7 @@
 import { copyKey } from './copy-id';
 
 const browserScope = '[role="dialog"]:is([aria-label="Open canvas"],[aria-label="打开画布"])';
+const extensionGraphDialogBody = '[role="dialog"]:is([aria-label="Graphs from extensions can\'t be edited"],[aria-label="扩展提供的节点图不可编辑"]) > [data-confirm-body]';
 const elapsedUnits: Record<string, string> = { s: '秒', m: '分钟', h: '小时', d: '天' };
 const customNodeCommands = new Map([
   ['Custom Node', '自定义节点'],
@@ -24,6 +25,27 @@ function isCustomNodeMenu(element: Element): boolean {
 }
 
 export function translateMenuDynamic(element: Element, field: string, english: string): string | undefined {
+  if (field === 'text' && english.startsWith('Comes with the ') && element.matches('[role="tooltip"][data-portal-popup][id]')) {
+    const start = 'Comes with the '.length;
+    const end = english.lastIndexOf(' extension — locked.');
+    const trigger = [...element.ownerDocument.querySelectorAll('span[aria-describedby]:has(> button[data-graph-edit-lock])')]
+      .find(wrapper => wrapper.getAttribute('aria-describedby')?.split(/\s+/).includes(element.id));
+    if (trigger && end > start && copyKey(english.slice(0, start) + english.slice(end)) === '#72:d59ddf8ec23d900e') {
+      return '此节点图由「' + english.slice(start, end) + '」扩展提供，现已锁定。复制后即可编辑副本。';
+    }
+  }
+  if (field === 'text' && english.startsWith('This graph comes with the ')) {
+    const start = 'This graph comes with the '.length;
+    const dialog = element.matches(extensionGraphDialogBody);
+    const inspector = element.matches('.merlin-graph-inspector .merlin-script-side-locked > span');
+    const end = english.lastIndexOf(dialog ? ' extension and changes only when ' : ' extension, so its settings ');
+    if (dialog && end > start && copyKey(english.slice(0, start) + english.slice(end)) === '#142:287aed80dd143695') {
+      return '此节点图由「' + english.slice(start, end) + '」扩展提供，随扩展更新。在工具箱中复制它，即可编辑副本。';
+    }
+    if (inspector && end > start && copyKey(english.slice(0, start) + english.slice(end)) === '#129:731a0436349e0feb') {
+      return '此节点图由「' + english.slice(start, end) + '」扩展提供，设置已锁定。在工具箱中复制它，即可编辑副本。';
+    }
+  }
   const command = field === 'text' && customNodeCommands.get(english);
   if (command && element.matches('.feature-hint-menu-label,.ue-menu-label') && isCustomNodeMenu(element)) return command;
   if (field === 'title' && element.matches(nestedCommand) && isCustomNodeMenu(element)) {

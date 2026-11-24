@@ -25,6 +25,7 @@ const groupTitles = new Map<string, string>(Object.entries({
   'Webcam Capture Server': '摄像头采集服务', 'Live session': '实时会话', Status: '状态', Credentials: '凭据',
   'Media Providers': '媒体服务商', 'Model Approval': '模型审批', 'By capability': '按能力',
   'Header Left': '标题栏左侧', 'Header Right': '标题栏右侧', 'Footer Left': '底栏左侧', 'Footer Right': '底栏右侧',
+  'Footer left': '底栏左侧', 'Footer right': '底栏右侧',
 }));
 
 function groupTitle(title: string): string | undefined {

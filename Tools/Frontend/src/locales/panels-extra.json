@@ -64,7 +64,7 @@
     }
   },
   {
-    "selector": ".media-library-filter-trigger,.merlin-content-view-controls button,.merlin-scripts-columns-btn,.merlin-scripts-create-btn,.merlin-panel-settings-menu",
+    "selector": ".media-library-filter-trigger,.merlin-content-view-controls button,.merlin-scripts .merlin-segmented-icons > button,.merlin-scripts-columns-btn,.merlin-scripts-create-btn,.merlin-panel-settings-menu,.merlin-rail-body-content:has(> .merlin-scripts) > .ue-menu[role=menu]:is([aria-label=\"Columns\"],[aria-label=\"显示列\"])",
     "fields": [
       "title",
       "aria-label"
@@ -80,7 +80,7 @@
     }
   },
   {
-    "selector": ".merlin-scripts-cell,.merlin-panel-settings-menu .ue-menu-label,.merlin-scripts-results-sort",
+    "selector": ".merlin-scripts-cell,.merlin-panel-settings-menu .ue-menu-label,.merlin-scripts-results-sort,.merlin-rail-body-content > .ue-menu[role=menu]:is([aria-label=\"Columns\"],[aria-label=\"显示列\"]) button[role=menuitemcheckbox] > .ue-menu-label",
     "fields": [
       "text",
       "title"
@@ -108,6 +108,7 @@
       "Built-in": "内置",
       "Built-in: ships with Unreal Canvas": "内置，随 Unreal Canvas 提供",
       "#48:efef782d2ab99ab9": "内置脚本为只读，可复制到库后修改。",
+      "#47:aa08b5775383ce1f": "内置脚本已锁定，创建副本后可编辑。",
       "Claude Code skill": "Claude Code 技能",
       "Invalid SKILL.md": "无效的 SKILL.md",
       "Shadowed by another library": "已被其他库中的同名技能覆盖",
@@ -284,6 +285,7 @@
       "Waiting for Unreal Canvas output…": "正在等待 Unreal Canvas 输出…",
       "Loading Python console…": "正在加载 Python 控制台…",
       "#44:357972a509a4f993": "在 Python 工作区交互调用 merlin API。",
+      "#56:005cfc61cd336d6c": "在 Python 工作区交互调用 Unreal Canvas API。",
       "New session": "新建会话",
       "#50:d84ec18dabcf9374": "创建独立的 Python 进程、变量空间与工作目录。",
       "Python session": "Python 会话"
@@ -312,6 +314,7 @@
       "Age": "时间",
       "Votes": "投票",
       "Custom Filter…": "自定义筛选…",
+      "Custom filter…": "自定义筛选…",
       "Saved": "已保存",
       "Starred": "已加星标",
       "Tag": "标签",
@@ -355,10 +358,11 @@
     }
   },
   {
-    "selector": ".media-library .merlin-panel-icon-button,.media-library-size,.media-library .merlin-key-picker,.media-library .merlin-content-view-controls button,.media-library input,.media-library-hand-save,.media-library-hand-card-remove,.merlin-navigator-tree-actions button,.merlin-panel-chip",
+    "selector": ".media-library .merlin-panel-icon-button,.media-library-size,.media-library .merlin-key-picker,.media-library .merlin-content-view-controls button,.media-library .merlin-segmented-icons > button,.media-library input,.media-library-hand-save,.media-library-hand-card-remove,.merlin-navigator-tree-actions button,.merlin-panel-chip",
     "fields": [
       "title",
       "aria-label",
+      "data-title-tip",
       "placeholder"
     ],
     "entries": {
@@ -366,6 +370,9 @@
       "#37:e59a654e2f383cc9": "只显示资源库所选项",
       "#29:6b54aac512a20d50": "归档卡片请使用平铺视图。",
       "Back to the Library": "返回资源库",
+      "Archived cards from": "按来源筛选已归档卡片",
+      "#41:7d43d6843973c931": "仅在媒体平铺视图中显示所选项目",
+      "#121:dc6ba6e03c34dfa8": "已归档卡片保留生成结果和编辑内容，可按原样恢复。",
       "#96:2134e5868863a366": "查看并恢复仍含生成媒体的已删卡片。",
       "Search archived cards": "搜索已归档的卡片",
       "Search archived cards or canvases…": "搜索已归档的卡片或画布…",

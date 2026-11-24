@@ -567,7 +567,29 @@
     "#33:67241c9fdb8aaeea": "。",
     "— pick a group —": "— 选择颜色组 —",
     "#26:0368a54677c00855": "— 请在节点上指定工具 —",
-    "→ preview unavailable (": "→ 无法预览（"
+    "→ preview unavailable (": "→ 无法预览（",
+    "Match aspect": "匹配宽高比",
+    "Target resolution size": "目标分辨率",
+    "Match visibility": "匹配可见性",
+    "Show flags": "显示标志",
+    "View mode": "视图模式",
+    "MRG preset": "MRG 预设",
+    "MRG variables": "MRG 变量",
+    "→ computing…": "→ 正在计算…",
+    "Can't reach Unreal": "无法连接 UE",
+    "Connected to Unreal": "已连接到 UE",
+    "#69:2911f6b1986798fa": "无法连接 UE。请确认编辑器已启动，再尝试同步。",
+    "#218:8c73bf32b41f62d7": "匹配预设时使用 MRG 配置的分辨率。1080p、1440p 和 2160p 为 16:9，也可自定义宽高。启用“匹配宽高比”时，此处只指定长边，宽高比由渲染相机决定。",
+    "Camera Cuts track": "相机切换轨道",
+    "#36:72f118445323c48b": "— 此处的「匹配宽高比」不起作用。",
+    "#122:57756b999518d0f3": "相机切换轨道没有绑定单一相机。请选择具体相机以匹配其宽高比。",
+    "#84:d0946f48120c9d28": "视口未报告宽高比。请选择具体相机以匹配其宽高比。",
+    "#33:84437dbdb300b3dd": "未找到，当前显示的是",
+    "#49:c708889cd3983a8f": "的宽高比。请重新选择相机。",
+    "#45:c45296b6324313b1": "未找到，渲染将采用",
+    "#30:89f6034d192334ed": "中的相机。请重新选择相机。",
+    "#55:93259f9d634f10d9": "— 目标分辨率与相机的宽高比不同，将采用",
+    "#16:86171a5606ec625c": ":1。"
   },
   "defaults": {
     "audioGenerator": {
@@ -1721,7 +1743,8 @@
     "sequenceRender": {
       "button": [
         "Camera Cuts Track",
-        "Sync"
+        "Sync",
+        "Camera Cuts track"
       ],
       "choice": [
         "Android OpenGL High",
@@ -1749,14 +1772,32 @@
         "Preset",
         "Show Flags",
         "Target Resolution Size",
-        "View Mode"
+        "View Mode",
+        "Match aspect",
+        "Target resolution size",
+        "Match visibility",
+        "Show flags",
+        "View mode",
+        "Size"
       ],
       "params": [
         "MRG Preset",
         "Sequence",
         "Viewport Look",
         "→ preview unavailable (",
-        "#18:7d89ec264ea75b64"
+        "#18:7d89ec264ea75b64",
+        "MRG preset",
+        "MRG variables",
+        "→ computing…",
+        "#36:72f118445323c48b",
+        "#122:57756b999518d0f3",
+        "#84:d0946f48120c9d28",
+        "#33:84437dbdb300b3dd",
+        "#49:c708889cd3983a8f",
+        "#45:c45296b6324313b1",
+        "#30:89f6034d192334ed",
+        "#55:93259f9d634f10d9",
+        "#16:86171a5606ec625c"
       ],
       "pin": [
         "Beauty",
@@ -1780,12 +1821,16 @@
         "#44:ddb9e175d4711a7c",
         "#102:d605fccb12e5ef79",
         "#184:f265af6931bcde4f",
-        "Unreal not reachable"
+        "Unreal not reachable",
+        "Connected to Unreal",
+        "#69:2911f6b1986798fa",
+        "#218:8c73bf32b41f62d7"
       ],
       "body": [
         "Unreal offline",
         "Checking…",
-        "Connected"
+        "Connected",
+        "Can't reach Unreal"
       ]
     },
     "setCamera": {
@@ -2142,7 +2187,13 @@
         "Target Resolution Size",
         "#251:7a88874185693f92",
         "Time of day",
-        "View Mode"
+        "View Mode",
+        "Match aspect",
+        "Target resolution size",
+        "Match visibility",
+        "Show flags",
+        "View mode",
+        "Size"
       ],
       "params": [
         "Lighting",
@@ -2150,7 +2201,19 @@
         "Reposition",
         "Viewport Look",
         "→ preview unavailable (",
-        "#18:7d89ec264ea75b64"
+        "#18:7d89ec264ea75b64",
+        "MRG preset",
+        "MRG variables",
+        "→ computing…",
+        "#36:72f118445323c48b",
+        "#122:57756b999518d0f3",
+        "#84:d0946f48120c9d28",
+        "#33:84437dbdb300b3dd",
+        "#49:c708889cd3983a8f",
+        "#45:c45296b6324313b1",
+        "#30:89f6034d192334ed",
+        "#55:93259f9d634f10d9",
+        "#16:86171a5606ec625c"
       ],
       "pin": [
         "Beauty",
@@ -2176,12 +2239,16 @@
         "Set the time of day",
         "#44:ddb9e175d4711a7c",
         "#184:f265af6931bcde4f",
-        "Unreal not reachable"
+        "Unreal not reachable",
+        "Connected to Unreal",
+        "#69:2911f6b1986798fa",
+        "#218:8c73bf32b41f62d7"
       ],
       "body": [
         "Unreal offline",
         "Checking…",
-        "Connected"
+        "Connected",
+        "Can't reach Unreal"
       ]
     },
     "usdInput": {

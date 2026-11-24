@@ -1,4 +1,5 @@
 import { renderedFiber, type HostFiber } from './host-fiber';
+import type { ReadonlyCanvasState } from '@merlin/plugin-api';
 
 const media = new Map(Object.entries({
   Image: '图像', Video: '视频', Audio: '音频', Text: '文本', Mesh: '网格模型',
@@ -35,6 +36,21 @@ function shelfScriptLists(fiber: HostFiber<ShelfProps> | undefined) {
 
 function isBuiltinViewportScript(script: ShelfScript) {
   return script?.params?.builtinGraph === true && viewportScripts.get(script.name)?.id === script.id;
+}
+
+export const toolboxScriptNameSelector = '.merlin-scripts-row-name,.merlin-graphs-tile-label';
+
+export function translateToolboxScriptName(element: Element, field: string, value: string,
+  readCanvas?: () => ReadonlyCanvasState) {
+  const script = viewportScripts.get(value);
+  if (!script || field !== 'text' || !element.matches(toolboxScriptNameSelector)) return;
+  const row = element.closest('.merlin-scripts :is(.merlin-scripts-row.is-table,.merlin-graphs-tile.merlin-scripts-tile)[role="button"]');
+  const wrapper = row?.parentElement;
+  // The same keyed React component wraps the table and grid rows. The library
+  // node supplies the built-in marker even when the Source column is hidden.
+  if (!wrapper?.hasAttribute('data-tooltip-owner') || renderedFiber(wrapper)?.return?.key !== 'graph:' + script.id) return;
+  const matches = readCanvas?.().canvases['graph-library']?.nodes.filter(node => node.id === script.id);
+  if (matches?.length === 1 && matches[0].name === value && isBuiltinViewportScript(matches[0])) return script.label;
 }
 
 function translateViewportScript(element: Element, field: string, value: string) {

@@ -31,9 +31,10 @@
     }
   },
   {
-    "selector": "[role=\"tooltip\"],[role=\"tooltip\"] *",
+    "selector": "[role=\"tooltip\"],[role=\"tooltip\"] *,.merlin-content-modes button",
     "fields": [
-      "text"
+      "text",
+      "aria-description"
     ],
     "entries": {
       "#50:75e4c247165575a2": "新建画布、浏览画布库或从文件打开",

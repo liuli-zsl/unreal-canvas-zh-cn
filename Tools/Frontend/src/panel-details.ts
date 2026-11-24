@@ -1,9 +1,47 @@
 import { copyId } from './copy-id';
+import { renderedFiber } from './host-fiber';
+import { translateCardTypeLabel, translateMediaTypeLabel } from './media-details';
+import { nodeKindLabel } from './node-hover';
 const skillModes: Record<string, readonly [string, string]> = {
   selected: ['Selected only', '仅使用所选技能'],
   suggest: ['Suggest', '建议启用'],
   auto: ['Add automatically', '自动添加'],
 };
+
+type InspectorNode = { kind?: string; pins?: { direction: string; dataType: string }[] };
+type InspectorFieldProps = {
+  fieldId?: string;
+  targetKind?: string;
+  node?: InspectorNode;
+  sysNode?: InspectorNode;
+};
+
+function inspectorNodeField(element: Element, value: string) {
+  const mounted = renderedFiber<InspectorFieldProps>(element);
+  if (!mounted) return;
+  // Selection changes can reuse the DOM row. Read the branch whose host props
+  // were committed to this element, rather than the initially mounted branch.
+  const propKey = Object.keys(element).find(key => key.startsWith('__reactProps$'));
+  const live = propKey ? Object.getOwnPropertyDescriptor(element, propKey)?.value : undefined;
+  if (!live) return;
+  const visible = mounted.memoizedProps === live ? mounted :
+    mounted.alternate?.memoizedProps === live ? mounted.alternate : undefined;
+  for (let owner = visible; owner; owner = owner.return) {
+    const props = owner.memoizedProps;
+    if (props?.fieldId !== owner.key) continue;
+    const kind = props?.node?.kind;
+    if (kind && props?.targetKind === 'node') {
+      if (owner.key === 'sys:kindLabel') return nodeKindLabel(kind, value);
+      if (owner.key === 'type') {
+        const media = translateMediaTypeLabel(value);
+        const pinsMatch = media && [props.node, props.sysNode].some(node =>
+          node?.pins?.find(pin => pin.direction === 'output' && pin.dataType !== 'any')?.dataType === value.toLowerCase());
+        return pinsMatch ? media : nodeKindLabel(kind, value);
+      }
+    }
+    return;
+  }
+}
 
 function skillStatus(english: string): string | undefined {
   const count = /^(\d+) active skills?$/.exec(english);
@@ -16,6 +54,18 @@ function skillStatus(english: string): string | undefined {
 }
 
 export function translatePanelDetails(element: Element, field: string, english: string, node?: Node): string | null | undefined {
+  if ((field === 'text' || field === 'title' || field === 'data-title-tip') &&
+      element.matches('.merlin-inspector-panel span:is([title],[data-title-tip]):last-child')) {
+    const copy = field === 'text' ? null : /^([^\n]+)\n\n\(right-click to copy\)$/.exec(english);
+    const value = field === 'text' ? english : copy?.[1];
+    if (value) {
+      const label = element.previousElementSibling?.textContent;
+      const translated = element.closest('.merlin-inspector-summary') && (label === 'Card type' || label === '卡片类型')
+        ? translateCardTypeLabel(value)
+        : inspectorNodeField(element, value);
+      if (translated) return copy ? translated + '\n\n（右键复制）' : translated;
+    }
+  }
   if (field === 'text') {
     if (element.matches('.agent-retry-status > div > span')) {
       const recovering = /^(\d+) requests recovering\. (Active retry|Next retry)$/.exec(english);

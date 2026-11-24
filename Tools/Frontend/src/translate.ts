@@ -1,5 +1,5 @@
 import { copyId, copyKey, keyLength } from './copy-id';
-import { translateGeneration } from './generation';
+import { toolboxScriptNameSelector, translateGeneration, translateToolboxScriptName } from './generation';
 import { translateMenuDynamic } from './menu-dynamic';
 import { translatePanelsDynamic } from './panels';
 import { translateSettingsDynamic } from './settings';
@@ -14,6 +14,7 @@ import { createWorkspaceTranslator } from './workspace-details';
 import { translateMediaDetails } from './media-details';
 import { translateEditorConnection } from './editor-connection';
 import { translateGeometryMenu } from './geometry-menu';
+import { translateNodeHover } from './node-hover';
 import { translatePanelDetails } from './panel-details';
 import { isAgentChatChrome, translateAgentChat } from './agent-chat';
 import { translateAgentModelPlaceholder, translateAgentSettings } from './agent-settings';
@@ -25,9 +26,9 @@ export interface Group {
 }
 type Entry = { original: string; displayed: string };
 type Rule = { selector: string; translation: string };
-const attributes = ['title', 'aria-label', 'aria-description', 'placeholder', 'data-tooltip', 'alt'];
+const attributes = ['title', 'aria-label', 'aria-description', 'placeholder', 'data-tooltip', 'data-title-tip', 'alt'];
 const scopeAttributes = ['class', 'role', 'contenteditable', 'translate', 'data-testid', 'data-package-row', 'data-value', 'data-role', 'disabled', 'aria-checked'];
-const protectedContent = 'script,style,pre,code,.cm-content,.view-lines,[translate="no"],[data-merlin-text-surface],.canvas-card-header,.agent-attention-preview,.agent-assignee-name,.agent-current-task-title,.merlin-scripts-name,.merlin-scripts-row-name,.merlin-graphs-tile-label,.credential-row-label,.merlin-ops-name';
+const protectedContent = 'script,style,pre,code,.cm-content,.view-lines,[translate="no"],[data-merlin-text-surface],.canvas-card-header,.agent-attention-preview,.agent-assignee-name,.agent-current-task-title,.merlin-scripts-name,.credential-row-label,.merlin-ops-name';
 const editableContent = '[contenteditable]:not([contenteditable="false"]),input,textarea,[role="textbox"]';
 const searchMessageStart = 'No settings in this category match “';
 const searchEndId = '38f7650709e6c304';
@@ -65,6 +66,7 @@ export function localize(doc: Document, dictionary: Group[], readCanvas?: () => 
     const prior = fields?.get(field);
     const original = prior && prior.displayed === value ? prior.original : value;
     const english = original?.trim();
+    const toolboxScriptName = english && translateToolboxScriptName(element, field, english, readCanvas);
     let translated: string | null | undefined;
     const candidates = english ? (rules.get(field + '\n' + english)
       ?? (helpLengths.has(english.length) ? rules.get(field + '\n' + copyKey(english)) : undefined)) : undefined;
@@ -72,7 +74,9 @@ export function localize(doc: Document, dictionary: Group[], readCanvas?: () => 
       || (english === '.' && element.matches('.agent-onboarding-content > p,.agent-setup-hint'))
       || (english === '”.' && element.classList.contains('agent-model-empty'))
       || (english === '?' && element.matches('.generation-shelf-approval > strong'));
-    if (english && element.closest('.agent-chat-message')) {
+    if (toolboxScriptName) {
+      translated = toolboxScriptName;
+    } else if (english && element.closest('.agent-chat-message')) {
       // A user's message can contain the same strings as any of the system controls.
       if (isAgentChatChrome(element, field)) translated = translateAgentChat(element, field, english, node);
     } else if (english && (candidates || splitMessage || english === '(' || /[A-Za-z]/.test(english))) {
@@ -80,8 +84,9 @@ export function localize(doc: Document, dictionary: Group[], readCanvas?: () => 
       if (translated === undefined) translated = translateAgentChat(element, field, english, node);
       if (translated === undefined) translated = translateEditorConnection(element, field, english, node);
       if (translated === undefined) translated = translateGeometryMenu(element, field, english);
+      if (translated === undefined) translated = translateNodeHover(element, field, english);
       if (translated === undefined) translated = translateMediaDetails(element, field, english, node);
-      if (translated === undefined) translated = translateWorkspaceDetails(element, field, english);
+      if (translated === undefined) translated = translateWorkspaceDetails(element, field, english, node);
       if (translated === undefined) translated = translatePanelDetails(element, field, english, node);
       if (translated === undefined) translated = translatePanelsDynamic(element, field, english, node);
       if (translated === undefined) translated = translateCanvasAction(element, field, english);
@@ -112,6 +117,7 @@ export function localize(doc: Document, dictionary: Group[], readCanvas?: () => 
         && element.matches('.text-input-rich[data-merlin-text-surface] > span:only-child') && !element.closest('[contenteditable]');
       if (english === packageName || modelName || element.matches('[data-testid="provider-icon"]')
         || (element.closest('.agent-model-name') && !(field === 'text' && english && translateAgentModelPlaceholder(element, english)))
+        || (element.closest(toolboxScriptNameSelector) && !toolboxScriptName)
         || (element.closest(protectedContent) && !emptyTextInputHint) || (element.closest('.merlin-canvas-tab') && !tabAction)
         || (field === 'text' && element.closest(editableContent + ',option[value="custom"]'))) translated = undefined;
     }

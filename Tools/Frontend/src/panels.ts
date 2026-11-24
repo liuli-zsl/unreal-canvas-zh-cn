@@ -76,10 +76,27 @@ export function translatePanelsDynamic(element: Element, field: string, english:
       const result = /^(\d+) results?$/.exec(english);
       if (result) return `${result[1]} 个结果`;
     }
+    if (element.matches('.merlin-scripts > .merlin-panel-footer')) {
+      const count = /^(\d+) tools?$/.exec(english);
+      if (count) return `${count[1]} 个工具`;
+    }
+    if (element.matches('.media-library > .merlin-panel-footer')) {
+      const count = /^(\d+) (item|card)s?$/.exec(english);
+      if (count) return count[1] + (count[2] === 'card' ? ' 张卡片' : ' 项');
+    }
     return undefined;
   }
+  if (field === 'aria-label' && element.matches('.merlin-content-modes .merlin-rail-badge[role=status]')) {
+    const labels = english.split('; ').map(part => {
+      const waiting = /^(\d+) agents? needs? your input$/.exec(part);
+      if (waiting) return `${waiting[1]} 个智能体等待你输入`;
+      const updates = /^(\d+) agents? (?:has|have) updates$/.exec(part);
+      if (updates) return `${updates[1]} 个智能体有更新`;
+    });
+    if (labels.every(Boolean)) return labels.join('，');
+  }
   if (field !== 'aria-label' && field !== 'title') return undefined;
-  if (classes.contains('media-library-size')) {
+  if (element.matches('.media-library-size,.media-library .merlin-panel-slider-button > button.merlin-panel-icon-button')) {
     const size = /^Thumbnail size: (\d+)px$/.exec(english);
     if (size) return `缩略图大小：${size[1]} 像素`;
   }

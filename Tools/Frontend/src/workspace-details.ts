@@ -28,6 +28,44 @@ function isPlatformHelp(value: string) {
   return value.length >= platformHelpLength && value.startsWith('Render as ') && copyId(value.slice(0, platformHelpLength)) === '2ab094780cb80e80';
 }
 const platformNoteZh = '临时切换编辑器的预览平台后渲染，首次切换可能需要编译着色器。';
+const pinToggle = '.merlin-param-control > button:is([title="Expose as input pin"],[title="Remove pin"],[title="公开为输入引脚"],[title="移除引脚"])';
+const standardRenderPasses = new Map([['beauty', 'Beauty'], ['depth', 'Depth'], ['normal', 'Normal']]);
+const resolutionSources = new Map([['viewport', '视口'], ['camera', '相机']]);
+const missingCameraPrefix = "Unreal couldn't find ";
+const missingCameraSuffixLength = 61;
+
+function isRenderVariableLabel(element: Element) {
+  return element.classList.contains('merlin-param-label') &&
+    !!element.closest('.merlin-param-row:not([data-param-key])')?.querySelector(':scope > ' + pinToggle);
+}
+
+function renderResolutionHint(element: Element, value: string, text: Node | undefined) {
+  if (!element.matches('.graph-node-params div:not([class])') || !element.textContent?.startsWith('→')) return;
+  const match = /^· matches (viewport|camera) (\d+(?:\.\d+)?):1$/.exec(value);
+  if (match) return '· 匹配' + resolutionSources.get(match[1]) + '宽高比 ' + match[2] + ':1';
+  if (value.startsWith(missingCameraPrefix) && copyKey(value.slice(-missingCameraSuffixLength)) === '#61:479349e67677b7c0') {
+    const name = value.slice(missingCameraPrefix.length, -missingCameraSuffixLength);
+    return 'UE 找不到“' + name + '”。它可能已重命名或删除，请重新选择相机。';
+  }
+  const source = resolutionSources.get(value);
+  const lead = text?.previousSibling?.nodeValue?.trim();
+  if (source && lead && ['#33:84437dbdb300b3dd', '#45:c45296b6324313b1'].some(key =>
+      words.get(key) === lead || copyKey(lead) === key)) return source;
+}
+
+function renderPassLabel(element: Element, field: string, value: string, popupOwner: Element | undefined, node: NodeData) {
+  const pass = standardRenderPasses.get(value);
+  const names = node.params?.mrgPassNames;
+  if (!pass || !Array.isArray(names) || !names.includes(pass)) return;
+  const label = words.get(pass);
+  if (element.matches('.graph-node-body .nodrag > button[aria-pressed]:is([title],[data-title-tip])')) {
+    const title = element.getAttribute('title') ?? element.getAttribute('data-title-tip');
+    if (field !== 'text' || title === value || title === label) return label;
+  }
+  if (field !== 'text') return;
+  if (popupOwner?.closest('.graph-node-body') && element.closest('[role="option"]')?.getAttribute('data-value') === value) return label;
+  if (element.matches('.graph-node-body button.custom-select[role="combobox"] > span > span[aria-hidden]')) return label;
+}
 
 function ownerOfList(element: Element) {
   const list = element.closest('[role="listbox"][id]');
@@ -67,15 +105,18 @@ export function createWorkspaceTranslator(readCanvas?: () => ReadonlyCanvasState
     return index.get(id);
   }
 
-  return (element: Element, field: string, value: string): string | null | undefined => {
+  return (element: Element, field: string, value: string, text?: Node): string | null | undefined => {
     const header = element.matches('.graph-node-header-title span[title]');
     const rename = header && field === 'title' && value.endsWith(englishRename);
     const dynamic = value.startsWith(bridgeRequirement) || isPlatformHelp(value) ||
       value.startsWith('Could not fetch MCP tool list from ') || value.startsWith('Error — Could not fetch MCP tool list from ');
+    const resolutionHint = field === 'text' && (value.startsWith('· matches ') ||
+      value.startsWith(missingCameraPrefix) || resolutionSources.has(value));
+    const renderPass = (field === 'text' || field === 'title' || field === 'data-title-tip') && standardRenderPasses.has(value);
     const key = words.has(value) || !helpLengths.has(value.length) ? value : copyKey(value);
     const translation = words.get(key);
     const geometryName = operationLabels.get(value) ?? operationGroups.get(value);
-    if (!translation && !geometryName && !header && !dynamic) return;
+    if (!translation && !geometryName && !header && !dynamic && !resolutionHint && !renderPass) return;
     const popupOwner = ownerOfList(element);
     const owner = (popupOwner ?? element).closest('.react-flow__node[data-id]');
     const id = owner?.getAttribute('data-id');
@@ -96,6 +137,15 @@ export function createWorkspaceTranslator(readCanvas?: () => ReadonlyCanvasState
     }
     const rules = nodeRules.get(node.kind);
     if (!rules) return;
+    if (node.kind === 'unrealRender' || node.kind === 'sequenceRender') {
+      if (resolutionHint) {
+        const hint = renderResolutionHint(element, value, text);
+        if (hint !== undefined) return hint;
+      }
+      if (renderPass) return renderPassLabel(element, field, value, popupOwner, node);
+      // MRG variables can use the same labels as fixed render settings.
+      if ((field === 'text' || field === 'title') && isRenderVariableLabel(element)) return null;
+    }
     if (dynamic && element.closest('.graph-node-body')) {
       if (value.startsWith(bridgeRequirement) && field === 'text') {
         const rest = value.slice(bridgeRequirement.length).replace(bridgeStatus, '未连接，无法访问 ');

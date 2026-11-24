@@ -4,11 +4,11 @@
 
 **[下载最新正式版](https://github.com/liuli-zsl/unreal-canvas-zh-cn/releases/latest)** · [各版本与更新记录](Tools/Docs/CHANGELOG.md)
 
-本源码版本 **0.2.11** 适用于 Win64、UE 5.9 Preview 2（编辑器 BuildId `60738873`）和 Unreal Canvas 0.24.0。请通过 Epic 安装 Canvas 本体。
+本源码版本 **0.2.12** 适用于 Win64、UE 5.9 Preview 2（编辑器 BuildId `60738873`）和 Unreal Canvas 0.24.0。请通过 Epic 安装 Canvas 本体。
 
 ## 安装
 
-1. 选择与插件版本、UE 版本、编辑器 BuildId 和 Canvas 版本匹配的 Win64 预编译 ZIP。本版文件名为 `UnrealCanvasZhCN-0.2.11-UE5.9-Win64.zip`。
+1. 选择与插件版本、UE 版本、编辑器 BuildId 和 Canvas 版本匹配的 Win64 预编译 ZIP，例如 `UnrealCanvasZhCN-0.2.11-UE5.9-Win64.zip`。
 2. 将 ZIP 直接解压到工程的 `Plugins/`。解压后应能找到 `Plugins/UnrealCanvasZhCN/UnrealCanvasZhCN.uplugin`。
 3. 打开工程，在 **编辑 → 插件** 确认已启用 **Unreal Canvas 简体中文**，按 UE 提示重启。UE 会一同加载 Unreal Canvas Bridge，前端扩展也会自动启用。
 
@@ -26,7 +26,7 @@
 
 ## 汉化范围
 
-- **画布与节点**覆盖顶栏、设置、卡片菜单、生成工具架、模型列表、视口脚本、参考素材及几何节点分类与操作。
+- **画布与节点**覆盖顶栏、设置、卡片菜单、节点图锁定与解锁、内置节点悬停说明、渲染控件、生成工具架、模型列表、视口脚本、参考素材及几何节点分类与操作。
 - **智能体与媒体**覆盖连接向导、权限选项、聊天状态、资源库、时间线与媒体查看器。
 - **原生界面**覆盖UE 工程中的 Bridge 设置，以及独立 App 的编辑、窗口和帮助菜单。覆盖范围与已知限制随宿主版本变化。[逐版改动](Tools/Docs/CHANGELOG.md)
 

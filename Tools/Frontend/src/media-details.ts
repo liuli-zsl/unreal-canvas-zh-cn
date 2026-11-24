@@ -2,13 +2,37 @@ const mediaTypes: Record<string, string> = {
   Image: '图像', Video: '视频', Audio: '音频', Mesh: '网格', Text: '文本', File: '文件', Splat: '高斯泼溅',
 };
 
+export function translateMediaTypeLabel(english: string): string | undefined {
+  if (Object.prototype.hasOwnProperty.call(mediaTypes, english)) return mediaTypes[english];
+}
+
+const cardTypes = new Map(Object.entries({
+  Action: '操作', Deck: '卡组', 'Component Card': '组件卡片', Reference: '引用', Tool: '工具', Component: '组件',
+}));
+
+const cardSubtypes = new Map(Object.entries({
+  Graph: '节点图', Model: '模型', ImageGen: '生成图像', VideoGen: '生成视频', AudioGen: '生成音频',
+  MeshGen: '生成网格', SplatGen: '生成高斯泼溅', TextGen: '生成文本',
+}));
+
+export function translateCardTypeLabel(english: string) {
+  const type = cardTypes.get(english);
+  if (type) return type;
+  const derived = /^([^(]+) \((.+)\)$/.exec(english);
+  const parent = derived && cardTypes.get(derived[1]);
+  if (derived && parent) return parent + '（' + (cardSubtypes.get(derived[2]) ?? derived[2]) + '）';
+}
+
 function libraryCardTitle(card: Element, english: string) {
   const name = card.querySelector('.media-library-caption strong')?.textContent;
   if (!name || !english.startsWith(name + '\n')) return;
   const detail = english.slice(name.length + 1);
   if (card.classList.contains('media-library-archived-card')) {
-    const archive = /^Archived (.+)\nWas on ([\s\S]*)\nRight-click to restore\b.*$/.exec(detail);
-    if (archive) return name + '\n归档时间：' + archive[1] + '\n原画布：' + archive[2] + '\n右键可恢复，或拖到画布上恢复';
+    const archive = /^(?:(.+)\n)?Archived (.+)\nWas on ([\s\S]*)\nRight-click to restore\b.*$/.exec(detail);
+    if (archive) {
+      const type = archive[1] ? '\n' + (translateCardTypeLabel(archive[1]) ?? archive[1]) : '';
+      return name + type + '\n归档时间：' + archive[2] + '\n原画布：' + archive[3] + '\n右键可恢复，或拖到画布上恢复';
+    }
     return;
   }
   const lines = detail.split('\n');
@@ -39,14 +63,24 @@ export function translateMediaDetails(element: Element, field: string, english: 
     if (element.classList.contains('media-library-locate') && english.startsWith('Show ') && english.endsWith(' on the canvas')) {
       return '在画布中定位“' + english.slice(5, -14) + '”';
     }
-    if (element.classList.contains('media-library-open-viewer') && english.startsWith('Open Viewer — ')) {
-      return '在查看器中打开“' + english.slice('Open Viewer — '.length) + '”';
+    if (element.classList.contains('media-library-open-viewer')) {
+      const viewer = /^Open [Vv]iewer — ([\s\S]+)$/.exec(english);
+      if (viewer) return '在查看器中打开“' + viewer[1] + '”';
+    }
+    if (element.matches('.media-library-type-icon[role="img"]')) return translateMediaTypeLabel(english);
+    if (element.classList.contains('media-library-usage')) {
+      const used = /^Used in (\d+) places?$/.exec(english);
+      if (used) return '共 ' + used[1] + ' 处引用';
     }
     if (element.matches('.media-library-results [role="dialog"]')) return archiveDialogTitle(english);
   }
   if (field !== 'text') return;
   if (element.matches('.media-library-results [role="dialog"] > div:first-child')) return archiveDialogTitle(english);
-  if (element.matches('.media-library-archived-card .media-library-caption > span') && element.firstChild === node && english === 'Archived') return '归档于';
+  if (element.matches('.media-library-archived-card :is(.media-library-caption,.media-library-card-meta) > span')
+      && element.firstChild === node && english === 'Archived') return '归档于';
+  if (element.matches('.media-library-archived-card .media-library-card-meta > span:first-child:not(:only-child)')) {
+    return translateCardTypeLabel(english);
+  }
   if (element.classList.contains('ue-menu-label') && element.closest('.ue-menu')?.parentElement?.querySelector('.media-library')) {
     const prefix = element.firstChild?.nodeValue?.trim();
     // The prefix, authored card name, separator and canvas breadcrumb are separate React text nodes.
